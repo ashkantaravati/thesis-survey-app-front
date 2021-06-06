@@ -2,9 +2,9 @@
   <el-container>
     <el-header>
       <div id="nav">
-        <router-link to="/">صفحه اصلی</router-link> |
-        <router-link to="/register">ثبت نام</router-link> |
-        <router-link to="/participate">مشارکت</router-link>
+        <router-link :to="{ name: 'Home' }">صفحه اصلی</router-link> |
+        <router-link :to="{ name: 'RegisterLanding' }">ثبت نام</router-link> |
+        <!-- <router-link :to="{ name: 'RegisterWizard' }">مشارکت</router-link> -->
       </div>
     </el-header>
     <el-main>
