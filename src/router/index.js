@@ -1,7 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
-import RegisterLanding from "@/views/register/RegisterLanding.vue";
-import RegisterWizard from "@/views/register/RegisterWizard.vue";
+import RegisterLanding from "@/views/RegisterLanding.vue";
+import RegisterWizard from "@/views/RegisterWizard.vue";
 
 const routes = [
   {
