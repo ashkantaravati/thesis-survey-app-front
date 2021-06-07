@@ -106,6 +106,9 @@ a:focus {
 .d-flex{
   display: flex;
 }
+.pb-1rem{
+      padding-bottom: 1rem;
+}
 /*  */
 .p-btn-primary {
   display: inline-block;
@@ -131,5 +134,8 @@ a:focus {
   border-color: #177aa6;
   border-radius: 20px;
   padding: 12px 23px;
+}
+.el-input__inner , .el-button , .el-step__icon-inner{
+    font-family: "IRANSansX" !important;
 }
 </style>

@@ -16,7 +16,7 @@
         کرد.
       </p>
       <div class=" jc-center d-flex"> 
-            <router-link :to="{ name: 'RegisterLanding' }" class="p-btn-primary"
+            <router-link :to="{ name: 'RegisterWizard' }" class="p-btn-primary"
               >شروع و ثبت اطلاعات سازمان</router-link
             > 
         </div> 
