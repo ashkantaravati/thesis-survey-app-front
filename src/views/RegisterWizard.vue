@@ -39,9 +39,9 @@
       <el-button @click="addTeamMember(team)"> + افزودن عضو </el-button>
     </el-card>
 
-    <el-button @click="addTeam"> + افزودن تیم </el-button>
+    <el-button @click="addTeam" class="p-btn-primary "> + افزودن تیم </el-button>
 
-    <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button>
+    <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
   </div>
   <div class="step-container" v-show="currentStep === 2">
     <h3><strong>گام سوم:</strong> خلاصه‌ی اطلاعات وارد‌شده و بازبینی</h3>
@@ -62,7 +62,7 @@
         {{ member.name }} <br />
       </div>
     </el-card>
-    <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button>
+    <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
   </div>
   <div class="step-container" v-show="currentStep === 3">
     <h3><strong>گام چهارم:</strong> دریافت لینک برای مشارکت تیم‌ها</h3>
@@ -81,8 +81,8 @@
 
 
   <div class="fix-btns-container">
-        <el-button @click="goPrev" :disabled="currentStep !==0 ? disabled : ''"> گام قبل </el-button>
-        <el-button @click="goNext"  :disabled="currentStep !==3 ? disabled : ''"> گام بعد </el-button>
+        <el-button @click="goPrev" :disabled="currentStep !==0 ? disabled : ''">  <i class="el-icon-arrow-right"></i>گام قبل </el-button>
+        <el-button @click="goNext"  :disabled="currentStep !==3 ? disabled : ''"> گام بعد  <i class="el-icon-arrow-left"></i></el-button>
   </div>
 </template>
 

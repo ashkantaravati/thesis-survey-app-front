@@ -129,11 +129,11 @@ a:focus {
   -webkit-user-select: none;
   -ms-user-select: none; 
   font-size: 14px;
-  color: #fff;
-  background-color: #177aa6;
-  border-color: #177aa6;
-  border-radius: 20px;
-  padding: 12px 23px;
+  color: #fff !important;
+  background-color: #177aa6 !important;
+  border-color: #177aa6 !important;
+  border-radius: 20px !important;
+  padding: 12px 23px !important;
 }
 .el-input__inner , .el-button , .el-step__icon-inner{
     font-family: "IRANSansX" !important;
