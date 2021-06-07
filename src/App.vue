@@ -25,4 +25,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@font-face {
+  font-family: "IRANSansX";
+  src:
+   url(./fonts/woff/IRANSansX-Regular.woff),
+   url(./fonts/woff2/IRANSansX-Regular.woff2);
+}
+body{
+  font-family: 'IRANSansX';
+  box-sizing: border-box;
+    margin: 0;
+    direction: rtl;
+    font-size: 16px;
+    line-height: 24px;
+}
+</style>
