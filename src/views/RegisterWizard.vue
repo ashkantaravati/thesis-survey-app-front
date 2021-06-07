@@ -26,17 +26,21 @@
       ماندن نام افراد دارید می‌توانید از نام های مستار اما یکتا استفاده کنید. توجه
       کنید این نام ها در پرسشنامه برای افراد قابل رویت خواهند بود
     </p>
-    <el-card class="box-card" v-for="team in teams" :key="team.index">
+    <el-card class="box-card mb-halfrem" v-for="team in teams" :key="team.index">
       <template #header>
         <div class="card-header">
           <span>اعضای تیم {{ team.index }}</span>
-          <el-button class="button" type="text">حذف تیم</el-button>
+          <el-button class="button mr-halfrem" type="danger" plain round> <i class="el-icon-delete"></i> حذف تیم</el-button>
         </div>
       </template>
-      <div v-for="member in team.members" :key="member.index" class="text item">
+      <el-row v-for="member in team.members" :key="member.index" class="text item d-flex">
+        <el-col :span="2">عضو {{member.index}}</el-col>
+        <el-col :span="22">
+
         <el-input class="pb-1rem" v-model="member.name" placeholder="نام عضو" />
-      </div>
-      <el-button @click="addTeamMember(team)"> + افزودن عضو </el-button>
+        </el-col>
+      </el-row>
+      <el-button @click="addTeamMember(team)"  type="primary"> + افزودن عضو </el-button>
     </el-card>
 
     <el-button @click="addTeam" class="p-btn-primary "> + افزودن تیم </el-button>

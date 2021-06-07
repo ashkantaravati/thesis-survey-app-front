@@ -109,6 +109,12 @@ a:focus {
 .pb-1rem{
       padding-bottom: 1rem;
 }
+.mb-halfrem{
+  margin-bottom: .5rem;
+}
+.mr-halfrem{
+  margin-right: .5rem !important;
+}
 /*  */
 .p-btn-primary {
   display: inline-block;
