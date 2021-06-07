@@ -4,8 +4,8 @@
     <el-step title="گام دوم"></el-step>
     <el-step title="گام سوم"></el-step>
     <el-step title="گام چهارم"></el-step>
-  </el-steps>
-  <div v-show="currentStep === 0">
+  </el-steps> 
+  <div class="step-container" v-show="currentStep === 0">
     <h3><strong>گام اول:</strong> مشخصات سازمان و نماینده</h3>
     <el-input class="pb-1rem"
       placeholder="نام یا عنوان تجاری سازمان"
@@ -17,9 +17,9 @@
     ></el-input>
     <el-input class="pb-1rem" placeholder="سمت شما" v-model="repJobTitle"></el-input>
     <el-input class="pb-1rem" placeholder="ایمیل" v-model="repEmail"></el-input>
-    <el-button @click="goNext"> گام بعد </el-button>
+
   </div>
-  <div v-show="currentStep === 1">
+  <div class="step-container" v-show="currentStep === 1">
     <h3><strong>گام دوم:</strong> اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
     <p>
       نام افراد صرفا برای شناسایی و تفکیک اطلاعات آن هاست. چنانچه تمایل به مخف
@@ -43,7 +43,7 @@
 
     <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button>
   </div>
-  <div v-show="currentStep === 2">
+  <div class="step-container" v-show="currentStep === 2">
     <h3><strong>گام سوم:</strong> خلاصه‌ی اطلاعات وارد‌شده و بازبینی</h3>
     نام سازمان: {{ organizationName }} نام شما: {{ repFullName }} سمت شما:
     {{ repJobTitle }} ایمیل شما: {{ repEmail }} تعداد تیم‌های شما:
@@ -64,7 +64,7 @@
     </el-card>
     <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button>
   </div>
-  <div v-show="currentStep === 3">
+  <div class="step-container" v-show="currentStep === 3">
     <h3><strong>گام چهارم:</strong> دریافت لینک برای مشارکت تیم‌ها</h3>
     <p>
       از وقت که برای تکمیل مرحله ی اول گذاشتید متشکرم. حال می‌توانید با توجه به
@@ -75,6 +75,14 @@
       <el-input class="pb-1rem" v-model="team.sharableLink" readonly />
       <el-button icon="el-icon-document-copy"></el-button>
     </template>
+  </div>
+  
+
+
+
+  <div class="fix-btns-container">
+        <el-button @click="goPrev" :disabled="currentStep !==0 ? disabled : ''"> گام قبل </el-button>
+        <el-button @click="goNext"  :disabled="currentStep !==3 ? disabled : ''"> گام بعد </el-button>
   </div>
 </template>
 
@@ -96,6 +104,9 @@ export default defineComponent({
   methods: {
     goNext() {
       this.currentStep++;
+    },
+    goPrev() {
+      this.currentStep--;
     },
     addTeam() {
       this.lastTeamIndex++;
@@ -133,5 +144,20 @@ position: relative;
 }
 .el-step.is-horizontal .el-step__line{
   display: none;
+}
+.step-container{
+  min-height: 300px;
+}
+.fix-btns-container{
+  background: white;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+    border-radius: .5rem;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    position: sticky; 
+    z-index: 1;
+    bottom: 0;
+    margin: 0 auto;
 }
 </style>
