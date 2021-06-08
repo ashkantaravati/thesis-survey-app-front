@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
 import RegisterLanding from "@/views/RegisterLanding.vue";
 import RegisterWizard from "@/views/RegisterWizard.vue";
+import Survey from "@/views/Survey.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/register-wizard",
     name: "RegisterWizard",
     component: RegisterWizard,
+  },
+  {
+    path: "/participate",
+    name: "Survey",
+    component: Survey,
   },
 ];
 
