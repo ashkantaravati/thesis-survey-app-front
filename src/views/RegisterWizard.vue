@@ -69,9 +69,13 @@
   </div>
   <div class="step-container" v-show="currentStep === 2">
     <h3><strong>گام سوم:</strong> خلاصه‌ی اطلاعات وارد‌شده و بازبینی</h3>
-    نام سازمان: {{ organizationName }} نام شما: {{ repFullName }} سمت شما:
-    {{ repJobTitle }} ایمیل شما: {{ repEmail }} تعداد تیم‌های شما:
-    {{ teams.length }}
+    <el-alert type="warning" :closable="false" class="mb-halfrem">
+      <span class="mx-halfrem">نام سازمان: {{ organizationName }}</span>
+      <span class="mx-halfrem"> نام شما: {{ repFullName }}</span>
+      <span class="mx-halfrem"> سمت شما: {{ repJobTitle }}</span>
+      <span class="mx-halfrem"> ایمیل شما: {{ repEmail }}</span>
+      <span class="mx-halfrem"> تعداد تیم‌های شما: {{ teams.length }}</span>
+    </el-alert>
 
     <el-card class="box-card" v-for="team in teams" :key="team.index">
       <template #header>
@@ -96,13 +100,13 @@
       تیم هایتان تلید شده به تیم ها اقدام فرمایید.
     </p>
     <template v-for="team in teams" :key="team.index">
-      <span class="code text-red">{{ team.sharableLink }}</span>
-      <el-button
+      <p class="code text-red">{{ team.sharableLink }}<el-button
         icon="el-icon-document-copy"
         @click.stop.prevent="copyTestingCode"
         >کپی</el-button
-      >
-      <input type="hidden" id="testing-code" :value="team.sharableLink " />
+      ></p>
+      
+      <input type="hidden" id="testing-code" :value="team.sharableLink" />
     </template>
   </div>
 

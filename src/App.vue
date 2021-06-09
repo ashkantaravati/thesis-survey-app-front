@@ -110,7 +110,11 @@ a:focus {
       padding-bottom: 1rem;
 }
 .mb-halfrem{
-  margin-bottom: .5rem;
+  margin-bottom: .5rem !important;
+}
+.mx-halfrem{
+  margin-right: .5rem !important;
+  margin-left: .5rem !important;
 }
 .mr-halfrem{
   margin-right: .5rem !important;
