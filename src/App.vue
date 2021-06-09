@@ -71,9 +71,13 @@ a:hover,
 a:focus {
   text-decoration: none !important;
 }
-.body-container {
+
+
+@media screen and (min-width:768px) {
+  .body-container {
   width: 80%;
   margin: 0 auto;
+}
 }
 .header {
   padding: 0 !important;
