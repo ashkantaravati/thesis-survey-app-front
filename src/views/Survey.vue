@@ -10,7 +10,9 @@
       {{ teamInfo.name }}
     </span>
 
-    <h2 v-if="currentStep !== -1">گام {{ currentStep + 1 }}:</h2>
+    <h2 v-if="currentStep !== -1">
+      گام {{ currentStep + 1 }}: {{ stepTitle }}
+    </h2>
   </div>
   <div v-show="currentStep === -1">
     <p>
@@ -48,12 +50,13 @@
     </el-radio-group>
 
     <div class="block">
-      <p>میزان سابقه کار شما( بر حسب سال)</p>
-      <el-slider v-model="answers.tenure" show-input :max="40"> </el-slider>
+      <p>میزان سابقه کار شما ( بر حسب سال)</p>
+      <el-slider v-model="answers.tenure" show-input step="0.5" :max="40">
+      </el-slider>
     </div>
     <div class="block">
-      <p>میزان حضور شما در این تیم( بر حسب سال)</p>
-      <el-slider v-model="answers.teamHistory" show-input :max="40">
+      <p>مدت حضور شما در این تیم ( بر حسب ماه)</p>
+      <el-slider v-model="answers.teamHistory" show-input :max="60">
       </el-slider>
     </div>
   </div>
@@ -154,7 +157,21 @@ export default defineComponent({
       if (this.currentStep == 0) return;
       this.currentStep--;
     },
-    // computed: {},
+  },
+  computed: {
+    stepTitle() {
+      if (this.currentStep === -1) return "";
+      console.log(this.currentStep);
+      const STEPS = [
+        "سوالات عمومی",
+        "ارزیابی بیش‌اطمینانی",
+        "ارزیابی هماهنگی تیم از نظر شما",
+        "ارزیابی اثربخشی تیم از نظر شما",
+        "ارزیابی رفتار صدای تیم",
+        "پایان",
+      ];
+      return STEPS[this.currentStep];
+    },
   },
 });
 </script>
