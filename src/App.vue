@@ -24,7 +24,7 @@
         </el-menu>
       </el-header>
       <el-main>
-        <el-row>
+        <el-row class="jc-center">
           <el-col :xs="24" :lg="18" :xl="18">
             <router-view />
           </el-col>
