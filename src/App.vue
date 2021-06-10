@@ -23,7 +23,13 @@
           >
         </el-menu>
       </el-header>
-      <el-main> <router-view /> </el-main>
+      <el-main>
+        <el-row>
+          <el-col :xs="24" :lg="18" :xl="18">
+            <router-view />
+          </el-col>
+        </el-row>
+      </el-main>
       <el-divider></el-divider>
       <el-footer class="footer">
         <router-link to="#">درباره‌ی پژوهش</router-link>
@@ -72,12 +78,11 @@ a:focus {
   text-decoration: none !important;
 }
 
-
-@media screen and (min-width:768px) {
+@media screen and (min-width: 768px) {
   .body-container {
-  width: 80%;
-  margin: 0 auto;
-}
+    width: 80%;
+    margin: 0 auto;
+  }
 }
 .header {
   padding: 0 !important;
@@ -107,21 +112,21 @@ a:focus {
 .jc-center {
   justify-content: center;
 }
-.d-flex{
+.d-flex {
   display: flex;
 }
-.pb-1rem{
-      padding-bottom: 1rem;
+.pb-1rem {
+  padding-bottom: 1rem;
 }
-.mb-halfrem{
-  margin-bottom: .5rem !important;
+.mb-halfrem {
+  margin-bottom: 0.5rem !important;
 }
-.mx-halfrem{
-  margin-right: .5rem !important;
-  margin-left: .5rem !important;
+.mx-halfrem {
+  margin-right: 0.5rem !important;
+  margin-left: 0.5rem !important;
 }
-.mr-halfrem{
-  margin-right: .5rem !important;
+.mr-halfrem {
+  margin-right: 0.5rem !important;
 }
 /*  */
 .p-btn-primary {
@@ -141,7 +146,7 @@ a:focus {
   font-weight: 500;
   -moz-user-select: none;
   -webkit-user-select: none;
-  -ms-user-select: none; 
+  -ms-user-select: none;
   font-size: 14px;
   color: #fff !important;
   background-color: #177aa6 !important;
@@ -149,7 +154,9 @@ a:focus {
   border-radius: 20px !important;
   padding: 12px 23px !important;
 }
-.el-input__inner , .el-button , .el-step__icon-inner{
-    font-family: "IRANSansX" !important;
+.el-input__inner,
+.el-button,
+.el-step__icon-inner {
+  font-family: "IRANSansX" !important;
 }
 </style>
