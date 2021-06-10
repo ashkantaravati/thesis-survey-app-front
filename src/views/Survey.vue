@@ -42,12 +42,34 @@
       :min="15"
       :max="80"
     ></el-input-number>
+    <el-radio-group v-model="answers.sex" dir="ltr">
+      <el-radio-button label="خانم"></el-radio-button>
+      <el-radio-button label="آقا"></el-radio-button>
+    </el-radio-group>
+
+    <div class="block">
+      <p>میزان سابقه کار شما( بر حسب سال)</p>
+      <el-slider v-model="answers.tenure" show-input :max="40"> </el-slider>
+    </div>
+    <div class="block">
+      <p>میزان حضور شما در این تیم( بر حسب سال)</p>
+      <el-slider v-model="answers.teamHistory" show-input :max="40">
+      </el-slider>
+    </div>
   </div>
   <div v-show="currentStep === 1"></div>
   <div v-show="currentStep === 2"></div>
   <div v-show="currentStep === 3"></div>
   <div v-show="currentStep === 4"></div>
   <div v-show="currentStep === 5"></div>
+  <div class="fix-btns-container" v-show="currentStep !== -1">
+    <el-button @click="goPrev" :disabled="currentStep !== 0 ? disabled : ''">
+      <i class="el-icon-arrow-right"></i>گام قبل
+    </el-button>
+    <el-button @click="goNext" :disabled="currentStep !== 3 ? disabled : ''">
+      گام بعد <i class="el-icon-arrow-left"></i
+    ></el-button>
+  </div>
 </template>
 
 <script>
@@ -76,6 +98,9 @@ export default defineComponent({
       answers: {
         participantId: 0,
         participantAge: 22,
+        sex: "آقا",
+        tenure: "",
+        teamHistory: "",
       },
 
       // STEP: {
