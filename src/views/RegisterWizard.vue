@@ -11,18 +11,28 @@
       class="pb-1rem"
       placeholder="نام یا عنوان تجاری سازمان"
       v-model="organizationName"
+      type="text"
+      autocomplete="organization"
     ></el-input>
     <el-input
       class="pb-1rem"
       placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
       v-model="repFullName"
+      autocomplete="name"
     ></el-input>
     <el-input
       class="pb-1rem"
       placeholder="سمت شما"
       v-model="repJobTitle"
+      autocomplete="organization-title"
     ></el-input>
-    <el-input class="pb-1rem" placeholder="ایمیل" v-model="repEmail"></el-input>
+    <el-input
+      class="pb-1rem"
+      placeholder="ایمیل"
+      v-model="repEmail"
+      autocomplete="email"
+      type="email"
+    ></el-input>
   </div>
   <div class="step-container" v-show="currentStep === 1">
     <h3><strong>گام دوم:</strong> اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
@@ -100,12 +110,15 @@
       تیم هایتان تلید شده به تیم ها اقدام فرمایید.
     </p>
     <template v-for="team in teams" :key="team.index">
-      <p class="code text-red">{{ team.sharableLink }}<el-button
-        icon="el-icon-document-copy"
-        @click.stop.prevent="copyTestingCode"
-        >کپی</el-button
-      ></p>
-      
+      <p class="code text-red">
+        {{ team.sharableLink
+        }}<el-button
+          icon="el-icon-document-copy"
+          @click.stop.prevent="copyTestingCode"
+          >کپی</el-button
+        >
+      </p>
+
       <input type="hidden" id="testing-code" :value="team.sharableLink" />
     </template>
   </div>
