@@ -27,7 +27,7 @@
   </div>
   <div id="survey-step-1" v-show="currentStep === 0">
     <el-select
-      v-model="answers.generalQuestions.participantName"
+      v-model="answers.generalQuestions.participantId"
       filterable
       placeholder="نام خود را از لیست انتخاب کنید"
     >
@@ -89,15 +89,68 @@
       </template>
     </el-card>
   </div>
-  <div id="survey-step-3" v-show="currentStep === 2"></div>
-  <div id="survey-step-4" v-show="currentStep === 3"></div>
-  <div id="survey-step-5" v-show="currentStep === 4"></div>
+  <div id="survey-step-3" v-show="currentStep === 2">
+    درباره‌ی تیمی که در آن حضور دارید میزان موافقیت یا مخالفت خود با هر یک از
+    گزاره‌های زیر را مشخص کنید.
+    <el-card>
+      <template
+        v-for="question in answers.teamCoordinationQuestions"
+        :key="question.questionText"
+      >
+        <span>
+          {{ question.questionText }}
+        </span>
+        <div>
+          <el-radio-group v-model="question.answer" size="small">
+            <el-radio-button label="1">شدیدا مخالفم</el-radio-button>
+            <el-radio-button label="2">مخالفم</el-radio-button>
+            <el-radio-button label="3">نه مخالف و نه موافقم</el-radio-button>
+            <el-radio-button label="4">موافقم</el-radio-button>
+            <el-radio-button label="5">شدیدا موافقم</el-radio-button>
+          </el-radio-group>
+        </div>
+        <el-divider></el-divider>
+      </template>
+    </el-card>
+  </div>
+  <div id="survey-step-4" v-show="currentStep === 3">
+    <el-card> برای این قسمت هنوز پرسشنامه‌ی مشخصی نداریم... </el-card>
+  </div>
+  <div id="survey-step-5" v-show="currentStep === 4">
+    در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود با این ۶ سوال پاسخ دهید:
+    <el-card v-for="member in answers.teamMembers" :key="member.name">
+      <h3>
+        درباره‌ی {{ member.name }}
+        <template v-if="member.id === answers.generalQuestions.participantId">
+          (خودم)</template
+        >:
+      </h3>
+      <template
+        v-for="question in member.questions"
+        :key="question.questionText"
+      >
+        <span>
+          {{ question.questionText }}
+        </span>
+        <div>
+          <el-radio-group v-model="question.answer" size="small">
+            <el-radio-button label="1">شدیدا مخالفم</el-radio-button>
+            <el-radio-button label="2">مخالفم</el-radio-button>
+            <el-radio-button label="3">نه مخالف و نه موافقم</el-radio-button>
+            <el-radio-button label="4">موافقم</el-radio-button>
+            <el-radio-button label="5">شدیدا موافقم</el-radio-button>
+          </el-radio-group>
+        </div>
+        <el-divider></el-divider>
+      </template>
+    </el-card>
+  </div>
   <div v-show="currentStep === 5"></div>
   <div class="fix-btns-container" v-show="currentStep !== -1">
-    <el-button @click="goPrev" :disabled="currentStep !== 0 ? disabled : ''">
+    <el-button @click="goPrev" :disabled="currentStep === 0">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
-    <el-button @click="goNext" :disabled="currentStep !== 3 ? disabled : ''">
+    <el-button @click="goNext" :disabled="currentStep === 4">
       گام بعد <i class="el-icon-arrow-left"></i
     ></el-button>
   </div>
@@ -129,6 +182,7 @@ export default defineComponent({
       answers: {
         generalQuestions: {
           participantId: 0,
+          participantName: "",
           participantAge: 22,
           sex: "male",
           tenure: "",
@@ -146,6 +200,35 @@ export default defineComponent({
           { questionText: "به نظر شما سوال ۹", min: "", max: "" },
           { questionText: "به نظر شما سوال ۱۰", min: "", max: "" },
         ],
+        teamCoordinationQuestions: [
+          {
+            questionText:
+              "تیم ما به گونه‌ای که به خوبی هماهنگ شده بود با هم کار می‌کرد.",
+            answer: 3,
+          },
+          {
+            questionText:
+              "میزان سوءتفاهم تیم ما در مورد این که چه باید بکند خیلی اند بود.",
+            answer: 3,
+          },
+          {
+            questionText:
+              "بسیار برای تیم ما پیش می‌آمد که لازم باشد به عقب باز گردد و از نو شروع کند.",
+            answer: 3,
+          },
+          {
+            questionText:
+              "ما وظیفه (تسک) را به شکلی کارا (efficient) و روان (smooth) به انجام رساندیم.",
+            answer: 3,
+          },
+          {
+            questionText:
+              "گنگی بسیاری در مورد این که چگونه باید یک وظیفه را به انجام برسانیم وجود داشت.",
+            answer: 3,
+          },
+        ],
+        teamEffectivenessQuestions: [],
+        teamMembers: [],
       },
       currentStep: -1,
       teamInfo: {
@@ -181,6 +264,46 @@ export default defineComponent({
     //   this.teamInfo = res;
     // });
   },
+  created() {
+    this.teamInfo.members.forEach((member) =>
+      this.answers.teamMembers.push({
+        name: member.name,
+        id: member.id,
+        questions: [
+          {
+            questionText:
+              " این همکار، در خصوص مسائلی که این تیم کاری را درگیر می کند، پیشنهادات خود را ارائه می دهد.",
+            answer: 3,
+          },
+          {
+            questionText:
+              " این همکار نظرات خود را بیان می کند و دیگران را به درگیر شدن در خصوص مسائل مرتبط با تیم تشویق می نماید.",
+            answer: 3,
+          },
+          {
+            questionText:
+              "  این همکار نظرات و عقاید خود در خصوص مسائل کاری را به دیگران اظهار می کند حتی اگر نظرش متفاوت باشد و دیگران در گروه با او مخالف باشند.",
+            answer: 3,
+          },
+          {
+            questionText:
+              "  این همکار در زمینه هایی که نظر وی ممکن است برای تیم مفید واقع گردد  از دانش خوبی برخوردار است.",
+            answer: 3,
+          },
+          {
+            questionText:
+              "  این همکار در مسائلی که بر کیفیت زندگی شغلی در این تیم اثر می گذارد، نقش مثبتی ایفا می کند.",
+            answer: 3,
+          },
+          {
+            questionText:
+              " این همکار ایده هایی برای پروژه های جدید یا اعمال تغییرات در رویه های کاری ارائه می دهد. ",
+            answer: 3,
+          },
+        ],
+      })
+    );
+  },
   methods: {
     goNext() {
       this.currentStep++;
@@ -200,7 +323,6 @@ export default defineComponent({
         "ارزیابی هماهنگی تیم از نظر شما",
         "ارزیابی اثربخشی تیم از نظر شما",
         "ارزیابی رفتار صدای تیم",
-        "پایان",
       ];
       return STEPS[this.currentStep];
     },
