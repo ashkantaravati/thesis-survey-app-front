@@ -56,7 +56,7 @@
             placement="top-start"
           >
             <el-button
-              @click="removeTeam(index + 1)"
+              @click="removeTeam(team)"
               type="danger"
               icon="el-icon-delete"
               circle
@@ -87,7 +87,7 @@
             placement="top-start"
           >
             <el-button
-              @click="removeTeamMember(team, index + 1)"
+              @click="removeTeamMember(team, member)"
               type="danger"
               icon="el-icon-delete"
               circle
@@ -157,7 +157,7 @@
   </div>
 
   <div class="fix-btns-container">
-    <el-button @click="goPrev" :disabled="currentStep !== 0">
+    <el-button @click="goPrev" :disabled="currentStep === 0">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
     <el-button @click="goNext" :disabled="currentStep === 3">
@@ -196,14 +196,15 @@ export default defineComponent({
         ),
       });
     },
-    removeTeam(index) {
-      this.teams.splice(index, 1);
+    removeTeam(team) {
+      this.teams.splice(this.teams.indexOf(team), 1);
     },
     addTeamMember(team) {
       team.members.push({ name: ref("") });
     },
-    removeTeamMember(team, index) {
-      team.members.splice(index, 1);
+    removeTeamMember(team, member) {
+      if (team.members.length === 2) return; // at least 2 members required
+      team.members.splice(team.members.indexOf(member), 1);
     },
     copyTestingCode() {
       let testingCodeToCopy = document.querySelector("#testing-code");
