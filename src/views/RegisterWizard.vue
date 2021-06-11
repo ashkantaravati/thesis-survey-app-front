@@ -28,7 +28,7 @@
     ></el-input>
     <el-input
       class="pb-1rem"
-      placeholder="ایمیل"
+      placeholder="ایمیل (اختیاری)"
       v-model="repEmail"
       autocomplete="email"
       type="email"
@@ -37,9 +37,9 @@
   <div class="step-container" v-show="currentStep === 1">
     <h3><strong>گام دوم:</strong> اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
     <p>
-      نام افراد صرفا برای شناسایی و تفکیک اطلاعات آن هاست. چنانچه تمایل به مخف
-      ماندن نام افراد دارید می‌توانید از نام های مستار اما یکتا استفاده کنید.
-      توجه کنید این نام ها در پرسشنامه برای افراد قابل رویت خواهند بود
+      نام افراد صرفا برای شناسایی و تفکیک اطلاعات آن هاست. چنانچه تمایل به مخفی
+      ماندن نام افراد دارید می‌توانید از نام های مستعار اما یکتا استفاده کنید.
+      توجه کنید این نام‌ها در پرسشنامه برای افراد قابل رویت خواهند بود
     </p>
     <el-card
       class="box-card mb-halfrem"
@@ -49,31 +49,64 @@
       <template #header>
         <div class="card-header">
           <span>اعضای تیم {{ index + 1 }}</span>
-          <el-button class="button mr-halfrem" type="danger" plain round>
-            <i class="el-icon-delete"></i> حذف تیم</el-button
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="حذف تیم"
+            placement="top-start"
           >
+            <el-button
+              @click="removeTeam(team)"
+              type="danger"
+              icon="el-icon-delete"
+              circle
+              plain
+              class="mr-halfrem"
+            ></el-button>
+          </el-tooltip>
         </div>
       </template>
       <el-row
         v-for="(member, index) in team.members"
-        :key="member.name"
+        :key="index"
         class="text item d-flex"
       >
-        <el-col :span="2">عضو {{ index + 1 }}</el-col>
-        <el-col :span="22">
+        <el-col :xs="4" :lg="2">عضو {{ index + 1 }}</el-col>
+        <el-col :xs="18" :lg="21">
           <el-input
             class="pb-1rem"
             v-model="member.name"
             placeholder="نام عضو"
           />
         </el-col>
+        <el-col :xs="2" :lg="1">
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="حذف عضو"
+            placement="top-start"
+          >
+            <el-button
+              @click="removeTeamMember(team, member)"
+              type="danger"
+              icon="el-icon-delete"
+              circle
+              plain
+              size="mini"
+              class="mr-halfrem"
+            ></el-button> </el-tooltip
+        ></el-col>
       </el-row>
-      <el-button @click="addTeamMember(team)" type="primary">
+
+      <el-button @click="addTeamMember(team)" type="primary" plain>
         + افزودن عضو
       </el-button>
     </el-card>
-
-    <el-button @click="addTeam" class="p-btn-primary"> + افزودن تیم </el-button>
+    <div class="d-flex jc-center mb-halfrem">
+      <el-button @click="addTeam" type="primary" round>
+        + افزودن تیم
+      </el-button>
+    </div>
 
     <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
   </div>
@@ -124,10 +157,10 @@
   </div>
 
   <div class="fix-btns-container">
-    <el-button @click="goPrev" :disabled="currentStep !== 0 ? disabled : ''">
+    <el-button @click="goPrev" :disabled="currentStep === 0">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
-    <el-button @click="goNext" :disabled="currentStep !== 3 ? disabled : ''">
+    <el-button @click="goNext" :disabled="currentStep === 3">
       گام بعد <i class="el-icon-arrow-left"></i
     ></el-button>
   </div>
@@ -163,8 +196,15 @@ export default defineComponent({
         ),
       });
     },
+    removeTeam(team) {
+      this.teams.splice(this.teams.indexOf(team), 1);
+    },
     addTeamMember(team) {
       team.members.push({ name: ref("") });
+    },
+    removeTeamMember(team, member) {
+      if (team.members.length === 2) return; // at least 2 members required
+      team.members.splice(team.members.indexOf(member), 1);
     },
     copyTestingCode() {
       let testingCodeToCopy = document.querySelector("#testing-code");

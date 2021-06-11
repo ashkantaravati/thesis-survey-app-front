@@ -1,12 +1,21 @@
 
 <template>
   <el-card>
-    <img src="../assets/images/undraw_Setup_re_y9w8.svg" class="image" />
+    <el-row class="jc-center">
+      <el-col :xs="24" :lg="18" :xl="18">
+        <img src="../assets/images/Forms-pana.svg" class="image" />
+      </el-col>
+    </el-row>
+
     <div>
       <span>سلام و احوال پرسی اینا</span>
       <div class="jc-center d-flex">
-        <router-link :to="{ name: 'RegisterLanding' }" class="p-btn-primary"
-          >ثبت نام</router-link
+        <router-link :to="{ name: 'RegisterLanding' }"
+          >
+            <el-button round type="primary"
+      > ثبت نام</el-button
+    >
+         </router-link
         >
       </div>
     </div>

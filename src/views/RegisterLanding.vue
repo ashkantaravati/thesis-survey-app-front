@@ -13,9 +13,9 @@
     سازمان ها به صورت ناشناس یاد خواهند کرد.
   </p>
   <div class="jc-center d-flex">
-    <router-link :to="{ name: 'RegisterWizard' }" class="p-btn-primary"
-      >شروع و ثبت اطلاعات سازمان</router-link
-    >
+    <router-link :to="{ name: 'RegisterWizard' }">
+      <el-button round type="primary"> شروع و ثبت اطلاعات سازمان</el-button>
+    </router-link>
   </div>
 </template>
 
@@ -28,7 +28,9 @@ export default defineComponent({
 </script>
 
 <style>
-.long-text {
-  line-height: 30px;
+@media screen and (min-width: 768px) {
+  .long-text {
+    line-height: 30px;
+  }
 }
 </style>
