@@ -43,23 +43,23 @@
     </p>
     <el-card
       class="box-card mb-halfrem"
-      v-for="team in teams"
+      v-for="(team, index) in teams"
       :key="team.index"
     >
       <template #header>
         <div class="card-header">
-          <span>اعضای تیم {{ team.index }}</span>
+          <span>اعضای تیم {{ index+1 }}</span>
               <el-tooltip class="item" effect="dark"  content="حذف تیم" placement="top-start">
         <el-button type="danger" icon="el-icon-delete" circle plain></el-button>
     </el-tooltip> 
         </div>
       </template>
       <el-row
-        v-for="member in team.members"
-        :key="member.index"
+        v-for="(member, index) in team.members"
+        :key="member.name"
         class="text item d-flex"
       >
-        <el-col :span="2">عضو {{ member.index }}</el-col>
+        <el-col :span="2">عضو {{ index + 1 }}</el-col>
         <el-col :span="22">
           <el-input
             class="pb-1rem"
@@ -148,7 +148,6 @@ export default defineComponent({
       repJobTitle: ref(""),
       repEmail: ref(""),
       teams: [],
-      lastTeamIndex: 0,
       testingCode: "1234",
     };
   },
@@ -160,20 +159,15 @@ export default defineComponent({
       this.currentStep--;
     },
     addTeam() {
-      this.lastTeamIndex++;
       this.teams.push({
-        index: this.lastTeamIndex,
-        members: [
-          { index: 1, name: ref("") },
-          { index: 2, name: ref("") },
-        ],
+        members: [{ name: ref("") }, { name: ref("") }],
         sharableLink: ref(
           "https://thesis.ashkantaravati.ir/participate/Xh12b8Y"
         ),
       });
     },
     addTeamMember(team) {
-      team.members.push({ index: 0, name: ref("") });
+      team.members.push({ name: ref("") });
     },
     copyTestingCode() {
       let testingCodeToCopy = document.querySelector("#testing-code");
