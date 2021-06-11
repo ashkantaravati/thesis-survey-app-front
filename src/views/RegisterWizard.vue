@@ -56,11 +56,12 @@
             placement="top-start"
           >
             <el-button
-            @click="removeTeam(index + 1)"
+              @click="removeTeam(index + 1)"
               type="danger"
               icon="el-icon-delete"
               circle
               plain
+              class="mr-halfrem"
             ></el-button>
           </el-tooltip>
         </div>
@@ -70,14 +71,31 @@
         :key="member.name"
         class="text item d-flex"
       >
-        <el-col :span="2">عضو {{ index + 1 }}</el-col>
-        <el-col :span="22">
+        <el-col :xs="4" :lg="2">عضو {{ index + 1 }}</el-col>
+        <el-col :xs="18" :lg="21">
           <el-input
             class="pb-1rem"
             v-model="member.name"
             placeholder="نام عضو"
           />
         </el-col>
+        <el-col :xs="2" :lg="1">
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="حذف عضو"
+            placement="top-start"
+          >
+            <el-button
+              @click="removeTeamMember(team, index + 1)"
+              type="danger"
+              icon="el-icon-delete"
+              circle
+              plain
+              size="mini"
+              class="mr-halfrem"
+            ></el-button> </el-tooltip
+        ></el-col>
       </el-row>
 
       <el-button @click="addTeamMember(team)" type="primary" plain>
@@ -178,11 +196,14 @@ export default defineComponent({
         ),
       });
     },
-    removeTeam(index){
-         this.teams.splice(index, 1);
+    removeTeam(index) {
+      this.teams.splice(index, 1);
     },
     addTeamMember(team) {
       team.members.push({ name: ref("") });
+    },
+    removeTeamMember(team, index) {
+      team.members.splice(index, 1);
     },
     copyTestingCode() {
       let testingCodeToCopy = document.querySelector("#testing-code");
