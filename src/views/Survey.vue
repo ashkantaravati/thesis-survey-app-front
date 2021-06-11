@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="info-bar">
     <span>
       سازمان شما:
       {{ teamInfo.organization.name }}
@@ -14,7 +14,7 @@
       گام {{ currentStep + 1 }}: {{ stepTitle }}
     </h2>
   </div>
-  <div v-show="currentStep === -1">
+  <div id="survey-intro" v-show="currentStep === -1">
     <p>
       سلام! از این که وقت ارزشمندتان را در اختیار من قرار می‌دهید سپاسگزارم
       .پاسخ به این پرسشنامه حدودا ۱۵ دقیقه زمان می‌برد. روند پرسشنامه به این
@@ -25,7 +25,7 @@
       >من آماده ام. شروع کن</el-button
     >
   </div>
-  <div v-show="currentStep === 0">
+  <div id="survey-step-1" v-show="currentStep === 0">
     <el-select
       v-model="answers.participantName"
       filterable
@@ -60,10 +60,10 @@
       </el-slider>
     </div>
   </div>
-  <div v-show="currentStep === 1"></div>
-  <div v-show="currentStep === 2"></div>
-  <div v-show="currentStep === 3"></div>
-  <div v-show="currentStep === 4"></div>
+  <div id="survey-step-2" v-show="currentStep === 1"></div>
+  <div id="survey-step-3" v-show="currentStep === 2"></div>
+  <div id="survey-step-4" v-show="currentStep === 3"></div>
+  <div id="survey-step-5" v-show="currentStep === 4"></div>
   <div v-show="currentStep === 5"></div>
   <div class="fix-btns-container" v-show="currentStep !== -1">
     <el-button @click="goPrev" :disabled="currentStep !== 0 ? disabled : ''">
