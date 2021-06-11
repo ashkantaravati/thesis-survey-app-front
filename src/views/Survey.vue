@@ -27,7 +27,7 @@
   </div>
   <div id="survey-step-1" v-show="currentStep === 0">
     <el-select
-      v-model="answers.participantName"
+      v-model="answers.generalQuestions.participantName"
       filterable
       placeholder="نام خود را از لیست انتخاب کنید"
     >
@@ -40,27 +40,55 @@
       </el-option>
     </el-select>
     <el-input-number
-      v-model="answers.participantAge"
+      v-model="answers.generalQuestions.participantAge"
       :min="15"
       :max="80"
     ></el-input-number>
-    <el-radio-group v-model="answers.sex" dir="ltr">
+    <el-radio-group v-model="answers.generalQuestions.sex" dir="ltr">
       <el-radio-button label="خانم"></el-radio-button>
       <el-radio-button label="آقا"></el-radio-button>
     </el-radio-group>
 
     <div class="block">
       <p>میزان سابقه کار شما ( بر حسب سال)</p>
-      <el-slider v-model="answers.tenure" show-input step="0.5" :max="40">
+      <el-slider
+        v-model="answers.generalQuestions.tenure"
+        show-input
+        step="0.5"
+        :max="40"
+      >
       </el-slider>
     </div>
     <div class="block">
       <p>مدت حضور شما در این تیم ( بر حسب ماه)</p>
-      <el-slider v-model="answers.teamHistory" show-input :max="60">
+      <el-slider
+        v-model="answers.generalQuestions.teamHistory"
+        show-input
+        :max="60"
+      >
       </el-slider>
     </div>
   </div>
-  <div id="survey-step-2" v-show="currentStep === 1"></div>
+  <div id="survey-step-2" v-show="currentStep === 1">
+    در پاسخ به هر یک از سوالاتی که در ادامه آمده است بازه‌ای از اعداد را وارد
+    کنید که با حداقل ۹۰٪ اطمینان فکر می‌کنید پاسخ درست در آن بازه قرار دارد.
+
+    <el-card>
+      <template
+        v-for="question in answers.overconfidenceQuestions"
+        :key="question.questionText"
+      >
+        <span>
+          {{ question.questionText }}
+        </span>
+        <el-input-number placeholder="کف" v-model="question.min">
+        </el-input-number>
+        <el-input-number placeholder="سقف" v-model="question.max">
+        </el-input-number>
+        <el-divider></el-divider>
+      </template>
+    </el-card>
+  </div>
   <div id="survey-step-3" v-show="currentStep === 2"></div>
   <div id="survey-step-4" v-show="currentStep === 3"></div>
   <div id="survey-step-5" v-show="currentStep === 4"></div>
@@ -99,22 +127,26 @@ export default defineComponent({
   data() {
     return {
       answers: {
-        participantId: 0,
-        participantAge: 22,
-        sex: "آقا",
-        tenure: "",
-        teamHistory: "",
+        generalQuestions: {
+          participantId: 0,
+          participantAge: 22,
+          sex: "male",
+          tenure: "",
+          teamHistory: "",
+        },
+        overconfidenceQuestions: [
+          { questionText: "به نظر شما سوال ۱", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۲", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۳", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۴", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۵", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۶", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۷", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۸", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۹", min: "", max: "" },
+          { questionText: "به نظر شما سوال ۱۰", min: "", max: "" },
+        ],
       },
-
-      // STEP: {
-      //   INTRO: -1,
-      //   GENERAL: 0,
-      //   OVERCONFIDENCE: 1,
-      //   COORDINATION: 2,
-      //   EFFECTIVENESS: 3,
-      //   VOICE: 4,
-      //   FINISHED: 5,
-      // },
       currentStep: -1,
       teamInfo: {
         name: "تیم شماره ۱",
