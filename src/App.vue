@@ -4,24 +4,21 @@
     <el-container class="body-container">
       <el-header class="header">
         <el-menu
-          :default-active="activeIndex2"
-          id="nav"
+          :default-active="activeIndex"
+          class="el-menu-demo"
+            id="nav"
           mode="horizontal"
           @select="handleSelect"
-          text-color="#fff"
-          active-text-color="#ffd04b"
         >
-          <el-menu-item index="1"
-            ><router-link :to="{ name: 'Home' }"
+          <el-menu-item index="1"><router-link :to="{ name: 'Home' }"
               >صفحه اصلی</router-link
-            ></el-menu-item
-          >
-          <el-menu-item index="2">
-            <router-link :to="{ name: 'RegisterLanding' }"
+            ></el-menu-item>
+          <el-menu-item index="2"><router-link :to="{ name: 'RegisterLanding' }"
               >ثبت نام</router-link
-            ></el-menu-item
-          >
+            ></el-menu-item>
+         
         </el-menu>
+ 
       </el-header>
       <el-main>
         <el-row class="jc-center">
@@ -44,15 +41,9 @@
 export default {
   data() {
     return {
-      activeIndex: "1",
-      activeIndex2: "1",
+      activeIndex: "1", 
     };
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    },
-  },
+  }, 
 };
 </script>
 
@@ -70,7 +61,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   color: #333;
-  background: rgb(241, 241, 241);
+  background: #fff;
 }
 a,
 a:hover,
@@ -83,21 +74,10 @@ a:focus {
     width: 80%;
     margin: 0 auto;
   }
-}
-.header {
-  padding: 0 !important;
-}
-
-.header ul {
-  padding: 0 1rem;
-  background-color: #177aa6 !important;
-
-  border-radius: 0 0 1rem 1rem;
-}
-.el-menu--horizontal > .el-menu-item {
-  float: right !important;
-  background-color: transparent !important;
-}
+} 
+  .el-menu--horizontal > .el-menu-item {
+  float: right !important; 
+} 
 .el-main {
   min-height: 70vh;
 }
