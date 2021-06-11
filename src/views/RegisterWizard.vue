@@ -68,7 +68,7 @@
       </template>
       <el-row
         v-for="(member, index) in team.members"
-        :key="member.name"
+        :key="index"
         class="text item d-flex"
       >
         <el-col :xs="4" :lg="2">عضو {{ index + 1 }}</el-col>
@@ -157,10 +157,10 @@
   </div>
 
   <div class="fix-btns-container">
-    <el-button @click="goPrev" :disabled="currentStep !== 0 ? disabled : ''">
+    <el-button @click="goPrev" :disabled="currentStep !== 0">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
-    <el-button @click="goNext" :disabled="currentStep !== 3 ? disabled : ''">
+    <el-button @click="goNext" :disabled="currentStep === 3">
       گام بعد <i class="el-icon-arrow-left"></i
     ></el-button>
   </div>
