@@ -6,19 +6,21 @@
         <el-menu
           :default-active="activeIndex"
           class="el-menu-demo"
-            id="nav"
+          id="nav"
           mode="horizontal"
           @select="handleSelect"
         >
-          <el-menu-item index="1"><router-link :to="{ name: 'Home' }"
+          <el-menu-item index="1"
+            ><router-link :to="{ name: 'Home' }"
               >صفحه اصلی</router-link
-            ></el-menu-item>
-          <el-menu-item index="2"><router-link :to="{ name: 'RegisterLanding' }"
+            ></el-menu-item
+          >
+          <el-menu-item index="2"
+            ><router-link :to="{ name: 'RegisterLanding' }"
               >ثبت نام</router-link
-            ></el-menu-item>
-         
+            ></el-menu-item
+          >
         </el-menu>
- 
       </el-header>
       <el-main>
         <el-row class="jc-center">
@@ -41,9 +43,9 @@
 export default {
   data() {
     return {
-      activeIndex: "1", 
+      activeIndex: "1",
     };
-  }, 
+  },
 };
 </script>
 
@@ -68,16 +70,21 @@ a:hover,
 a:focus {
   text-decoration: none !important;
 }
+.el-input__inner,
+.el-button,
+.el-step__icon-inner {
+  font-family: "IRANSansX" !important;
+}
 
 @media screen and (min-width: 768px) {
   .body-container {
     width: 80%;
     margin: 0 auto;
   }
-} 
-  .el-menu--horizontal > .el-menu-item {
-  float: right !important; 
-} 
+}
+.el-menu--horizontal > .el-menu-item {
+  float: right !important;
+}
 .el-main {
   min-height: 70vh;
 }
@@ -109,34 +116,4 @@ a:focus {
   margin-right: 0.5rem !important;
 }
 /*  */
-.p-btn-primary {
-  display: inline-block;
-  line-height: 1;
-  min-height: 40px;
-  white-space: nowrap;
-  cursor: pointer;
-  background: #fff;
-  border: 1px solid #dcdfe6;
-  -webkit-appearance: none;
-  text-align: center;
-  box-sizing: border-box;
-  outline: none;
-  margin: 0;
-  transition: 0.1s;
-  font-weight: 500;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  font-size: 14px;
-  color: #fff !important;
-  background-color: #177aa6 !important;
-  border-color: #177aa6 !important;
-  border-radius: 20px !important;
-  padding: 12px 23px !important;
-}
-.el-input__inner,
-.el-button,
-.el-step__icon-inner {
-  font-family: "IRANSansX" !important;
-}
 </style>
