@@ -48,10 +48,21 @@
     >
       <template #header>
         <div class="card-header">
-          <span>اعضای تیم {{ index+1 }}</span>
-              <el-tooltip class="item" effect="dark"  content="حذف تیم" placement="top-start">
-        <el-button type="danger" icon="el-icon-delete" circle plain></el-button>
-    </el-tooltip> 
+          <span>اعضای تیم {{ index + 1 }}</span>
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="حذف تیم"
+            placement="top-start"
+          >
+            <el-button
+            @click="removeTeam(index + 1)"
+              type="danger"
+              icon="el-icon-delete"
+              circle
+              plain
+            ></el-button>
+          </el-tooltip>
         </div>
       </template>
       <el-row
@@ -68,15 +79,16 @@
           />
         </el-col>
       </el-row>
-     
+
       <el-button @click="addTeamMember(team)" type="primary" plain>
         + افزودن عضو
       </el-button>
     </el-card>
- <div class="d-flex jc-center mb-halfrem">
-        
-    <el-button @click="addTeam" type="primary" round> + افزودن تیم </el-button>
-      </div>
+    <div class="d-flex jc-center mb-halfrem">
+      <el-button @click="addTeam" type="primary" round>
+        + افزودن تیم
+      </el-button>
+    </div>
 
     <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
   </div>
@@ -165,6 +177,9 @@ export default defineComponent({
           "https://thesis.ashkantaravati.ir/participate/Xh12b8Y"
         ),
       });
+    },
+    removeTeam(index){
+         this.teams.splice(index, 1);
     },
     addTeamMember(team) {
       team.members.push({ name: ref("") });
