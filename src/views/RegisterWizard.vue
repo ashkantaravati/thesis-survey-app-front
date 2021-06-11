@@ -28,7 +28,7 @@
     ></el-input>
     <el-input
       class="pb-1rem"
-      placeholder="ایمیل"
+      placeholder="ایمیل (اختیاری)"
       v-model="repEmail"
       autocomplete="email"
       type="email"
@@ -37,9 +37,9 @@
   <div class="step-container" v-show="currentStep === 1">
     <h3><strong>گام دوم:</strong> اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
     <p>
-      نام افراد صرفا برای شناسایی و تفکیک اطلاعات آن هاست. چنانچه تمایل به مخف
-      ماندن نام افراد دارید می‌توانید از نام های مستار اما یکتا استفاده کنید.
-      توجه کنید این نام ها در پرسشنامه برای افراد قابل رویت خواهند بود
+      نام افراد صرفا برای شناسایی و تفکیک اطلاعات آن هاست. چنانچه تمایل به مخفی
+      ماندن نام افراد دارید می‌توانید از نام های مستعار اما یکتا استفاده کنید.
+      توجه کنید این نام‌ها در پرسشنامه برای افراد قابل رویت خواهند بود
     </p>
     <el-card
       class="box-card mb-halfrem"
@@ -49,9 +49,9 @@
       <template #header>
         <div class="card-header">
           <span>اعضای تیم {{ team.index }}</span>
-          <el-button class="button mr-halfrem" type="danger" plain round>
-            <i class="el-icon-delete"></i> حذف تیم</el-button
-          >
+              <el-tooltip class="item" effect="dark"  content="حذف تیم" placement="top-start">
+        <el-button type="danger" icon="el-icon-delete" circle plain></el-button>
+    </el-tooltip> 
         </div>
       </template>
       <el-row
@@ -68,12 +68,15 @@
           />
         </el-col>
       </el-row>
-      <el-button @click="addTeamMember(team)" type="primary">
+     
+      <el-button @click="addTeamMember(team)" type="primary" plain>
         + افزودن عضو
       </el-button>
     </el-card>
-
-    <el-button @click="addTeam" class="p-btn-primary"> + افزودن تیم </el-button>
+ <div class="d-flex jc-center mb-halfrem">
+        
+    <el-button @click="addTeam" type="primary" round> + افزودن تیم </el-button>
+      </div>
 
     <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
   </div>
