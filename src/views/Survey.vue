@@ -339,4 +339,16 @@ export default defineComponent({
 </script>
 
 <style>
+@media screen and (max-width:768px) {
+  .el-radio-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .el-radio-button--small .el-radio-button__inner{
+    border-width: 0 0 1px 0 !important;
+    min-width: 9rem;
+        border-radius: 0 !important;
+  }
+}
 </style>
