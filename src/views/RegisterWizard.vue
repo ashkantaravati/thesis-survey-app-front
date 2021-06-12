@@ -7,6 +7,7 @@
   </el-steps>
   <div class="step-container" v-show="currentStep === 0">
     <h3><strong>گام اول:</strong> مشخصات سازمان و نماینده</h3>
+
     <el-input
       class="pb-1rem"
       placeholder="نام یا عنوان تجاری سازمان"
@@ -33,6 +34,7 @@
       autocomplete="email"
       type="email"
     ></el-input>
+   
   </div>
   <div class="step-container" v-show="currentStep === 1">
     <h3><strong>گام دوم:</strong> اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
@@ -79,7 +81,7 @@
             placeholder="نام عضو"
           />
         </el-col>
-        <el-col :xs="2" :lg="1">
+        <el-col :xs="2" :lg="1" v-show="team.members.length > 2">
           <el-tooltip
             class="item"
             effect="dark"
