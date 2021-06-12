@@ -10,9 +10,9 @@
       {{ teamInfo.name }}
     </span>
 
-    <h2 v-if="currentStep !== -1">
-      گام {{ currentStep + 1 }}: {{ stepTitle }}
-    </h2>
+    <h3 class="d-flex" v-if="currentStep !== -1">
+      گام {{ currentStep + 1 }}: {{ stepTitle }} <h6 style="margin: 0 10px 0 0"> از 5</h6>
+    </h3>
   </div>
   <div id="survey-intro" v-show="currentStep === -1">
     <p>
@@ -26,6 +26,8 @@
     >
   </div>
   <div id="survey-step-1" v-show="currentStep === 0">
+    <div class="block mb-halfrem">
+           <p>نام خود را از لیست انتخاب کنید</p>
     <el-select
       v-model="answers.generalQuestions.participantId"
       filterable
@@ -39,18 +41,23 @@
       >
       </el-option>
     </el-select>
+    </div>
+        <div class="block mb-halfrem">
+             <p>سن خود را از لیست انتخاب کنید</p>
     <el-input-number
       v-model="answers.generalQuestions.participantAge"
       :min="15"
       :max="80"
     ></el-input-number>
+    </div>
+        <div class="block mb-halfrem">
     <el-radio-group v-model="answers.generalQuestions.sex" dir="ltr">
       <el-radio-button label="خانم"></el-radio-button>
       <el-radio-button label="آقا"></el-radio-button>
     </el-radio-group>
-
-    <div class="block">
-      <p>میزان سابقه کار شما ( بر حسب سال)</p>
+</div>
+    <div class="block mb-halfrem">
+      <p>میزان کل سابقه کار شما ( بر حسب سال)</p>
       <el-slider
         v-model="answers.generalQuestions.tenure"
         show-input
@@ -59,7 +66,7 @@
       >
       </el-slider>
     </div>
-    <div class="block">
+    <div class="block mb-halfrem">
       <p>مدت حضور شما در این تیم ( بر حسب ماه)</p>
       <el-slider
         v-model="answers.generalQuestions.teamHistory"
@@ -78,9 +85,9 @@
         v-for="question in answers.overconfidenceQuestions"
         :key="question.questionText"
       >
-        <span>
+        <div class="mb-halfrem">
           {{ question.questionText }}
-        </span>
+        </div>
         <el-input-number placeholder="کف" v-model="question.min">
         </el-input-number>
         <el-input-number placeholder="سقف" v-model="question.max">
@@ -97,10 +104,10 @@
         v-for="question in answers.teamCoordinationQuestions"
         :key="question.questionText"
       >
-        <span>
+        <div class="mb-halfrem">
           {{ question.questionText }}
-        </span>
-        <div>
+        </div>
+        <div dir="ltr">
           <el-radio-group v-model="question.answer" size="small">
             <el-radio-button label="1">شدیدا مخالفم</el-radio-button>
             <el-radio-button label="2">مخالفم</el-radio-button>
@@ -129,10 +136,11 @@
         v-for="question in member.questions"
         :key="question.questionText"
       >
-        <span>
+        <div class="mb-halfrem">
           {{ question.questionText }}
-        </span>
-        <div>
+        </div>
+        <div dir="ltr">
+      
           <el-radio-group v-model="question.answer" size="small">
             <el-radio-button label="1">شدیدا مخالفم</el-radio-button>
             <el-radio-button label="2">مخالفم</el-radio-button>
