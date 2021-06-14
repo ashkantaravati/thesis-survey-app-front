@@ -8,33 +8,43 @@
   <div class="step-container" v-show="currentStep === 0">
     <h3><strong>گام اول:</strong> مشخصات سازمان و نماینده</h3>
 
-    <el-input
-      class="pb-1rem"
-      placeholder="نام یا عنوان تجاری سازمان"
-      v-model="organizationName"
-      type="text"
-      autocomplete="organization"
-    ></el-input>
-    <el-input
-      class="pb-1rem"
-      placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
-      v-model="repFullName"
-      autocomplete="name"
-    ></el-input>
-    <el-input
-      class="pb-1rem"
-      placeholder="سمت شما"
-      v-model="repJobTitle"
-      autocomplete="organization-title"
-    ></el-input>
-    <el-input
-      class="pb-1rem"
-      placeholder="ایمیل (اختیاری)"
-      v-model="repEmail"
-      autocomplete="email"
-      type="email"
-    ></el-input>
-   
+    <el-form
+      :model="ruleForm"
+      :rules="rules"
+      ref="ruleForm"
+      class="demo-ruleForm"
+    >
+      <el-form-item prop="organizationName">
+        <el-input 
+          placeholder="نام یا عنوان تجاری سازمان"
+          v-model="ruleForm.organizationName"
+          type="text"
+          autocomplete="organization"
+        ></el-input>
+      </el-form-item>
+      <el-form-item prop="repFullName">
+        <el-input 
+          placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
+          v-model="ruleForm.repFullName"
+          autocomplete="name"
+        ></el-input>
+      </el-form-item>
+      <el-form-item prop="repJobTitle">
+        <el-input 
+          placeholder="سمت شما"
+          v-model="ruleForm.repJobTitle"
+          autocomplete="organization-title"
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-input 
+          placeholder="ایمیل (اختیاری)"
+          v-model="repEmail"
+          autocomplete="email"
+          type="email"
+        ></el-input>
+      </el-form-item>
+    </el-form>
   </div>
   <div class="step-container" v-show="currentStep === 1">
     <h3><strong>گام دوم:</strong> اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
@@ -175,12 +185,37 @@ export default defineComponent({
   data() {
     return {
       currentStep: 0,
-      organizationName: ref(""),
-      repFullName: ref(""),
-      repJobTitle: ref(""),
       repEmail: ref(""),
       teams: [],
       testingCode: "1234",
+      ruleForm: {
+        organizationName: ref(""),
+        repFullName: ref(""),
+        repJobTitle: ref(""),
+      },
+      rules: {
+        organizationName: [
+          {
+            required: true,
+            message: "نام سازمان نمی‌تواند خالی باشد",
+            trigger: "blur",
+          },
+        ],
+        repFullName: [
+          {
+            required: true,
+            message: "نام شما نمی‌تواند خالی باشد",
+            trigger: "blur",
+          },
+        ],
+        repJobTitle: [
+          {
+            required: true,
+            message: "سمت شما نمی‌تواند خالی باشد",
+            trigger: "blur",
+          },
+        ],  
+      },
     };
   },
   methods: {
@@ -221,6 +256,19 @@ export default defineComponent({
       testingCodeToCopy.setAttribute("type", "hidden");
       window.getSelection().removeAllRanges();
     },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
   },
 });
 </script>
@@ -256,5 +304,9 @@ export default defineComponent({
   z-index: 1;
   bottom: 0;
   margin: 0 auto;
+}
+.el-form-item__error{
+  left: unset !important;
+  right: 0;
 }
 </style>
