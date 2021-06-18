@@ -3,16 +3,10 @@
   <div class="common-layout add-bg">
     <el-container class="body-container">
       <el-header class="header">
-        <el-menu
-          class="el-menu-demo"
-          id="nav"
-          mode="horizontal"
-        >
-          <el-menu-item index="1"
-            >
+        <el-menu class="el-menu-demo" id="nav" mode="horizontal">
+          <el-menu-item index="1">
             <span>پرسشنامه‌ی پایان‌نامه :)</span>
-            </el-menu-item
-          > 
+          </el-menu-item>
         </el-menu>
       </el-header>
       <el-main>
@@ -53,25 +47,25 @@ body {
   background: #fff;
   position: relative;
 }
-body::before{
+body::before {
   content: "";
-    display: block;
-    width: 100%;
-    height: 420px;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    background: url(./assets/images/colorfull-bg.svg) no-repeat 50%;
-    transform: translateX(-50%);
-    /* z-index: 1; */
-        opacity: .7;
+  display: block;
+  width: 100%;
+  height: 420px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background: url(./assets/images/colorfull-bg.svg) no-repeat 50%;
+  transform: translateX(-50%);
+  /* z-index: 1; */
+  opacity: 0.7;
 }
 @media screen and (max-width: 768px) {
-body::before{
+  body::before {
     left: 60%;
     background: url(./assets/images/colorfull-bg.svg) no-repeat 60%;
     transform: translateX(-60%);
-}
+  }
 }
 a,
 a:hover,
@@ -83,7 +77,7 @@ a:focus {
 .el-step__icon-inner {
   font-family: "IRANSansX" !important;
 }
-.el-menu{
+.el-menu {
   background-color: transparent !important;
 }
 

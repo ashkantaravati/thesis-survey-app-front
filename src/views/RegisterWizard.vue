@@ -6,7 +6,7 @@
     <el-step title="گام چهارم"></el-step>
   </el-steps>
   <div class="step-container" v-show="currentStep === 0">
-    <h3><strong>گام اول:</strong> مشخصات سازمان و نماینده</h3>
+    <h3>مشخصات سازمان و نماینده</h3>
 
     <el-form
       :model="ruleForm"
@@ -15,7 +15,7 @@
       class="demo-ruleForm"
     >
       <el-form-item prop="organizationName">
-        <el-input 
+        <el-input
           placeholder="نام یا عنوان تجاری سازمان"
           v-model="ruleForm.organizationName"
           type="text"
@@ -23,21 +23,21 @@
         ></el-input>
       </el-form-item>
       <el-form-item prop="repFullName">
-        <el-input 
+        <el-input
           placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
           v-model="ruleForm.repFullName"
           autocomplete="name"
         ></el-input>
       </el-form-item>
       <el-form-item prop="repJobTitle">
-        <el-input 
+        <el-input
           placeholder="سمت شما"
           v-model="ruleForm.repJobTitle"
           autocomplete="organization-title"
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-input 
+        <el-input
           placeholder="ایمیل (اختیاری)"
           v-model="repEmail"
           autocomplete="email"
@@ -47,7 +47,7 @@
     </el-form>
   </div>
   <div class="step-container" v-show="currentStep === 1">
-    <h3><strong>گام دوم:</strong> اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
+    <h3>اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
     <p>
       نام افراد صرفا برای شناسایی و تفکیک اطلاعات آن هاست. چنانچه تمایل به مخفی
       ماندن نام افراد دارید می‌توانید از نام های مستعار اما یکتا استفاده کنید.
@@ -123,7 +123,7 @@
     <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
   </div>
   <div class="step-container" v-show="currentStep === 2">
-    <h3><strong>گام سوم:</strong> خلاصه‌ی اطلاعات وارد‌شده و بازبینی</h3>
+    <h3>خلاصه‌ی اطلاعات وارد‌شده و بازبینی</h3>
     <el-alert type="warning" :closable="false" class="mb-halfrem">
       <span class="mx-halfrem">نام سازمان: {{ organizationName }}</span>
       <span class="mx-halfrem"> نام شما: {{ repFullName }}</span>
@@ -148,7 +148,7 @@
     <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
   </div>
   <div class="step-container" v-show="currentStep === 3">
-    <h3><strong>گام چهارم:</strong> دریافت لینک برای مشارکت تیم‌ها</h3>
+    <h3>دریافت لینک برای مشارکت تیم‌ها</h3>
     <p>
       از وقت که برای تکمیل مرحله ی اول گذاشتید متشکرم. حال می‌توانید با توجه به
       اطلاعات که ثبت نمدید نسبت به ارسال لینک های اختصاص زیر که برای هر کدام از
@@ -214,7 +214,7 @@ export default defineComponent({
             message: "سمت شما نمی‌تواند خالی باشد",
             trigger: "blur",
           },
-        ],  
+        ],
       },
     };
   },
@@ -284,9 +284,87 @@ export default defineComponent({
   left: 0;
   width: 100%;
   height: 2px;
-  background: #d9d9d9;
+  background: #b0d7ff;
   top: 10px;
 }
+/*#region step numbers style*/
+
+/* is wait */
+.el-step__head.is-wait {
+  border-color: #b0d7ff;
+}
+.el-step__head.is-wait .el-step__icon-inner {
+  transition: 0.3s;
+}
+/* is process */
+.el-step__title.is-process {
+  color: #ffa51f;
+}
+.el-step__head.is-process {
+  border-color: #ffa51f;
+  color: #ffa51f;
+}
+.el-step__head.is-process .el-step__icon-inner {
+  color: #fff;
+  position: relative;
+  transition: 0.3s;
+}
+.el-step__head.is-process .el-step__icon-inner:after {
+  content: "";
+  position: absolute;
+  height: 7px;
+  width: 7px;
+  border: 2px solid #ffa51f;
+  border-width: 0 0 2px 2px;
+  transform: rotate(-45deg);
+  top: 4px;
+  left: 0px;
+  border-radius: 0 0 0 2px;
+  transition: 0.3s;
+}
+.el-step__head.is-process .el-step__icon-inner:before {
+  content: "";
+  position: absolute;
+  height: 10px;
+  width: 5px;
+  border-left: 2px solid #ffa51f;
+  top: 2px;
+  left: 3px;
+  transition: 0.3s;
+}
+@media screen and (max-width: 768px) {
+  .el-step__head.is-process .el-step__icon-inner:before {
+    left: 3.5px;
+  }
+}
+/* is finish */
+.el-step__title.is-finish {
+  color: #2a7e00;
+}
+.el-step__head.is-finish {
+  color: #2a7e00;
+  border-color: #2a7e00;
+}
+.el-step__head.is-finish .el-step__icon-inner {
+  color: #fff;
+  position: relative;
+  transition: 0.3s;
+}
+.el-step__head.is-finish .el-step__icon-inner:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  width: 10px;
+  border: 2px solid #2a7e00;
+  border-width: 0 0 2px 2px;
+  transform: rotate(-45deg);
+  top: 2px;
+  left: -2px;
+  border-radius: 0 0 0 2px;
+  transition: 0.3s;
+}
+/*#endregion step numbers style*/
+
 .el-step.is-horizontal .el-step__line {
   display: none;
 }
@@ -305,8 +383,12 @@ export default defineComponent({
   bottom: 0;
   margin: 0 auto;
 }
-.el-form-item__error{
+.el-form-item__error {
   left: unset !important;
   right: 0;
+}
+.step-container h3,
+h6 {
+  color: #3a8ee6;
 }
 </style>
