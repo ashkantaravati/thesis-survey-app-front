@@ -6,8 +6,7 @@
     <el-step title="گام چهارم"></el-step>
   </el-steps>
   <div class="step-container" v-show="currentStep === 0">
-    <h3>مشخصات سازمان و نماینده</h3>
-
+    <h3>مشخصات سازمان و نماینده</h3> 
     <el-form
       :model="ruleForm"
       :rules="rules"
@@ -391,8 +390,8 @@ export default defineComponent({
   left: unset !important;
   right: 0;
 }
-.step-container h3,
-h6 {
+.step-container h3 {
   color: #3a8ee6;
+  text-align: center;
 }
 </style>

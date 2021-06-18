@@ -1,18 +1,14 @@
 <template>
   <div id="info-bar">
-    <span>
+    <p class="m-0">
       سازمان شما:
       {{ teamInfo.organization.name }}
-    </span>
-    <br />
-    <span>
+    </p> 
+    <p>
       تیم شما:
       {{ teamInfo.name }}
-    </span>
+    </p>
 
-    <h3 class="d-flex" v-if="currentStep !== -1">
-      گام {{ currentStep + 1 }}: {{ stepTitle }} <h6 style="margin: 0 10px 0 0"> از 5</h6>
-    </h3>
   </div>
   <div id="survey-intro" v-show="currentStep === -1">
     <p>
@@ -25,7 +21,19 @@
       >من آماده ام. شروع کن</el-button
     >
   </div>
-  <div id="survey-step-1" v-show="currentStep === 0">
+    <el-steps :active="currentStep" align-center>
+    <el-step title="گام اول"></el-step>
+    <el-step title="گام دوم"></el-step>
+    <el-step title="گام سوم"></el-step>
+    <el-step title="گام چهارم"></el-step>
+    <el-step title="گام آخر"></el-step>
+  </el-steps>
+
+  <div class="step-container " id="survey-step-1" v-show="currentStep === 0">
+    
+    <h3 v-if="currentStep !== -1">
+     {{ stepTitle }} 
+    </h3>
     <div class="block mb-halfrem">
            <p>نام خود را از لیست انتخاب کنید</p>
     <el-select
@@ -76,11 +84,15 @@
       </el-slider>
     </div>
   </div>
-  <div id="survey-step-2" v-show="currentStep === 1">
+  <div class="step-container " id="survey-step-2" v-show="currentStep === 1">
+        <h3 v-if="currentStep !== -1">
+     {{ stepTitle }} 
+    </h3>
+    <p >
     در پاسخ به هر یک از سوالاتی که در ادامه آمده است بازه‌ای از اعداد را وارد
     کنید که با حداقل ۹۰٪ اطمینان فکر می‌کنید پاسخ درست در آن بازه قرار دارد.
-
-    <el-card>
+</p>
+    <el-card class="mb-halfrem">
       <template
         v-for="question in answers.overconfidenceQuestions"
         :key="question.questionText"
@@ -96,10 +108,14 @@
       </template>
     </el-card>
   </div>
-  <div id="survey-step-3" v-show="currentStep === 2">
+  <div class="step-container " id="survey-step-3" v-show="currentStep === 2">
+        <h3 v-if="currentStep !== -1">
+     {{ stepTitle }} 
+    </h3>
+     <p>
     درباره‌ی تیمی که در آن حضور دارید میزان موافقیت یا مخالفت خود با هر یک از
-    گزاره‌های زیر را مشخص کنید.
-    <el-card>
+    گزاره‌های زیر را مشخص کنید.</p>
+    <el-card class="mb-halfrem">
       <template
         v-for="question in answers.teamCoordinationQuestions"
         :key="question.questionText"
@@ -120,18 +136,25 @@
       </template>
     </el-card>
   </div>
-  <div id="survey-step-4" v-show="currentStep === 3">
-    <el-card> برای این قسمت هنوز پرسشنامه‌ی مشخصی نداریم... </el-card>
+  <div class="step-container " id="survey-step-4" v-show="currentStep === 3">
+        <h3 v-if="currentStep !== -1">
+     {{ stepTitle }} 
+    </h3>
+    <el-card class="mb-halfrem"> برای این قسمت هنوز پرسشنامه‌ی مشخصی نداریم... </el-card>
   </div>
-  <div id="survey-step-5" v-show="currentStep === 4">
-    در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود با این ۶ سوال پاسخ دهید:
-    <el-card v-for="member in answers.teamMembers" :key="member.name">
-      <h3>
+  <div class="step-container " id="survey-step-5" v-show="currentStep === 4">
+        <h3 v-if="currentStep !== -1">
+     {{ stepTitle }} 
+    </h3>
+    <p>
+    در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود با این ۶ سوال پاسخ دهید:</p>
+    <el-card class="mb-halfrem" v-for="member in answers.teamMembers" :key="member.name">
+      <h4>
         درباره‌ی {{ member.name }}
         <template v-if="member.id === answers.generalQuestions.participantId">
           (خودم)</template
         >:
-      </h3>
+      </h4>
       <template
         v-for="question in member.questions"
         :key="question.questionText"
@@ -350,5 +373,11 @@ export default defineComponent({
     min-width: 9rem;
         border-radius: 0 !important;
   }
+} 
+.step-container h4{
+      background: #d9ebff;
+    padding: 5px 10px;
+    border-radius: 5px;
+
 }
 </style>
