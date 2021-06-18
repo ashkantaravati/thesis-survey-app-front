@@ -132,7 +132,11 @@
       <span class="mx-halfrem"> تعداد تیم‌های شما: {{ teams.length }}</span>
     </el-alert>
 
-    <el-card class="box-card mb-halfrem" v-for="team in teams" :key="team.index">
+    <el-card
+      class="box-card mb-halfrem"
+      v-for="team in teams"
+      :key="team.index"
+    >
       <template #header>
         <div class="card-header">
           <span
@@ -155,16 +159,16 @@
       تیم هایتان تلید شده به تیم ها اقدام فرمایید.
     </p>
     <template v-for="team in teams" :key="team.index">
-      <p class="code text-red">
-        {{ team.sharableLink
-        }}<el-button
+      <el-alert type="info" :closable="false">
+        <a :href="team.sharableLink "> {{ team.sharableLink }}</a> 
+        <el-button
           icon="el-icon-document-copy"
           @click.stop.prevent="copyTestingCode"
           >کپی</el-button
         >
-      </p>
 
-      <input type="hidden" id="testing-code" :value="team.sharableLink" />
+        <input type="hidden" id="testing-code" :value="team.sharableLink" />
+      </el-alert>
     </template>
   </div>
 
