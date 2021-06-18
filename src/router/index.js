@@ -1,18 +1,18 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "@/views/Home.vue";
+// import Home from "@/views/Home.vue";
 import RegisterLanding from "@/views/RegisterLanding.vue";
 import RegisterWizard from "@/views/RegisterWizard.vue";
 import Survey from "@/views/Survey.vue";
 
 const routes = [
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   component: Home,
+  // },
   {
     path: "/",
-    name: "Home",
-    component: Home,
-  },
-  {
-    path: "/register",
-    name: "RegisterLanding",
+    name: "RegzisterLanding",
     component: RegisterLanding,
   },
   {
