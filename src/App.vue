@@ -1,6 +1,6 @@
 
 <template>
-  <div class="common-layout">
+  <div class="common-layout add-bg">
     <el-container class="body-container">
       <el-header class="header">
         <el-menu
@@ -51,6 +51,27 @@ body {
   line-height: 24px;
   color: #333;
   background: #fff;
+  position: relative;
+}
+body::before{
+  content: "";
+    display: block;
+    width: 100%;
+    height: 420px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: url(./assets/images/colorfull-bg.svg) no-repeat 50%;
+    transform: translateX(-50%);
+    /* z-index: 1; */
+        opacity: .7;
+}
+@media screen and (max-width: 768px) {
+body::before{
+    left: 60%;
+    background: url(./assets/images/colorfull-bg.svg) no-repeat 60%;
+    transform: translateX(-60%);
+}
 }
 a,
 a:hover,
@@ -61,6 +82,9 @@ a:focus {
 .el-button,
 .el-step__icon-inner {
   font-family: "IRANSansX" !important;
+}
+.el-menu{
+  background-color: transparent !important;
 }
 
 @media screen and (min-width: 768px) {
