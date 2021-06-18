@@ -4,22 +4,15 @@
     <el-container class="body-container">
       <el-header class="header">
         <el-menu
-          :default-active="activeIndex"
           class="el-menu-demo"
           id="nav"
           mode="horizontal"
-          @select="handleSelect"
         >
           <el-menu-item index="1"
-            ><router-link :to="{ name: 'Home' }"
-              >صفحه اصلی</router-link
-            ></el-menu-item
-          >
-          <el-menu-item index="2"
-            ><router-link :to="{ name: 'RegisterLanding' }"
-              >ثبت نام</router-link
-            ></el-menu-item
-          >
+            >
+            <span>پرسشنامه‌ی پایان‌نامه :)</span>
+            </el-menu-item
+          > 
         </el-menu>
       </el-header>
       <el-main>
@@ -40,13 +33,7 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      activeIndex: "1",
-    };
-  },
-};
+export default {};
 </script>
 
 <style>
