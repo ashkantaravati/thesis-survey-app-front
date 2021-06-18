@@ -3,12 +3,11 @@
     <p class="m-0">
       سازمان شما:
       {{ teamInfo.organization.name }}
-    </p> 
+    </p>
     <p>
       تیم شما:
       {{ teamInfo.name }}
     </p>
-
   </div>
   <div id="survey-intro" v-show="currentStep === -1">
     <p>
@@ -21,7 +20,7 @@
       >من آماده ام. شروع کن</el-button
     >
   </div>
-    <el-steps :active="currentStep" align-center>
+  <el-steps :active="currentStep" align-center>
     <el-step title="گام اول"></el-step>
     <el-step title="گام دوم"></el-step>
     <el-step title="گام سوم"></el-step>
@@ -29,41 +28,41 @@
     <el-step title="گام آخر"></el-step>
   </el-steps>
 
-  <div class="step-container " id="survey-step-1" v-show="currentStep === 0">
-    
+  <div class="step-container" id="survey-step-1" v-show="currentStep === 0">
     <h3 v-if="currentStep !== -1">
-     {{ stepTitle }} 
+      {{ stepTitle }}
     </h3>
     <div class="block mb-halfrem">
-           <p>نام خود را از لیست انتخاب کنید</p>
-    <el-select
-      v-model="answers.generalQuestions.participantId"
-      filterable
-      placeholder="نام خود را از لیست انتخاب کنید"
-    >
-      <el-option
-        v-for="member in teamInfo.members"
-        :key="member.id"
-        :label="member.name"
-        :value="member.id"
+      <p>نام خود را از لیست انتخاب کنید</p>
+      <el-select
+        v-model="answers.generalQuestions.participantId"
+        filterable
+        placeholder="نام خود را از لیست انتخاب کنید"
       >
-      </el-option>
-    </el-select>
+        <el-option
+          v-for="member in teamInfo.members"
+          :key="member.id"
+          :label="member.name"
+          :value="member.id"
+        >
+        </el-option>
+      </el-select>
     </div>
-        <div class="block mb-halfrem">
-             <p>سن خود را از لیست انتخاب کنید</p>
-    <el-input-number
-      v-model="answers.generalQuestions.participantAge"
-      :min="15"
-      :max="80"
-    ></el-input-number>
+    <div class="block mb-halfrem">
+      <p>سن خود را از لیست انتخاب کنید</p>
+      <el-input-number
+        v-model="answers.generalQuestions.participantAge"
+        :min="15"
+        :max="80"
+      ></el-input-number>
     </div>
-        <div class="block mb-halfrem">
-    <el-radio-group v-model="answers.generalQuestions.sex" dir="ltr">
-      <el-radio-button label="خانم"></el-radio-button>
-      <el-radio-button label="آقا"></el-radio-button>
-    </el-radio-group>
-</div>
+    <div class="block mb-halfrem">
+      <p>جنسیت خود را از لیست انتخاب کنید</p>
+      <el-radio-group v-model="answers.generalQuestions.sex" dir="ltr">
+        <el-radio-button label="خانم"></el-radio-button>
+        <el-radio-button label="آقا"></el-radio-button>
+      </el-radio-group>
+    </div>
     <div class="block mb-halfrem">
       <p>میزان کل سابقه کار شما ( بر حسب سال)</p>
       <el-slider
@@ -84,14 +83,14 @@
       </el-slider>
     </div>
   </div>
-  <div class="step-container " id="survey-step-2" v-show="currentStep === 1">
-        <h3 v-if="currentStep !== -1">
-     {{ stepTitle }} 
+  <div class="step-container" id="survey-step-2" v-show="currentStep === 1">
+    <h3 v-if="currentStep !== -1">
+      {{ stepTitle }}
     </h3>
-    <p >
-    در پاسخ به هر یک از سوالاتی که در ادامه آمده است بازه‌ای از اعداد را وارد
-    کنید که با حداقل ۹۰٪ اطمینان فکر می‌کنید پاسخ درست در آن بازه قرار دارد.
-</p>
+    <p>
+      در پاسخ به هر یک از سوالاتی که در ادامه آمده است بازه‌ای از اعداد را وارد
+      کنید که با حداقل ۹۰٪ اطمینان فکر می‌کنید پاسخ درست در آن بازه قرار دارد.
+    </p>
     <el-card class="mb-halfrem">
       <template
         v-for="question in answers.overconfidenceQuestions"
@@ -108,13 +107,14 @@
       </template>
     </el-card>
   </div>
-  <div class="step-container " id="survey-step-3" v-show="currentStep === 2">
-        <h3 v-if="currentStep !== -1">
-     {{ stepTitle }} 
+  <div class="step-container" id="survey-step-3" v-show="currentStep === 2">
+    <h3 v-if="currentStep !== -1">
+      {{ stepTitle }}
     </h3>
-     <p>
-    درباره‌ی تیمی که در آن حضور دارید میزان موافقیت یا مخالفت خود با هر یک از
-    گزاره‌های زیر را مشخص کنید.</p>
+    <p>
+      درباره‌ی تیمی که در آن حضور دارید میزان موافقیت یا مخالفت خود با هر یک از
+      گزاره‌های زیر را مشخص کنید.
+    </p>
     <el-card class="mb-halfrem">
       <template
         v-for="question in answers.teamCoordinationQuestions"
@@ -136,19 +136,26 @@
       </template>
     </el-card>
   </div>
-  <div class="step-container " id="survey-step-4" v-show="currentStep === 3">
-        <h3 v-if="currentStep !== -1">
-     {{ stepTitle }} 
+  <div class="step-container" id="survey-step-4" v-show="currentStep === 3">
+    <h3 v-if="currentStep !== -1">
+      {{ stepTitle }}
     </h3>
-    <el-card class="mb-halfrem"> برای این قسمت هنوز پرسشنامه‌ی مشخصی نداریم... </el-card>
+    <el-card class="mb-halfrem">
+      برای این قسمت هنوز پرسشنامه‌ی مشخصی نداریم...
+    </el-card>
   </div>
-  <div class="step-container " id="survey-step-5" v-show="currentStep === 4">
-        <h3 v-if="currentStep !== -1">
-     {{ stepTitle }} 
+  <div class="step-container" id="survey-step-5" v-show="currentStep === 4">
+    <h3 v-if="currentStep !== -1">
+      {{ stepTitle }}
     </h3>
     <p>
-    در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود با این ۶ سوال پاسخ دهید:</p>
-    <el-card class="mb-halfrem" v-for="member in answers.teamMembers" :key="member.name">
+      در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود با این ۶ سوال پاسخ دهید:
+    </p>
+    <el-card
+      class="mb-halfrem"
+      v-for="member in answers.teamMembers"
+      :key="member.name"
+    >
       <h4>
         درباره‌ی {{ member.name }}
         <template v-if="member.id === answers.generalQuestions.participantId">
@@ -163,7 +170,6 @@
           {{ question.questionText }}
         </div>
         <div dir="ltr">
-      
           <el-radio-group v-model="question.answer" size="small">
             <el-radio-button label="1">شدیدا مخالفم</el-radio-button>
             <el-radio-button label="2">مخالفم</el-radio-button>
@@ -362,22 +368,21 @@ export default defineComponent({
 </script>
 
 <style>
-@media screen and (max-width:768px) {
-  .el-radio-group{
+@media screen and (max-width: 768px) {
+  .el-radio-group {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .el-radio-button--small .el-radio-button__inner{
+  .el-radio-button--small .el-radio-button__inner {
     border-width: 0 0 1px 0 !important;
     min-width: 9rem;
-        border-radius: 0 !important;
+    border-radius: 0 !important;
   }
-} 
-.step-container h4{
-      background: #d9ebff;
-    padding: 5px 10px;
-    border-radius: 5px;
-
+}
+.step-container h4 {
+  background: #d9ebff;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 </style>
