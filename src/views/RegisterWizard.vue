@@ -132,7 +132,7 @@
       <span class="mx-halfrem"> تعداد تیم‌های شما: {{ teams.length }}</span>
     </el-alert>
 
-    <el-card class="box-card" v-for="team in teams" :key="team.index">
+    <el-card class="box-card mb-halfrem" v-for="team in teams" :key="team.index">
       <template #header>
         <div class="card-header">
           <span
