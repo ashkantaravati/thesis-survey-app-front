@@ -2,11 +2,15 @@
   <div id="info-bar">
     <p class="m-0">
       سازمان شما:
-      {{ teamInfo.organization.name }}
+      <strong>
+              {{ teamInfo.organization.name }}
+      </strong>
     </p>
     <p>
       تیم شما:
+      <strong>
       {{ teamInfo.name }}
+      </strong>
     </p>
   </div>
   <div id="survey-intro" v-show="currentStep === -1">
@@ -20,7 +24,7 @@
       >من آماده ام. شروع کن</el-button
     >
   </div>
-  <el-steps :active="currentStep" align-center>
+  <el-steps :active="currentStep" align-center v-show="currentStep !== -1">
     <el-step title="گام اول"></el-step>
     <el-step title="گام دوم"></el-step>
     <el-step title="گام سوم"></el-step>
@@ -226,16 +230,16 @@ export default defineComponent({
           teamHistory: "",
         },
         overconfidenceQuestions: [
-          { questionText: "به نظر شما سوال ۱", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۲", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۳", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۴", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۵", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۶", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۷", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۸", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۹", min: "", max: "" },
-          { questionText: "به نظر شما سوال ۱۰", min: "", max: "" },
+          { questionText: "به نظر شما در تهران چند پمپ بنزین وجود دارد؟", min: "", max: "" },
+          { questionText: "اولین کامپیوترالکترونیکی در کدام سال‌ها روانه‌ی بازار شد", min: "", max: "" },
+          { questionText: "میزان بارندگی تهران از مهر ۹۹ تا فروردین ۱۴۰۰", min: "", max: "" },
+          { questionText: "تعداد کشته‌شدگان تصادفات رانندگی درون شهری تهراندر سال 95", min: "", max: "" },
+          { questionText: "قیمت  دوغ شهری 2 لیتری پگاه گلپایگان  در بهار ۹۹", min: "", max: "" },
+          { questionText: "سن توماس ادیسون در زمان مرگ", min: "", max: "" },
+          { questionText: "تعداد کل مرگ و میر بر اثر کووید ۱۹ تا کنون", min: "", max: "" },
+          { questionText: "چند درصد از سهام مایکروسافت متعلق به بیل گیتس است؟", min: "", max: "" },
+          { questionText: "مسافت تهران تا ساری از جاده فیروزکوه؟", min: "", max: "" },
+          { questionText: "جمعیت استان اصفهان در سال ۹۵؟", min: "", max: "" },
         ],
         teamCoordinationQuestions: [
           {
