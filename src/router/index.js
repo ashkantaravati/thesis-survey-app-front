@@ -21,9 +21,10 @@ const routes = [
     component: RegisterWizard,
   },
   {
-    path: "/participate",
+    path: "/participate/:teamId",
     name: "Survey",
     component: Survey,
+    props: true,
   },
 ];
 

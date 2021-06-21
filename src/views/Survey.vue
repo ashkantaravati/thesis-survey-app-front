@@ -3,13 +3,13 @@
     <p class="m-0">
       سازمان شما:
       <strong>
-              {{ teamInfo.organization.name }}
+        {{ teamInfo.organization.name }}
       </strong>
     </p>
     <p>
       تیم شما:
       <strong>
-      {{ teamInfo.name }}
+        {{ teamInfo.name }}
       </strong>
     </p>
   </div>
@@ -199,10 +199,14 @@
 
 <script>
 import { defineComponent } from "vue";
+import http from "@/api/gateway";
 // import { getTeamInfo } from "../api/survey.service";
 
 export default defineComponent({
   name: "Survey",
+  props: {
+    teamId: { type: String, required: true },
+  },
   // setup() {
   //   stepTitle: computed(() => {
   //     if (this.currentStep === -1) return "";
@@ -230,15 +234,49 @@ export default defineComponent({
           teamHistory: "",
         },
         overconfidenceQuestions: [
-          { questionText: "به نظر شما در تهران چند پمپ بنزین وجود دارد؟", min: "", max: "" },
-          { questionText: "اولین کامپیوترالکترونیکی در کدام سال‌ها روانه‌ی بازار شد", min: "", max: "" },
-          { questionText: "میزان بارندگی تهران از مهر ۹۹ تا فروردین ۱۴۰۰", min: "", max: "" },
-          { questionText: "تعداد کشته‌شدگان تصادفات رانندگی درون شهری تهراندر سال 95", min: "", max: "" },
-          { questionText: "قیمت  دوغ شهری 2 لیتری پگاه گلپایگان  در بهار ۹۹", min: "", max: "" },
+          {
+            questionText: "به نظر شما در تهران چند پمپ بنزین وجود دارد؟",
+            min: "",
+            max: "",
+          },
+          {
+            questionText:
+              "اولین کامپیوترالکترونیکی در کدام سال‌ها روانه‌ی بازار شد",
+            min: "",
+            max: "",
+          },
+          {
+            questionText: "میزان بارندگی تهران از مهر ۹۹ تا فروردین ۱۴۰۰",
+            min: "",
+            max: "",
+          },
+          {
+            questionText:
+              "تعداد کشته‌شدگان تصادفات رانندگی درون شهری تهراندر سال 95",
+            min: "",
+            max: "",
+          },
+          {
+            questionText: "قیمت  دوغ شهری 2 لیتری پگاه گلپایگان  در بهار ۹۹",
+            min: "",
+            max: "",
+          },
           { questionText: "سن توماس ادیسون در زمان مرگ", min: "", max: "" },
-          { questionText: "تعداد کل مرگ و میر بر اثر کووید ۱۹ تا کنون", min: "", max: "" },
-          { questionText: "چند درصد از سهام مایکروسافت متعلق به بیل گیتس است؟", min: "", max: "" },
-          { questionText: "مسافت تهران تا ساری از جاده فیروزکوه؟", min: "", max: "" },
+          {
+            questionText: "تعداد کل مرگ و میر بر اثر کووید ۱۹ تا کنون",
+            min: "",
+            max: "",
+          },
+          {
+            questionText: "چند درصد از سهام مایکروسافت متعلق به بیل گیتس است؟",
+            min: "",
+            max: "",
+          },
+          {
+            questionText: "مسافت تهران تا ساری از جاده فیروزکوه؟",
+            min: "",
+            max: "",
+          },
           { questionText: "جمعیت استان اصفهان در سال ۹۵؟", min: "", max: "" },
         ],
         teamCoordinationQuestions: [
@@ -306,6 +344,13 @@ export default defineComponent({
     // });
   },
   created() {
+    http
+      .get(`/teams/${this.teamId}`)
+      .then((res) => (this.teamInfo = res.data))
+      .catch((e) => {
+        console.log(e);
+        // TODO: handle if team with teamId doesn't exist
+      });
     this.teamInfo.members.forEach((member) =>
       this.answers.teamMembers.push({
         name: member.name,
