@@ -163,12 +163,11 @@
       <el-alert type="info" :closable="false">
         <a :href="team.link"> {{ team.link }}</a>
         <el-button
+          v-clipboard="team.link"
           icon="el-icon-document-copy"
           @click.stop.prevent="copyTestingCode"
           >کپی</el-button
         >
-
-        <input type="hidden" id="testing-code" :value="team.link" />
       </el-alert>
     </template>
   </div>
@@ -268,29 +267,29 @@ export default defineComponent({
         .catch((e) => alert(e));
     },
     // PQ's codes
-    copyTestingCode() {
-      let testingCodeToCopy = document.querySelector("#testing-code");
-      testingCodeToCopy.setAttribute("type", "text");
-      testingCodeToCopy.select();
-      try {
-        alert("با موفقیت کپی شد");
-      } catch (err) {
-        alert("کپی نشد :(");
-      }
+    // copyTestingCode() {
+    //   let testingCodeToCopy = document.querySelector("#testing-code");
+    //   testingCodeToCopy.setAttribute("type", "text");
+    //   testingCodeToCopy.select();
+    //   try {
+    //     alert("با موفقیت کپی شد");
+    //   } catch (err) {
+    //     alert("کپی نشد :(");
+    //   }
 
-      testingCodeToCopy.setAttribute("type", "hidden");
-      window.getSelection().removeAllRanges();
-    },
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert("submit!");
-        } else {
-          console.log("error submit!!");
-          return false;
-        }
-      });
-    },
+    //   testingCodeToCopy.setAttribute("type", "hidden");
+    //   window.getSelection().removeAllRanges();
+    // },
+    // submitForm(formName) {
+    //   this.$refs[formName].validate((valid) => {
+    //     if (valid) {
+    //       alert("submit!");
+    //     } else {
+    //       console.log("error submit!!");
+    //       return false;
+    //     }
+    //   });
+    // },
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
