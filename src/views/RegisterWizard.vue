@@ -6,39 +6,39 @@
     <el-step title="گام چهارم"></el-step>
   </el-steps>
   <div class="step-container" v-show="currentStep === 0">
-    <h3>مشخصات سازمان و نماینده</h3> 
+    <h3>مشخصات سازمان و نماینده</h3>
     <el-form
       :model="ruleForm"
       :rules="rules"
       ref="ruleForm"
       class="demo-ruleForm"
     >
-      <el-form-item prop="organizationName">
+      <el-form-item prop="name">
         <el-input
           placeholder="نام یا عنوان تجاری سازمان"
-          v-model="ruleForm.organizationName"
+          v-model="ruleForm.name"
           type="text"
           autocomplete="organization"
         ></el-input>
       </el-form-item>
-      <el-form-item prop="repFullName">
+      <el-form-item prop="rep_name">
         <el-input
           placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
-          v-model="ruleForm.repFullName"
+          v-model="ruleForm.rep_name"
           autocomplete="name"
         ></el-input>
       </el-form-item>
-      <el-form-item prop="repJobTitle">
+      <el-form-item prop="rep_job_title">
         <el-input
           placeholder="سمت شما"
-          v-model="ruleForm.repJobTitle"
+          v-model="ruleForm.rep_job_title"
           autocomplete="organization-title"
         ></el-input>
       </el-form-item>
       <el-form-item>
         <el-input
           placeholder="ایمیل (اختیاری)"
-          v-model="repEmail"
+          v-model="ruleForm.rep_email"
           autocomplete="email"
           type="email"
         ></el-input>
@@ -54,7 +54,7 @@
     </p>
     <el-card
       class="box-card mb-halfrem"
-      v-for="(team, index) in teams"
+      v-for="(team, index) in ruleForm.teams"
       :key="team.index"
     >
       <template #header>
@@ -124,16 +124,18 @@
   <div class="step-container" v-show="currentStep === 2">
     <h3>خلاصه‌ی اطلاعات وارد‌شده و بازبینی</h3>
     <el-alert type="warning" :closable="false" class="mb-halfrem">
-      <span class="mx-halfrem">نام سازمان: {{ organizationName }}</span>
-      <span class="mx-halfrem"> نام شما: {{ repFullName }}</span>
-      <span class="mx-halfrem"> سمت شما: {{ repJobTitle }}</span>
-      <span class="mx-halfrem"> ایمیل شما: {{ repEmail }}</span>
-      <span class="mx-halfrem"> تعداد تیم‌های شما: {{ teams.length }}</span>
+      <span class="mx-halfrem">نام سازمان: {{ ruleForm.name }}</span>
+      <span class="mx-halfrem"> نام شما: {{ ruleForm.rep_name }}</span>
+      <span class="mx-halfrem"> سمت شما: {{ ruleForm.rep_job_title }}</span>
+      <span class="mx-halfrem"> ایمیل شما: {{ ruleForm.rep_email }}</span>
+      <span class="mx-halfrem">
+        تعداد تیم‌های شما: {{ ruleForm.teams.length }}</span
+      >
     </el-alert>
 
     <el-card
       class="box-card mb-halfrem"
-      v-for="team in teams"
+      v-for="team in ruleForm.teams"
       :key="team.index"
     >
       <template #header>
@@ -157,16 +159,16 @@
       اطلاعات که ثبت نمدید نسبت به ارسال لینک های اختصاص زیر که برای هر کدام از
       تیم هایتان تلید شده به تیم ها اقدام فرمایید.
     </p>
-    <template v-for="team in teams" :key="team.index">
+    <template v-for="team in ruleForm.teams" :key="team.index">
       <el-alert type="info" :closable="false">
-        <a :href="team.sharableLink "> {{ team.sharableLink }}</a> 
+        <a :href="team.link"> {{ team.link }}</a>
         <el-button
           icon="el-icon-document-copy"
           @click.stop.prevent="copyTestingCode"
           >کپی</el-button
         >
 
-        <input type="hidden" id="testing-code" :value="team.sharableLink" />
+        <input type="hidden" id="testing-code" :value="team.link" />
       </el-alert>
     </template>
   </div>
@@ -175,43 +177,47 @@
     <el-button @click="goPrev" :disabled="currentStep === 0">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
-    <el-button @click="goNext" :disabled="currentStep === 3">
+    <el-button @click="goNext" v-show="!isLastStep">
       گام بعد <i class="el-icon-arrow-left"></i
+    ></el-button>
+    <el-button @click="register" v-show="isLastStep">
+      ثبت و دریافت لینک اشتراک‌گذاری <i class="el-icon-arrow-left"></i
     ></el-button>
   </div>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
+import http from "@/api/gateway";
 
 export default defineComponent({
   data() {
     return {
       currentStep: 0,
-      repEmail: ref(""),
-      teams: [],
       testingCode: "1234",
       ruleForm: {
-        organizationName: ref(""),
-        repFullName: ref(""),
-        repJobTitle: ref(""),
+        rep_email: ref(""),
+        teams: [],
+        name: ref(""),
+        rep_name: ref(""),
+        rep_job_title: ref(""),
       },
       rules: {
-        organizationName: [
+        name: [
           {
             required: true,
             message: "نام سازمان نمی‌تواند خالی باشد",
             trigger: "blur",
           },
         ],
-        repFullName: [
+        rep_name: [
           {
             required: true,
             message: "نام شما نمی‌تواند خالی باشد",
             trigger: "blur",
           },
         ],
-        repJobTitle: [
+        rep_job_title: [
           {
             required: true,
             message: "سمت شما نمی‌تواند خالی باشد",
@@ -221,6 +227,11 @@ export default defineComponent({
       },
     };
   },
+  computed: {
+    isLastStep() {
+      return this.currentStep === 2;
+    },
+  },
   methods: {
     goNext() {
       this.currentStep++;
@@ -229,15 +240,14 @@ export default defineComponent({
       this.currentStep--;
     },
     addTeam() {
-      this.teams.push({
+      this.ruleForm.teams.push({
+        name: "team",
         members: [{ name: ref("") }, { name: ref("") }],
-        sharableLink: ref(
-          "https://thesis.ashkantaravati.ir/participate/Xh12b8Y"
-        ),
+        link: ref(""),
       });
     },
     removeTeam(team) {
-      this.teams.splice(this.teams.indexOf(team), 1);
+      this.ruleForm.teams.splice(this.ruleForm.teams.indexOf(team), 1);
     },
     addTeamMember(team) {
       team.members.push({ name: ref("") });
@@ -246,6 +256,18 @@ export default defineComponent({
       if (team.members.length === 2) return; // at least 2 members required
       team.members.splice(team.members.indexOf(member), 1);
     },
+    register() {
+      const organization = JSON.parse(JSON.stringify(this.ruleForm));
+      console.log(organization);
+      http
+        .post("/organizations", organization)
+        .then((res) => {
+          this.ruleForm = res.data;
+          this.goNext();
+        })
+        .catch((e) => alert(e));
+    },
+    // PQ's codes
     copyTestingCode() {
       let testingCodeToCopy = document.querySelector("#testing-code");
       testingCodeToCopy.setAttribute("type", "text");
