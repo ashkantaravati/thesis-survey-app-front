@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 // import Home from "@/views/Home.vue";
-import RegisterLanding from "@/views/RegisterLanding.vue";
+import RegisterLanding from "@/views/Home.vue";
 import RegisterWizard from "@/views/RegisterWizard.vue";
 import Survey from "@/views/Survey.vue";
 

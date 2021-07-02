@@ -207,21 +207,7 @@ export default defineComponent({
   props: {
     teamId: { type: String, required: true },
   },
-  // setup() {
-  //   stepTitle: computed(() => {
-  //     if (this.currentStep === -1) return "";
-  //     console.log(this.currentStep);
-  //     const STEPS = [
-  //       "سوالات عمومی",
-  //       "ارزیابی بیش‌اطمینانی",
-  //       "ارزیابی هماهنگی تیم از نظر شما",
-  //       "ارزیابی اثربخشی تیم از نظر شما",
-  //       "ارزیابی رفتار صدای تیم",
-  //       "پایان",
-  //     ];
-  //     return STEPS[this.currentStep];
-  //   });
-  // },
+
   data() {
     return {
       answers: {
@@ -233,79 +219,6 @@ export default defineComponent({
           tenure: "",
           teamHistory: "",
         },
-        overconfidenceQuestions: [
-          {
-            questionText: "به نظر شما در تهران چند پمپ بنزین وجود دارد؟",
-            min: "",
-            max: "",
-          },
-          {
-            questionText:
-              "اولین کامپیوترالکترونیکی در کدام سال‌ها روانه‌ی بازار شد",
-            min: "",
-            max: "",
-          },
-          {
-            questionText: "میزان بارندگی تهران از مهر ۹۹ تا فروردین ۱۴۰۰",
-            min: "",
-            max: "",
-          },
-          {
-            questionText:
-              "تعداد کشته‌شدگان تصادفات رانندگی درون شهری تهراندر سال 95",
-            min: "",
-            max: "",
-          },
-          {
-            questionText: "قیمت  دوغ شهری 2 لیتری پگاه گلپایگان  در بهار ۹۹",
-            min: "",
-            max: "",
-          },
-          { questionText: "سن توماس ادیسون در زمان مرگ", min: "", max: "" },
-          {
-            questionText: "تعداد کل مرگ و میر بر اثر کووید ۱۹ تا کنون",
-            min: "",
-            max: "",
-          },
-          {
-            questionText: "چند درصد از سهام مایکروسافت متعلق به بیل گیتس است؟",
-            min: "",
-            max: "",
-          },
-          {
-            questionText: "مسافت تهران تا ساری از جاده فیروزکوه؟",
-            min: "",
-            max: "",
-          },
-          { questionText: "جمعیت استان اصفهان در سال ۹۵؟", min: "", max: "" },
-        ],
-        teamCoordinationQuestions: [
-          {
-            questionText:
-              "تیم ما به گونه‌ای که به خوبی هماهنگ شده بود با هم کار می‌کرد.",
-            answer: 3,
-          },
-          {
-            questionText:
-              "میزان سوءتفاهم تیم ما در مورد این که چه باید بکند خیلی اند بود.",
-            answer: 3,
-          },
-          {
-            questionText:
-              "بسیار برای تیم ما پیش می‌آمد که لازم باشد به عقب باز گردد و از نو شروع کند.",
-            answer: 3,
-          },
-          {
-            questionText:
-              "ما وظیفه (تسک) را به شکلی کارا (efficient) و روان (smooth) به انجام رساندیم.",
-            answer: 3,
-          },
-          {
-            questionText:
-              "گنگی بسیاری در مورد این که چگونه باید یک وظیفه را به انجام برسانیم وجود داشت.",
-            answer: 3,
-          },
-        ],
         teamEffectivenessQuestions: [],
         teamMembers: [],
       },
@@ -338,11 +251,7 @@ export default defineComponent({
       },
     };
   },
-  mounted() {
-    // getTeamInfo("29ce0188-8688-4ba1-b79f-3b2b76786529").then((res) => {
-    //   this.teamInfo = res;
-    // });
-  },
+
   created() {
     http
       .get(`/teams/${this.teamId}`)
@@ -351,44 +260,6 @@ export default defineComponent({
         console.log(e);
         // TODO: handle if team with teamId doesn't exist
       });
-    this.teamInfo.members.forEach((member) =>
-      this.answers.teamMembers.push({
-        name: member.name,
-        id: member.id,
-        questions: [
-          {
-            questionText:
-              " این همکار، در خصوص مسائلی که این تیم کاری را درگیر می کند، پیشنهادات خود را ارائه می دهد.",
-            answer: 3,
-          },
-          {
-            questionText:
-              " این همکار نظرات خود را بیان می کند و دیگران را به درگیر شدن در خصوص مسائل مرتبط با تیم تشویق می نماید.",
-            answer: 3,
-          },
-          {
-            questionText:
-              "  این همکار نظرات و عقاید خود در خصوص مسائل کاری را به دیگران اظهار می کند حتی اگر نظرش متفاوت باشد و دیگران در گروه با او مخالف باشند.",
-            answer: 3,
-          },
-          {
-            questionText:
-              "  این همکار در زمینه هایی که نظر وی ممکن است برای تیم مفید واقع گردد  از دانش خوبی برخوردار است.",
-            answer: 3,
-          },
-          {
-            questionText:
-              "  این همکار در مسائلی که بر کیفیت زندگی شغلی در این تیم اثر می گذارد، نقش مثبتی ایفا می کند.",
-            answer: 3,
-          },
-          {
-            questionText:
-              " این همکار ایده هایی برای پروژه های جدید یا اعمال تغییرات در رویه های کاری ارائه می دهد. ",
-            answer: 3,
-          },
-        ],
-      })
-    );
   },
   methods: {
     goNext() {

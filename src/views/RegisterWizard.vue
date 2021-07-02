@@ -5,172 +5,10 @@
     <el-step title="گام سوم"></el-step>
     <el-step title="گام چهارم"></el-step>
   </el-steps>
-  <div class="step-container" v-show="currentStep === 0">
-    <h3>مشخصات سازمان و نماینده</h3>
-    <el-form
-      :model="ruleForm"
-      :rules="rules"
-      ref="ruleForm"
-      class="demo-ruleForm"
-    >
-      <el-form-item prop="name">
-        <el-input
-          placeholder="نام یا عنوان تجاری سازمان"
-          v-model="ruleForm.name"
-          type="text"
-          autocomplete="organization"
-        ></el-input>
-      </el-form-item>
-      <el-form-item prop="rep_name">
-        <el-input
-          placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
-          v-model="ruleForm.rep_name"
-          autocomplete="name"
-        ></el-input>
-      </el-form-item>
-      <el-form-item prop="rep_job_title">
-        <el-input
-          placeholder="سمت شما"
-          v-model="ruleForm.rep_job_title"
-          autocomplete="organization-title"
-        ></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-input
-          placeholder="ایمیل (اختیاری)"
-          v-model="ruleForm.rep_email"
-          autocomplete="email"
-          type="email"
-        ></el-input>
-      </el-form-item>
-    </el-form>
-  </div>
-  <div class="step-container" v-show="currentStep === 1">
-    <h3>اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
-    <p>
-      نام افراد صرفا برای شناسایی و تفکیک اطلاعات آن هاست. چنانچه تمایل به مخفی
-      ماندن نام افراد دارید می‌توانید از نام های مستعار اما یکتا استفاده کنید.
-      توجه کنید این نام‌ها در پرسشنامه برای افراد قابل رویت خواهند بود
-    </p>
-    <el-card
-      class="box-card mb-halfrem"
-      v-for="(team, index) in ruleForm.teams"
-      :key="team.index"
-    >
-      <template #header>
-        <div class="card-header">
-          <span>اعضای تیم {{ index + 1 }}</span>
-          <el-tooltip
-            class="item"
-            effect="dark"
-            content="حذف تیم"
-            placement="top-start"
-          >
-            <el-button
-              @click="removeTeam(team)"
-              type="danger"
-              icon="el-icon-delete"
-              circle
-              plain
-              class="mr-halfrem"
-            ></el-button>
-          </el-tooltip>
-        </div>
-      </template>
-      <el-row
-        v-for="(member, index) in team.members"
-        :key="index"
-        class="text item d-flex"
-      >
-        <el-col :xs="4" :lg="2">عضو {{ index + 1 }}</el-col>
-        <el-col :xs="18" :lg="21">
-          <el-input
-            class="pb-1rem"
-            v-model="member.name"
-            placeholder="نام عضو"
-          />
-        </el-col>
-        <el-col :xs="2" :lg="1" v-show="team.members.length > 2">
-          <el-tooltip
-            class="item"
-            effect="dark"
-            content="حذف عضو"
-            placement="top-start"
-          >
-            <el-button
-              @click="removeTeamMember(team, member)"
-              type="danger"
-              icon="el-icon-delete"
-              circle
-              plain
-              size="mini"
-              class="mr-halfrem"
-            ></el-button> </el-tooltip
-        ></el-col>
-      </el-row>
-
-      <el-button @click="addTeamMember(team)" type="primary" plain>
-        + افزودن عضو
-      </el-button>
-    </el-card>
-    <div class="d-flex jc-center mb-halfrem">
-      <el-button @click="addTeam" type="primary" round>
-        + افزودن تیم
-      </el-button>
-    </div>
-
-    <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
-  </div>
-  <div class="step-container" v-show="currentStep === 2">
-    <h3>خلاصه‌ی اطلاعات وارد‌شده و بازبینی</h3>
-    <el-alert type="warning" :closable="false" class="mb-halfrem">
-      <span class="mx-halfrem">نام سازمان: {{ ruleForm.name }}</span>
-      <span class="mx-halfrem"> نام شما: {{ ruleForm.rep_name }}</span>
-      <span class="mx-halfrem"> سمت شما: {{ ruleForm.rep_job_title }}</span>
-      <span class="mx-halfrem"> ایمیل شما: {{ ruleForm.rep_email }}</span>
-      <span class="mx-halfrem">
-        تعداد تیم‌های شما: {{ ruleForm.teams.length }}</span
-      >
-    </el-alert>
-
-    <el-card
-      class="box-card mb-halfrem"
-      v-for="team in ruleForm.teams"
-      :key="team.index"
-    >
-      <template #header>
-        <div class="card-header">
-          <span
-            >اطلاعات تیم {{ team.index }} (شامل
-            {{ team.members.length }} نفر)</span
-          >
-        </div>
-      </template>
-      <div v-for="member in team.members" :key="member.index" class="text item">
-        {{ member.name }} <br />
-      </div>
-    </el-card>
-    <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
-  </div>
-  <div class="step-container" v-show="currentStep === 3">
-    <h3>دریافت لینک برای مشارکت تیم‌ها</h3>
-    <p>
-      از وقت که برای تکمیل مرحله ی اول گذاشتید متشکرم. حال می‌توانید با توجه به
-      اطلاعات که ثبت نمدید نسبت به ارسال لینک های اختصاص زیر که برای هر کدام از
-      تیم هایتان تلید شده به تیم ها اقدام فرمایید.
-    </p>
-    <template v-for="team in ruleForm.teams" :key="team.index">
-      <el-alert type="info" :closable="false">
-        <a :href="team.link"> {{ team.link }}</a>
-        <el-button
-          v-clipboard="team.link"
-          icon="el-icon-document-copy"
-          @click.stop.prevent="copyTestingCode"
-          >کپی</el-button
-        >
-      </el-alert>
-    </template>
-  </div>
+  <div class="step-container" v-show="currentStep === 0"></div>
+  <div class="step-container" v-show="currentStep === 1"></div>
+  <div class="step-container" v-show="currentStep === 2"></div>
+  <div class="step-container" v-show="currentStep === 3"></div>
 
   <div class="fix-btns-container">
     <el-button @click="goPrev" :disabled="currentStep === 0">
@@ -186,8 +24,8 @@
 </template>
 
 <script>
+import { submitOrganizationInfo } from "@/api/services";
 import { defineComponent, ref } from "vue";
-import http from "@/api/gateway";
 
 export default defineComponent({
   data() {
@@ -257,9 +95,7 @@ export default defineComponent({
     },
     register() {
       const organization = JSON.parse(JSON.stringify(this.ruleForm));
-      console.log(organization);
-      http
-        .post("/organizations", organization)
+      submitOrganizationInfo(organization)
         .then((res) => {
           this.ruleForm = res.data;
           this.goNext();
