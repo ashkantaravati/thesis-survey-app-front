@@ -7,7 +7,7 @@
   </p>
   <el-card
     class="box-card mb-halfrem"
-    v-for="(team, index) in ruleForm.teams"
+    v-for="(team, index) in teams"
     :key="team.index"
   >
     <template #header>
@@ -73,8 +73,18 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "",
+  name: "RegStep2",
   props: {},
+  computed: {
+    teams: {
+      get() {
+        return this.$store.state.registrationInfo.teams;
+      },
+      set(value) {
+        this.$store.$emit("updateTeams", value);
+      },
+    },
+  },
 });
 </script>
 

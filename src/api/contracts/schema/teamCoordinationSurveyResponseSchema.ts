@@ -1,6 +1,6 @@
 import NumberIdentifiedEntitySchema from "./numberIdentifiedEntitySchema";
 
-export default interface TeamCoordinationSurveyResponse
+export default interface TeamCoordinationSurveyResponseSchema
   extends NumberIdentifiedEntitySchema {
   question_1: number;
   question_2: number;

@@ -1,6 +1,9 @@
+import { Model } from "@/core";
 import { LikertScaleQuestion } from "./common/LikertScaleQuestion";
+import TeamMember from "./TeamMember";
 
-export default class VoiceSurvey {
+export default class VoiceSurvey extends Model {
+  evaluatedParticipant!: TeamMember;
   q1!: LikertScaleQuestion;
   q2!: LikertScaleQuestion;
   q3!: LikertScaleQuestion;

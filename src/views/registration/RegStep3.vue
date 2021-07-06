@@ -34,7 +34,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "",
+  name: "RegStep3",
   props: {},
 });
 </script>

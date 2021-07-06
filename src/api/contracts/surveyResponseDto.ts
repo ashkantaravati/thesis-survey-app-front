@@ -1,3 +1,4 @@
+import { IDto } from "@/core";
 import {
   GeneralSurveyResponseSchema,
   HashIdentifiedEntitySchema,
@@ -6,7 +7,9 @@ import {
   VoiceSurveyResponseSchema,
 } from "./schema";
 
-export default interface SurveyResponseDto extends HashIdentifiedEntitySchema {
+export default interface SurveyResponseDto
+  extends HashIdentifiedEntitySchema,
+    IDto {
   voice_survey_responses: VoiceSurveyResponseSchema[];
   general_survey_response: GeneralSurveyResponseSchema;
   overconfidence_survey_response: OverconfidenceSurveyResponseSchema;

@@ -1,6 +1,7 @@
+import { Model } from "@/core";
 import MinMaxQuestion from "./common/MinMaxQuestion";
 
-export default class OverconfidenceSurvey {
+export default class OverconfidenceSurvey extends Model {
   q01!: MinMaxQuestion;
   q02!: MinMaxQuestion;
   q03!: MinMaxQuestion;
