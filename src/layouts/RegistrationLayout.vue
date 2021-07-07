@@ -1,11 +1,15 @@
 <template>
-  <el-steps :active="currentStep" align-center>
-    <el-step v-for="step in steps" :key="step" :title="step"></el-step>
+  <el-steps :active="currentStepIndex" align-center>
+    <el-step
+      v-for="step in steps"
+      :key="step.index"
+      :title="step.title"
+    ></el-step>
   </el-steps>
 
   <router-view></router-view>
   <div class="fix-btns-container">
-    <el-button @click="goPrev" :disabled="currentStep === 0">
+    <el-button @click="goPrev" :disabled="isFirstStep">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
     <el-button @click="goNext" v-show="!isLastStep">
@@ -23,41 +27,65 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "RegistrationLayout",
   props: {},
-  //   methods: {
-  //   goNext() {
-  //     router.push({ name: 'user'});
-  //   },
-  //   goPrev() {
-  //     router.push({ name: 'user'});
-  //   },
-  // },
+  methods: {
+    goNext() {
+      const nextIndex = this.currentStepIndex + 1;
+      const nextStep = this.getStep(nextIndex);
+      if (nextStep == undefined) return;
+
+      this.$router.push({ name: nextStep.routeName });
+    },
+    goPrev() {
+      const prevIndex = this.currentStepIndex - 1;
+      const prevStep = this.getStep(prevIndex);
+      if (prevStep == undefined) return;
+      this.$router.push({ name: prevStep.routeName });
+    },
+    getStep(index) {
+      return this.steps.find((step) => step.index === index);
+    },
+  },
   computed: {
     currentStep() {
-      switch (this.$router.currentRoute.value.name) {
-        case "register-step-1":
-          return 0;
-        case "register-step-2":
-          return 1;
-        case "register-step-3":
-          return 2;
-        case "register-step-4":
-          return 3;
+      const currentRouteName = this.$router.currentRoute.value.name;
+      return this.steps.find((step) => step.routeName === currentRouteName);
+    },
 
-        default:
-          return 0;
-      }
+    currentStepIndex() {
+      return this.currentStep != undefined ? this.currentStep.index : 0;
     },
     isFirstStep() {
-      return this.currentStep === 0;
+      return this.currentStepIndex === 0;
     },
     isLastStep() {
-      return this.currentStep === this.steps.length - 1;
+      return this.currentStepIndex === this.steps.length - 1;
     },
   },
 
   data() {
     return {
-      steps: ["اطلاعات اصلی", "تیم‌های شرکت‌کننده", "بازبینی اطلاعات", "پایان"],
+      steps: [
+        {
+          index: 0,
+          title: "اطلاعات اصلی",
+          routeName: "register-step-1",
+        },
+        {
+          index: 1,
+          title: "تیم‌های شرکت‌کننده",
+          routeName: "register-step-2",
+        },
+        {
+          index: 2,
+          title: "بازبینی اطلاعات",
+          routeName: "register-step-3",
+        },
+        {
+          index: 3,
+          title: "پایان",
+          routeName: "register-step-4",
+        },
+      ],
     };
   },
 });
