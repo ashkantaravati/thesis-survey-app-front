@@ -1,9 +1,9 @@
 <template>
   <h3>مشخصات سازمان و نماینده</h3>
   <el-form
-    :model="ruleForm"
+    :model="generalInfo"
     :rules="rules"
-    ref="ruleForm"
+    ref="generalInfoForm"
     class="demo-ruleForm"
   >
     <el-form-item prop="name">
@@ -14,21 +14,21 @@
         autocomplete="organization"
       ></el-input>
     </el-form-item>
-    <el-form-item prop="rep_name">
+    <el-form-item prop="repName">
       <el-input
         placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
         v-model="generalInfo.repName"
         autocomplete="name"
       ></el-input>
     </el-form-item>
-    <el-form-item prop="rep_job_title">
+    <el-form-item prop="repJobTitle">
       <el-input
         placeholder="سمت شما"
         v-model="generalInfo.repJobTitle"
         autocomplete="organization-title"
       ></el-input>
     </el-form-item>
-    <el-form-item>
+    <el-form-item prop="email">
       <el-input
         placeholder="ایمیل (اختیاری)"
         v-model="generalInfo.repEmail"
@@ -53,6 +53,41 @@ export default defineComponent({
         this.$store.$emit("updateGeneralInfo", value);
       },
     },
+  },
+
+  data() {
+    return {
+      rules: {
+        name: [
+          {
+            required: true,
+            message: "نام سازمان نمی‌تواند خالی باشد",
+            trigger: "blur",
+          },
+        ],
+        repName: [
+          {
+            required: true,
+            message: "نام شما نمی‌تواند خالی باشد",
+            trigger: "blur",
+          },
+        ],
+        repJobTitle: [
+          {
+            required: true,
+            message: "سمت شما نمی‌تواند خالی باشد",
+            trigger: "blur",
+          },
+        ],
+        repEmail: [
+          {
+            required: false,
+            message: "آدرس ایمیل صحیح وارد کنید",
+            trigger: "blur",
+          },
+        ],
+      },
+    };
   },
 
   props: {},
