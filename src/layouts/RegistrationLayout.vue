@@ -50,6 +50,9 @@ export default defineComponent({
     isFirstStep() {
       return this.currentStep === 0;
     },
+    isLastStep() {
+      return this.currentStep === this.steps.length - 1;
+    },
   },
 
   data() {
