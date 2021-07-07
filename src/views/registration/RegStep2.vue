@@ -71,10 +71,14 @@
 
 <script>
 import { defineComponent } from "vue";
+import { mapMutations } from "vuex";
 
 export default defineComponent({
   name: "RegStep2",
   props: {},
+  methods: {
+    ...mapMutations(["addTeam"]),
+  },
   computed: {
     teams: {
       get() {
