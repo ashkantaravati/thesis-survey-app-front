@@ -47,6 +47,9 @@ export default defineComponent({
           return 0;
       }
     },
+    isFirstStep() {
+      return this.currentStep === 0;
+    },
   },
 
   data() {
