@@ -67,7 +67,10 @@ const store = createStore({
       });
     },
     removeTeam(state: State, team: Team) {
-      // TODO prevent removing team if only one left
+      if (state.registrationInfo.teams.length === 1) {
+        // TODO alert user that they can't just remove the last team
+        return;
+      }
       state.registrationInfo.teams.splice(
         state.registrationInfo.teams.indexOf(team),
         1
