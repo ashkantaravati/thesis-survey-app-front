@@ -77,14 +77,14 @@ export default defineComponent({
         },
         {
           index: 2,
-          title: "بازبینی اطلاعات",
+          title: "بازبینی و ثبت",
           routeName: "register-step-3",
         },
-        {
-          index: 3,
-          title: "پایان",
-          routeName: "register-step-4",
-        },
+        // {
+        //   index: 3,
+        //   title: "پایان",
+        //   routeName: "register-step-4",
+        // },
       ],
     };
   },
