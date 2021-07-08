@@ -61,19 +61,26 @@ const store = createStore({
     },
     addTeam(state: State) {
       state.registrationInfo.teams.push({
-        name: "team",
+        name: "team", //TODO set a dynamic name for each team we create
         members: [{ name: "" }, { name: "" }],
         link: "",
       });
     },
     removeTeam(state: State, team: Team) {
+      // TODO prevent removing team if only one left
       state.registrationInfo.teams.splice(
         state.registrationInfo.teams.indexOf(team),
         1
       );
     },
-    addTeamMember(state: State, team: Team) {
-      // TODO find team then push new member object
+    addAMemberToTeam(state: State, targetTeam: Team) {
+      const team = state.registrationInfo.teams.find(
+        (team) => team === targetTeam
+      );
+      if (team == undefined) {
+        console.error("target team does not exist in state");
+        return;
+      }
       team.members.push({ name: "" });
     },
     removeTeamMember(state: State, { team, member }) {

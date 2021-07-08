@@ -58,7 +58,7 @@
       ></el-col>
     </el-row>
 
-    <el-button @click="addTeamMember(team)" type="primary" plain>
+    <el-button @click="addAMemberToTeam(team)" type="primary" plain>
       + افزودن عضو
     </el-button>
   </el-card>
@@ -77,7 +77,7 @@ export default defineComponent({
   name: "RegStep2",
   props: {},
   methods: {
-    ...mapMutations(["addTeam", "removeTeam"]),
+    ...mapMutations(["addTeam", "removeTeam", "addAMemberToTeam"]),
   },
   computed: {
     teams: {
