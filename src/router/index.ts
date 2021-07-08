@@ -15,17 +15,21 @@ const routes = [
     component: RegistrationLayout,
     children: [
       {
-        path: "step-1",
+        path: "",
+        redirect: "/register/1",
+      },
+      {
+        path: "1",
         name: "register-step-1",
         component: RegStep1,
       },
       {
-        path: "step-2",
+        path: "2",
         name: "register-step-2",
         component: RegStep2,
       },
       {
-        path: "step-3",
+        path: "3",
         name: "register-step-3",
         component: RegStep3,
       },
