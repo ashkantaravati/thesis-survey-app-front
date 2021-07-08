@@ -86,10 +86,14 @@ const store = createStore({
       }
       team.members.push({ name: "" });
     },
-    removeTeamMember(state: State, { team, member }) {
-      // TODO find team then push new member object
+    removeMemberFromTeam(state: State, { team, member }) {
       if (team.members.length === 2) return; // at least 2 members required
-      team.members.splice(team.members.indexOf(member), 1);
+      const targetTeam = state.registrationInfo.teams.find((t) => t === team);
+      if (targetTeam === undefined) {
+        console.error("target team does not exist");
+        return;
+      }
+      targetTeam.members.splice(team.members.indexOf(member), 1);
     },
   },
 });

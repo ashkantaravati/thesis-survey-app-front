@@ -47,7 +47,7 @@
           placement="top-start"
         >
           <el-button
-            @click="removeTeamMember({ team, member })"
+            @click="removeMemberFromTeam({ team, member })"
             type="danger"
             icon="el-icon-delete"
             circle
@@ -77,7 +77,12 @@ export default defineComponent({
   name: "RegStep2",
   props: {},
   methods: {
-    ...mapMutations(["addTeam", "removeTeam", "addAMemberToTeam"]),
+    ...mapMutations([
+      "addTeam",
+      "removeTeam",
+      "addAMemberToTeam",
+      "removeMemberFromTeam",
+    ]),
   },
   computed: {
     teams: {
