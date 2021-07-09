@@ -1,7 +1,15 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
-import RegistrationLayout from "@/layouts/RegistrationLayout.vue";
-import Survey from "@/views/Survey.vue";
+import { RegistrationLayout, SurveyLayout } from "@/layouts";
+import {
+  SurveyIntro,
+  SurveyStep1,
+  SurveyStep2,
+  SurveyStep3,
+  SurveyStep4,
+  SurveyStep5,
+  SurveySuccess,
+} from "@/views/survey";
 import { RegStep1, RegStep2, RegStep3, RegStep4 } from "@/views/registration";
 
 const routes = [
@@ -43,8 +51,45 @@ const routes = [
   {
     path: "/participate/:teamId",
     name: "Survey",
-    component: Survey,
+    component: SurveyLayout,
     props: true,
+    children: [
+      {
+        path: "",
+        name: "survey-intro",
+        component: SurveyIntro,
+      },
+      {
+        path: "1",
+        name: "survey-step-1",
+        component: SurveyStep1,
+      },
+      {
+        path: "2",
+        name: "survey-step-2",
+        component: SurveyStep2,
+      },
+      {
+        path: "3",
+        name: "survey-step-3",
+        component: SurveyStep3,
+      },
+      {
+        path: "4",
+        name: "survey-step-4",
+        component: SurveyStep4,
+      },
+      {
+        path: "5",
+        name: "survey-step-5",
+        component: SurveyStep5,
+      },
+      {
+        path: "success",
+        name: "survey-success",
+        component: SurveySuccess,
+      },
+    ],
   },
 ];
 
