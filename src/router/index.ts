@@ -34,8 +34,8 @@ const routes = [
         component: RegStep3,
       },
       {
-        path: "step-4",
-        name: "register-step-4",
+        path: "success",
+        name: "register-success",
         component: RegStep4,
       },
     ],
