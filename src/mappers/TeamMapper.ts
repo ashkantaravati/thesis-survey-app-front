@@ -26,7 +26,11 @@ export default class TeamMapper implements ITwoWayMapper {
       members: _dto.members.map((member) =>
         this._memberMapper.createModelFromDto(member)
       ),
-      link: _dto.link,
+      // link: _dto.link,
+      link: generateUrlToTeamSurvey(_dto.id as string),
     };
   }
+}
+function generateUrlToTeamSurvey(teamId: string) {
+  return `${window.location.origin}/participate/${teamId}`;
 }
