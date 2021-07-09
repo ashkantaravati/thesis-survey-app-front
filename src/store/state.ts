@@ -4,13 +4,17 @@ import {
   OVERCONFIDENCE_QUESTIONS,
   TEAM_COORDINATION_QUESTIONS,
 } from "@/constants";
-import { OrganizationInfo, ThesisSurvey } from "@/models";
+import {
+  OrganizationInfo,
+  TeamWithOrganizationInfo,
+  ThesisSurvey,
+} from "@/models";
 import { LikertResponse, MinMaxResponse } from "@/models/common";
 
 type State = {
   registrationInfo: OrganizationInfo;
   survey: ThesisSurvey;
-  teamInfo: TeamInfoDto;
+  teamInfo: TeamWithOrganizationInfo;
 };
 
 const state: State = {
@@ -112,7 +116,7 @@ const state: State = {
     id: "",
     members: [],
     name: "",
-    organization: {} as OrganizationSchema,
+    organizationName: "",
   },
 };
 
