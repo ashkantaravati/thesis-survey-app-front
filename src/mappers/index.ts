@@ -5,6 +5,7 @@ import TeamCoordinationMapper from "./TeamCoordinationMapper";
 import TeamMapper from "./TeamMapper";
 import TeamMemberMapper from "./TeamMemberMapper";
 import VoiceSurveyMapper from "./VoiceSurveyMapper";
+import TeamWithOrganizationInfoMapper from "./TeamWithOrganizationInfoMapper";
 
 export {
   SurveyResponseMapper,
@@ -14,4 +15,5 @@ export {
   VoiceSurveyMapper,
   TeamMemberMapper,
   TeamMapper,
+  TeamWithOrganizationInfoMapper,
 };
