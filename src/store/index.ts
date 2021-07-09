@@ -8,8 +8,14 @@ import { createStore } from "vuex";
 import {
   OrganizationRegistrationMapper,
   SurveyResponseMapper,
+  TeamWithOrganizationInfoMapper,
 } from "@/mappers";
-import { OrganizationInfo, Team, ThesisSurvey } from "@/models";
+import {
+  OrganizationInfo,
+  Team,
+  TeamWithOrganizationInfo,
+  ThesisSurvey,
+} from "@/models";
 
 import { state, State } from "./state";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
@@ -18,10 +24,14 @@ const store = createStore({
   state: state,
   actions: {
     fetchTeamInfo({ commit }, teamId: string) {
+      // TODO : Add a loading indicator
       getTeamInfo(teamId)
         .then((res) => {
-          const teamInfo = res.data;
+          const dto = res.data;
+          const mapper = new TeamWithOrganizationInfoMapper();
+          const teamInfo = mapper.createModelFromDto(dto);
           commit("setTeamInfo", teamInfo);
+          // TODO : disable loading indicator
         })
         .catch((err) => console.log(err));
     },
@@ -55,7 +65,7 @@ const store = createStore({
     },
   },
   mutations: {
-    setTeamInfo(state: State, teamInfoObject: TeamInfoDto) {
+    setTeamInfo(state: State, teamInfoObject: TeamWithOrganizationInfo) {
       // TODO should not use Dto directly
       state.teamInfo = teamInfoObject;
     },
