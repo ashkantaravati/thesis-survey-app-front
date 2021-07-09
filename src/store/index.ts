@@ -25,19 +25,25 @@ const store = createStore({
         })
         .catch((err) => console.log(err));
     },
-    registerOrganization({ commit, state }) {
+    registerOrganization({ commit, state }, onSuccess: () => void) {
       const mapper = new OrganizationRegistrationMapper();
       const organizationInfoDto = mapper.createDtoFromModel(
         state.registrationInfo
       );
 
-      submitOrganizationInfo(organizationInfoDto).then((res) => {
-        const createdOrganization = res.data;
-        const updatedRegistrationInfo = mapper.createModelFromDto(
-          createdOrganization
-        );
-        commit("updateRegistrationInfo", updatedRegistrationInfo);
-      });
+      submitOrganizationInfo(organizationInfoDto)
+        .then((res) => {
+          const createdOrganization = res.data;
+          const updatedRegistrationInfo = mapper.createModelFromDto(
+            createdOrganization
+          );
+          commit("replaceWithCreatedOrganization", updatedRegistrationInfo);
+          onSuccess();
+        })
+        .catch((err) => {
+          console.error(err);
+          // onError();
+        });
     },
     submitResponse({ commit, state }, participantId) {
       const mapper = new SurveyResponseMapper();
@@ -52,6 +58,12 @@ const store = createStore({
     setTeamInfo(state: State, teamInfoObject: TeamInfoDto) {
       // TODO should not use Dto directly
       state.teamInfo = teamInfoObject;
+    },
+    replaceWithCreatedOrganization(
+      state: State,
+      updateOrganizationInfo: OrganizationInfo
+    ) {
+      state.registrationInfo = updateOrganizationInfo;
     },
     updateGeneralInfo(
       state: State,

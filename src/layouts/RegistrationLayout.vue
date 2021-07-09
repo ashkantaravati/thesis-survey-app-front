@@ -1,5 +1,5 @@
 <template>
-  <el-steps :active="currentStepIndex" align-center>
+  <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
     <el-step
       v-for="step in steps"
       :key="step.index"
@@ -8,14 +8,17 @@
   </el-steps>
 
   <router-view></router-view>
-  <div class="fix-btns-container">
+  <div v-if="currentStep" class="fix-btns-container">
     <el-button @click="goPrev" :disabled="isFirstStep">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
     <el-button @click="goNext" v-show="!isLastStep">
       گام بعد <i class="el-icon-arrow-left"></i
     ></el-button>
-    <el-button @click="register" v-show="isLastStep">
+    <el-button
+      @click="registerOrganization(goToSuccessPage)"
+      v-show="isLastStep"
+    >
       ثبت و دریافت لینک اشتراک‌گذاری <i class="el-icon-arrow-left"></i
     ></el-button>
   </div>
@@ -23,11 +26,13 @@
 
 <script>
 import { defineComponent } from "vue";
+import { mapActions } from "vuex";
 
 export default defineComponent({
   name: "RegistrationLayout",
   props: {},
   methods: {
+    ...mapActions(["registerOrganization"]),
     goNext() {
       const nextIndex = this.currentStepIndex + 1;
       const nextStep = this.getStep(nextIndex);
@@ -43,6 +48,9 @@ export default defineComponent({
     },
     getStep(index) {
       return this.steps.find((step) => step.index === index);
+    },
+    goToSuccessPage() {
+      this.$router.push({ name: "register-success" });
     },
   },
   computed: {

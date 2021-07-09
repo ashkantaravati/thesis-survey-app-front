@@ -5,7 +5,7 @@
     اطلاعات که ثبت نمدید نسبت به ارسال لینک های اختصاص زیر که برای هر کدام از
     تیم هایتان تلید شده به تیم ها اقدام فرمایید.
   </p>
-  <template v-for="team in ruleForm.teams" :key="team.index">
+  <template v-for="team in teams" :key="team.index">
     <el-alert type="info" :closable="false">
       <a :href="team.link"> {{ team.link }}</a>
       <el-button
@@ -19,11 +19,19 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "RegStep4",
   props: {},
+  setup() {
+    const store = useStore();
+
+    return {
+      teams: computed(() => store.state.registrationInfo.teams),
+    };
+  },
 });
 </script>
 
