@@ -15,7 +15,6 @@ import {
   OrganizationInfo,
   Team,
   TeamWithOrganizationInfo,
-  ThesisSurvey,
 } from "@/models";
 
 import { state, State } from "./state";
@@ -70,6 +69,16 @@ const store = createStore({
     setTeamInfo(state: State, teamInfoObject: TeamWithOrganizationInfo) {
       // TODO should not use Dto directly
       state.teamInfo = teamInfoObject;
+    },
+    setActiveParticipant(state: State, participantId: string) {
+      console.log(participantId);
+      const participant = state.teamInfo.members.find(
+        (member) => member.id === participantId
+      );
+      if (participant) {
+        console.log(participant);
+        state.activeParticipant = participant;
+      }
     },
     setGeneralSurveyResponse(
       state: State,
