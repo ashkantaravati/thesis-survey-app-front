@@ -6,6 +6,7 @@ import {
 } from "@/constants";
 import {
   OrganizationInfo,
+  TeamMember,
   TeamWithOrganizationInfo,
   ThesisSurvey,
 } from "@/models";
@@ -15,6 +16,7 @@ type State = {
   registrationInfo: OrganizationInfo;
   survey: ThesisSurvey;
   teamInfo: TeamWithOrganizationInfo;
+  activeParticipant: TeamMember;
 };
 
 const state: State = {
@@ -118,6 +120,7 @@ const state: State = {
     name: "",
     organizationName: "",
   },
+  activeParticipant: { id: "", name: "" },
 };
 
 export { state, State };
