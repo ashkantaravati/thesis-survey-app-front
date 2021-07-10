@@ -11,6 +11,7 @@ import {
   TeamWithOrganizationInfoMapper,
 } from "@/mappers";
 import {
+  GeneralSurvey,
   OrganizationInfo,
   Team,
   TeamWithOrganizationInfo,
@@ -65,10 +66,21 @@ const store = createStore({
     },
   },
   mutations: {
+    // survey mutations:
     setTeamInfo(state: State, teamInfoObject: TeamWithOrganizationInfo) {
       // TODO should not use Dto directly
       state.teamInfo = teamInfoObject;
     },
+    setGeneralSurveyResponse(
+      state: State,
+      generalSurveyResponse: GeneralSurvey
+    ) {
+      state.survey.generalSurvey = generalSurveyResponse;
+    },
+
+    // end of survey mutations
+
+    // organization info mutations:
     replaceWithCreatedOrganization(
       state: State,
       updateOrganizationInfo: OrganizationInfo
@@ -117,6 +129,7 @@ const store = createStore({
       }
       targetTeam.members.splice(team.members.indexOf(member), 1);
     },
+    // end of organization info mutations
   },
 });
 
