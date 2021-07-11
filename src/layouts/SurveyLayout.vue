@@ -100,22 +100,22 @@ export default defineComponent({
         },
         {
           index: 1,
-          title: "ارزیابی بیش‌اطمینانی",
+          title: "بیش‌اطمینانی",
           routeName: "survey-step-2",
         },
         {
           index: 2,
-          title: "ارزیابی هماهنگی تیم از نظر شما",
+          title: "هماهنگی تیم",
           routeName: "survey-step-3",
         },
         {
           index: 3,
-          title: "ارزیابی اثربخشی تیم از نظر شما",
+          title: "اثربخشی تیم",
           routeName: "survey-step-4",
         },
         {
           index: 4,
-          title: "ارزیابی رفتار صدای تیم",
+          title: "رفتار صدای تیم",
           routeName: "survey-step-5",
         },
       ],
