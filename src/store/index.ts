@@ -16,6 +16,7 @@ import {
   OverconfidenceSurvey,
   Team,
   TeamWithOrganizationInfo,
+  VoiceSurvey,
 } from "@/models";
 
 import { state, State } from "./state";
@@ -33,6 +34,7 @@ const store = createStore({
           const mapper = new TeamWithOrganizationInfoMapper();
           const teamInfo = mapper.createModelFromDto(dto);
           commit("setTeamInfo", teamInfo);
+          commit("generateVoiceResponseItemForEachTeamMember");
           // TODO : disable loading indicator
         })
         .catch((err) => console.log(err));
@@ -147,6 +149,11 @@ const store = createStore({
           state.survey.teamCoordinationSurvey.q5.response = response;
           break;
       }
+    },
+    generateVoiceResponseItemForEachTeamMember(state: State) {
+      state.teamInfo.members.forEach((member) => {
+        state.survey.voiceSurveys.push(new VoiceSurvey(member));
+      });
     },
 
     // end of survey mutations
