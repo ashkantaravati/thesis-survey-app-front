@@ -13,12 +13,14 @@ import {
 import {
   GeneralSurvey,
   OrganizationInfo,
+  OverconfidenceSurvey,
   Team,
   TeamWithOrganizationInfo,
 } from "@/models";
 
 import { state, State } from "./state";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
+import { MinMaxResponse } from "@/models/common";
 
 const store = createStore({
   state: state,
@@ -85,6 +87,43 @@ const store = createStore({
       generalSurveyResponse: GeneralSurvey
     ) {
       state.survey.generalSurvey = generalSurveyResponse;
+    },
+    setOverconfidenceSurveyQuestionResponse(
+      state: State,
+      payload: { index: number; response: MinMaxResponse }
+    ) {
+      const { index, response } = payload;
+      switch (index) {
+        case 1:
+          state.survey.overconfidenceSurvey.q01.response = response;
+          break;
+        case 2:
+          state.survey.overconfidenceSurvey.q02.response = response;
+          break;
+        case 3:
+          state.survey.overconfidenceSurvey.q03.response = response;
+          break;
+        case 4:
+          state.survey.overconfidenceSurvey.q04.response = response;
+          break;
+        case 5:
+          state.survey.overconfidenceSurvey.q05.response = response;
+          break;
+        case 6:
+          state.survey.overconfidenceSurvey.q06.response = response;
+          break;
+        case 7:
+          state.survey.overconfidenceSurvey.q07.response = response;
+          break;
+        case 8:
+          state.survey.overconfidenceSurvey.q08.response = response;
+          break;
+        case 9:
+          state.survey.overconfidenceSurvey.q09.response = response;
+          break;
+        case 10:
+          state.survey.overconfidenceSurvey.q10.response = response;
+      }
     },
 
     // end of survey mutations
