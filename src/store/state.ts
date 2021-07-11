@@ -88,27 +88,27 @@ const state: State = {
       q1: {
         index: 1,
         text: TEAM_COORDINATION_QUESTIONS.Q1,
-        response: LikertResponse.default,
+        response: new LikertResponse(),
       },
       q2: {
         index: 1,
         text: TEAM_COORDINATION_QUESTIONS.Q2,
-        response: LikertResponse.default,
+        response: new LikertResponse(),
       },
       q3: {
         index: 1,
         text: TEAM_COORDINATION_QUESTIONS.Q3,
-        response: LikertResponse.default,
+        response: new LikertResponse(),
       },
       q4: {
         index: 1,
         text: TEAM_COORDINATION_QUESTIONS.Q4,
-        response: LikertResponse.default,
+        response: new LikertResponse(),
       },
       q5: {
         index: 1,
         text: TEAM_COORDINATION_QUESTIONS.Q5,
-        response: LikertResponse.default,
+        response: new LikertResponse(),
       },
     },
     teamEffectiveness: {},
