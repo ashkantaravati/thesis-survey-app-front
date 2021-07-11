@@ -36,52 +36,52 @@ const state: State = {
       q01: {
         index: 1,
         text: OVERCONFIDENCE_QUESTIONS.Q01,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q02: {
         index: 2,
         text: OVERCONFIDENCE_QUESTIONS.Q02,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q03: {
         index: 3,
         text: OVERCONFIDENCE_QUESTIONS.Q03,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q04: {
         index: 4,
         text: OVERCONFIDENCE_QUESTIONS.Q04,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q05: {
         index: 5,
         text: OVERCONFIDENCE_QUESTIONS.Q05,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q06: {
         index: 6,
         text: OVERCONFIDENCE_QUESTIONS.Q06,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q07: {
         index: 7,
         text: OVERCONFIDENCE_QUESTIONS.Q07,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q08: {
         index: 8,
         text: OVERCONFIDENCE_QUESTIONS.Q08,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q09: {
         index: 9,
         text: OVERCONFIDENCE_QUESTIONS.Q09,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
       q10: {
         index: 10,
         text: OVERCONFIDENCE_QUESTIONS.Q10,
-        response: MinMaxResponse.default,
+        response: new MinMaxResponse(),
       },
     },
     teamCoordinationSurvey: {
