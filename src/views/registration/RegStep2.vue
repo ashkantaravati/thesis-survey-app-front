@@ -90,12 +90,11 @@ export default defineComponent({
         return this.$store.state.registrationInfo.teams;
       },
       set(value) {
-        this.$store.$emit("updateTeams", value);
+        this.$store.commit("updateTeams", value);
       },
     },
   },
 });
 </script>
 
-<style>
-</style>
+<style></style>

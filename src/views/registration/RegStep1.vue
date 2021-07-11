@@ -50,7 +50,7 @@ export default defineComponent({
         return this.$store.state.registrationInfo.generalInfo;
       },
       set(value) {
-        this.$store.$emit("updateGeneralInfo", value);
+        this.$store.commit("updateGeneralInfo", value);
       },
     },
   },
@@ -94,5 +94,4 @@ export default defineComponent({
 });
 </script>
 
-<style>
-</style>
+<style></style>
