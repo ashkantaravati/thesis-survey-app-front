@@ -20,7 +20,7 @@ import {
 
 import { state, State } from "./state";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
-import { MinMaxResponse } from "@/models/common";
+import { LikertResponse, MinMaxResponse } from "@/models/common";
 
 const store = createStore({
   state: state,
@@ -123,6 +123,29 @@ const store = createStore({
           break;
         case 10:
           state.survey.overconfidenceSurvey.q10.response = response;
+      }
+    },
+    setTeamCoordinationSurveyResponse(
+      state: State,
+      payload: { index: number; response: LikertResponse }
+    ) {
+      const { index, response } = payload;
+      switch (index) {
+        case 1:
+          state.survey.teamCoordinationSurvey.q1.response = response;
+          break;
+        case 2:
+          state.survey.teamCoordinationSurvey.q2.response = response;
+          break;
+        case 3:
+          state.survey.teamCoordinationSurvey.q3.response = response;
+          break;
+        case 4:
+          state.survey.teamCoordinationSurvey.q4.response = response;
+          break;
+        case 5:
+          state.survey.teamCoordinationSurvey.q5.response = response;
+          break;
       }
     },
 
