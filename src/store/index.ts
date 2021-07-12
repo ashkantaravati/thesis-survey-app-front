@@ -200,6 +200,16 @@ const store = createStore({
         state.survey.voiceSurveys.push(new VoiceSurvey(member));
       });
     },
+    setVoiceSurveyResponse(state: State, updatedSurvey: VoiceSurvey) {
+      let surveyState = state.survey.voiceSurveys.find(
+        (survey) => survey.id === updatedSurvey.id
+      );
+      if (surveyState) {
+        surveyState = updatedSurvey;
+      } else {
+        console.error(`Could not find survey with id ${updatedSurvey.id}`);
+      }
+    },
 
     // end of survey mutations
 
