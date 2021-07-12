@@ -13,7 +13,7 @@
     سازمان ها به صورت ناشناس یاد خواهند کرد.
   </p>
   <div class="jc-center d-flex">
-    <router-link :to="{ name: 'RegisterWizard' }">
+    <router-link :to="{ name: 'register-landing' }">
       <el-button round type="primary"> شروع و ثبت اطلاعات سازمان</el-button>
     </router-link>
   </div>

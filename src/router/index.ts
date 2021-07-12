@@ -21,10 +21,12 @@ const routes = [
   },
   {
     path: "/register",
+    name: "register",
     component: RegistrationLayout,
     children: [
       {
         path: "",
+        name: "register-landing",
         redirect: "/register/1",
       },
       {
