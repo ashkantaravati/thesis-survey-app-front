@@ -1,25 +1,12 @@
 
 <template>
-  <div class="common-layout">
+  <div class="common-layout add-bg">
     <el-container class="body-container">
       <el-header class="header">
-        <el-menu
-          :default-active="activeIndex"
-          class="el-menu-demo"
-          id="nav"
-          mode="horizontal"
-          @select="handleSelect"
-        >
-          <el-menu-item index="1"
-            ><router-link :to="{ name: 'Home' }"
-              >صفحه اصلی</router-link
-            ></el-menu-item
-          >
-          <el-menu-item index="2"
-            ><router-link :to="{ name: 'RegisterLanding' }"
-              >ثبت نام</router-link
-            ></el-menu-item
-          >
+        <el-menu class="el-menu-demo" id="nav" mode="horizontal">
+          <el-menu-item index="1">
+            <span>پرسشنامه‌ی پایان‌نامه :)</span>
+          </el-menu-item>
         </el-menu>
       </el-header>
       <el-main>
@@ -40,13 +27,7 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      activeIndex: "1",
-    };
-  },
-};
+export default {};
 </script>
 
 <style>
@@ -64,6 +45,27 @@ body {
   line-height: 24px;
   color: #333;
   background: #fff;
+  position: relative;
+}
+body::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 420px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  background: url(./assets/images/colorfull-bg.svg) no-repeat 50%;
+  transform: translateX(-50%);
+  /* z-index: 1; */
+  opacity: 0.7;
+}
+@media screen and (max-width: 768px) {
+  body::before {
+    left: 60%;
+    background: url(./assets/images/colorfull-bg.svg) no-repeat 60%;
+    transform: translateX(-60%);
+  }
 }
 a,
 a:hover,
@@ -74,6 +76,9 @@ a:focus {
 .el-button,
 .el-step__icon-inner {
   font-family: "IRANSansX" !important;
+}
+.el-menu {
+  background-color: transparent !important;
 }
 
 @media screen and (min-width: 768px) {
@@ -101,6 +106,9 @@ a:focus {
 }
 .d-flex {
   display: flex;
+}
+.m-0{
+  margin: 0 !important;
 }
 .pb-1rem {
   padding-bottom: 1rem;
