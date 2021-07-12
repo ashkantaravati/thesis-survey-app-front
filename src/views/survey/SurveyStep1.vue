@@ -4,7 +4,8 @@
     <div class="block mb-halfrem">
       <p>نام</p>
       <el-select
-        v-model="activeParticipant.id"
+        v-model="activeParticipant"
+        value-key="id"
         filterable
         placeholder="نام خود را از لیست انتخاب کنید"
       >
@@ -12,7 +13,7 @@
           v-for="member in teamMembers"
           :key="member.id"
           :label="member.name"
-          :value="member.id"
+          :value="member"
         >
         </el-option>
       </el-select>
@@ -66,9 +67,8 @@ export default defineComponent({
       get() {
         return this.$store.state.activeParticipant;
       },
-      set(participantId) {
-        console.log(participantId);
-        this.$store.commit("setActiveParticipant", participantId);
+      set(participant) {
+        this.$store.commit("setActiveParticipant", participant);
       },
     },
   },
