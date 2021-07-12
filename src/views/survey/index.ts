@@ -4,6 +4,7 @@ import SurveyStep2 from "./SurveyStep2.vue";
 import SurveyStep3 from "./SurveyStep3.vue";
 import SurveyStep4 from "./SurveyStep4.vue";
 import SurveyStep5 from "./SurveyStep5.vue";
+import SurveyReview from "./SurveyReview.vue";
 import SurveySuccess from "./SurveySuccess.vue";
 
 export {
@@ -13,5 +14,6 @@ export {
   SurveyStep3,
   SurveyStep4,
   SurveyStep5,
+  SurveyReview,
   SurveySuccess,
 };

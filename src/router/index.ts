@@ -3,6 +3,7 @@ import Home from "@/views/Home.vue";
 import { RegistrationLayout, SurveyLayout } from "@/layouts";
 import {
   SurveyIntro,
+  SurveyReview,
   SurveyStep1,
   SurveyStep2,
   SurveyStep3,
@@ -83,6 +84,11 @@ const routes = [
         path: "5",
         name: "survey-step-5",
         component: SurveyStep5,
+      },
+      {
+        path: "6",
+        name: "survey-review",
+        component: SurveyReview,
       },
       {
         path: "success",

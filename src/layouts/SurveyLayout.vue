@@ -118,6 +118,11 @@ export default defineComponent({
           title: "رفتار صدای تیم",
           routeName: "survey-step-5",
         },
+        {
+          index: 5,
+          title: "بازبینی",
+          routeName: "survey-review",
+        },
       ],
     };
   },
