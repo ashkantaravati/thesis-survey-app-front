@@ -120,7 +120,7 @@ const state: State = {
     name: "",
     organizationName: "",
   },
-  activeParticipant: { id: "", name: "" },
+  activeParticipant: new TeamMember(),
 };
 
 export { state, State };
