@@ -7,7 +7,9 @@
   </p>
   <template v-for="team in teams" :key="team.index">
     <el-alert type="info" :closable="false">
-      <a :href="team.link"> {{ team.link }}</a>
+      <router-link :to="{ name: 'survey-intro', params: { teamId: team.id } }">
+        {{ team.link }}</router-link
+      >
       <el-button
         v-clipboard="team.link"
         icon="el-icon-document-copy"
@@ -35,5 +37,4 @@ export default defineComponent({
 });
 </script>
 
-<style>
-</style>
+<style></style>
