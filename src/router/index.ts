@@ -1,5 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
+import NotFound from "@/views/NotFound.vue";
 import { RegistrationLayout, SurveyLayout } from "@/layouts";
 import {
   SurveyIntro,
@@ -99,6 +100,7 @@ const routes = [
       },
     ],
   },
+  { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ];
 
 const router = createRouter({
