@@ -10,7 +10,7 @@ function getTeamInfo(teamId: string) {
 }
 
 function submitOrganizationInfo(payload: OrganizationRegistrationDto) {
-  return http.post<OrganizationRegistrationDto>("/organizations", payload);
+  return http.post<OrganizationRegistrationDto>("/organizations/", payload);
 }
 
 function submitParticipantResponse(
