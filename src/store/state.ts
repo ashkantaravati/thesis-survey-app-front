@@ -13,6 +13,7 @@ import {
 } from "@/models";
 import {
   LikertResponse,
+  LikertScaleQuestion,
   MinMaxQuestion,
   MinMaxResponse,
 } from "@/models/common";
@@ -39,31 +40,11 @@ const state: State = {
     voiceSurveys: [],
     overconfidenceSurvey: new OverconfidenceSurvey(),
     teamCoordinationSurvey: {
-      q1: {
-        index: 1,
-        text: TEAM_COORDINATION_QUESTIONS.Q1,
-        response: new LikertResponse(),
-      },
-      q2: {
-        index: 1,
-        text: TEAM_COORDINATION_QUESTIONS.Q2,
-        response: new LikertResponse(),
-      },
-      q3: {
-        index: 1,
-        text: TEAM_COORDINATION_QUESTIONS.Q3,
-        response: new LikertResponse(),
-      },
-      q4: {
-        index: 1,
-        text: TEAM_COORDINATION_QUESTIONS.Q4,
-        response: new LikertResponse(),
-      },
-      q5: {
-        index: 1,
-        text: TEAM_COORDINATION_QUESTIONS.Q5,
-        response: new LikertResponse(),
-      },
+      q1: new LikertScaleQuestion(1, TEAM_COORDINATION_QUESTIONS.Q1),
+      q2: new LikertScaleQuestion(2, TEAM_COORDINATION_QUESTIONS.Q2),
+      q3: new LikertScaleQuestion(3, TEAM_COORDINATION_QUESTIONS.Q3),
+      q4: new LikertScaleQuestion(4, TEAM_COORDINATION_QUESTIONS.Q4),
+      q5: new LikertScaleQuestion(5, TEAM_COORDINATION_QUESTIONS.Q5),
     },
     teamEffectiveness: {},
   },
