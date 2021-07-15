@@ -10,7 +10,11 @@ import {
   TeamWithOrganizationInfo,
   ThesisSurvey,
 } from "@/models";
-import { LikertResponse, MinMaxResponse } from "@/models/common";
+import {
+  LikertResponse,
+  MinMaxQuestion,
+  MinMaxResponse,
+} from "@/models/common";
 
 type State = {
   registrationInfo: OrganizationInfo;
@@ -33,56 +37,16 @@ const state: State = {
     generalSurvey: { age: 25, sex: "female", teamHistory: 1, tenure: 1 },
     voiceSurveys: [],
     overconfidenceSurvey: {
-      q01: {
-        index: 1,
-        text: OVERCONFIDENCE_QUESTIONS.Q01,
-        response: new MinMaxResponse(),
-      },
-      q02: {
-        index: 2,
-        text: OVERCONFIDENCE_QUESTIONS.Q02,
-        response: new MinMaxResponse(),
-      },
-      q03: {
-        index: 3,
-        text: OVERCONFIDENCE_QUESTIONS.Q03,
-        response: new MinMaxResponse(),
-      },
-      q04: {
-        index: 4,
-        text: OVERCONFIDENCE_QUESTIONS.Q04,
-        response: new MinMaxResponse(),
-      },
-      q05: {
-        index: 5,
-        text: OVERCONFIDENCE_QUESTIONS.Q05,
-        response: new MinMaxResponse(),
-      },
-      q06: {
-        index: 6,
-        text: OVERCONFIDENCE_QUESTIONS.Q06,
-        response: new MinMaxResponse(),
-      },
-      q07: {
-        index: 7,
-        text: OVERCONFIDENCE_QUESTIONS.Q07,
-        response: new MinMaxResponse(),
-      },
-      q08: {
-        index: 8,
-        text: OVERCONFIDENCE_QUESTIONS.Q08,
-        response: new MinMaxResponse(),
-      },
-      q09: {
-        index: 9,
-        text: OVERCONFIDENCE_QUESTIONS.Q09,
-        response: new MinMaxResponse(),
-      },
-      q10: {
-        index: 10,
-        text: OVERCONFIDENCE_QUESTIONS.Q10,
-        response: new MinMaxResponse(),
-      },
+      q01: new MinMaxQuestion(1, OVERCONFIDENCE_QUESTIONS.Q01),
+      q02: new MinMaxQuestion(2, OVERCONFIDENCE_QUESTIONS.Q02),
+      q03: new MinMaxQuestion(3, OVERCONFIDENCE_QUESTIONS.Q03),
+      q04: new MinMaxQuestion(4, OVERCONFIDENCE_QUESTIONS.Q04),
+      q05: new MinMaxQuestion(5, OVERCONFIDENCE_QUESTIONS.Q05),
+      q06: new MinMaxQuestion(6, OVERCONFIDENCE_QUESTIONS.Q06),
+      q07: new MinMaxQuestion(7, OVERCONFIDENCE_QUESTIONS.Q07),
+      q08: new MinMaxQuestion(8, OVERCONFIDENCE_QUESTIONS.Q08),
+      q09: new MinMaxQuestion(9, OVERCONFIDENCE_QUESTIONS.Q09),
+      q10: new MinMaxQuestion(10, OVERCONFIDENCE_QUESTIONS.Q10),
     },
     teamCoordinationSurvey: {
       q1: {
