@@ -1,9 +1,3 @@
-import { TeamInfoDto } from "@/api/contracts";
-import { OrganizationSchema } from "@/api/contracts/schema";
-import {
-  OVERCONFIDENCE_QUESTIONS,
-  TEAM_COORDINATION_QUESTIONS,
-} from "@/constants";
 import {
   OrganizationInfo,
   OverconfidenceSurvey,
@@ -12,12 +6,6 @@ import {
   TeamWithOrganizationInfo,
   ThesisSurvey,
 } from "@/models";
-import {
-  LikertResponse,
-  LikertScaleQuestion,
-  MinMaxQuestion,
-  MinMaxResponse,
-} from "@/models/common";
 
 type State = {
   registrationInfo: OrganizationInfo;
