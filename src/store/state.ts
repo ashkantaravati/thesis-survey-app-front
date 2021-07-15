@@ -6,6 +6,7 @@ import {
 } from "@/constants";
 import {
   OrganizationInfo,
+  OverconfidenceSurvey,
   TeamMember,
   TeamWithOrganizationInfo,
   ThesisSurvey,
@@ -36,18 +37,7 @@ const state: State = {
   survey: {
     generalSurvey: { age: 25, sex: "female", teamHistory: 1, tenure: 1 },
     voiceSurveys: [],
-    overconfidenceSurvey: {
-      q01: new MinMaxQuestion(1, OVERCONFIDENCE_QUESTIONS.Q01),
-      q02: new MinMaxQuestion(2, OVERCONFIDENCE_QUESTIONS.Q02),
-      q03: new MinMaxQuestion(3, OVERCONFIDENCE_QUESTIONS.Q03),
-      q04: new MinMaxQuestion(4, OVERCONFIDENCE_QUESTIONS.Q04),
-      q05: new MinMaxQuestion(5, OVERCONFIDENCE_QUESTIONS.Q05),
-      q06: new MinMaxQuestion(6, OVERCONFIDENCE_QUESTIONS.Q06),
-      q07: new MinMaxQuestion(7, OVERCONFIDENCE_QUESTIONS.Q07),
-      q08: new MinMaxQuestion(8, OVERCONFIDENCE_QUESTIONS.Q08),
-      q09: new MinMaxQuestion(9, OVERCONFIDENCE_QUESTIONS.Q09),
-      q10: new MinMaxQuestion(10, OVERCONFIDENCE_QUESTIONS.Q10),
-    },
+    overconfidenceSurvey: new OverconfidenceSurvey(),
     teamCoordinationSurvey: {
       q1: {
         index: 1,
