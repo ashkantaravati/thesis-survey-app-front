@@ -1,4 +1,7 @@
 <template>
+<div class="home-img">
+  <img src="../assets/images/Designteam-amico.svg" alt="">
+</div>
   <p class="long-text">
     سلام از این که در این پژوهش بنده را یاری م کنید بسیار سپاسگزارم. شرکت
     کنندگان این پژوهش اعضای تیم های تسعه ی نرم افزار هستند. اگر در سازمان خد بیش
@@ -32,5 +35,12 @@ export default defineComponent({
   .long-text {
     line-height: 30px;
   }
+}
+.home-img{
+  text-align: center;
+
+}
+.home-img img{
+  height: 23rem;
 }
 </style>
