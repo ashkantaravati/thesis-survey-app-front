@@ -12,7 +12,7 @@
     مربوط به سازمان ها فاش نخاهد شد و گزارش های حاصل از این پژوهش از افراد و
     سازمان ها به صورت ناشناس یاد خواهند کرد.
   </p>
-  <div class="jc-center d-flex">
+  <div class="jc-center d-flex fix">
     <router-link :to="{ name: 'register-landing' }">
       <el-button round type="primary"> شروع و ثبت اطلاعات سازمان</el-button>
     </router-link>

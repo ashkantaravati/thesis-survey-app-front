@@ -124,4 +124,24 @@ a:focus {
   margin-right: 0.5rem !important;
 }
 /*  */
+
+
+.fix{
+  position: fixed;
+    bottom: 0;
+    z-index: 9999999;
+    background: #fff;
+    flex-shrink: 1;
+    flex-grow: 1;
+    width: 100%;
+    right: 0;
+    align-items: center;
+    left: 0;
+    box-shadow: 0 -7px 8px #1010102e;
+    padding: 1.5rem 0px;
+}
+.el-button.is-round {
+    border-radius: 46px;
+    padding: 19px 40px;
+}
 </style>
