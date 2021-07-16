@@ -5,7 +5,7 @@
       <el-header class="header">
         <el-menu class="el-menu-demo" id="nav" mode="horizontal">
           <el-menu-item index="1">
-            <span>پرسشنامه‌ی پایان‌نامه :)</span>
+          <span>پرسشنامه‌‌ی فلان | سید اشکان طراوتی</span>
           </el-menu-item>
         </el-menu>
       </el-header>
@@ -16,12 +16,12 @@
           </el-col>
         </el-row>
       </el-main>
-      <el-divider></el-divider>
+      <!-- <el-divider></el-divider>
       <el-footer class="footer">
         <router-link to="#">درباره‌ی پژوهش</router-link>
         <router-link to="#">درباره‌ی پژوهشگر</router-link>
         <router-link to="#">ارسال بازخورد</router-link></el-footer
-      >
+      > -->
     </el-container>
   </div>
 </template>
