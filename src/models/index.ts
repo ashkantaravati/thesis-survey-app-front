@@ -1,6 +1,7 @@
 import GeneralSurvey from "./GeneralSurvey";
 import OrganizationInfo from "./OrganizationInfo";
 import OverconfidenceSurvey from "./OverconfidenceSurvey";
+import SurveySummary from "./SurveySummary";
 import Team from "./Team";
 type VoiceSurveyCollection = Array<VoiceSurvey>;
 import TeamCoordinationSurvey from "./TeamCoordinationSurvey";
@@ -22,4 +23,5 @@ export {
   TeamMember,
   OrganizationInfo,
   TeamWithOrganizationInfo,
+  SurveySummary,
 };

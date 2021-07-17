@@ -1,4 +1,3 @@
-import { TeamInfoDto } from "@/api/contracts";
 import {
   getTeamInfo,
   submitOrganizationInfo,
@@ -13,7 +12,7 @@ import {
 import {
   GeneralSurvey,
   OrganizationInfo,
-  OverconfidenceSurvey,
+  SurveySummary,
   Team,
   TeamMember,
   TeamWithOrganizationInfo,
@@ -28,47 +27,12 @@ const store = createStore({
   state: state,
   getters: {
     surveySummary: (state) => {
-      return {
-        name: state.activeParticipant.name,
-        teamName: state.teamInfo.name,
-        organizationName: state.teamInfo.organizationName,
-        age: state.survey.generalSurvey.age,
-        sex: state.survey.generalSurvey.sex,
-        tenure: state.survey.generalSurvey.tenure,
-        teamHistory: state.survey.generalSurvey.teamHistory,
-        voice: state.survey.voiceSurveys.map((survey) => {
-          return {
-            subject: survey.evaluatedParticipant.name,
-            questions: [
-              survey.q1,
-              survey.q2,
-              survey.q3,
-              survey.q4,
-              survey.q5,
-              survey.q6,
-            ],
-          };
-        }),
-        teamCoordination: [
-          state.survey.teamCoordinationSurvey.q1,
-          state.survey.teamCoordinationSurvey.q2,
-          state.survey.teamCoordinationSurvey.q3,
-          state.survey.teamCoordinationSurvey.q4,
-          state.survey.teamCoordinationSurvey.q5,
-        ],
-        overconfidence: [
-          state.survey.overconfidenceSurvey.q01,
-          state.survey.overconfidenceSurvey.q02,
-          state.survey.overconfidenceSurvey.q03,
-          state.survey.overconfidenceSurvey.q04,
-          state.survey.overconfidenceSurvey.q05,
-          state.survey.overconfidenceSurvey.q06,
-          state.survey.overconfidenceSurvey.q07,
-          state.survey.overconfidenceSurvey.q08,
-          state.survey.overconfidenceSurvey.q09,
-          state.survey.overconfidenceSurvey.q10,
-        ],
-      };
+      return new SurveySummary(
+        state.activeParticipant,
+        state.teamInfo,
+        state.survey
+      );
+      // TODO: depend only on Survey
     },
   },
   actions: {

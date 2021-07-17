@@ -10,11 +10,11 @@
       </div>
       <div dir="ltr">
         <el-radio-group v-model="question.response.value" size="small">
-          <el-radio-button label="1">شدیدا مخالفم</el-radio-button>
-          <el-radio-button label="2">مخالفم</el-radio-button>
-          <el-radio-button label="3">نه مخالف و نه موافقم</el-radio-button>
-          <el-radio-button label="4">موافقم</el-radio-button>
-          <el-radio-button label="5">شدیدا موافقم</el-radio-button>
+          <el-radio-button :label="1">شدیدا مخالفم</el-radio-button>
+          <el-radio-button :label="2">مخالفم</el-radio-button>
+          <el-radio-button :label="3">نه مخالف و نه موافقم</el-radio-button>
+          <el-radio-button :label="4">موافقم</el-radio-button>
+          <el-radio-button :label="5">شدیدا موافقم</el-radio-button>
         </el-radio-group>
       </div>
       <el-divider></el-divider>
