@@ -12,13 +12,14 @@
     <template #header>
       <div class="card-header">
         <span
-          >اطلاعات تیم {{ team.index }} (شامل
+          >اعضای تیم {{ team.index }} (شامل
           {{ team.members.length }} نفر)</span
         >
       </div>
     </template>
     <div v-for="member in team.members" :key="member.index" class="text item">
-      {{ member.name }} <br />
+      <p>  {{ member.name }}</p>
+    
     </div>
   </el-card>
   <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->

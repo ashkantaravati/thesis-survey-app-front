@@ -193,7 +193,11 @@ export default defineComponent({
 .el-step__title {
   line-height: 18px;
 }
-
+@media screen and(max-width: 520px) {
+  .el-step__title {
+    font-size: 13px;
+  }
+}
 .el-step.is-horizontal .el-step__line {
   display: none;
 }
@@ -219,5 +223,10 @@ export default defineComponent({
 .step-container h3 {
   color: #3a8ee6;
   text-align: center;
+}
+@media screen and (max-width: 360px) {
+  .fix-btns-container button {
+    font-size: 10px !important;
+  }
 }
 </style>

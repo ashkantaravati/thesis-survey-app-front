@@ -46,7 +46,7 @@
     >
     <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
       <div class="home-img">
-        <img src="../assets/images/Designteam-amico.svg" alt="" /></div
+        <img style="width:100%" src="../assets/images/Designteam-amico.svg" alt="" /></div
     ></el-col>
   </el-row>
   <el-divider></el-divider>
