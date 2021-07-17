@@ -1,6 +1,6 @@
 <template>
   <div class="text-center">
-    <h2>پرسشنامه‌‌ی فلان</h2>
+    <h2>پرسشنامه‌‌ی {{ surveyTitle }}</h2>
     <h3>
       خاطر جمع باشید که هویت مشارکت‌کنندگان و داده‌های مربوط به سازمان‌ها فاش
       نخواهد شد و گزارش‌های حاصل از این پژوهش از افراد و سازمان‌ها به صورت
@@ -46,12 +46,18 @@
     >
     <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
       <div class="home-img">
-        <img style="width:100%" src="../assets/images/Designteam-amico.svg" alt="" /></div
+        <img
+          style="width:100%"
+          src="../assets/images/Designteam-amico.svg"
+          alt=""
+        /></div
     ></el-col>
   </el-row>
-  <el-divider></el-divider>
+  <!-- <el-divider></el-divider>
   <p>برخی از شرکت‌هایی که برای این پرسشنامه همکاری کردند</p>
-  <p style="color:#b3b3b3">بدیهیست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است</p>
+  <p style="color:#b3b3b3">
+    بدیهیست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است
+  </p>
   <el-row style="margin-bottom: 6rem" :gutter="20">
     <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4">
       <el-card :body-style="{ padding: '0px' }">
@@ -83,7 +89,7 @@
         </div>
       </el-card>
     </el-col>
-  </el-row>
+  </el-row> -->
   <div class="jc-center d-flex fix">
     <router-link :to="{ name: 'register-landing' }">
       <el-button round type="success" class="winking-btn">
@@ -95,9 +101,13 @@
 
 <script>
 import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "Home",
+  computed: {
+    ...mapGetters(["surveyTitle"]),
+  },
 });
 </script>
 

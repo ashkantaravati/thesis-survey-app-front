@@ -1,13 +1,8 @@
-
 <template>
   <div class="common-layout add-bg">
     <el-container class="body-container">
       <el-header class="header">
-        <el-menu class="el-menu-demo" id="nav" mode="horizontal">
-          <el-menu-item index="1">
-          <span>پرسشنامه‌‌ی فلان | سید اشکان طراوتی</span>
-          </el-menu-item>
-        </el-menu>
+        <span>پرسشنامه‌‌ی پایان‌نامه | اشکان طراوتی</span>
       </el-header>
       <el-main>
         <el-row class="jc-center">
@@ -16,18 +11,25 @@
           </el-col>
         </el-row>
       </el-main>
-      <!-- <el-divider></el-divider>
+      <el-divider></el-divider>
       <el-footer class="footer">
         <router-link to="#">درباره‌ی پژوهش</router-link>
         <router-link to="#">درباره‌ی پژوهشگر</router-link>
         <router-link to="#">ارسال بازخورد</router-link></el-footer
-      > -->
+      >
     </el-container>
   </div>
 </template>
 
 <script>
-export default {};
+import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
+export default defineComponent({
+  name: "App",
+  computed: {
+    ...mapGetters(["surveyTitle"]),
+  },
+});
 </script>
 
 <style>
@@ -107,7 +109,7 @@ a:focus {
 .d-flex {
   display: flex;
 }
-.m-0{
+.m-0 {
   margin: 0 !important;
 }
 .pb-1rem {
@@ -125,23 +127,22 @@ a:focus {
 }
 /*  */
 
-
-.fix{
+.fix {
   position: fixed;
-    bottom: 0;
-    z-index: 9999999;
-    background: #fff;
-    flex-shrink: 1;
-    flex-grow: 1;
-    width: 100%;
-    right: 0;
-    align-items: center;
-    left: 0;
-    box-shadow: 0 -7px 8px #1010102e;
-    padding: 1.5rem 0px;
+  bottom: 0;
+  z-index: 9999999;
+  background: #fff;
+  flex-shrink: 1;
+  flex-grow: 1;
+  width: 100%;
+  right: 0;
+  align-items: center;
+  left: 0;
+  box-shadow: 0 -7px 8px #1010102e;
+  padding: 1.5rem 0px;
 }
 .el-button.is-round {
-    border-radius: 46px;
-    padding: 19px 40px;
+  border-radius: 46px;
+  padding: 19px 40px;
 }
 </style>
