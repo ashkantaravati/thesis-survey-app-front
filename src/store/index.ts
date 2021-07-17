@@ -34,6 +34,9 @@ const store = createStore({
       );
       // TODO: depend only on Survey
     },
+    surveyTitle: (state) => {
+      return "بررسی نقش تعدیل‌کننده‌ی رفتار صدای تیم در رابطه‌ی میان بیش‌اطمینمانی و اثربخشی تیم‌های نرم‌افزار";
+    },
   },
   actions: {
     fetchTeamInfo({ commit }, teamId: string) {
