@@ -17,7 +17,7 @@ function submitParticipantResponse(
   participantId: string,
   payload: SurveyResponseDto
 ) {
-  return http.put<SurveyResponseDto>(`/responses/${participantId}`, payload);
+  return http.patch<SurveyResponseDto>(`/responses/${participantId}`, payload);
 }
 
 export { getTeamInfo, submitOrganizationInfo, submitParticipantResponse };
