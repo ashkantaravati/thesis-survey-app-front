@@ -27,17 +27,20 @@
     <el-button @click="goPrev" :disabled="currentStep === 0">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
-    <el-button @click="goNext" :disabled="currentStep === 4">
+    <el-button @click="goNext" v-if="!isLastStep">
       گام بعد <i class="el-icon-arrow-left"></i
+    ></el-button>
+    <el-button @click="submit" v-else>
+      تایید و ثبت پاسخ<i class="el-icon-arrow-left"></i
     ></el-button>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, computed } from "vue";
 import { mapActions, useStore } from "vuex";
 // import { getTeamInfo } from "../api/survey.service";
-
+type Step = { index: number; title: string; routeName: string };
 export default defineComponent({
   name: "SurveyLayout",
   props: {
@@ -51,7 +54,7 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapActions(["fetchTeamInfo"]),
+    ...mapActions(["fetchTeamInfo", "submitResponse"]),
     goNext() {
       const nextIndex = this.currentStepIndex + 1;
       const nextStep = this.getStep(nextIndex);
@@ -65,23 +68,32 @@ export default defineComponent({
       if (prevStep == undefined) return;
       this.$router.push({ name: prevStep.routeName });
     },
-    getStep(index) {
+    getStep(index: number) {
       return this.steps.find((step) => step.index === index);
+    },
+    submit() {
+      this.submitResponse()
+        .then(() => {
+          this.$router.push({ name: "survey-success" });
+        })
+        .catch(() => {
+          this.$router.push({ name: "error" });
+        });
     },
   },
   computed: {
-    currentStep() {
+    currentStep(): Step | undefined {
       const currentRouteName = this.$router.currentRoute.value.name;
       return this.steps.find((step) => step.routeName === currentRouteName);
     },
 
-    currentStepIndex() {
+    currentStepIndex(): number {
       return this.currentStep != undefined ? this.currentStep.index : 0;
     },
-    isFirstStep() {
+    isFirstStep(): boolean {
       return this.currentStepIndex === 0;
     },
-    isLastStep() {
+    isLastStep(): boolean {
       return this.currentStepIndex === this.steps.length - 1;
     },
   },
