@@ -22,6 +22,7 @@ import {
 import { state, State } from "./state";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
 import { LikertResponse, MinMaxResponse } from "@/models/common";
+import { AxiosResponse } from "axios";
 
 const store = createStore({
   state: state,
@@ -72,13 +73,14 @@ const store = createStore({
           // onError();
         });
     },
-    submitResponse({ commit, state }, participantId) {
+    submitResponse({ commit, state }): Promise<AxiosResponse> {
+      const participantId = (state.activeParticipant.id as string) || undefined;
+      if (!participantId) {
+        return Promise.reject("No active participant is set!");
+      }
       const mapper = new SurveyResponseMapper();
       const dto = mapper.createDtoFromModel(state.survey);
-      submitParticipantResponse(participantId, dto)
-        .then()
-        .catch((err) => console.log(err));
-      // TODO map response back to model
+      return submitParticipantResponse(participantId, dto);
     },
   },
   mutations: {
@@ -188,13 +190,15 @@ const store = createStore({
       state.registrationInfo.generalInfo = updatedGeneralInfo;
     },
     addTeam(state: State) {
+      const teamCount = state.registrationInfo.teams.length;
       state.registrationInfo.teams.push({
-        name: "team", //TODO set a dynamic name for each team we create
+        name: `تیم ${teamCount + 1}`, //TODO set a dynamic name for each team we create
         members: [{ name: "" }, { name: "" }],
         link: "",
       });
     },
     removeTeam(state: State, team: Team) {
+      // TODO: adjust team names to be unique and in accordance with the team index
       if (state.registrationInfo.teams.length === 1) {
         // TODO alert user that they can't just remove the last team
         return;
