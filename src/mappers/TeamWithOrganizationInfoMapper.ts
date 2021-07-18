@@ -11,7 +11,11 @@ export default class TeamWithOrganizationInfoMapper
   }
 
   createModelFromDto(_dto: TeamInfoDto): TeamWithOrganizationInfo {
-    const regularTeamSchema = { id: _dto.id, members: _dto.members };
+    const regularTeamSchema = {
+      id: _dto.id,
+      name: _dto.name,
+      members: _dto.members,
+    };
     const regularTeamModel = this._mapper.createModelFromDto(regularTeamSchema);
     return {
       ...regularTeamModel,
