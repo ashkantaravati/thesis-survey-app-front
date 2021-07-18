@@ -1,5 +1,5 @@
 <template>
-  <div>با تشکر</div>
+  <div>با موفقیت ثبت شد. با تشکر</div>
 </template>
 
 <script>
@@ -10,5 +10,4 @@ export default defineComponent({
 });
 </script>
 
-<style>
-</style>
+<style></style>
