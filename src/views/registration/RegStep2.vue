@@ -1,8 +1,10 @@
 <template>
   <h3>اطلاعات تیم‌ها و اعضای تیم‌ها</h3>
-  <p>چنانچه تمایل به مخفی
-    ماندن نام افراد دارید می‌توانید از نام های مستعار اما یکتا استفاده کنید</p>
-  <p>  توجه کنید این نام‌ها در پرسشنامه برای افراد قابل رویت خواهند بود</p>
+  <p>
+    چنانچه تمایل به مخفی ماندن نام افراد دارید می‌توانید از نام های مستعار اما
+    یکتا استفاده کنید
+  </p>
+  <p>توجه کنید این نام‌ها در پرسشنامه برای افراد قابل رویت خواهند بود</p>
 
   <el-card
     class="box-card mb-halfrem"
@@ -11,22 +13,33 @@
   >
     <template #header>
       <div class="card-header">
-        <span>اعضای تیم {{ index + 1 }}</span>
-        <el-tooltip
-          class="item"
-          effect="dark"
-          content="حذف تیم"
-          placement="top-start"
-        >
-          <el-button
-            @click="removeTeam(team)"
-            type="danger"
-            icon="el-icon-delete"
-            circle
-            plain
-            class="mr-halfrem"
-          ></el-button>
-        </el-tooltip>
+        <h4>تیم {{ index + 1 }}</h4>
+        <el-row :gutter="12">
+          <el-col :xs="4" :lg="2"><span>عنوان تیم</span></el-col>
+          <el-col :xs="18" :lg="21">
+            <el-input
+              class="pb-1rem"
+              v-model="team.name"
+              :placeholder="`تیم شماره ${index + 1}`"
+          /></el-col>
+          <el-col :xs="2" :lg="1">
+            <el-tooltip
+              class="item"
+              effect="dark"
+              content="حذف تیم"
+              placement="top-start"
+            >
+              <el-button
+                @click="removeTeam(team)"
+                type="danger"
+                icon="el-icon-delete"
+                circle
+                plain
+                class="mr-halfrem"
+              ></el-button>
+            </el-tooltip>
+          </el-col>
+        </el-row>
       </div>
     </template>
     <el-row
@@ -84,6 +97,7 @@ export default defineComponent({
     ]),
   },
   computed: {
+    // TODO: prevent user from adding members with the same name as other members to a team
     teams: {
       get() {
         return this.$store.state.registrationInfo.teams;
