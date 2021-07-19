@@ -14,8 +14,8 @@ axios.interceptors.response.use(
 );
 
 export default axios.create({
-  baseURL: "http://localhost:8000",
-  // baseURL: "https://thesis.ashkantaravati.ir",
+  // baseURL: "http://localhost:8000",
+  baseURL: "https://thesis.ashkantaravati.ir/api/",
   headers: {
     "Content-type": "application/json",
   },
