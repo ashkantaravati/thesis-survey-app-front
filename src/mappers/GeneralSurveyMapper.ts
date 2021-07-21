@@ -7,6 +7,8 @@ export default class GeneralSurveyMapper implements ITwoWayMapper {
     return {
       age: model.age,
       sex: model.sex,
+      team_history: model.teamHistory,
+      tenure: model.tenure,
     };
   }
   createModelFromDto(_dto: IDto): Model {
