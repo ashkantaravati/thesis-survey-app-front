@@ -48,13 +48,15 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "SurveyStep1",
   computed: {
-    teamMembers() {
-      return this.$store.state.teamInfo.members;
-    },
+    ...mapGetters({ teamMembers: "NotYetRespondedTeamMembers" }),
+    // teamMembers() {
+    //   return this.$store.state.teamInfo.members;
+    // },
     generalSurvey: {
       get() {
         return this.$store.state.survey.generalSurvey;

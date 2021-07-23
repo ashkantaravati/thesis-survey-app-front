@@ -35,6 +35,11 @@ const store = createStore({
       );
       // TODO: depend only on Survey
     },
+    NotYetRespondedTeamMembers: (state) => {
+      return state.teamInfo.members.filter(
+        (member) => member.hasParticipated === false
+      );
+    },
     surveyTitle: (state) => {
       return "بررسی نقش تعدیل‌کننده‌ی رفتار صدای تیم در رابطه‌ی میان بیش‌اطمینمانی و اثربخشی تیم‌های نرم‌افزار";
     },
@@ -193,7 +198,7 @@ const store = createStore({
       const teamCount = state.registrationInfo.teams.length;
       state.registrationInfo.teams.push({
         name: `تیم ${teamCount + 1}`, //TODO set a dynamic name for each team we create
-        members: [{ name: "" }, { name: "" }],
+        members: [new TeamMember(), new TeamMember()],
         link: "",
       });
     },
@@ -216,7 +221,7 @@ const store = createStore({
         console.error("target team does not exist in state");
         return;
       }
-      team.members.push({ name: "" });
+      team.members.push(new TeamMember());
     },
     removeMemberFromTeam(state: State, { team, member }) {
       if (team.members.length === 2) return; // at least 2 members required
