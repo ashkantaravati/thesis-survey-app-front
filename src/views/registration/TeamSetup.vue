@@ -97,7 +97,7 @@ import { defineComponent } from "vue";
 import { mapMutations } from "vuex";
 import ProceedButton from "@/components/common/ProceedButton.vue";
 export default defineComponent({
-  name: "RegStep2",
+  name: "TeamSetup",
   props: {},
   components: { ProceedButton },
   methods: {

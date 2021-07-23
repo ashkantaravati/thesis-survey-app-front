@@ -15,7 +15,7 @@ import {
 } from "@/views/survey";
 import {
   GeneralInfo,
-  RegStep2,
+  TeamSetup,
   RegStep3,
   RegStep4,
 } from "@/views/registration";
@@ -44,7 +44,7 @@ const routes = [
       {
         path: "2",
         name: "register-step-2",
-        component: RegStep2,
+        component: TeamSetup,
       },
       {
         path: "3",
