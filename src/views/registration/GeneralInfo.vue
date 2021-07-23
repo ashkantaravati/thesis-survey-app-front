@@ -45,7 +45,7 @@ import { defineComponent } from "vue";
 import ProceedButton from "@/components/common/ProceedButton.vue";
 
 export default defineComponent({
-  name: "RegStep1",
+  name: "GeneralInfo",
   components: { ProceedButton },
   computed: {
     generalInfo: {

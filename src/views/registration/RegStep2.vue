@@ -5,12 +5,7 @@
     یکتا استفاده کنید
   </p>
   <p>توجه کنید این نام‌ها در پرسشنامه برای افراد قابل رویت خواهند بود</p>
-  <el-form
-    :model="generalInfo"
-    :rules="rules"
-    ref="teamInfoForm"
-    class="teamInfoForm"
-  >
+  <el-form :model="generalInfo" :rules="rules" ref="teamInfoForm">
     <el-card
       class="box-card mb-halfrem"
       v-for="(team, index) in teams"
