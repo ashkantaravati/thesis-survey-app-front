@@ -25,7 +25,7 @@ import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
-  name: "RegStep4",
+  name: "RegistrationSuccess",
   props: {},
   setup() {
     const store = useStore();
