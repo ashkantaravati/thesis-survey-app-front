@@ -16,7 +16,7 @@ import {
 import {
   GeneralInfo,
   TeamSetup,
-  RegStep3,
+  RegistrationReview,
   RegStep4,
 } from "@/views/registration";
 
@@ -49,7 +49,7 @@ const routes = [
       {
         path: "3",
         name: "register-step-3",
-        component: RegStep3,
+        component: RegistrationReview,
       },
       {
         path: "success",

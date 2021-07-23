@@ -30,7 +30,7 @@ import { useStore } from "vuex";
 
 export default defineComponent({
   components: { ProceedButton },
-  name: "RegStep3",
+  name: "RegistrationReview",
   setup() {
     const store = useStore();
 
