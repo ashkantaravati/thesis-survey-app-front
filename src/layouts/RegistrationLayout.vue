@@ -6,22 +6,13 @@
       :title="step.title"
     ></el-step>
   </el-steps>
-
-  <router-view></router-view>
-  <div v-if="currentStep" class="fix-btns-container">
-    <el-button @click="goPrev" :disabled="isFirstStep">
-      <i class="el-icon-arrow-right"></i>گام قبل
-    </el-button>
-    <el-button @click="goNext" v-show="!isLastStep">
-      گام بعد <i class="el-icon-arrow-left"></i
-    ></el-button>
-    <el-button
-      @click="registerOrganization(goToSuccessPage)"
-      v-show="isLastStep"
-    >
-      ثبت و دریافت لینک اشتراک‌گذاری <i class="el-icon-arrow-left"></i
-    ></el-button>
-  </div>
+  <el-link v-if="!isFirstStep" @click.prevent="goPrev" type="info"
+    >بازگشت به گام قبل</el-link
+  >
+  <router-view
+    @proceed="goNext"
+    @submit="registerOrganization(goToSuccessPage)"
+  ></router-view>
 </template>
 
 <script>

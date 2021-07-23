@@ -12,24 +12,24 @@
     <template #header>
       <div class="card-header">
         <span
-          >اعضای تیم {{ team.index }} (شامل
-          {{ team.members.length }} نفر)</span
+          >اعضای تیم {{ team.index }} (شامل {{ team.members.length }} نفر)</span
         >
       </div>
     </template>
     <div v-for="member in team.members" :key="member.index" class="text item">
-      <p>  {{ member.name }}</p>
-    
+      <p>{{ member.name }}</p>
     </div>
   </el-card>
-  <!-- <el-button @click="goNext"> بازبینی و ثبت نهایی </el-button> -->
+  <proceed-button type="finalize" text="ثبت و دریافت لینک" @click="submit" />
 </template>
 
 <script>
+import ProceedButton from "@/components/common/ProceedButton.vue";
 import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 
 export default defineComponent({
+  components: { ProceedButton },
   name: "RegStep3",
   setup() {
     const store = useStore();
@@ -39,9 +39,13 @@ export default defineComponent({
       generalInfo: computed(() => store.state.registrationInfo.generalInfo),
     };
   },
+  methods: {
+    submit() {
+      this.$emit("submit");
+    },
+  },
   props: {},
 });
 </script>
 
-<style>
-</style>
+<style></style>

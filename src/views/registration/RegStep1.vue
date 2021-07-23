@@ -28,7 +28,7 @@
         autocomplete="organization-title"
       ></el-input>
     </el-form-item>
-    <el-form-item prop="email">
+    <el-form-item prop="repEmail">
       <el-input
         placeholder="ایمیل (اختیاری)"
         v-model="generalInfo.repEmail"
@@ -36,14 +36,17 @@
         type="email"
       ></el-input>
     </el-form-item>
+    <proceed-button type="proceed" text="گام بعد" @click="goNext" />
   </el-form>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
+import ProceedButton from "@/components/common/ProceedButton.vue";
 
 export default defineComponent({
   name: "RegStep1",
+  components: { ProceedButton },
   computed: {
     generalInfo: {
       get() {
@@ -64,11 +67,21 @@ export default defineComponent({
             message: "نام سازمان نمی‌تواند خالی باشد",
             trigger: "blur",
           },
+          {
+            min: 5,
+            message: "نام سازمان باید حداقل ۵ کاراکتر باشد",
+            trigger: "blur",
+          },
         ],
         repName: [
           {
             required: true,
             message: "نام شما نمی‌تواند خالی باشد",
+            trigger: "blur",
+          },
+          {
+            min: 5,
+            message: "نام شما باید حداقل ۵ کاراکتر باشد",
             trigger: "blur",
           },
         ],
@@ -78,6 +91,11 @@ export default defineComponent({
             message: "سمت شما نمی‌تواند خالی باشد",
             trigger: "blur",
           },
+          {
+            min: 5,
+            message: "سمت شما باید حداقل ۳ کاراکتر باشد",
+            trigger: "blur",
+          },
         ],
         repEmail: [
           {
@@ -85,12 +103,28 @@ export default defineComponent({
             message: "آدرس ایمیل صحیح وارد کنید",
             trigger: "blur",
           },
+          {
+            type: "email",
+            message: "لطفا ایمیل با فرمت صحیح وارد کنید",
+            trigger: ["blur", "change"],
+          },
         ],
       },
     };
   },
 
-  props: {},
+  methods: {
+    goNext(): void {
+      const generalInfoForm = this.$refs["generalInfoForm"] as any;
+      generalInfoForm.validate((valid: boolean) => {
+        if (valid) {
+          this.$emit("proceed");
+        } else {
+          return false;
+        }
+      });
+    },
+  },
 });
 </script>
 
