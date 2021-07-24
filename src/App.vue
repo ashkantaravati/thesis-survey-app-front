@@ -1,10 +1,10 @@
 <template>
   <div class="common-layout add-bg">
     <el-container class="body-container">
-      <el-header class="header" style="margin-top:10px ; height: unset">
+      <el-header class="header" style="margin:10px 0; height: unset">
         <span>پرسشنامه‌‌ی بررسی نقش تعدیل‌کننده‌ی رفتار صدای تیم در رابطه‌ی میان بیش‌اطمینمانی و اثربخشی تیم‌های نرم‌افزار | اشکان طراوتی</span>
       </el-header>
-      <el-divider></el-divider>
+      <el-divider class="m-0"></el-divider>
       <el-main>
         <el-row class="jc-center">
           <el-col :xs="24" :lg="18" :xl="18">
@@ -47,8 +47,8 @@ body {
   direction: rtl;
   font-size: 16px;
   line-height: 24px;
-  color: #333;
-  background: #fff;
+  color: #384a5d;
+  background: #f5f5f5;
   position: relative;
 }
 body::before {
@@ -136,7 +136,7 @@ a:focus {
   position: fixed;
   bottom: 0;
   z-index: 9999999;
-  background: #fff;
+  background: #f5f5f5;
   flex-shrink: 1;
   flex-grow: 1;
   width: 100%;

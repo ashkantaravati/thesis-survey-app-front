@@ -28,7 +28,7 @@
     </div>
     <div class="block mb-halfrem">
       <p>جنسیت</p>
-      <el-radio-group v-model="generalSurvey.sex" dir="ltr">
+      <el-radio-group v-model="generalSurvey.sex" dir="ltr" class="sex">
         <el-radio-button label="female">خانم</el-radio-button>
         <el-radio-button label="male">آقا</el-radio-button>
       </el-radio-group>
