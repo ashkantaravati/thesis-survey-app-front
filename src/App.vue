@@ -30,6 +30,9 @@ export default defineComponent({
   computed: {
     ...mapGetters(["surveyTitle"]),
   },
+  mounted() {
+    document.title = this.surveyTitle;
+  },
 });
 </script>
 
