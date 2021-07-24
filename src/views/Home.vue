@@ -1,12 +1,13 @@
 <template>
   <div class="text-center">
-    <h2>پرسشنامه‌‌ی {{ surveyTitle }}</h2>
-    <h3>
+    <!-- <h2>پرسشنامه‌‌ی  </h2> -->
+    <h3 class="title">
       خاطر جمع باشید که هویت مشارکت‌کنندگان و داده‌های مربوط به سازمان‌ها فاش
       نخواهد شد و گزارش‌های حاصل از این پژوهش از افراد و سازمان‌ها به صورت
       <mark>ناشناس</mark>
       یاد خواهند کرد.
     </h3>
+    <h4>زمان تقریبی پاسخ‌دهی: ۵ الی ۱۵ دقیقه</h4>
   </div>
   <el-row :gutter="10">
     <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
@@ -197,5 +198,8 @@ export default defineComponent({
 mark {
   background-color: #c5f5ff;
   padding: 0 5px;
+}
+.title{
+  line-height: 32px;
 }
 </style>

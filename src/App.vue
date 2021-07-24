@@ -1,9 +1,10 @@
 <template>
   <div class="common-layout add-bg">
     <el-container class="body-container">
-      <el-header class="header">
-        <span>پرسشنامه‌‌ی پایان‌نامه | اشکان طراوتی</span>
+      <el-header class="header" style="margin-top:10px ; height: unset">
+        <span>پرسشنامه‌‌ی بررسی نقش تعدیل‌کننده‌ی رفتار صدای تیم در رابطه‌ی میان بیش‌اطمینمانی و اثربخشی تیم‌های نرم‌افزار | اشکان طراوتی</span>
       </el-header>
+      <el-divider></el-divider>
       <el-main>
         <el-row class="jc-center">
           <el-col :xs="24" :lg="18" :xl="18">
@@ -13,9 +14,10 @@
       </el-main>
       <el-divider></el-divider>
       <el-footer class="footer">
-        <router-link to="#">درباره‌ی پژوهش</router-link>
+        <!-- <router-link to="#">درباره‌ی پژوهش</router-link>
         <router-link to="#">درباره‌ی پژوهشگر</router-link>
-        <router-link to="#">ارسال بازخورد</router-link></el-footer
+        <router-link to="#">ارسال بازخورد</router-link> -->
+        </el-footer
       >
     </el-container>
   </div>
@@ -125,6 +127,9 @@ a:focus {
 .mr-halfrem {
   margin-right: 0.5rem !important;
 }
+.mt-1rem{
+  margin-top: 1rem !important;
+}
 /*  */
 
 .fix {
@@ -144,5 +149,9 @@ a:focus {
 .el-button.is-round {
   border-radius: 46px;
   padding: 19px 40px;
+}
+.responsive-img{
+  height:500px;
+  width: 100%;
 }
 </style>
