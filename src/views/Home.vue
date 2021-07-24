@@ -83,7 +83,7 @@
   </el-row> -->
   <div class="jc-center d-flex fix">
     <router-link :to="{ name: 'register-landing' }">
-      <el-button round type="success" class="winking-btn">
+      <el-button round type="primary" class="winking-btn">
         شروع و ثبت اطلاعات سازمان</el-button
       >
     </router-link>
@@ -169,20 +169,20 @@ export default defineComponent({
   background: #85daec;
 }
 .winking-btn {
-  animation: glowing 2500ms infinite;
+  animation: glowing 3000ms infinite;
 }
 @keyframes glowing {
   0% {
-    background-color: #67c23a;
-    box-shadow: 0 0 3px #67c23a;
+    background-color: #409eff;
+    box-shadow: 0 0 3px #0c4e8f;
   }
   50% {
-    background-color: #2a7e00;
-    box-shadow: 0 0 10px #2a7e00;
+    background-color: #0c4e8f;
+    box-shadow: 0 0 10px #409eff;
   }
   100% {
-    background-color: #67c23a;
-    box-shadow: 0 0 3px #67c23a;
+    background-color: #409eff;
+    box-shadow: 0 0 3px #0c4e8f;
   }
 }
 mark {
