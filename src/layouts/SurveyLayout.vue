@@ -2,16 +2,11 @@
   <h2>پرسشنامه</h2>
   <div id="info-bar">
     <p class="m-0">
-      سازمان شما:
-      <strong>
-        {{ teamInfo.organizationName }}
-      </strong>
-    </p>
-    <p>
-      تیم شما:
-      <strong>
-        {{ teamInfo.name }}
-      </strong>
+      شرکت‌کننده‌ی گرامی از تیم
+      <strong> «{{ teamInfo.name }}» </strong>
+      سازمان
+      <strong> «{{ teamInfo.organizationName }}» </strong>
+      ؛ وقت بخیر!
     </p>
   </div>
   <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
