@@ -36,6 +36,9 @@ const store = createStore({
       );
       // TODO: depend only on Survey
     },
+    teamSize: (state) => {
+      return state.teamInfo.members.length;
+    },
     NotYetRespondedTeamMembers: (state) => {
       return state.teamInfo.members.filter(
         (member) => member.hasParticipated === false
