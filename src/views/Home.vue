@@ -9,10 +9,10 @@
     </h3>
     <h4>زمان تقریبی پاسخ‌دهی: ۵ الی ۱۵ دقیقه</h4>
   </div>
-  <el-row :gutter="10">
+  <el-row :gutter="10" class="mobile-row-reverse">
     <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
       <div class="long-text">
-        <p>از این که در این پژوهش بنده را یاری می‌کنید بسیار سپاسگزارم.</p>
+        <!-- <p>از این که در این پژوهش بنده را یاری می‌کنید بسیار سپاسگزارم.</p> -->
         <p>
           شرکت کنندگان این پژوهش اعضای تیم‌های توسعه‌ی نرم‌افزار هستند. اگر در
           سازمان خود بیش از یک تیم دارید، مشارکت همه‌ی تیم‌ها در این پژوهش لطف
@@ -48,7 +48,7 @@
     <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
       <div class="home-img">
         <img
-          style="width:100%"
+          style="width: 100%"
           src="../assets/images/Designteam-amico.svg"
           alt=""
         /></div
@@ -179,7 +179,7 @@ export default defineComponent({
   background: #85daec;
 }
 .winking-btn {
-  animation: glowing 1300ms infinite;
+  animation: glowing 2500ms infinite;
 }
 @keyframes glowing {
   0% {
@@ -199,7 +199,18 @@ mark {
   background-color: #c5f5ff;
   padding: 0 5px;
 }
-.title{
+.title {
   line-height: 32px;
+}
+
+@media screen and (max-width: 768px) {
+ 
+  .fix {
+    padding: 1rem 0px;
+  }
+  .mobile-row-reverse {
+    display: flex;
+    flex-direction: column-reverse;
+  }
 }
 </style>

@@ -144,7 +144,7 @@ export default defineComponent({
 
 <style>
 @media screen and (max-width: 768px) {
-  .el-radio-group {
+  .el-radio-group:not(.sex) {
     display: flex;
     flex-direction: column;
     align-items: center;
