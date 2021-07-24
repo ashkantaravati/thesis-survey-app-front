@@ -1,4 +1,5 @@
 <template>
+  <h2>ثبت نام سازمان</h2>
   <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
     <el-step
       v-for="step in steps"
