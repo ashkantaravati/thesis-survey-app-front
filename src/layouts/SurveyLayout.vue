@@ -1,4 +1,5 @@
 <template>
+  <h2>پرسشنامه</h2>
   <div id="info-bar">
     <p class="m-0">
       سازمان شما:
