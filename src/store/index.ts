@@ -23,6 +23,7 @@ import { state, State } from "./state";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
 import { LikertResponse, MinMaxResponse } from "@/models/common";
 import { AxiosResponse } from "axios";
+import { SITE_TITLE } from "@/constants";
 
 const store = createStore({
   state: state,
@@ -41,7 +42,7 @@ const store = createStore({
       );
     },
     surveyTitle: (state) => {
-      return "بررسی نقش تعدیل‌کننده‌ی رفتار صدای تیم در رابطه‌ی میان بیش‌اطمینمانی و اثربخشی تیم‌های نرم‌افزار";
+      return SITE_TITLE;
     },
   },
   actions: {

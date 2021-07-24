@@ -2,7 +2,7 @@
   <div class="common-layout add-bg">
     <el-container class="body-container">
       <el-header class="header" style="margin-top:10px ; height: unset">
-        <span>پرسشنامه‌‌ی بررسی نقش تعدیل‌کننده‌ی رفتار صدای تیم در رابطه‌ی میان بیش‌اطمینمانی و اثربخشی تیم‌های نرم‌افزار | اشکان طراوتی</span>
+        <span>{{ surveyTitle }}</span>
       </el-header>
       <el-divider></el-divider>
       <el-main>
@@ -17,8 +17,7 @@
         <!-- <router-link to="#">درباره‌ی پژوهش</router-link>
         <router-link to="#">درباره‌ی پژوهشگر</router-link>
         <router-link to="#">ارسال بازخورد</router-link> -->
-        </el-footer
-      >
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -127,7 +126,7 @@ a:focus {
 .mr-halfrem {
   margin-right: 0.5rem !important;
 }
-.mt-1rem{
+.mt-1rem {
   margin-top: 1rem !important;
 }
 /*  */
@@ -150,8 +149,8 @@ a:focus {
   border-radius: 46px;
   padding: 19px 40px;
 }
-.responsive-img{
-  height:500px;
+.responsive-img {
+  height: 500px;
   width: 100%;
 }
 </style>
