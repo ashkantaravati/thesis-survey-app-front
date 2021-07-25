@@ -35,13 +35,18 @@
     </div>
     <div class="block mb-halfrem">
       <p>میزان کل سابقه کار شما ( بر حسب سال)</p>
-      <el-slider v-model="generalSurvey.tenure" show-input step="0.5" :max="40">
-      </el-slider>
+      <el-input-number
+        v-model="generalSurvey.tenure"
+        :min="0.5"
+        :max="40"
+      ></el-input-number>
     </div>
     <div class="block mb-halfrem">
       <p>مدت حضور شما در این تیم ( بر حسب ماه)</p>
-      <el-slider v-model="generalSurvey.teamHistory" show-input :max="60">
-      </el-slider>
+        <el-input-number
+        v-model="generalSurvey.teamHistory" 
+        :max="60"
+      ></el-input-number>
     </div>
   </div>
 </template>
