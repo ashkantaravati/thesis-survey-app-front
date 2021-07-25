@@ -142,10 +142,10 @@ export default defineComponent({
   .el-radio-group:not(.sex) {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
   }
   .el-radio-button--small .el-radio-button__inner {
-    border-width: 0 0 1px 0 !important;
+    border-left: 1px solid #DCDFE6;
     min-width: 9rem;
     border-radius: 0 !important;
   }

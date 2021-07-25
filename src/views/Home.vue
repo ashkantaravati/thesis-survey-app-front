@@ -192,7 +192,12 @@ mark {
 .title {
   line-height: 32px;
 }
-
+.align-center{
+  align-items: center;
+}
+.text-right{
+  text-align: right;
+}
 @media screen and (max-width: 768px) {
   .fix {
     padding: 1rem 0px;

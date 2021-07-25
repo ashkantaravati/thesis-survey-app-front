@@ -2,26 +2,32 @@
   <div class="mb-halfrem">
     {{ question.text }}
   </div>
-  <span>حد پایین:</span>
-  <el-input-number
-    placeholder="کف"
-    v-model="response.min"
-    @change="onMinChange"
-    :min="lowerBound"
-    :max="response.max"
-    :name="question.index + '-min'"
-  >
-  </el-input-number>
-  <span>حد بالا:</span>
-  <el-input-number
-    placeholder="سقف"
-    v-model="response.max"
-    @change="onMaxChange"
-    :min="response.min"
-    :max="upperBound"
-    :name="question.index + '-max'"
-  >
-  </el-input-number>
+  <div>
+    <div class="d-flex align-center" >
+      <span>حداقل:</span>
+      <el-input-number
+        placeholder="کف"
+        v-model="response.min"
+        @change="onMinChange"
+        :min="lowerBound"
+        :max="response.max"
+        :name="question.index + '-min'"
+      >
+      </el-input-number>
+    </div>
+    <div class="mt-1rem d-flex align-center">
+      <span>حداکثر:</span>
+      <el-input-number
+        placeholder="سقف"
+        v-model="response.max"
+        @change="onMaxChange"
+        :min="response.min"
+        :max="upperBound"
+        :name="question.index + '-max'"
+      >
+      </el-input-number>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">

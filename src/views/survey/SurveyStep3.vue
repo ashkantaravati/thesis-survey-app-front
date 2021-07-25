@@ -15,7 +15,7 @@
         <div class="mb-halfrem">
           {{ question.text }}
         </div>
-        <div dir="ltr">
+        <div dir="ltr" class="text-right">
           <el-radio-group v-model="question.response.value" size="small">
             <el-radio-button :label="1">شدیدا مخالفم</el-radio-button>
             <el-radio-button :label="2">مخالفم</el-radio-button>

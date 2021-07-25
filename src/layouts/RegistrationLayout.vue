@@ -220,11 +220,10 @@ export default defineComponent({
 }
 .step-container h3 , .registration-title h3{
   color: #3a8ee6;
+  margin-top: 2rem;
   text-align: center;
 }
-.registration-title h3{
-  margin-top: 2rem;
-}
+
 @media screen and (max-width: 360px) {
   .fix-btns-container button {
     font-size: 10px !important;
