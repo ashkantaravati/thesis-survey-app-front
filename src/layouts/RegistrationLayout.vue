@@ -1,19 +1,25 @@
 <template>
   <h2>ثبت نام سازمان</h2>
-  <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
+  <el-steps style="margin-bottom:1.2rem" v-if="currentStep" :active="currentStepIndex" align-center>
     <el-step
       v-for="step in steps"
       :key="step.index"
       :title="step.title"
     ></el-step>
   </el-steps>
-  <el-link v-if="!isFirstStep" @click.prevent="goPrev" type="info"
-    >بازگشت به گام قبل</el-link
+<div style="position:relative">
+  <el-link style="position: absolute;
+    bottom: -45px;
+    right: 0;" v-if="!isFirstStep" @click.prevent="goPrev" type="info">
+    <i class="el-icon-right"></i>
+    گام قبل</el-link
   >
+  </div>
+  <div  class="registration-title">
   <router-view
     @proceed="goNext"
     @submit="registerOrganization(goToSuccessPage)"
-  ></router-view>
+  ></router-view></div>
 </template>
 
 <script>
@@ -212,9 +218,12 @@ export default defineComponent({
   left: unset !important;
   right: 0;
 }
-.step-container h3 {
+.step-container h3 , .registration-title h3{
   color: #3a8ee6;
   text-align: center;
+}
+.registration-title h3{
+  margin-top: 2rem;
 }
 @media screen and (max-width: 360px) {
   .fix-btns-container button {

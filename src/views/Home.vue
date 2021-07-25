@@ -132,17 +132,17 @@ export default defineComponent({
   right: 17px;
   top: 12px;
   width: 1px;
-  height: 75%;
+  height: 82%;
   border-right: 2px dashed #81d2b6;
   background: transparent;
 }
 .home-steps:after {
   content: "";
   position: absolute;
-  right: 6px;
-  top: 6px;
-  width: 20px;
-  height: 20px;
+  right: 8px;
+  top: 3px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: #e4fff5;
   border: 2px dashed #81d2b6;
