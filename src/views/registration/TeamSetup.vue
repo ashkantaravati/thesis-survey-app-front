@@ -13,10 +13,10 @@
     >
       <template #header>
         <div class="card-header">
-          <h4>تیم {{ index + 1 }}</h4>
-          <el-row :gutter="12">
-            <el-col :xs="4" :lg="2"><span>عنوان تیم</span></el-col>
-            <el-col :xs="18" :lg="21">
+          <h4>تیم شماره {{ index + 1 }} شما:</h4>
+          <el-row>
+            <el-col :xs="4" :lg="4"><span>نام تیم</span></el-col>
+            <el-col :xs="16" :lg="18">
               <el-form-item prop="teamName">
                 <el-input
                   class="pb-1rem"
@@ -25,7 +25,7 @@
                 />
               </el-form-item>
             </el-col>
-            <el-col :xs="2" :lg="1">
+            <el-col :xs="4" :lg="2">
               <el-tooltip
                 class="item"
                 effect="dark"
@@ -45,18 +45,40 @@
           </el-row>
         </div>
       </template>
+      <div style="margin-bottom:1%">
+        <el-alert
+          title="لطفا عضو با نام تکراری وارد نکنید."
+          type="warning"
+          show-icon
+        >
+        </el-alert>
+        <el-alert
+          title="اگر دو عضو با نام تکراری در این تیم حضور دارند با عدد لقب آن‌ها را متمایز کنید."
+          type="warning"
+          show-icon
+        >
+        </el-alert>
+        <el-alert
+          title="اگر عضو این تیم هستید خودتان را از قلم نیندازید."
+          type="warning"
+          show-icon
+        >
+        </el-alert>
+      </div>
       <el-row
         v-for="(member, index) in team.members"
         :key="index"
         class="text item d-flex"
       >
-        <el-col :xs="4" :lg="2">عضو {{ index + 1 }}</el-col>
-        <el-col :xs="18" :lg="21">
+        <el-col :xs="4" :lg="6"
+          ><span>نام عضو {{ index + 1 }}:</span></el-col
+        >
+        <el-col :xs="18" :lg="18">
           <el-form-item prop="memberName">
             <el-input
               class="pb-1rem"
               v-model="member.name"
-              placeholder="نام عضو"
+              placeholder="نام یا نام مستعار عضو"
             />
           </el-form-item>
         </el-col>
