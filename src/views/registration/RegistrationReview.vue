@@ -12,7 +12,7 @@
     <template #header>
       <div class="card-header">
         <span
-          >اعضای تیم {{ team.index }} (شامل {{ team.members.length }} نفر)</span
+          >اعضای  {{ team.name }} ({{ team.members.length }} نفر)</span
         >
       </div>
     </template>

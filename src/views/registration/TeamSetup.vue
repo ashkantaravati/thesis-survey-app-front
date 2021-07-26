@@ -13,7 +13,7 @@
     >
       <template #header>
         <div class="card-header">
-          <h4>تیم شماره {{ index + 1 }} شما:</h4>
+          <h4>تیم شماره {{ index + 1 }} :</h4>
           <el-row>
             <el-col :xs="4" :lg="4"><span>نام تیم</span></el-col>
             <el-col :xs="16" :lg="18">
@@ -70,8 +70,8 @@
         :key="index"
         class="text item d-flex"
       >
-        <el-col :xs="4" :lg="6"
-          ><span>نام عضو {{ index + 1 }}:</span></el-col
+        <el-col :xs="4" :lg="4"
+          ><span>عضو {{ index + 1 }}:</span></el-col
         >
         <el-col :xs="18" :lg="18">
           <el-form-item prop="memberName">
@@ -82,7 +82,7 @@
             />
           </el-form-item>
         </el-col>
-        <el-col :xs="2" :lg="1" v-show="team.members.length > 2">
+        <el-col :xs="2" :lg="2" v-show="team.members.length > 2">
           <el-tooltip
             class="item"
             effect="dark"
