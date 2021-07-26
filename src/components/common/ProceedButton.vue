@@ -1,5 +1,5 @@
 <template>
-  <div class="fix-btns-container">
+  <div class="fix-btns-container align-left">
     <template v-if="type === 'proceed'">
       <el-button size="medium" type="primary" @click="onClick">
         {{ text }} <i class="el-icon-arrow-left"></i

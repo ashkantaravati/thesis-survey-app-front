@@ -225,6 +225,9 @@ export default defineComponent({
   bottom: 0;
   margin: 0 auto;
 }
+.fix-btns-container.align-left{
+    justify-content: flex-end !important;
+}
 .el-form-item__error {
   left: unset !important;
   right: 0;
