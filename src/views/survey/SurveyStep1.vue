@@ -49,7 +49,11 @@
       ></el-input-number>
     </div>
   </div>
-  <proceed-button type="proceed" text="گام بعد" @click="$emit('proceed')" />
+  <proceed-button
+    type="proceed"
+    text="گام بعد"
+    @click.prevent="$emit('proceed')"
+  />
 </template>
 
 <script lang="ts">

@@ -15,7 +15,7 @@
   <proceed-button
     type="proceed"
     text="گام بعد"
-    @click.once="$emit('proceed')"
+    @click.prevent="$emit('proceed')"
   />
 </template>
 

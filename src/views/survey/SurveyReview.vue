@@ -72,7 +72,7 @@
   <proceed-button
     type="finalize"
     text="ثبت و دریافت لینک"
-    @click="$emit('submit')"
+    @click.prevent="$emit('submit')"
   />
 </template>
 
