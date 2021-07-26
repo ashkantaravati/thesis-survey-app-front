@@ -7,13 +7,13 @@
   </p>
   <template v-for="team in teams" :key="team.index">
     <el-alert type="info" :closable="false">
-      <router-link style="margin-left:10px" :to="{ name: 'survey-intro', params: { teamId: team.id } }">
+      <router-link
+        style="margin-left:10px"
+        :to="{ name: 'survey-intro', params: { teamId: team.id } }"
+      >
         {{ team.link }}</router-link
       >
-      <el-button
-        v-clipboard="team.link"
-        icon="el-icon-document-copy"
-        @click.stop.prevent="copyTestingCode"
+      <el-button v-clipboard="team.link" icon="el-icon-document-copy"
         >کپی</el-button
       >
     </el-alert>
