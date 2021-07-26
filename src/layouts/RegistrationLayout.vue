@@ -1,25 +1,34 @@
 <template>
   <h2>ثبت نام سازمان</h2>
-  <el-steps style="margin-bottom:1.2rem" v-if="currentStep" :active="currentStepIndex" align-center>
+  <el-steps
+    style="margin-bottom: 1.2rem"
+    v-if="currentStep"
+    :active="currentStepIndex"
+    align-center
+  >
     <el-step
       v-for="step in steps"
       :key="step.index"
       :title="step.title"
     ></el-step>
   </el-steps>
-<div style="position:relative">
-  <el-link style="position: absolute;
-    bottom: -45px;
-    right: 0;" v-if="!isFirstStep" @click.prevent="goPrev" type="info">
-    <i class="el-icon-right"></i>
-    گام قبل</el-link
-  >
+  <div style="position: relative">
+    <el-link
+      class="prev-step"
+      v-if="!isFirstStep"
+      @click.prevent="goPrev"
+      type="info"
+    >
+      <i class="el-icon-right"></i>
+      گام قبل</el-link
+    >
   </div>
-  <div  class="registration-title">
-  <router-view
-    @proceed="goNext"
-    @submit="registerOrganization(goToSuccessPage)"
-  ></router-view></div>
+  <div class="registration-title">
+    <router-view
+      @proceed="goNext"
+      @submit="registerOrganization(goToSuccessPage)"
+    ></router-view>
+  </div>
 </template>
 
 <script>
@@ -104,9 +113,10 @@ export default defineComponent({
 .el-steps--horizontal:after {
   content: "";
   position: absolute;
-  right: 0;
+  right: 50%;
+  transform: translateX(50%);
   left: 0;
-  width: 100%;
+  width: 80%;
   height: 2px;
   background: #b0d7ff;
   top: 10px;
@@ -219,15 +229,26 @@ export default defineComponent({
   left: unset !important;
   right: 0;
 }
-.step-container h3 , .registration-title h3{
+.step-container h3,
+.registration-title h3 {
   color: #f5f5f5;
   margin-top: 2rem;
   text-align: center;
+}
+.prev-step {
+  position: absolute;
+  bottom: -45px;
+  right: 0px;
 }
 
 @media screen and (max-width: 360px) {
   .fix-btns-container button {
     font-size: 10px !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .prev-step {
+    bottom: -10px;
   }
 }
 </style>
