@@ -7,7 +7,7 @@
   </p>
   <template v-for="team in teams" :key="team.index">
     <el-alert type="info" :closable="false">
-      <router-link :to="{ name: 'survey-intro', params: { teamId: team.id } }">
+      <router-link style="margin-left:10px" :to="{ name: 'survey-intro', params: { teamId: team.id } }">
         {{ team.link }}</router-link
       >
       <el-button

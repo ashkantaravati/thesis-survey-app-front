@@ -6,19 +6,20 @@
     ref="generalInfoForm"
     class="demo-ruleForm"
   >
-    <el-form-item prop="name">
-      <el-input
-        placeholder="نام یا عنوان تجاری سازمان"
-        v-model="generalInfo.name"
-        type="text"
-        autocomplete="organization"
-      ></el-input>
-    </el-form-item>
+
     <el-form-item prop="repName">
       <el-input
         placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
         v-model="generalInfo.repName"
         autocomplete="name"
+      ></el-input>
+    </el-form-item>
+        <el-form-item prop="name">
+      <el-input
+        placeholder="نام یا عنوان تجاری سازمان"
+        v-model="generalInfo.name"
+        type="text"
+        autocomplete="organization"
       ></el-input>
     </el-form-item>
     <el-form-item prop="repJobTitle">

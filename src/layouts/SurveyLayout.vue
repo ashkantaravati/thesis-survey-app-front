@@ -23,10 +23,10 @@
     <el-button @click="goPrev" :disabled="currentStep === 0">
       <i class="el-icon-arrow-right"></i>گام قبل
     </el-button>
-    <el-button @click="goNext" v-if="!isLastStep">
+    <el-button size="medium" type="primary" @click="goNext" v-if="!isLastStep">
       گام بعد <i class="el-icon-arrow-left"></i
     ></el-button>
-    <el-button @click="submit" v-else>
+    <el-button  size="medium" type="primary" @click="submit" v-else>
       تایید و ثبت پاسخ<i class="el-icon-arrow-left"></i
     ></el-button>
   </div>
@@ -154,5 +154,12 @@ export default defineComponent({
   background: #d9ebff;
   padding: 5px 10px;
   border-radius: 5px;
+  color:#384a5d
 }
+.el-input-number__decrease, .el-input-number__increase  {
+
+    background: #324f6d !important;
+    color: #ffffff !important; 
+    font-size: 15px !important;
+} 
 </style>

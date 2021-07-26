@@ -49,8 +49,8 @@ body {
   direction: rtl;
   font-size: 16px;
   line-height: 24px;
-  color: #384a5d;
-  background: #f5f5f5;
+  background: #384a5d;
+  color: #f5f5f5;
   position: relative;
 }
 body::before {
@@ -138,7 +138,7 @@ a:focus {
   position: fixed;
   bottom: 0;
   z-index: 9999999;
-  background: #f5f5f5;
+  background: #384a5d;
   flex-shrink: 1;
   flex-grow: 1;
   width: 100%;
@@ -155,5 +155,21 @@ a:focus {
 .responsive-img {
   height: 500px;
   width: 100%;
+}
+.el-input__inner { 
+    background-color: #384a5d !important;
+    color: #f5f5f5 !important;
+}
+.el-link.el-link--info{
+    color: #e2e2e2 !important;
+
+}
+
+.el-card{
+  background-color: #384a5d !important;
+  color: #f5f5f5 !important
+}
+.card-header h4{
+  color: #f5f5f5 !important
 }
 </style>

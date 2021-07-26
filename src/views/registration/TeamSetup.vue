@@ -46,19 +46,19 @@
         </div>
       </template>
       <div style="margin-bottom:1%">
-        <el-alert
+        <el-alert class="mb-halfrem"
           title="لطفا عضو با نام تکراری وارد نکنید."
           type="warning"
           show-icon
         >
         </el-alert>
-        <el-alert
+        <el-alert  class="mb-halfrem"
           title="اگر دو عضو با نام تکراری در این تیم حضور دارند با عدد لقب آن‌ها را متمایز کنید."
           type="warning"
           show-icon
         >
         </el-alert>
-        <el-alert
+        <el-alert  class="mb-halfrem"
           title="اگر عضو این تیم هستید خودتان را از قلم نیندازید."
           type="warning"
           show-icon

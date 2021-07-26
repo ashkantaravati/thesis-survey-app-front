@@ -163,11 +163,11 @@ export default defineComponent({
 }
 /* is finish */
 .el-step__title.is-finish {
-  color: #2a7e00;
+  color: #a7ff7b;
 }
 .el-step__head.is-finish {
-  color: #2a7e00;
-  border-color: #2a7e00;
+  color: #a7ff7b;
+  border-color: #a7ff7b;
 }
 .el-step__head.is-finish .el-step__icon-inner {
   color: #fff;
@@ -190,6 +190,7 @@ export default defineComponent({
 /*#endregion step numbers style*/
 .el-step__title {
   line-height: 18px;
+  font-weight: 300 !important;
 }
 @media screen and(max-width: 520px) {
   .el-step__title {
@@ -203,8 +204,8 @@ export default defineComponent({
   min-height: 300px;
 }
 .fix-btns-container {
-  background: white;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 20%);
+  background: #384a5d;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 50%);
   border-radius: 0.5rem;
   padding: 10px;
   display: flex;
@@ -219,7 +220,7 @@ export default defineComponent({
   right: 0;
 }
 .step-container h3 , .registration-title h3{
-  color: #3a8ee6;
+  color: #f5f5f5;
   margin-top: 2rem;
   text-align: center;
 }
