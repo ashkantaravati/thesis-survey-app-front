@@ -9,15 +9,14 @@
       ؛ وقت بخیر!
     </p>
   </div>
-   <div class="mobile_slider">
-  <el-steps  class="max-width" v-if="currentStep" :active="currentStepIndex" align-center>
+  <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
     <el-step
       v-for="step in steps"
       :key="step.index"
       :title="step.title"
     ></el-step>
   </el-steps>
-</div>
+
   <router-view></router-view>
 
   <div v-if="currentStep" class="fix-btns-container">
@@ -163,17 +162,4 @@ export default defineComponent({
     color: #ffffff !important; 
     font-size: 15px !important;
 } 
-@media screen and (max-width:500px) {
-.mobile_slider {
-    width: 100%;
-    overflow-x: auto;
-}
-.mobile_slider .max-width { 
-    width: -moz-max-content;
-    width: -webkit-max-content;
-    width: max-content;
-        min-height: 74px;
-}
-}
-
 </style>
