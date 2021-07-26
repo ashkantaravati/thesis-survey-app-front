@@ -16,7 +16,7 @@
       :title="step.title"
     ></el-step>
   </el-steps>
-  <div style="position: relative">
+  <div>  <div style="position: relative">
     <el-link
       class="prev-step"
       v-if="!isFirstStep"
@@ -30,7 +30,8 @@
   <router-view
     @proceed="goNext"
     @submit="submitResponse({ goToSuccessPage, goToErrorPage })"
-  ></router-view>
+  ></router-view></div>
+
 </template>
 
 <script lang="ts">
