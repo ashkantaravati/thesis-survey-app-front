@@ -25,6 +25,8 @@ import { LikertResponse, MinMaxResponse } from "@/models/common";
 import { AxiosResponse } from "axios";
 import { SITE_TITLE } from "@/constants";
 
+type SimpleProcedure = () => void;
+
 const store = createStore({
   state: state,
   getters: {
@@ -62,7 +64,7 @@ const store = createStore({
         })
         .catch((err) => console.log(err));
     },
-    registerOrganization({ commit, state }, onSuccess: () => void) {
+    registerOrganization({ commit, state }, onSuccess: SimpleProcedure) {
       const mapper = new OrganizationRegistrationMapper();
       const organizationInfoDto = mapper.createDtoFromModel(
         state.registrationInfo
@@ -82,14 +84,22 @@ const store = createStore({
           // onError();
         });
     },
-    submitResponse({ commit, state }): Promise<AxiosResponse> {
+    submitResponse(
+      { commit, state },
+      {
+        onSuccess,
+        onFailure,
+      }: { onSuccess: SimpleProcedure; onFailure: SimpleProcedure }
+    ) {
       const participantId = (state.activeParticipant.id as string) || undefined;
       if (!participantId) {
         return Promise.reject("No active participant is set!");
       }
       const mapper = new SurveyResponseMapper();
       const dto = mapper.createDtoFromModel(state.survey);
-      return submitParticipantResponse(participantId, dto);
+      submitParticipantResponse(participantId, dto)
+        .then(() => onSuccess())
+        .catch((err) => onFailure());
     },
   },
   mutations: {

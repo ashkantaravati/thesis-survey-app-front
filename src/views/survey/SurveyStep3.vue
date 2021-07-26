@@ -28,6 +28,11 @@
       </template>
     </el-card>
   </div>
+  <proceed-button
+    type="proceed"
+    text="گام بعد"
+    @click.once="$emit('proceed')"
+  />
 </template>
 
 <script>

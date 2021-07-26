@@ -7,6 +7,11 @@
       برای این قسمت هنوز پرسشنامه‌ی مشخصی نداریم...
     </el-card>
   </div>
+  <proceed-button
+    type="proceed"
+    text="گام بعد"
+    @click.once="$emit('proceed')"
+  />
 </template>
 
 <script>
@@ -17,5 +22,4 @@ export default defineComponent({
 });
 </script>
 
-<style>
-</style>
+<style></style>

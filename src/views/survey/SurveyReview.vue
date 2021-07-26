@@ -69,6 +69,11 @@
       </div>
     </el-card>
   </div>
+  <proceed-button
+    type="finalize"
+    text="ثبت و دریافت لینک"
+    @click="$emit('submit')"
+  />
 </template>
 
 <script>

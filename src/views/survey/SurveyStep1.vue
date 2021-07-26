@@ -43,12 +43,13 @@
     </div>
     <div class="block mb-halfrem">
       <p>مدت حضور شما در این تیم ( بر حسب ماه)</p>
-        <el-input-number
-        v-model="generalSurvey.teamHistory" 
+      <el-input-number
+        v-model="generalSurvey.teamHistory"
         :max="60"
       ></el-input-number>
     </div>
   </div>
+  <proceed-button type="proceed" text="گام بعد" @click="$emit('proceed')" />
 </template>
 
 <script lang="ts">

@@ -16,20 +16,21 @@
       :title="step.title"
     ></el-step>
   </el-steps>
-
-  <router-view></router-view>
-
-  <div v-if="currentStep" class="fix-btns-container">
-    <el-button @click="goPrev" :disabled="currentStep === 0">
-      <i class="el-icon-arrow-right"></i>گام قبل
-    </el-button>
-    <el-button size="medium" type="primary" @click="goNext" v-if="!isLastStep">
-      گام بعد <i class="el-icon-arrow-left"></i
-    ></el-button>
-    <el-button  size="medium" type="primary" @click="submit" v-else>
-      تایید و ثبت پاسخ<i class="el-icon-arrow-left"></i
-    ></el-button>
+  <div style="position: relative">
+    <el-link
+      class="prev-step"
+      v-if="!isFirstStep"
+      @click.prevent="goPrev"
+      type="info"
+    >
+      <i class="el-icon-right"></i>
+      گام قبل</el-link
+    >
   </div>
+  <router-view
+    @proceed="goNext"
+    @submit="submitResponse({ goToSuccessPage, goToErrorPage })"
+  ></router-view>
 </template>
 
 <script lang="ts">
@@ -67,14 +68,11 @@ export default defineComponent({
     getStep(index: number) {
       return this.steps.find((step) => step.index === index);
     },
-    submit() {
-      this.submitResponse()
-        .then(() => {
-          this.$router.push({ name: "survey-success" });
-        })
-        .catch(() => {
-          this.$router.push({ name: "error" });
-        });
+    goToSuccessPage() {
+      this.$router.push({ name: "register-success" });
+    },
+    goToErrorPage() {
+      this.$router.push({ name: "error" });
     },
   },
   computed: {
@@ -145,7 +143,7 @@ export default defineComponent({
     align-items: flex-end;
   }
   .el-radio-button--small .el-radio-button__inner {
-    border-left: 1px solid #DCDFE6;
+    border-left: 1px solid #dcdfe6;
     min-width: 9rem;
     border-radius: 0 !important;
   }
@@ -154,12 +152,12 @@ export default defineComponent({
   background: #d9ebff;
   padding: 5px 10px;
   border-radius: 5px;
-  color:#384a5d
+  color: #384a5d;
 }
-.el-input-number__decrease, .el-input-number__increase  {
-
-    background: #324f6d !important;
-    color: #ffffff !important; 
-    font-size: 15px !important;
-} 
+.el-input-number__decrease,
+.el-input-number__increase {
+  background: #324f6d !important;
+  color: #ffffff !important;
+  font-size: 15px !important;
+}
 </style>
