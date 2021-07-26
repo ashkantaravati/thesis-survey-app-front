@@ -1,7 +1,7 @@
 <template>
   <h2>پرسشنامه</h2>
   <div id="info-bar">
-    <p class="m-0">
+    <p class=" ">
       شرکت‌کننده‌ی گرامی از تیم
       <strong> «{{ teamInfo.name }}» </strong>
       سازمان
