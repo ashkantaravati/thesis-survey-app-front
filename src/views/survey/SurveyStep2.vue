@@ -8,27 +8,13 @@
       کنید که با حداقل ۹۰٪ اطمینان فکر می‌کنید پاسخ درست در آن بازه قرار دارد.
     </p>
     <el-card class="mb-halfrem">
-      <el-form
-        :model="overconfidenceSurvey"
-        ref="overconfidenceSurveyForm"
-        class="demo-ruleForm"
-      >
-        <template v-for="(question, name) in overconfidenceSurvey" :key="name">
-          <min-max-question
-            ref="question"
-            ruleProp="min"
-            :question="question"
-          />
-          <el-divider></el-divider>
-        </template>
-      </el-form>
+      <template v-for="(question, name) in overconfidenceSurvey" :key="name">
+        <min-max-question :ref="name" :question="question" />
+        <el-divider></el-divider>
+      </template>
     </el-card>
   </div>
-  <proceed-button
-    type="proceed"
-    text="گام بعد"
-    @click.prevent="$emit('proceed')"
-  />
+  <proceed-button type="proceed" text="گام بعد" @click="goNext" />
 </template>
 
 <script lang="ts">
@@ -39,32 +25,23 @@ export default defineComponent({
   components: { MinMaxQuestion },
   name: "SurveyStep2",
   methods: {
-    goNext() {
-      const overconfidenceSurveyForm = this.$refs[
-        "overconfidenceSurveyForm"
-      ] as any;
-      overconfidenceSurveyForm.validate((valid: boolean) => {
-        if (valid) {
+    validateAll():boolean {
+      let valid = true;
+      const keys = Object.keys(this.overconfidenceSurvey);
+      for (const key of keys) {
+      const form = this.$refs[key] as any;
+      form.validate((isValid:boolean) => {valid &&=isValid;})
+      }
+      return valid;
+    },
+    goNext():void | boolean {
+       if (this.validateAll()) {
           this.$emit("proceed");
         } else {
           return false;
         }
-      });
+      }
     },
-  },
-  data() {
-    return {
-      rules: {
-        min: [
-          {
-            required: true,
-            message: "نمی‌تواند خالی باشد",
-            trigger: "blur",
-          },
-        ],
-      },
-    };
-  },
   computed: {
     overconfidenceSurvey() {
       return this.$store.state.survey.overconfidenceSurvey;

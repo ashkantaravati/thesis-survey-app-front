@@ -1,40 +1,45 @@
 <template>
-  <el-form-item :error="checkEmpty" :inline-message="true" :required="true">
-    <div class="mb-halfrem">
-      {{ question.text }}
-    </div>
-    <div>
+  <div class="mb-halfrem">
+    {{ question.text }}
+  </div>
+  <div>
+    <el-form :model="response" :rules="rules" ref="mainForm">
       <div class="d-flex align-center">
         <span>حداقل:</span>
-        <el-input-number
-          :required="true"
-          placeholder="کف"
-          v-model="response.min"
-          @change="onMinChange"
-          :min="lowerBound"
-          :max="response.max"
-          :name="question.index + '-min'"
-        >
-        </el-input-number>
+        <el-form-item prop="min">
+          <el-input-number
+            :required="true"
+            placeholder="کف"
+            v-model="response.min"
+            @change="onMinChange"
+            :min="lowerBound"
+            :max="response.max"
+            :name="question.index + '-min'"
+          >
+          </el-input-number>
+        </el-form-item>
       </div>
       <div class="mt-1rem d-flex align-center">
         <span>حداکثر:</span>
-        <el-input-number
-          placeholder="سقف"
-          v-model="response.max"
-          @change="onMaxChange"
-          :min="response.min"
-          :max="upperBound"
-          :name="question.index + '-max'"
-        >
-        </el-input-number>
+        <el-form-item prop="max">
+          <el-input-number
+            placeholder="سقف"
+            v-model="response.max"
+            @change="onMaxChange"
+            :min="response.min"
+            :max="upperBound"
+            :name="question.index + '-max'"
+          >
+          </el-input-number>
+        </el-form-item>
       </div>
-    </div>
-  </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script lang="ts">
 import { MinMaxQuestion, MinMaxResponse } from "@/models/common";
+import { AnyFunction } from "element-plus/lib/utils/types";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -42,17 +47,30 @@ export default defineComponent({
   props: {
     question: { type: MinMaxQuestion, required: true },
   },
+
+  data() {
+    return {
+      rules: {
+        min: [
+          {
+            required: true,
+            message: "نمی‌تواند خالی باشد",
+            trigger: "blur",
+            type: "number",
+          },
+        ],
+        max: [
+          {
+            required: true,
+            message: "نمی‌تواند خالی باشد",
+            trigger: "blur",
+            type: "number",
+          },
+        ],
+      },
+    };
+  },
   computed: {
-    checkEmpty(): string {
-      if (
-        isNaN(this.question.response.min) ||
-        isNaN(this.question.response.max)
-      )
-        return "حداقل و حداکثر را وارد کنید";
-
-      return "";
-    },
-
     response: {
       get(): MinMaxResponse {
         return this.question.response;
@@ -67,6 +85,10 @@ export default defineComponent({
     },
   },
   methods: {
+    validate(callback: AnyFunction<any>): void {
+      const mainForm = this.$refs["mainForm"] as any;
+      mainForm.validate(callback);
+    },
     onMinChange(value: number): void {
       this.response.min = value;
     },
