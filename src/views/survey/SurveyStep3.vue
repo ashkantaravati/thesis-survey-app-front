@@ -12,18 +12,10 @@
         v-for="question in teamCoordinationSurvey"
         :key="question.index"
       >
-        <div class="mb-halfrem">
-          {{ question.text }}
-        </div>
-        <div dir="ltr" class="text-right">
-          <el-radio-group v-model="question.response.value" size="small">
-            <el-radio-button :label="1">شدیدا مخالفم</el-radio-button>
-            <el-radio-button :label="2">مخالفم</el-radio-button>
-            <el-radio-button :label="3">نه مخالف و نه موافقم</el-radio-button>
-            <el-radio-button :label="4">موافقم</el-radio-button>
-            <el-radio-button :label="5">شدیدا موافقم</el-radio-button>
-          </el-radio-group>
-        </div>
+        <likert-scale-question
+          v-model="question.response"
+          :title="question.text"
+        />
         <el-divider></el-divider>
       </template>
     </el-card>
@@ -36,9 +28,11 @@
 </template>
 
 <script>
+import LikertScaleQuestion from "@/components/survey/LikertScaleQuestion.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
+  components: { LikertScaleQuestion },
   name: "SurveyStep3",
   computed: {
     teamCoordinationSurvey: {
