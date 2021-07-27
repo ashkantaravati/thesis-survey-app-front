@@ -8,11 +8,9 @@
       گزاره‌های زیر را مشخص کنید.
     </p>
     <el-card class="mb-halfrem">
-      <template
-        v-for="question in teamCoordinationSurvey"
-        :key="question.index"
-      >
+      <template v-for="(question, name) in teamCoordinationSurvey" :key="name">
         <likert-scale-question
+          :ref="name"
           v-model="question.response"
           :title="question.text"
         />
@@ -20,20 +18,34 @@
       </template>
     </el-card>
   </div>
-  <proceed-button
-    type="proceed"
-    text="گام بعد"
-    @click.prevent="$emit('proceed')"
-  />
+  <proceed-button type="proceed" text="گام بعد" @click="goNext" />
 </template>
 
-<script>
+<script lang="ts">
 import LikertScaleQuestion from "@/components/survey/LikertScaleQuestion.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   components: { LikertScaleQuestion },
   name: "SurveyStep3",
+    methods: {
+    validateAll():boolean {
+      let valid = true;
+       const keys = Object.keys(this.teamCoordinationSurvey);
+      for (const key of keys) {
+      const form = this.$refs[key] as any;
+      form.validate((isValid:boolean) => {valid &&=isValid;})
+      }
+      return valid;
+    },
+    goNext():void | boolean {
+       if (this.validateAll()) {
+          this.$emit("proceed");
+        } else {
+          return false;
+        }
+      }
+    },
   computed: {
     teamCoordinationSurvey: {
       get() {
