@@ -71,6 +71,7 @@
 </template>
 
 <script lang="ts">
+import { TeamMember } from "@/models";
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
 
@@ -78,6 +79,7 @@ export default defineComponent({
   name: "SurveyStep1",
   methods: {
     goNext() {
+      if (!this.activeParticipant.name) return;
       // const activeParticipantForm = this.$refs.activeParticipantForm as any;
       const generalSurveyForm = this.$refs.generalSurveyForm as any;
       generalSurveyForm.validate((valid: boolean) => {
@@ -101,7 +103,7 @@ export default defineComponent({
       },
     },
     activeParticipant: {
-      get() {
+      get(): TeamMember {
         return this.$store.state.activeParticipant;
       },
       set(participant) {
