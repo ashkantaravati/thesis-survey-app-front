@@ -30,7 +30,9 @@
     </div>
     <router-view
       @proceed="goNext"
-      @submit="submitResponse({ goToSuccessPage, goToErrorPage })"
+      @submit="
+        submitResponse({ onSuccess: goToSuccessPage, onFailure: goToErrorPage })
+      "
     ></router-view>
   </div>
 </template>
@@ -72,7 +74,7 @@ export default defineComponent({
       return this.steps.find((step) => step.index === index);
     },
     goToSuccessPage() {
-      this.$router.push({ name: "register-success" });
+      this.$router.push({ name: "survey-success" });
     },
     goToErrorPage() {
       this.$router.push({ name: "error" });
