@@ -1,5 +1,6 @@
 <template>
   <h2>پرسشنامه</h2>
+  {{ progress }}
   <div id="info-bar" v-loading.fullscreen.lock="loading">
     <p class=" ">
       شرکت‌کننده‌ی گرامی از تیم
@@ -39,7 +40,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from "vue";
-import { mapActions, useStore } from "vuex";
+import { mapActions, mapMutations, useStore } from "vuex";
 // import { getTeamInfo } from "../api/survey.service";
 type Step = { index: number; title: string; routeName: string };
 export default defineComponent({
@@ -52,16 +53,18 @@ export default defineComponent({
 
     return {
       loading: computed(() => store.state.loading),
+      progress: computed(() => store.state.progress),
       teamInfo: computed(() => store.state.teamInfo),
     };
   },
   methods: {
     ...mapActions(["fetchTeamInfo", "submitResponse"]),
+    ...mapMutations(["setProgress"]),
     goNext() {
       const nextIndex = this.currentStepIndex + 1;
       const nextStep = this.getStep(nextIndex);
       if (nextStep == undefined) return;
-
+      this.setProgress(nextIndex);
       this.$router.push({ name: nextStep.routeName });
     },
     goPrev() {
@@ -70,7 +73,7 @@ export default defineComponent({
       if (prevStep == undefined) return;
       this.$router.push({ name: prevStep.routeName });
     },
-    getStep(index: number) {
+    getStep(index: number): Step | undefined {
       return this.steps.find((step) => step.index === index);
     },
     goToSuccessPage() {
@@ -78,6 +81,17 @@ export default defineComponent({
     },
     goToErrorPage() {
       this.$router.push({ name: "error" });
+    },
+    submit(): void {
+      if (this.progress <= 0) return;
+      // TODO: show a message
+      if (this.progress <= this.lastIndex) {
+        return;
+      }
+      this.submitResponse({
+        onSuccess: this.goToSuccessPage,
+        onFailure: this.goToErrorPage,
+      });
     },
   },
   computed: {
@@ -95,8 +109,12 @@ export default defineComponent({
     isLastStep(): boolean {
       return this.currentStepIndex === this.steps.length - 1;
     },
+    lastIndex(): number {
+      return this.steps.length > 0
+        ? this.steps[this.steps.length - 1].index
+        : 0;
+    },
   },
-
   created() {
     this.fetchTeamInfo(this.teamId);
   },
