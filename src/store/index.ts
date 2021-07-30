@@ -262,6 +262,15 @@ const store = createStore({
     setLoading(state: State, loading: boolean) {
       state.loading = loading;
     },
+    setProgress(state: State, newStepIndex: number) {
+      if (newStepIndex < state.progress) {
+        return;
+      }
+      if (Math.abs(newStepIndex - state.progress) > 1) {
+        return;
+      }
+      state.progress = newStepIndex;
+    },
   },
 });
 

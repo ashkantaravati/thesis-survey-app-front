@@ -13,6 +13,8 @@ type State = {
   teamInfo: TeamWithOrganizationInfo;
   activeParticipant: TeamMember;
   loading: boolean;
+  progress: number;
+  // error: string;
 };
 
 const state: State = {
@@ -41,6 +43,7 @@ const state: State = {
   },
   activeParticipant: new TeamMember(),
   loading: false,
+  progress: 0,
 };
 
 export { state, State };
