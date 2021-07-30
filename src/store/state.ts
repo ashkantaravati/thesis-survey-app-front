@@ -12,6 +12,7 @@ type State = {
   survey: ThesisSurvey;
   teamInfo: TeamWithOrganizationInfo;
   activeParticipant: TeamMember;
+  loading: boolean;
 };
 
 const state: State = {
@@ -39,6 +40,7 @@ const state: State = {
     organizationName: "",
   },
   activeParticipant: new TeamMember(),
+  loading: false,
 };
 
 export { state, State };

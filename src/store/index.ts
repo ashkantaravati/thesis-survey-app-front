@@ -22,7 +22,6 @@ import {
 import { state, State } from "./state";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
 import { LikertResponse, MinMaxResponse } from "@/models/common";
-import { AxiosResponse } from "axios";
 import { SITE_TITLE } from "@/constants";
 
 type SimpleProcedure = () => void;
@@ -52,7 +51,7 @@ const store = createStore({
   },
   actions: {
     fetchTeamInfo({ commit }, teamId: string) {
-      // TODO : Add a loading indicator
+      commit("setLoading", true);
       getTeamInfo(teamId)
         .then((res) => {
           const dto = res.data;
@@ -60,7 +59,7 @@ const store = createStore({
           const teamInfo = mapper.createModelFromDto(dto);
           commit("setTeamInfo", teamInfo);
           commit("generateVoiceResponseItemForEachTeamMember");
-          // TODO : disable loading indicator
+          commit("setLoading", false);
         })
         .catch((err) => console.log(err));
     },
@@ -247,6 +246,9 @@ const store = createStore({
       targetTeam.members.splice(team.members.indexOf(member), 1);
     },
     // end of organization info mutations
+    setLoading(state: State, loading: boolean) {
+      state.loading = loading;
+    },
   },
 });
 

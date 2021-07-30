@@ -1,6 +1,6 @@
 <template>
   <h2>پرسشنامه</h2>
-  <div id="info-bar">
+  <div id="info-bar" v-loading.fullscreen.lock="loading">
     <p class=" ">
       شرکت‌کننده‌ی گرامی از تیم
       <strong> «{{ teamInfo.name }}» </strong>
@@ -16,22 +16,23 @@
       :title="step.title"
     ></el-step>
   </el-steps>
-  <div>  <div style="position: relative">
-    <el-link
-      class="prev-step"
-      v-if="!isFirstStep"
-      @click.prevent="goPrev"
-      type="info"
-    >
-      <i class="el-icon-right"></i>
-      گام قبل</el-link
-    >
+  <div>
+    <div style="position: relative">
+      <el-link
+        class="prev-step"
+        v-if="!isFirstStep"
+        @click.prevent="goPrev"
+        type="info"
+      >
+        <i class="el-icon-right"></i>
+        گام قبل</el-link
+      >
+    </div>
+    <router-view
+      @proceed="goNext"
+      @submit="submitResponse({ goToSuccessPage, goToErrorPage })"
+    ></router-view>
   </div>
-  <router-view
-    @proceed="goNext"
-    @submit="submitResponse({ goToSuccessPage, goToErrorPage })"
-  ></router-view></div>
-
 </template>
 
 <script lang="ts">
@@ -48,6 +49,7 @@ export default defineComponent({
     const store = useStore();
 
     return {
+      loading: computed(() => store.state.loading),
       teamInfo: computed(() => store.state.teamInfo),
     };
   },
