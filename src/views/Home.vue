@@ -11,7 +11,7 @@
       <div class="long-text">
         <p>
           از تیم‌های توسعه‌ی نرم‌افزار متعلق به انواع موسسات، سازمان‌ها،
-          کسب‌و‌کارها و حتی تیم‌های بلندمدت فریلنس صمیمانی دعوت می‌شود تا با
+          کسب‌و‌کارها و حتی تیم‌های بلندمدت فریلنس صمیمانه دعوت می‌شود تا با
           مشارکت در این پرسشنامه به پیش‌برد این پژوهش کمک نمایند.
         </p>
         <strong
@@ -192,10 +192,10 @@ mark {
 .title {
   line-height: 32px;
 }
-.align-center{
+.align-center {
   align-items: center;
 }
-.text-right{
+.text-right {
   text-align: right;
 }
 @media screen and (max-width: 768px) {
