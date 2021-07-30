@@ -1,6 +1,7 @@
 <template>
   <h2>ثبت نام سازمان</h2>
   <el-steps
+    v-loading.fullscreen.lock="loading"
     style="margin-bottom: 1.2rem"
     v-if="currentStep"
     :active="currentStepIndex"
@@ -32,12 +33,19 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import { mapActions } from "vuex";
+import { defineComponent, computed } from "vue";
+import { mapActions, useStore } from "vuex";
 
 export default defineComponent({
   name: "RegistrationLayout",
   props: {},
+  setup() {
+    const store = useStore();
+
+    return {
+      loading: computed(() => store.state.loading),
+    };
+  },
   methods: {
     ...mapActions(["registerOrganization"]),
     goNext() {
@@ -225,13 +233,13 @@ export default defineComponent({
   bottom: 0;
   margin: 0 auto;
 }
-.fix-btns-container.align-left{
-    justify-content: flex-end !important;
+.fix-btns-container.align-left {
+  justify-content: flex-end !important;
 }
 .el-form-item__error {
   left: unset !important;
   right: 0;
-      top: 80% !important;
+  top: 80% !important;
 }
 .step-container h3,
 .registration-title h3 {

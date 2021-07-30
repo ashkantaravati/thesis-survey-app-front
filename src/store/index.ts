@@ -74,7 +74,7 @@ const store = createStore({
       const organizationInfoDto = mapper.createDtoFromModel(
         state.registrationInfo
       );
-
+      commit("setLoading", true);
       submitOrganizationInfo(organizationInfoDto)
         .then((res) => {
           const createdOrganization = res.data;
@@ -87,6 +87,9 @@ const store = createStore({
         .catch((err) => {
           console.error(err);
           // onError();
+        })
+        .finally(() => {
+          commit("setLoading", false);
         });
     },
     submitResponse(
