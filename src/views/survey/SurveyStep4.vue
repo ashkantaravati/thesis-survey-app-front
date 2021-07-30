@@ -7,11 +7,7 @@
       برای این قسمت هنوز پرسشنامه‌ی مشخصی نداریم...
     </el-card>
   </div>
-  <proceed-button
-    type="proceed"
-    text="گام بعد"
-    @click.prevent="$emit('proceed')"
-  />
+  <proceed-button type="proceed" text="گام بعد" @click="goNext" />
 </template>
 
 <script>
@@ -19,6 +15,11 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "SurveyStep4",
+  methods: {
+    goNext() {
+      this.$emit("proceed");
+    },
+  },
 });
 </script>
 
