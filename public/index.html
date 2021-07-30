@@ -1,60 +1,35 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="fa">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <script>
-      (function() {
-        var redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-        if (redirect && redirect != location.href) {
-          history.replaceState(null, null, redirect);
-        }
-      })();
-    </script>
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <script type="text/javascript">
-      !(function() {
-        function t() {
-          var t = document.createElement("script");
-          (t.type = "text/javascript"),
-            (t.async = !0),
-            localStorage.getItem("rayToken")
-              ? (t.src =
-                  "https://api.raychat.io/scripts/js/" +
-                  o +
-                  "?rid=" +
-                  localStorage.getItem("rayToken") +
-                  "&href=" +
-                  window.location.href)
-              : (t.src =
-                  "https://api.raychat.io/scripts/js/" +
-                  o +
-                  "?href=" +
-                  window.location.href);
-          var e = document.getElementsByTagName("script")[0];
-          e.parentNode.insertBefore(t, e);
-        }
-        var e = document,
-          a = window,
-          o = "ead71331-eb10-4639-ac78-3301abb235d0";
-        "complete" == e.readyState
-          ? t()
-          : a.attachEvent
-          ? a.attachEvent("onload", t)
-          : a.addEventListener("load", t, !1);
-      })();
-    </script>
+    <link rel="icon" href="favicon.ico" />
+    <title>پرسش‌نامه‌ی پژوهشی در تیم‌های توسعه‌ی نرم‌افزار</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#4DBA87" />
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="پرسش‌نامه‌ی پژوهشی در تیم‌های توسعه‌ی نرم‌افزار"
+    />
+    <!-- <link rel="apple-touch-icon" href="/apple-touch-icon-152x152.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4DBA87" />
+    <meta
+      name="msapplication-TileImage"
+      content="/img/icons/msapplication-icon-144x144.png"
+    />
+    <meta name="msapplication-TileColor" content="#4DBA87" /> -->
   </head>
   <body>
     <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
+      <strong>
+        این وبسایت برای اجرا نیاز به جاوااسکریپت دارد. لطفا برای ادامه آن را
+        فعال کنید.
+      </strong>
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
