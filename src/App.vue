@@ -30,9 +30,6 @@ export default defineComponent({
   computed: {
     ...mapGetters(["surveyTitle"]),
   },
-  mounted() {
-    document.title = this.surveyTitle;
-  },
 });
 </script>
 
@@ -156,20 +153,19 @@ a:focus {
   height: 500px;
   width: 100%;
 }
-.el-input__inner { 
-    background-color: #384a5d !important;
-    color: #f5f5f5 !important;
-}
-.el-link.el-link--info{
-    color: #e2e2e2 !important;
-
-}
-
-.el-card{
+.el-input__inner {
   background-color: #384a5d !important;
-  color: #f5f5f5 !important
+  color: #f5f5f5 !important;
 }
-.card-header h4{
-  color: #f5f5f5 !important
+.el-link.el-link--info {
+  color: #e2e2e2 !important;
+}
+
+.el-card {
+  background-color: #384a5d !important;
+  color: #f5f5f5 !important;
+}
+.card-header h4 {
+  color: #f5f5f5 !important;
 }
 </style>
