@@ -1,5 +1,5 @@
 <template>
-  <div id="survey-intro">
+  <div v-if="remainingParticipants" id="survey-intro">
     <p>
       از این که دقایقی از وقت ارزشمندتان را به تکمیل این پرسشنامه اختصاصی
       می‌دهید بسیار سپاسگزارم.
@@ -27,6 +27,18 @@
       >من آماده ام. شروع کن</el-button
     >
   </div>
+  <div v-else id="survey-intro">
+    <el-alert
+    title=""
+    type="success"
+    center
+    show-icon :closable="false">
+    <strong>
+با تشکر از همکاری شما؛ تمام اعضای این تیم در این پرسشنامه شرکت کرده اند.
+    </strong>
+  </el-alert>
+
+  </div>
 </template>
 
 <script>
@@ -35,7 +47,7 @@ import { mapGetters } from "vuex";
 export default defineComponent({
   name: "SurveyIntro",
   computed: {
-    ...mapGetters(["teamSize"]),
+    ...mapGetters(["teamSize", "NotYetRespondedTeamMembers"]),
     totalNumberOfQuestions() {
       const NO_OF_GENERAL_QUESTIONS = 5;
       const NO_OF_TEAM_COORDINATION_QUESTIONS = 5;
@@ -63,6 +75,9 @@ export default defineComponent({
       const roundedTotalNumberOfMinutesWithSlack = Math.round(totalNumberOfMinutesWithSlack);
       return roundedTotalNumberOfMinutesWithSlack;
     },
+    remainingParticipants() {
+      return this.NotYetRespondedTeamMembers.length || 0;
+    }
   },
 });
 </script>
