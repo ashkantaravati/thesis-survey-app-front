@@ -50,7 +50,7 @@ const store = createStore({
     },
   },
   actions: {
-    fetchTeamInfo({ commit }, teamId: string) {
+    fetchTeamInfo({ commit, getters }, teamId: string) {
       commit("setLoading", true);
       getTeamInfo(teamId)
         .then((res) => {
@@ -58,10 +58,16 @@ const store = createStore({
           const mapper = new TeamWithOrganizationInfoMapper();
           const teamInfo = mapper.createModelFromDto(dto);
           commit("setTeamInfo", teamInfo);
+          // const remainingParticipants = getters.NotYetRespondedTeamMembers;
+          // if (remainingParticipants.length <= 0) {
+
+          // }
           commit("generateVoiceResponseItemForEachTeamMember");
-          commit("setLoading", false);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => {
+          commit("setLoading", false);
+        });
     },
     registerOrganization({ commit, state }, onSuccess: SimpleProcedure) {
       const mapper = new OrganizationRegistrationMapper();
