@@ -105,9 +105,13 @@ const store = createStore({
       }
       const mapper = new SurveyResponseMapper();
       const dto = mapper.createDtoFromModel(state.survey);
+      commit("setLoading", true);
       submitParticipantResponse(participantId, dto)
         .then(() => onSuccess())
-        .catch((err) => onFailure());
+        .catch((err) => onFailure())
+        .finally(() => {
+          commit("setLoading", false);
+        });
     },
   },
   mutations: {
