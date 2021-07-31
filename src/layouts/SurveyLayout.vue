@@ -1,6 +1,5 @@
 <template>
   <h2>پرسشنامه</h2>
-  {{ progress }}
   <div id="info-bar" v-loading.fullscreen.lock="loading">
     <p class=" ">
       شرکت‌کننده‌ی گرامی از تیم
