@@ -69,7 +69,7 @@
       </div>
     </el-card>
   </div>
-  <proceed-button type="finalize" text="ارسال" @click.stop="$emit('submit')" />
+  <proceed-button type="finalize" text="ارسال" @click="$emit('submit')" />
 </template>
 
 <script>
