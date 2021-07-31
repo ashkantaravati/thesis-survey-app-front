@@ -46,7 +46,6 @@ export default defineComponent({
   methods: {
     ...mapActions(["registerOrganization"]),
     submit() {
-      console.log("submit");
       this.markCurrentStepAsComplete();
       if (this.noRemainingStepsLeft) {
         this.registerOrganization(this.goToSuccessPage);
