@@ -28,12 +28,7 @@
         گام قبل</el-link
       >
     </div>
-    <router-view
-      @proceed="goNext"
-      @submit="
-        submitResponse({ onSuccess: goToSuccessPage, onFailure: goToErrorPage })
-      "
-    ></router-view>
+    <router-view @proceed.once="goNext" @submit.once="submit"></router-view>
   </div>
 </template>
 
@@ -41,7 +36,12 @@
 import { defineComponent, computed } from "vue";
 import { mapActions, mapMutations, useStore } from "vuex";
 // import { getTeamInfo } from "../api/survey.service";
-type Step = { index: number; title: string; routeName: string };
+type Step = {
+  index: number;
+  title: string;
+  routeName: string;
+  completed: boolean;
+};
 export default defineComponent({
   name: "SurveyLayout",
   props: {
@@ -60,6 +60,7 @@ export default defineComponent({
     ...mapActions(["fetchTeamInfo", "submitResponse"]),
     ...mapMutations(["setProgress"]),
     goNext() {
+      this.markCurrentStepAsComplete();
       const nextIndex = this.currentStepIndex + 1;
       const nextStep = this.getStep(nextIndex);
       if (nextStep == undefined) return;
@@ -82,21 +83,37 @@ export default defineComponent({
       this.$router.push({ name: "error" });
     },
     submit(): void {
-      if (this.progress <= 0) return;
-      // TODO: show a message
-      if (this.progress <= this.lastIndex) {
-        return;
+      this.markCurrentStepAsComplete();
+      if (this.noRemainingStepsLeft) {
+        this.submitResponse({
+          onSuccess: this.goToSuccessPage,
+          onFailure: this.goToErrorPage,
+        });
+      } else {
+        this.$alert("هنوز همه‌ی مراحل را تکمیل نکرده اید.", "دست نگه‌دارید!", {
+          confirmButtonText: "بازگشت به مراحل",
+          callback: () => {
+            this.$router.push({ name: this.firstIncompleteStep.routeName });
+          },
+        });
       }
+
       this.submitResponse({
         onSuccess: this.goToSuccessPage,
         onFailure: this.goToErrorPage,
       });
     },
+    markCurrentStepAsComplete() {
+      this.currentStep.completed = true;
+    },
   },
   computed: {
-    currentStep(): Step | undefined {
+    currentStep(): Step {
       const currentRouteName = this.$router.currentRoute.value.name;
-      return this.steps.find((step) => step.routeName === currentRouteName);
+      return (
+        this.steps.find((step) => step.routeName === currentRouteName) ||
+        this.firstStep
+      );
     },
 
     currentStepIndex(): number {
@@ -113,6 +130,24 @@ export default defineComponent({
         ? this.steps[this.steps.length - 1].index
         : 0;
     },
+    numberOfSteps(): number {
+      return this.steps.length;
+    },
+    numberOfCompletedSteps(): number {
+      return this.steps.filter((step) => step.completed).length;
+    },
+    numberOfRemainingSteps(): number {
+      return this.steps.length - this.numberOfCompletedSteps;
+    },
+    noRemainingStepsLeft(): boolean {
+      return this.numberOfRemainingSteps === 0;
+    },
+    firstIncompleteStep(): Step {
+      return this.steps.find((step) => !step.completed) || this.firstStep;
+    },
+    firstStep(): Step {
+      return this.getStep(0) as Step;
+    },
   },
   created() {
     this.fetchTeamInfo(this.teamId);
@@ -125,33 +160,39 @@ export default defineComponent({
           index: 0,
           title: "سوالات عمومی",
           routeName: "survey-step-1",
+          completed: false,
         },
         {
           index: 1,
           title: "بیش‌اطمینانی",
           routeName: "survey-step-2",
+          completed: false,
         },
         {
           index: 2,
           title: "هماهنگی تیم",
           routeName: "survey-step-3",
+          completed: false,
         },
         {
           index: 3,
           title: "اثربخشی تیم",
           routeName: "survey-step-4",
+          completed: false,
         },
         {
           index: 4,
           title: "رفتار صدای تیم",
           routeName: "survey-step-5",
+          completed: false,
         },
         {
           index: 5,
           title: "بازبینی",
           routeName: "survey-review",
+          completed: false,
         },
-      ],
+      ] as Step[],
     };
   },
 });
