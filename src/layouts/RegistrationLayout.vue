@@ -25,10 +25,7 @@
     >
   </div>
   <div class="registration-title">
-    <router-view
-      @proceed="goNext"
-      @submit="registerOrganization(goToSuccessPage)"
-    ></router-view>
+    <router-view @proceed.once="goNext" @submit.once="submit"></router-view>
   </div>
 </template>
 
@@ -48,7 +45,22 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(["registerOrganization"]),
+    submit() {
+      console.log("submit");
+      this.markCurrentStepAsComplete();
+      if (this.noRemainingStepsLeft) {
+        this.registerOrganization(this.goToSuccessPage);
+      } else {
+        this.$alert("هنوز همه‌ی مراحل را تکمیل نکرده اید.", "دست نگه‌دارید!", {
+          confirmButtonText: "بازگشت به مراحل",
+          callback: () => {
+            this.$router.push({ name: this.firstIncompleteStep.routeName });
+          },
+        });
+      }
+    },
     goNext() {
+      this.markCurrentStepAsComplete();
       const nextIndex = this.currentStepIndex + 1;
       const nextStep = this.getStep(nextIndex);
       if (nextStep == undefined) return;
@@ -67,6 +79,9 @@ export default defineComponent({
     goToSuccessPage() {
       this.$router.push({ name: "register-success" });
     },
+    markCurrentStepAsComplete() {
+      this.currentStep.completed = true;
+    },
   },
   computed: {
     currentStep() {
@@ -83,6 +98,21 @@ export default defineComponent({
     isLastStep() {
       return this.currentStepIndex === this.steps.length - 1;
     },
+    numberOfSteps() {
+      return this.steps.length;
+    },
+    numberOfCompletedSteps() {
+      return this.steps.filter((step) => step.completed).length;
+    },
+    numberOfRemainingSteps() {
+      return this.steps.length - this.numberOfCompletedSteps;
+    },
+    noRemainingStepsLeft() {
+      return this.numberOfRemainingSteps === 0;
+    },
+    firstIncompleteStep() {
+      return this.steps.find((step) => !step.completed);
+    },
   },
 
   data() {
@@ -92,16 +122,19 @@ export default defineComponent({
           index: 0,
           title: "اطلاعات اصلی",
           routeName: "register-step-1",
+          completed: false,
         },
         {
           index: 1,
           title: "تیم‌های شرکت‌کننده",
           routeName: "register-step-2",
+          completed: false,
         },
         {
           index: 2,
           title: "بازبینی و ثبت",
           routeName: "register-step-3",
+          completed: false,
         },
         // {
         //   index: 3,
