@@ -1,3 +1,5 @@
+import arrayShuffle from "array-shuffle";
+
 import {
   getTeamInfo,
   submitOrganizationInfo,
@@ -190,7 +192,8 @@ const store = createStore({
       }
     },
     generateVoiceResponseItemForEachTeamMember(state: State) {
-      state.teamInfo.members.forEach((member) => {
+      const shuffledMembers = arrayShuffle(state.teamInfo.members);
+      shuffledMembers.forEach((member) => {
         state.survey.voiceSurveys.push(new VoiceSurvey(member));
       });
     },
