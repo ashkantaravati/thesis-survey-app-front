@@ -24,7 +24,7 @@ import {
 import { state, State } from "./state";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
 import { LikertResponse, MinMaxResponse } from "@/models/common";
-import { SITE_TITLE } from "@/constants";
+import { SITE_TITLE, MINIMUM_TEAM_SIZE, MAXIMUM_TEAM_SIZE } from "@/constants";
 
 type SimpleProcedure = () => void;
 
@@ -227,7 +227,7 @@ const store = createStore({
       const teamCount = state.registrationInfo.teams.length;
       state.registrationInfo.teams.push({
         name: `تیم ${teamCount + 1}`, //TODO set a dynamic name for each team we create
-        members: [new TeamMember(), new TeamMember()],
+        members: [new TeamMember(), new TeamMember(), new TeamMember()],
         link: "",
       });
     },
@@ -243,6 +243,8 @@ const store = createStore({
       );
     },
     addAMemberToTeam(state: State, targetTeam: Team) {
+      if (targetTeam.members.length === MAXIMUM_TEAM_SIZE) return;
+      // at most MAXIMUM_TEAM_SIZE members can be added to a team
       const team = state.registrationInfo.teams.find(
         (team) => team === targetTeam
       );
@@ -253,7 +255,7 @@ const store = createStore({
       team.members.push(new TeamMember());
     },
     removeMemberFromTeam(state: State, { team, member }) {
-      if (team.members.length === 2) return; // at least 2 members required
+      if (team.members.length === MINIMUM_TEAM_SIZE) return; // at least 3 members required
       const targetTeam = state.registrationInfo.teams.find((t) => t === team);
       if (targetTeam === undefined) {
         console.error("target team does not exist");
