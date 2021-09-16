@@ -1,12 +1,22 @@
 <template>
   <div class="fix-btns-container align-left">
     <template v-if="type === 'proceed'">
-      <el-button size="medium" type="primary" @click="onClick">
+      <el-button
+        size="medium"
+        type="primary"
+        :tabindex="innerButtonTabIndex"
+        @click="onClick"
+      >
         {{ text }} <i class="el-icon-arrow-left"></i
       ></el-button>
     </template>
     <template v-if="type === 'finalize'">
-      <el-button size="medium" type="success" @click="onClick">
+      <el-button
+        size="medium"
+        type="success"
+        :tabindex="innerButtonTabIndex"
+        @click="onClick"
+      >
         {{ text }}<i class="el-icon-arrow-left"></i
       ></el-button>
     </template>
@@ -26,6 +36,10 @@ export default defineComponent({
     text: {
       type: String,
       required: true,
+    },
+    innerButtonTabIndex: {
+      type: Number,
+      default: 0,
     },
   },
   methods: {

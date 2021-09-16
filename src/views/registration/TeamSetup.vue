@@ -18,6 +18,7 @@
           <el-col :xs="16" :lg="18">
             <el-input
               class="pb-1rem"
+              tabindex="5"
               v-model="team.name"
               :placeholder="`تیم شماره ${index + 1}`"
             />
@@ -32,6 +33,7 @@
               <el-button
                 @click="removeTeam(team)"
                 type="danger"
+                tabindex="6"
                 icon="el-icon-delete"
                 circle
                 plain
@@ -77,6 +79,7 @@
         <el-input
           class="pb-1rem"
           v-model="member.name"
+          tabindex="1"
           placeholder="نام یا نام مستعار عضو"
         />
       </el-col>
@@ -89,6 +92,7 @@
         >
           <el-button
             @click="removeMemberFromTeam({ team, member })"
+            tabindex="7"
             type="danger"
             icon="el-icon-delete"
             circle
@@ -99,16 +103,26 @@
       ></el-col>
     </el-row>
 
-    <el-button @click="addAMemberToTeam(team)" type="primary" plain>
+    <el-button
+      @click="addAMemberToTeam(team)"
+      tabindex="2"
+      type="primary"
+      plain
+    >
       + افزودن عضو
     </el-button>
   </el-card>
   <div class="d-flex jc-center mb-halfrem">
-    <el-button @click="addTeam" type="primary" round>
+    <el-button @click="addTeam" type="primary" tabindex="3" round>
       + افزودن تیم
     </el-button>
   </div>
-  <proceed-button type="proceed" text="گام بعد" @click.stop="goNext" />
+  <proceed-button
+    type="proceed"
+    text="گام بعد"
+    innerButtonTabIndex="4"
+    @click.stop="goNext"
+  />
 </template>
 
 <script lang="ts">
