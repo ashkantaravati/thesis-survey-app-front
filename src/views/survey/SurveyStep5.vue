@@ -12,7 +12,8 @@
       :key="survey.id"
     />
   </div>
-  <proceed-button type="proceed" text="گام بعد" @click="$emit('proceed')" />
+  <!-- <proceed-button type="proceed" text="گام بعد" @click="$emit('proceed')" /> -->
+  <proceed-button type="finalize" text="ارسال" @click="$emit('submit')" />
 </template>
 
 <script>

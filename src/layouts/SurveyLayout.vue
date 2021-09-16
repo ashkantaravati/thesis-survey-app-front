@@ -83,6 +83,7 @@ export default defineComponent({
       this.$router.push({ name: "error" });
     },
     submit(): void {
+      alert("submit");
       this.markCurrentStepAsComplete();
       if (this.noRemainingStepsLeft) {
         this.submitResponse({
@@ -186,12 +187,12 @@ export default defineComponent({
           routeName: "survey-step-5",
           completed: false,
         },
-        {
-          index: 5,
-          title: "بازبینی",
-          routeName: "survey-review",
-          completed: false,
-        },
+        // {
+        //   index: 5,
+        //   title: "بازبینی",
+        //   routeName: "survey-review",
+        //   completed: false,
+        // },
       ] as Step[],
     };
   },
