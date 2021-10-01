@@ -1,4 +1,11 @@
 <template>
+  <el-header class="header">
+    <router-link to="#"> درباره‌ پژوهش </router-link>
+    <router-link to="#">راهنما</router-link>
+    <!-- <router-link to="#">درباره‌ی پژوهشگر</router-link> -->
+    <router-link to="#">ارتباط با پژوهشگر</router-link>
+  </el-header>
+  <el-divider style="margin-top:0"></el-divider>
   <div class="common-layout add-bg">
     <el-container class="body-container">
       <!-- <el-header class="header" style="margin:10px 0; height: unset">
@@ -13,12 +20,7 @@
         </el-row>
       </el-main>
       <el-divider></el-divider>
-      <el-footer class="footer">
-        <router-link to="#"> درباره‌ پژوهش </router-link>
-        <router-link to="#">راهنما</router-link>
-        <router-link to="#">درباره‌ی پژوهشگر</router-link>
-        <router-link to="#">ارتباط با پژوهشگر</router-link>
-      </el-footer>
+      <el-footer class="footer"> </el-footer>
     </el-container>
   </div>
 </template>
@@ -61,7 +63,7 @@ body::before {
   left: 50%;
   background: url(./assets/images/colorfull-bg.svg) no-repeat 50%;
   transform: translateX(-50%);
-  /* z-index: 1; */
+  z-index: -1;
   opacity: 0.7;
 }
 @media screen and (max-width: 768px) {
@@ -97,12 +99,20 @@ a:focus {
 .el-main {
   min-height: 70vh;
 }
-.footer {
-  font-size: 0.8rem;
+.header {
+  font-size: 1rem;
+  display: flex;
+  align-items: center; 
 }
-.footer a {
+.header a {
   color: rgb(218, 218, 218);
-  margin-left: 1rem;
+  margin-left: 1.5rem;
+}
+@media screen and (max-width: 320px) {
+ .header a {
+  color: rgb(218, 218, 218);
+  margin-left: .82rem;
+}
 }
 /*  */
 .jc-center {
@@ -134,7 +144,7 @@ a:focus {
   margin-top: 1rem !important;
 }
 
-.my-1rem{
+.my-1rem {
   margin-top: 1rem !important;
   margin-bottom: 1rem !important;
 }

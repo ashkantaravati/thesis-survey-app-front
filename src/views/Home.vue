@@ -43,8 +43,8 @@
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
       <div style="margin: 2rem 0 6rem 0">
         <p>آمارهای مشارکت تا این لحظه</p>
-        <div class="d-flex jc-between">
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7">
+        <el-row class="d-flex jc-between">
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
             <el-card :body-style="{ padding: '0px' }">
               <div style="padding: 14px">
                 <span>Yummy hamburger</span>
@@ -54,7 +54,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7">
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
             <el-card :body-style="{ padding: '0px' }">
               <div style="padding: 14px">
                 <span>Yummy hamburger</span>
@@ -64,7 +64,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7">
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
             <el-card :body-style="{ padding: '0px' }">
               <div style="padding: 14px">
                 <span>Yummy hamburger</span>
@@ -74,21 +74,21 @@
               </div>
             </el-card>
           </el-col>
-        </div>
+        </el-row>
       </div>
     </el-col>
   </el-row>
 
   <el-divider></el-divider>
-    <el-row class="mobile-row-reverse jc-center">
+  <el-row class="mobile-row-reverse jc-center">
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
       <div style="margin: 2rem 0 6rem 0">
-      <p>برخی از سازمان‌های مشارکت‌کننده</p>
-  <p style="color: #b3b3b3">
-    بدیهی ست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است
-  </p>
-        <div class="d-flex jc-between">
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7">
+        <p>برخی از سازمان‌های مشارکت‌کننده</p>
+        <p style="color: #b3b3b3">
+          بدیهی ست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است
+        </p>
+        <el-row class="d-flex jc-between">
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
             <el-card :body-style="{ padding: '0px' }">
               <div style="padding: 14px">
                 <span>Yummy hamburger</span>
@@ -98,7 +98,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7">
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
             <el-card :body-style="{ padding: '0px' }">
               <div style="padding: 14px">
                 <span>Yummy hamburger</span>
@@ -108,7 +108,7 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7">
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
             <el-card :body-style="{ padding: '0px' }">
               <div style="padding: 14px">
                 <span>Yummy hamburger</span>
@@ -118,11 +118,10 @@
               </div>
             </el-card>
           </el-col>
-        </div>
+        </el-row>
       </div>
     </el-col>
   </el-row>
- 
 </template>
 
 <script>
@@ -138,6 +137,9 @@ export default defineComponent({
 </script>
 
 <style>
+h1{
+  line-height: 36px;
+}
 @media screen and (min-width: 768px) {
   .long-text {
     line-height: 30px;
