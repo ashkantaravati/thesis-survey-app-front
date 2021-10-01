@@ -1,10 +1,10 @@
 <template>
   <div class="common-layout add-bg">
     <el-container class="body-container">
-      <el-header class="header" style="margin:10px 0; height: unset">
+      <!-- <el-header class="header" style="margin:10px 0; height: unset">
         <span>{{ surveyTitle }}</span>
-      </el-header>
-      <el-divider class="m-0"></el-divider>
+      </el-header> -->
+      <!-- <el-divider class="m-0"></el-divider> -->
       <el-main>
         <el-row class="jc-center">
           <el-col :xs="24" :lg="18" :xl="18">
@@ -14,9 +14,10 @@
       </el-main>
       <el-divider></el-divider>
       <el-footer class="footer">
-        <!-- <router-link to="#">درباره‌ی پژوهش</router-link>
+        <router-link to="#"> درباره‌ پژوهش </router-link>
+        <router-link to="#">راهنما</router-link>
         <router-link to="#">درباره‌ی پژوهشگر</router-link>
-        <router-link to="#">ارسال بازخورد</router-link> -->
+        <router-link to="#">ارتباط با پژوهشگر</router-link>
       </el-footer>
     </el-container>
   </div>
@@ -100,12 +101,15 @@ a:focus {
   font-size: 0.8rem;
 }
 .footer a {
-  color: #333;
+  color: rgb(218, 218, 218);
   margin-left: 1rem;
 }
 /*  */
 .jc-center {
   justify-content: center;
+}
+.jc-between {
+  justify-content: space-between;
 }
 .d-flex {
   display: flex;
@@ -129,22 +133,13 @@ a:focus {
 .mt-1rem {
   margin-top: 1rem !important;
 }
+
+.my-1rem{
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
 /*  */
 
-.fix {
-  position: fixed;
-  bottom: 0;
-  z-index: 9999999;
-  background: #384a5d;
-  flex-shrink: 1;
-  flex-grow: 1;
-  width: 100%;
-  right: 0;
-  align-items: center;
-  left: 0;
-  box-shadow: 0 -7px 8px #1010102e;
-  padding: 1.5rem 0px;
-}
 .el-button.is-round {
   border-radius: 46px;
   padding: 19px 40px;
