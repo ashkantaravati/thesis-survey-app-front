@@ -1,11 +1,39 @@
 <template>
   <el-header class="header">
-    <router-link to="#"> درباره‌ پژوهش </router-link>
-    <router-link to="#">راهنما</router-link>
-    <!-- <router-link to="#">درباره‌ی پژوهشگر</router-link> -->
-    <router-link to="#">ارتباط با پژوهشگر</router-link>
+    <el-button type="text" @click="aboutSurveyDrawer = true">
+      درباره‌ پژوهش</el-button
+    >
+    <el-button type="text" @click="hintDrawer = true">راهنما</el-button>
+    <el-button type="text" @click="aboutMeDrawer = true"
+      >ارتباط با پژوهشگر</el-button
+    >
+
+    <el-drawer
+      v-model="aboutSurveyDrawer"
+      title="I am the title1"
+      :direction="direction"
+      :close-on-click-modal="true"
+    >
+      <span>Hi, there!</span>
+    </el-drawer>
+    <el-drawer
+      v-model="hintDrawer"
+      title="I am the title2"
+      :direction="direction"
+      :close-on-click-modal="true"
+    >
+      <span>Hi, there!</span>
+    </el-drawer>
+    <el-drawer
+      v-model="aboutMeDrawer"
+      title="I am the title3"
+      :direction="direction"
+      :close-on-click-modal="true"
+    >
+      <span>Hi, there!</span>
+    </el-drawer>
   </el-header>
-  <el-divider style="margin-top:0"></el-divider>
+  <el-divider style="margin-top: 0"></el-divider>
   <div class="common-layout add-bg">
     <el-container class="body-container">
       <!-- <el-header class="header" style="margin:10px 0; height: unset">
@@ -26,12 +54,29 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { mapGetters } from "vuex";
+
 export default defineComponent({
   name: "App",
   computed: {
     ...mapGetters(["surveyTitle"]),
+  },
+
+  setup() {
+    const aboutSurveyDrawer = ref(false);
+    const hintDrawer = ref(false);
+    const aboutMeDrawer = ref(false);
+    const direction = ref("btt");
+    const handleClose = () => {};
+
+    return {
+      hintDrawer,
+      aboutMeDrawer,
+      aboutSurveyDrawer,
+      direction,
+      handleClose,
+    };
   },
 });
 </script>
@@ -102,17 +147,17 @@ a:focus {
 .header {
   font-size: 1rem;
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
-.header a {
+.header button {
   color: rgb(218, 218, 218);
-  margin-left: 1.5rem;
+  margin-left: 1.5rem !important;
 }
 @media screen and (max-width: 320px) {
- .header a {
-  color: rgb(218, 218, 218);
-  margin-left: .82rem;
-}
+  .header a {
+    color: rgb(218, 218, 218);
+    margin-left: 0.82rem;
+  }
 }
 /*  */
 .jc-center {
