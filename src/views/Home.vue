@@ -4,7 +4,7 @@
   </div>
   <el-row class="mobile-row-reverse jc-center">
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
-      <p>
+      <p class="mb-hlafrem">
         برای مشارکت در این پرسشنامه لازم است ابتدا مشخصات تیم‌های سازمان شما ثبت
         شده و برای هر تیم یک لینک/کد دریافت کنید.
       </p>
@@ -24,15 +24,17 @@
           >
         </router-link>
       </div>
-      <div>
+      <div class="mt-1rem">
         <p>
           درصورتی‌که سازمان شما تعریف شده و لینک اختصاصی پرسشنامه را دریافت
           کرده‌ایداز این طریق وارد شوید
         </p>
         <div class="d-flex jc-center">
+          <!-- inam drawer mikhad -->
           <router-link :to="{ name: 'register-landing' }">
             <el-button type="primary" plain> شروع پرسشنامه</el-button>
           </router-link>
+
         </div>
       </div>
     </el-col>
