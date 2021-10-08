@@ -19,6 +19,7 @@
       v-if="!isFirstStep"
       @click.prevent="goPrev"
       type="info"
+      tabindex="50"
     >
       <i class="el-icon-right"></i>
       گام قبل</el-link
