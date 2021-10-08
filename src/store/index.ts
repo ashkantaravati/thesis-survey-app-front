@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import {
   getTeamInfo,
   submitOrganizationInfo,
@@ -107,8 +108,9 @@ const store = createStore({
       const dto = mapper.createDtoFromModel(state.survey);
       commit("setLoading", true);
       submitParticipantResponse(participantId, dto)
-        .then(() => onSuccess())
-        .catch((err) => onFailure())
+        // eslint-disable-next-line no-debugger
+        .then(() =>{onSuccess()})
+        .catch((err) =>{onFailure()})
         .finally(() => {
           commit("setLoading", false);
         });
