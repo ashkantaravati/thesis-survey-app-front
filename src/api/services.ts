@@ -1,4 +1,5 @@
-import http from "@/api/gateway";
+
+import axios from "@/api/gateway";
 import {
   OrganizationRegistrationDto,
   SurveyResponseDto,
@@ -6,18 +7,18 @@ import {
 } from "./contracts";
 
 function getTeamInfo(teamId: string) {
-  return http.get<TeamInfoDto>(`/teams/${teamId}`);
+  return axios.get<TeamInfoDto>(`/teams/${teamId}`);
 }
 
 function submitOrganizationInfo(payload: OrganizationRegistrationDto) {
-  return http.post<OrganizationRegistrationDto>("/organizations/", payload);
+  return axios.post<OrganizationRegistrationDto>("/organizations/", payload);
 }
 
 function submitParticipantResponse(
   participantId: string,
   payload: SurveyResponseDto
 ) {
-  return http.patch<SurveyResponseDto>(`/responses/${participantId}`, payload);
+  return axios.patch<SurveyResponseDto>(`/responses/${participantId}`, payload);
 }
 
 export { getTeamInfo, submitOrganizationInfo, submitParticipantResponse };

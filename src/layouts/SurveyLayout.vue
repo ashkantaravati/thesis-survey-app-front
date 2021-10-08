@@ -99,10 +99,6 @@ export default defineComponent({
         });
       }
 
-      this.submitResponse({
-        onSuccess: this.goToSuccessPage,
-        onFailure: this.goToErrorPage,
-      });
     },
     markCurrentStepAsComplete() {
       this.currentStep.completed = true;
