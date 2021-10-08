@@ -1,5 +1,5 @@
-import arrayShuffle from "array-shuffle";
 
+import arrayShuffle from "array-shuffle";
 import {
   getTeamInfo,
   submitOrganizationInfo,
