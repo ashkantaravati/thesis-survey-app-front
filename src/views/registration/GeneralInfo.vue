@@ -69,8 +69,8 @@ export default defineComponent({
             trigger: "blur",
           },
           {
-            min: 5,
-            message: "نام سازمان باید حداقل ۵ کاراکتر باشد",
+            min: 3,
+            message: "نام سازمان باید حداقل ۳ کاراکتر باشد",
             trigger: "blur",
           },
         ],
