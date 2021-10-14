@@ -42,39 +42,42 @@
   <el-divider></el-divider>
   <el-row class="mobile-row-reverse jc-center">
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
-      <div style="margin: 2rem 0 6rem 0">
+      <div style="margin: 2rem 0 4rem 0">
         <p>آمارهای مشارکت تا این لحظه</p>
         <el-row class="d-flex jc-between">
           <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card :body-style="{ padding: '0px' }">
-              <div style="padding: 14px">
-                <span>{{ stats.overall.number_of_registered_teams }} تیم </span>
-                <div class="bottom">
-                  <span type="text" class="button"
-                    >از {{ stats.overall.target_team_size }} تیم
-                  </span>
-                </div>
+            <el-card>
+              <span>
+                <span>
+                  {{ stats.overall.number_of_registered_teams }}
+                </span>
+                تیم
+              </span>
+              <div class="more-info">
+                <span type="text"
+                  >از {{ stats.overall.target_team_size }} تیم
+                </span>
               </div>
             </el-card>
           </el-col>
           <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card :body-style="{ padding: '0px' }">
-              <div style="padding: 14px">
-                <span>Yummy hamburger</span>
-                <div class="bottom">
-                  <el-button type="text" class="button">Operating</el-button>
-                </div>
-              </div>
+            <el-card>
+              <span>
+                <span>
+                  {{ stats.overall.number_of_registered_participants }}
+                </span>
+                نفر
+              </span>
             </el-card>
           </el-col>
           <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card :body-style="{ padding: '0px' }">
-              <div style="padding: 14px">
-                <span>Yummy hamburger</span>
-                <div class="bottom">
-                  <el-button type="text" class="button">Operating</el-button>
-                </div>
-              </div>
+            <el-card>
+              <span>
+                <span>
+                  {{ stats.overall.number_of_registered_organizations }}
+                </span>
+                سازمان
+              </span>
             </el-card>
           </el-col>
         </el-row>
@@ -83,6 +86,7 @@
   </el-row>
 
   <el-divider></el-divider>
+
   <el-row class="mobile-row-reverse jc-center">
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
       <div style="margin: 2rem 0 6rem 0">
@@ -90,40 +94,15 @@
         <p style="color: #b3b3b3">
           بدیهی ست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است
         </p>
-        <el-row class="d-flex jc-between">
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card :body-style="{ padding: '0px' }">
-              <div style="padding: 14px">
-                <span>Yummy hamburger</span>
-                <div class="bottom">
-                  <span type="text" class="button">{{
-                    stats.overall.number_of_registered_teams
-                  }}</span>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card :body-style="{ padding: '0px' }">
-              <div style="padding: 14px">
-                <span>Yummy hamburger</span>
-                <div class="bottom">
-                  <el-button type="text" class="button">Operating</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card :body-style="{ padding: '0px' }">
-              <div style="padding: 14px">
-                <span>Yummy hamburger</span>
-                <div class="bottom">
-                  <el-button type="text" class="button">Operating</el-button>
-                </div>
-              </div>
-            </el-card>
-          </el-col>
-        </el-row>
+        <el-carousel :interval="4000" type="card" height="100px">
+          <el-carousel-item
+            v-for="organization in stats.registered_organizations"
+            :key="organization"
+          >
+            <p class="name m-0">{{ organization.name }}</p>
+            <p class="count">با  <span>{{ organization.number_of_teams }}</span> تیم</p>
+          </el-carousel-item>
+        </el-carousel>
       </div>
     </el-col>
   </el-row>
@@ -152,22 +131,27 @@ export default defineComponent({
         },
         registered_organizations: [
           {
+            id: 1,
             name: "اسنپ",
             number_of_teams: 5,
           },
           {
+            id: 2,
             name: "پیام‌آوران پارسیان",
             number_of_teams: 5,
           },
           {
+            id: 3,
             name: "ممدسافت",
             number_of_teams: 2,
           },
           {
+            id: 4,
             name: "دیجی‌کالا",
             number_of_teams: 7,
           },
           {
+            id: 5,
             name: "غدیر",
             number_of_teams: 2,
           },
@@ -256,5 +240,49 @@ mark {
     display: flex;
     flex-direction: column-reverse;
   }
+}
+
+.el-card__body {
+  padding: 16px;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.el-card__body .more-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #ffffff38;
+  padding: 1px 6px;
+  border-top-right-radius: 4px;
+}
+.el-card__body span {
+  font-size: 14px;
+}
+.el-card__body span span {
+  font-size: 24px;
+}
+
+.el-carousel__item  {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #fff;
+  border-radius: 4px;
+}
+.el-carousel__item .count {
+ font-size: 12px;
+ margin:8px 0 0 0
+}
+.el-carousel__item:nth-child(2n) {
+  background-color: #384a5d;
+  
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #384a5d;
 }
 </style>
