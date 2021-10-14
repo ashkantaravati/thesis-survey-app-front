@@ -34,7 +34,6 @@
           <router-link :to="{ name: 'register-landing' }">
             <el-button type="primary" plain> شروع پرسشنامه</el-button>
           </router-link>
-
         </div>
       </div>
     </el-col>
@@ -49,9 +48,11 @@
           <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
             <el-card :body-style="{ padding: '0px' }">
               <div style="padding: 14px">
-                <span>Yummy hamburger</span>
+                <span>{{ stats.overall.number_of_registered_teams }} تیم </span>
                 <div class="bottom">
-                  <el-button type="text" class="button">Operating</el-button>
+                  <span type="text" class="button"
+                    >از {{ stats.overall.target_team_size }} تیم
+                  </span>
                 </div>
               </div>
             </el-card>
@@ -95,7 +96,9 @@
               <div style="padding: 14px">
                 <span>Yummy hamburger</span>
                 <div class="bottom">
-                  <el-button type="text" class="button">Operating</el-button>
+                  <span type="text" class="button">{{
+                    stats.overall.number_of_registered_teams
+                  }}</span>
                 </div>
               </div>
             </el-card>
@@ -135,11 +138,48 @@ export default defineComponent({
   computed: {
     ...mapGetters(["surveyTitle"]),
   },
+  data() {
+    return {
+      stats: {
+        overall: {
+          target_team_size: 70,
+          number_of_registered_teams: 35,
+          number_of_participated_teams: 30,
+          number_of_registered_participants: 320,
+          number_of_participated_participants: 270,
+          number_of_registered_organizations: 40,
+          number_of_participated_organizations: 37,
+        },
+        registered_organizations: [
+          {
+            name: "اسنپ",
+            number_of_teams: 5,
+          },
+          {
+            name: "پیام‌آوران پارسیان",
+            number_of_teams: 5,
+          },
+          {
+            name: "ممدسافت",
+            number_of_teams: 2,
+          },
+          {
+            name: "دیجی‌کالا",
+            number_of_teams: 7,
+          },
+          {
+            name: "غدیر",
+            number_of_teams: 2,
+          },
+        ],
+      },
+    };
+  },
 });
 </script>
 
 <style>
-h1{
+h1 {
   line-height: 36px;
 }
 @media screen and (min-width: 768px) {
