@@ -31,9 +31,19 @@
         </p>
         <div class="d-flex jc-center">
           <!-- inam drawer mikhad -->
-          <router-link :to="{ name: 'register-landing' }">
-            <el-button type="primary" plain> شروع پرسشنامه</el-button>
-          </router-link>
+
+          <el-button type="primary" plain v-on:click="isHidden = !isHidden">
+            <span v-if="!isHidden"> شروع پرسشنامه </span>
+            <span v-if="isHidden">
+            لغو
+            </span>
+          </el-button>
+        </div>
+        <div class="mt-1rem">
+          <div class="d-flex" v-if="isHidden">
+            <el-input placeholder="توکن خود را وارد کنید" />
+            <el-button class="mr-halfrem"> Go </el-button>
+          </div>
         </div>
       </div>
     </el-col>
@@ -100,7 +110,9 @@
             :key="organization"
           >
             <p class="name m-0">{{ organization.name }}</p>
-            <p class="count">با  <span>{{ organization.number_of_teams }}</span> تیم</p>
+            <p class="count">
+              با <span>{{ organization.number_of_teams }}</span> تیم
+            </p>
           </el-carousel-item>
         </el-carousel>
       </div>
@@ -119,6 +131,7 @@ export default defineComponent({
   },
   data() {
     return {
+      isHidden: false,
       stats: {
         overall: {
           target_team_size: 70,
@@ -265,7 +278,7 @@ mark {
   font-size: 24px;
 }
 
-.el-carousel__item  {
+.el-carousel__item {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,12 +287,11 @@ mark {
   border-radius: 4px;
 }
 .el-carousel__item .count {
- font-size: 12px;
- margin:8px 0 0 0
+  font-size: 12px;
+  margin: 8px 0 0 0;
 }
 .el-carousel__item:nth-child(2n) {
   background-color: #384a5d;
-  
 }
 
 .el-carousel__item:nth-child(2n + 1) {
