@@ -35,7 +35,7 @@
           <el-button type="primary" plain v-on:click="isHidden = !isHidden">
             <span v-if="!isHidden"> شروع پرسشنامه </span>
             <span v-if="isHidden">
-            لغو
+              لغو
             </span>
           </el-button>
         </div>
@@ -50,7 +50,7 @@
   </el-row>
 
   <el-divider></el-divider>
-  <el-row class="mobile-row-reverse jc-center">
+  <el-row v-show="stats.overall" class="mobile-row-reverse jc-center">
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
       <div style="margin: 2rem 0 4rem 0">
         <p>آمارهای مشارکت تا این لحظه</p>
@@ -59,13 +59,13 @@
             <el-card>
               <span>
                 <span>
-                  {{ stats.overall.number_of_registered_teams }}
+                  {{ stats.overall.numberOfRegisteredTeams }}
                 </span>
                 تیم
               </span>
               <div class="more-info">
                 <span type="text"
-                  >از {{ stats.overall.target_team_size }} تیم
+                  >از {{ stats.overall.targetTeamSize }} تیم
                 </span>
               </div>
             </el-card>
@@ -74,7 +74,7 @@
             <el-card>
               <span>
                 <span>
-                  {{ stats.overall.number_of_registered_participants }}
+                  {{ stats.overall.numberOfRegisteredParticipants }}
                 </span>
                 نفر
               </span>
@@ -84,7 +84,7 @@
             <el-card>
               <span>
                 <span>
-                  {{ stats.overall.number_of_registered_organizations }}
+                  {{ stats.overall.numberOfRegisteredOrganizations }}
                 </span>
                 سازمان
               </span>
@@ -106,12 +106,12 @@
         </p>
         <el-carousel :interval="4000" type="card" height="100px">
           <el-carousel-item
-            v-for="organization in stats.registered_organizations"
+            v-for="organization in stats.registeredOrganizations"
             :key="organization"
           >
             <p class="name m-0">{{ organization.name }}</p>
             <p class="count">
-              با <span>{{ organization.number_of_teams }}</span> تیم
+              با <span>{{ organization.numberOfTeams }}</span> تیم
             </p>
           </el-carousel-item>
         </el-carousel>
@@ -122,54 +122,22 @@
 
 <script>
 import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default defineComponent({
   name: "Home",
+  methods: {
+    ...mapActions(["fetchStats"]),
+  },
+  created() {
+    this.fetchStats();
+  },
   computed: {
-    ...mapGetters(["surveyTitle"]),
+    ...mapGetters(["surveyTitle", "stats"]),
   },
   data() {
     return {
       isHidden: false,
-      stats: {
-        overall: {
-          target_team_size: 70,
-          number_of_registered_teams: 35,
-          number_of_participated_teams: 30,
-          number_of_registered_participants: 320,
-          number_of_participated_participants: 270,
-          number_of_registered_organizations: 40,
-          number_of_participated_organizations: 37,
-        },
-        registered_organizations: [
-          {
-            id: 1,
-            name: "اسنپ",
-            number_of_teams: 5,
-          },
-          {
-            id: 2,
-            name: "پیام‌آوران پارسیان",
-            number_of_teams: 5,
-          },
-          {
-            id: 3,
-            name: "ممدسافت",
-            number_of_teams: 2,
-          },
-          {
-            id: 4,
-            name: "دیجی‌کالا",
-            number_of_teams: 7,
-          },
-          {
-            id: 5,
-            name: "غدیر",
-            number_of_teams: 2,
-          },
-        ],
-      },
     };
   },
 });
