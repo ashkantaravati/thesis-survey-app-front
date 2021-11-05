@@ -50,7 +50,7 @@
   </el-row>
 
   <el-divider></el-divider>
-  <el-row v-show="stats.overall" class="mobile-row-reverse jc-center">
+  <el-row v-if="stats.overall" class="mobile-row-reverse jc-center">
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
       <div style="margin: 2rem 0 4rem 0">
         <p>آمارهای مشارکت تا این لحظه</p>
