@@ -1,108 +1,152 @@
 <template>
   <div class="text-center">
-    <h1>پژوهشی در تیم‌های توسعه‌ی نرم‌افزار</h1>
-    <h3>
-      بررسی نقش تعدیل‌کننده‌ی رفتار صدای تیم در رابطه‌ی میان بیش‌اطمینانی و
-      اثربخشی تیم‌های نرم‌افزار
-    </h3>
+    <h1>پژوهشی در اثربخشی تیم‌های توسعه‌ی نرم‌افزار</h1>
   </div>
-  <el-row :gutter="10" class="mobile-row-reverse">
-    <el-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
-      <div class="long-text">
+  <el-row class="mobile-row-reverse jc-center">
+    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
+      <p class="mb-hlafrem">
+        برای مشارکت در این پرسشنامه لازم است ابتدا مشخصات تیم‌های سازمان شما ثبت
+        شده و برای هر تیم یک لینک/کد دریافت کنید.
+      </p>
+      <el-alert
+        style="background: transparent"
+        :closable="false"
+        show-icon
+        title="
+        اطلاعات تیم‌ها و سازمان می‌تواند مستعار باشد. کافی است تعداد تیم‌ها و
+        اعضا مطابق با واقعیت درج شود"
+        type="warning"
+      />
+      <div class="d-flex jc-center">
+        <router-link :to="{ name: 'register-landing' }">
+          <el-button type="primary" class="my-1rem">
+            شروع و ثبت اطلاعات سازمان</el-button
+          >
+        </router-link>
+      </div>
+      <div class="mt-1rem">
         <p>
-          از تیم‌های توسعه‌ی نرم‌افزار متعلق به انواع موسسات، سازمان‌ها،
-          کسب‌و‌کارها و حتی تیم‌های بلندمدت فریلنس صمیمانه دعوت می‌شود تا با
-          مشارکت در این پرسشنامه به پیش‌برد این پژوهش کمک نمایند.
+          درصورتی‌که سازمان شما تعریف شده و لینک اختصاصی پرسشنامه را دریافت
+          کرده‌ایداز این طریق وارد شوید
         </p>
-        <strong
-          >داده‌های جمع‌آوری شده از طریق این پرسشنامه پیش از تحلیل و ارائه‌ی
-          گزارش ناشناس‌سازی می‌شوند.</strong
-        >
-        <h3>مراحل مشارکت</h3>
-        <div class="home-steps-container">
-          <ul class="home-steps">
-            <li><h4>ثبت اطلاعات سازمان ویا تیم</h4></li>
-          </ul>
-          <ul class="home-steps">
-            <li><h4>دریافت لینک قابل اشتراک‌گذاری برای هر یک از تیم‌ها</h4></li>
-          </ul>
-          <ul class="home-steps">
-            <li><h4>قرار دادن لینک هر تیم در اختیار اعضای آن تیم</h4></li>
-          </ul>
-          <ul class="home-steps">
-            <li><h4>پاسخ اعضای تیم‌ها به پرسشنامه با مراجعه به لینک</h4></li>
-          </ul>
+        <div class="d-flex jc-center">
+          <!-- inam drawer mikhad -->
+
+          <el-button type="primary" plain v-on:click="isHidden = !isHidden">
+            <span v-if="!isHidden"> شروع پرسشنامه </span>
+            <span v-if="isHidden">
+              لغو
+            </span>
+          </el-button>
         </div>
-      </div></el-col
-    >
-    <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
-      <div class="home-img">
-        <img
-          style="width: 100%"
-          src="../assets/images/Designteam-amico.svg"
-          alt=""
-        /></div
-    ></el-col>
+        <div class="mt-1rem">
+          <div class="d-flex" v-if="isHidden">
+            <el-input placeholder="توکن خود را وارد کنید" />
+            <el-button class="mr-halfrem"> Go </el-button>
+          </div>
+        </div>
+      </div>
+    </el-col>
   </el-row>
-  <!-- <el-divider></el-divider>
-  <p>برخی از شرکت‌هایی که برای این پرسشنامه همکاری کردند</p>
-  <p style="color:#b3b3b3">
-    بدیهیست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است
-  </p>
-  <el-row style="margin-bottom: 6rem" :gutter="20">
-    <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4">
-      <el-card :body-style="{ padding: '0px' }">
-        <div style="padding: 14px">
-          <span>Yummy hamburger</span>
-          <div class="bottom">
-            <el-button type="text" class="button">Operating</el-button>
-          </div>
-        </div>
-      </el-card>
+
+  <el-divider></el-divider>
+  <el-row v-if="stats.overall" class="mobile-row-reverse jc-center">
+    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
+      <div style="margin: 2rem 0 4rem 0">
+        <p>آمارهای مشارکت تا این لحظه</p>
+        <el-row class="d-flex jc-between">
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
+            <el-card>
+              <span>
+                <span>
+                  {{ stats.overall.numberOfRegisteredTeams }}
+                </span>
+                تیم
+              </span>
+              <div class="more-info">
+                <span type="text"
+                  >از {{ stats.overall.targetTeamSize }} تیم
+                </span>
+              </div>
+            </el-card>
+          </el-col>
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
+            <el-card>
+              <span>
+                <span>
+                  {{ stats.overall.numberOfRegisteredParticipants }}
+                </span>
+                نفر
+              </span>
+            </el-card>
+          </el-col>
+          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
+            <el-card>
+              <span>
+                <span>
+                  {{ stats.overall.numberOfRegisteredOrganizations }}
+                </span>
+                سازمان
+              </span>
+            </el-card>
+          </el-col>
+        </el-row>
+      </div>
     </el-col>
-    <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4">
-      <el-card :body-style="{ padding: '0px' }">
-        <div style="padding: 14px">
-          <span>Yummy hamburger</span>
-          <div class="bottom">
-            <el-button type="text" class="button">Operating</el-button>
-          </div>
-        </div>
-      </el-card>
+  </el-row>
+
+  <el-divider></el-divider>
+
+  <el-row class="mobile-row-reverse jc-center">
+    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
+      <div style="margin: 2rem 0 6rem 0">
+        <p>برخی از سازمان‌های مشارکت‌کننده</p>
+        <p style="color: #b3b3b3">
+          بدیهی ست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است
+        </p>
+        <el-carousel :interval="4000" type="card" height="100px">
+          <el-carousel-item
+            v-for="organization in stats.registeredOrganizations"
+            :key="organization"
+          >
+            <p class="name m-0">{{ organization.name }}</p>
+            <p class="count">
+              با <span>{{ organization.numberOfTeams }}</span> تیم
+            </p>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
     </el-col>
-    <el-col :xs="24" :sm="24" :md="6" :lg="4" :xl="4">
-      <el-card :body-style="{ padding: '0px' }">
-        <div style="padding: 14px">
-          <span>Yummy hamburger</span>
-          <div class="bottom">
-            <el-button type="text" class="button">Operating</el-button>
-          </div>
-        </div>
-      </el-card>
-    </el-col>
-  </el-row> -->
-  <div class="jc-center d-flex fix">
-    <router-link :to="{ name: 'register-landing' }">
-      <el-button round type="primary" class="winking-btn">
-        شروع و ثبت اطلاعات سازمان</el-button
-      >
-    </router-link>
-  </div>
+  </el-row>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default defineComponent({
   name: "Home",
+  methods: {
+    ...mapActions(["fetchStats"]),
+  },
+  created() {
+    this.fetchStats();
+  },
   computed: {
-    ...mapGetters(["surveyTitle"]),
+    ...mapGetters(["surveyTitle", "stats"]),
+  },
+  data() {
+    return {
+      isHidden: false,
+    };
   },
 });
 </script>
 
 <style>
+h1 {
+  line-height: 36px;
+}
 @media screen and (min-width: 768px) {
   .long-text {
     line-height: 30px;
@@ -149,15 +193,6 @@ export default defineComponent({
   z-index: 1;
 }
 
-/* .home-steps-inner:after {
-  content: "";
-  position: absolute;
-  right: 1.3rem;
-  top: 12px;
-  width: 3px;
-  height: 45%;
-  background: #85daec;
-} */
 .home-steps-inner li:after {
   content: "";
   position: absolute;
@@ -167,23 +202,6 @@ export default defineComponent({
   height: 10px;
   border-radius: 50%;
   background: #85daec;
-}
-.winking-btn {
-  animation: glowing 3000ms infinite;
-}
-@keyframes glowing {
-  0% {
-    background-color: #409eff;
-    box-shadow: 0 0 3px #0c4e8f;
-  }
-  50% {
-    background-color: #0c4e8f;
-    box-shadow: 0 0 10px #409eff;
-  }
-  100% {
-    background-color: #409eff;
-    box-shadow: 0 0 3px #0c4e8f;
-  }
 }
 mark {
   background-color: #c5f5ff;
@@ -199,12 +217,52 @@ mark {
   text-align: right;
 }
 @media screen and (max-width: 768px) {
-  .fix {
-    padding: 1rem 0px;
-  }
   .mobile-row-reverse {
     display: flex;
     flex-direction: column-reverse;
   }
+}
+
+.el-card__body {
+  padding: 16px;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.el-card__body .more-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #ffffff38;
+  padding: 1px 6px;
+  border-top-right-radius: 4px;
+}
+.el-card__body span {
+  font-size: 14px;
+}
+.el-card__body span span {
+  font-size: 24px;
+}
+
+.el-carousel__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #fff;
+  border-radius: 4px;
+}
+.el-carousel__item .count {
+  font-size: 12px;
+  margin: 8px 0 0 0;
+}
+.el-carousel__item:nth-child(2n) {
+  background-color: #384a5d;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #384a5d;
 }
 </style>

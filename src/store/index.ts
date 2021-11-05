@@ -1,6 +1,6 @@
-
 import arrayShuffle from "array-shuffle";
 import {
+  getStats,
   getTeamInfo,
   submitOrganizationInfo,
   submitParticipantResponse,
@@ -25,6 +25,8 @@ import { state, State } from "./state";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
 import { LikertResponse, MinMaxResponse } from "@/models/common";
 import { SITE_TITLE, MINIMUM_TEAM_SIZE, MAXIMUM_TEAM_SIZE } from "@/constants";
+import Stats from "@/models/Stats";
+import StatsMapper from "@/mappers/StatsMapper";
 
 type SimpleProcedure = () => void;
 
@@ -38,6 +40,9 @@ const store = createStore({
         state.survey
       );
       // TODO: depend only on Survey
+    },
+    stats: (state) => {
+      return state.stats;
     },
     teamSize: (state) => {
       return state.teamInfo.members.length;
@@ -114,6 +119,14 @@ const store = createStore({
         .finally(() => {
           commit("setLoading", false);
         });
+    },
+    fetchStats({ commit }) {
+      getStats().then((res) => {
+        const dto = res.data;
+        const mapper = new StatsMapper();
+        const model = mapper.createModelFromDto(dto);
+        commit("setStats", model);
+      });
     },
   },
   mutations: {
@@ -275,6 +288,9 @@ const store = createStore({
         return;
       }
       state.progress = newStepIndex;
+    },
+    setStats(state: State, stats: Stats) {
+      state.stats = stats;
     },
   },
 });

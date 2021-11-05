@@ -1,13 +1,17 @@
-
 import axios from "@/api/gateway";
 import {
   OrganizationRegistrationDto,
+  StatsDto,
   SurveyResponseDto,
   TeamInfoDto,
 } from "./contracts";
 
 function getTeamInfo(teamId: string) {
   return axios.get<TeamInfoDto>(`/teams/${teamId}`);
+}
+
+function getStats() {
+  return axios.get<StatsDto>("/stats");
 }
 
 function submitOrganizationInfo(payload: OrganizationRegistrationDto) {
@@ -21,4 +25,9 @@ function submitParticipantResponse(
   return axios.patch<SurveyResponseDto>(`/responses/${participantId}`, payload);
 }
 
-export { getTeamInfo, submitOrganizationInfo, submitParticipantResponse };
+export {
+  getTeamInfo,
+  submitOrganizationInfo,
+  submitParticipantResponse,
+  getStats,
+};

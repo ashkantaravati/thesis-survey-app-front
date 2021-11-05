@@ -6,12 +6,14 @@ import {
   TeamWithOrganizationInfo,
   ThesisSurvey,
 } from "@/models";
+import Stats from "@/models/Stats";
 
 type State = {
   registrationInfo: OrganizationInfo;
   survey: ThesisSurvey;
   teamInfo: TeamWithOrganizationInfo;
   activeParticipant: TeamMember;
+  stats: Stats;
   loading: boolean;
   progress: number;
   // error: string;
@@ -27,6 +29,7 @@ const state: State = {
     },
     teams: [],
   },
+  stats: new Stats(),
   survey: {
     generalSurvey: { age: 25, sex: "female", teamHistory: 1, tenure: 1 },
     voiceSurveys: [],

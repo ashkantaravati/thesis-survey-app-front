@@ -272,7 +272,6 @@ export default defineComponent({
 .el-form-item__error {
   left: unset !important;
   right: 0;
-  top: 80% !important;
 }
 .step-container h3,
 .registration-title h3 {
