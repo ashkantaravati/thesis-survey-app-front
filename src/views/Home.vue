@@ -19,7 +19,12 @@
       />
       <div class="d-flex jc-center">
         <router-link :to="{ name: 'register-landing' }">
-          <el-button type="primary" class="my-1rem">
+          <el-button
+            type="primary"
+            class="my-1rem"
+            id="statrBtn"
+            ref="statrBtn"
+          >
             شروع و ثبت اطلاعات سازمان</el-button
           >
         </router-link>
@@ -128,6 +133,16 @@ export default defineComponent({
   name: "Home",
   methods: {
     ...mapActions(["fetchStats"]),
+    buttonKeyPress: function() {
+      document.addEventListener("keydown", function(e) {
+        if (e.which == 13) {
+         document.getElementById("statrBtn").click();
+        }
+      });
+    },
+  },
+  mounted() {
+    this.buttonKeyPress();
   },
   created() {
     this.fetchStats();
