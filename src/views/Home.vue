@@ -133,16 +133,16 @@ export default defineComponent({
   name: "Home",
   methods: {
     ...mapActions(["fetchStats"]),
-    buttonKeyPress: function() {
-      document.addEventListener("keydown", function(e) {
-        if (e.which == 13) {
-         document.getElementById("statrBtn").click();
-        }
-      });
-    },
+    // buttonKeyPress: function() {
+    //   document.addEventListener("keydown", function(e) {
+    //     if (e.which == 13) {
+    //      document.getElementById("statrBtn").click();
+    //     }
+    //   });
+   // },
   },
   mounted() {
-    this.buttonKeyPress();
+    this.$root.mapToEnter("statrBtn");
   },
   created() {
     this.fetchStats();
