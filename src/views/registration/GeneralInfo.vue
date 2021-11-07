@@ -12,6 +12,7 @@
         placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
         v-model="generalInfo.repName"
         autocomplete="name"
+        autofocus
       ></el-input>
     </el-form-item>
         <el-form-item prop="name">

@@ -62,6 +62,15 @@ export default defineComponent({
   computed: {
     ...mapGetters(["surveyTitle"]),
   },
+  methods: {
+    mapToEnter: function(elementId) {
+      document.addEventListener("keydown", function(e) {
+        if (e.which == 13) {
+          document.getElementById(elementId).click();
+        }
+      });
+    },
+  },
 
   setup() {
     const aboutSurveyDrawer = ref(false);
