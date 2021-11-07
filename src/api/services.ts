@@ -25,9 +25,17 @@ function submitParticipantResponse(
   return axios.patch<SurveyResponseDto>(`/responses/${participantId}`, payload);
 }
 
+function getOrganizationStatsIfAuthorized(authData: {
+  token: string;
+  email: string;
+}) {
+  return axios.post<Object>(`/stats/dashboard`, authData);
+}
+
 export {
   getTeamInfo,
   submitOrganizationInfo,
   submitParticipantResponse,
   getStats,
+  getOrganizationStatsIfAuthorized,
 };
