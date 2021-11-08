@@ -26,10 +26,10 @@
         <li v-for="(member, index) in team.members" :key="index">
           {{ member.name }}
           <i
-            :class="[
-              { 'el-icon-select': member.has_participated },
-              'el-icon-close',
-            ]"
+            :class="{
+              'el-icon-check success': member.has_participated,
+              'el-icon-close danger': !member.has_participated,
+            }"
           ></i>
         </li>
       </ul>
