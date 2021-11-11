@@ -24,28 +24,6 @@
           >
         </router-link>
       </div>
-      <div class="mt-1rem">
-        <p>
-          درصورتی‌که سازمان شما تعریف شده و لینک اختصاصی پرسشنامه را دریافت
-          کرده‌ایداز این طریق وارد شوید
-        </p>
-        <div class="d-flex jc-center">
-          <!-- inam drawer mikhad -->
-
-          <el-button type="primary" plain v-on:click="isHidden = !isHidden">
-            <span v-if="!isHidden"> شروع پرسشنامه </span>
-            <span v-if="isHidden">
-              لغو
-            </span>
-          </el-button>
-        </div>
-        <div class="mt-1rem">
-          <div class="d-flex" v-if="isHidden">
-            <el-input placeholder="توکن خود را وارد کنید" />
-            <el-button class="mr-halfrem"> Go </el-button>
-          </div>
-        </div>
-      </div>
     </el-col>
   </el-row>
 
