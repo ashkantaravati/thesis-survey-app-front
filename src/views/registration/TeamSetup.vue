@@ -214,4 +214,8 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.el-card__body{
+  flex-direction: column;
+}
+</style>
