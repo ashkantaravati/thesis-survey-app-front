@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
 import NotFound from "@/views/NotFound.vue";
 import Error from "@/views/Error.vue";
+import Dashboard from "@/views/Dashboard.vue";
 import { RegistrationLayout, SurveyLayout } from "@/layouts";
 import {
   SurveyIntro,
@@ -25,6 +26,12 @@ const routes = [
     path: "/",
     name: "home",
     component: Home,
+  },
+  {
+    path: "/dashboard/:orgId",
+    name: "dashboard",
+    props: true,
+    component: Dashboard,
   },
   {
     path: "/register",
