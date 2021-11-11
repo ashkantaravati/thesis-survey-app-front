@@ -15,8 +15,10 @@
         :lg="11"
         :xl="11"
         class="mt-1rem add-margin"
+        v-for="team in stats.teams"
+        :key="team.id"
       >
-        <el-card v-for="team in stats.teams" :key="team.id">
+        <el-card>
           <template #header>
             <div class="card-header">
               <h3 class="text-right">{{ team.name }}</h3>
@@ -38,12 +40,10 @@
             </div>
           </template>
           <div
-            style="    width: 100%;
-    display: flex;
-    flex-direction: column;"
+            class="name-container"
+  
           >
-            <div
-              style="display:flex; flex-direction:row ;  border-bottom: 1px solid #fff; padding-bottom:6px"
+            <div class="name-container-header" 
             >
               <div style="width:40%" class="flex:50%">
                 نام
@@ -155,7 +155,9 @@ export default defineComponent({
   border: none;
 }
 .link a:hover {
-  color: rgb(94, 13, 13);
+  color: rgb(30 30 30);
+  background: #979797;
+  transition: 0.3s;
 }
 
 .icon-styles i {
@@ -194,5 +196,31 @@ export default defineComponent({
   .add-margin:nth-child(2n) {
     margin-right: 8px;
   }
+}
+
+.name-container {
+  max-height: 230px;
+  overflow-y: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.name-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.name-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.name-container::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+.name-container-header{
+  position: sticky;
+  top:0;
+  display:flex; flex-direction:row ;  border-bottom: 1px solid #fff; padding-bottom:6px;
+  background: #384a5d;
 }
 </style>
