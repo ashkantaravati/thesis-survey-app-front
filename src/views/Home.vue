@@ -2,7 +2,7 @@
   <div class="text-center">
     <h1>پژوهشی در اثربخشی تیم‌های توسعه‌ی نرم‌افزار</h1>
   </div>
-  <el-row class="mobile-row-reverse jc-center">
+  <el-row class="jc-center" :gutter="10">
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
       <p class="mb-hlafrem">
         برای مشارکت در این پرسشنامه لازم است ابتدا مشخصات تیم‌های سازمان شما ثبت
@@ -25,16 +25,12 @@
         </router-link>
       </div>
     </el-col>
-  </el-row>
-
-  <el-divider></el-divider>
-  <el-row v-if="stats.overall" class="mobile-row-reverse jc-center">
-    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
+    <el-col v-if="stats.overall" :xs="24" :sm="24" :md="20" :lg="6" :xl="6">
       <div style="margin: 2rem 0 4rem 0">
-        <p>آمارهای مشارکت تا این لحظه</p>
-        <el-row class="d-flex jc-between">
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card>
+        <h2>آمارهای مشارکت تا این لحظه</h2>
+        <el-row class="jc-between overal-stats">
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
               <span>
                 <span>
                   {{ stats.overall.numberOfRegisteredTeams }}
@@ -48,8 +44,8 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card>
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
               <span>
                 <span>
                   {{ stats.overall.numberOfRegisteredParticipants }}
@@ -58,8 +54,8 @@
               </span>
             </el-card>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card>
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
               <span>
                 <span>
                   {{ stats.overall.numberOfRegisteredOrganizations }}
@@ -78,11 +74,13 @@
   <el-row class="mobile-row-reverse jc-center">
     <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
       <div style="margin: 2rem 0 6rem 0">
-        <p>برخی از سازمان‌های مشارکت‌کننده</p>
-        <p style="color: #b3b3b3">
-          بدیهی ست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است
-        </p>
-        <el-carousel :interval="4000" type="card" height="100px">
+        <h2>برخی از سازمان‌های مشارکت‌کننده</h2>
+        <el-carousel
+          indicator-position="none"
+          :interval="4000"
+          type="card"
+          height="100px"
+        >
           <el-carousel-item
             v-for="organization in stats.registeredOrganizations"
             :key="organization"
@@ -122,9 +120,16 @@ export default defineComponent({
 </script>
 
 <style>
-h1 {
-  line-height: 36px;
+.overal-stats {
+  flex-direction: column;
 }
+.overal-stats-card .el-card__body {
+  align-items: self-start;
+  padding: 5px 16px;
+}
+/* h1 {
+  line-height: 36px;
+} */
 @media screen and (min-width: 768px) {
   .long-text {
     line-height: 30px;
