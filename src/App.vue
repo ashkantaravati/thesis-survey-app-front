@@ -41,14 +41,8 @@
       </el-header> -->
       <!-- <el-divider class="m-0"></el-divider> -->
       <el-main>
-        <el-row class="jc-center">
-          <el-col :xs="24" :lg="18" :xl="18">
-            <router-view />
-          </el-col>
-        </el-row>
+        <router-view />
       </el-main>
-      <el-divider></el-divider>
-      <el-footer class="footer"> </el-footer>
     </el-container>
   </div>
 </template>
