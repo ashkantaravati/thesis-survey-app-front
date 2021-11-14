@@ -113,7 +113,7 @@
     </el-button>
   </el-card>
   <div class="d-flex jc-center mb-halfrem">
-    <el-button @click="addTeam" type="primary" tabindex="3" round>
+    <el-button @click="addTeam" type="primary" tabindex="3" round id="addTeam">
       + افزودن تیم
     </el-button>
   </div>
@@ -136,6 +136,7 @@ export default defineComponent({
   name: "TeamSetup",
   props: {},
   components: { ProceedButton },
+  
   methods: {
     ...mapMutations([
       "addTeam",
@@ -143,6 +144,7 @@ export default defineComponent({
       "addAMemberToTeam",
       "removeMemberFromTeam",
     ]),
+    
     goNext() {
       if (this.isValid)
         {
@@ -210,6 +212,9 @@ export default defineComponent({
       return result;
     },
 
+  },
+  mounted() {
+    this.$root.mapToEnter("addTeam");
   },
 });
 </script>
