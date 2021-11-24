@@ -5,7 +5,7 @@ import SurveySummary from "./SurveySummary";
 import Team from "./Team";
 type VoiceSurveyCollection = Array<VoiceSurvey>;
 import TeamCoordinationSurvey from "./TeamCoordinationSurvey";
-import { TeamEffectiveness } from "./TeamEffectiveness";
+import TeamEffectivenessSurvey from "./TeamEffectivenessSurvey";
 import TeamMember from "./TeamMember";
 import TeamWithOrganizationInfo from "./TeamWithOrganizationInfo";
 import ThesisSurvey from "./ThesisSurvey";
@@ -17,7 +17,7 @@ export {
   OverconfidenceSurvey,
   TeamCoordinationSurvey,
   VoiceSurvey,
-  TeamEffectiveness,
+  TeamEffectivenessSurvey,
   ThesisSurvey,
   Team,
   TeamMember,

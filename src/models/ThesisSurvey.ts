@@ -3,12 +3,12 @@ import { VoiceSurveyCollection } from ".";
 import GeneralSurvey from "./GeneralSurvey";
 import OverconfidenceSurvey from "./OverconfidenceSurvey";
 import TeamCoordinationSurvey from "./TeamCoordinationSurvey";
-import { TeamEffectiveness } from "./TeamEffectiveness";
+import TeamEffectivenessSurvey from "./TeamEffectivenessSurvey";
 
 export default class ThesisSurvey extends Model {
   generalSurvey!: GeneralSurvey;
   voiceSurveys!: VoiceSurveyCollection;
   overconfidenceSurvey!: OverconfidenceSurvey;
   teamCoordinationSurvey!: TeamCoordinationSurvey;
-  teamEffectiveness!: TeamEffectiveness;
+  teamEffectivenessSurvey!: TeamEffectivenessSurvey;
 }
