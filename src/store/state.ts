@@ -2,6 +2,7 @@ import {
   OrganizationInfo,
   OverconfidenceSurvey,
   TeamCoordinationSurvey,
+  TeamEffectivenessSurvey,
   TeamMember,
   TeamWithOrganizationInfo,
   ThesisSurvey,
@@ -35,7 +36,7 @@ const state: State = {
     voiceSurveys: [],
     overconfidenceSurvey: new OverconfidenceSurvey(),
     teamCoordinationSurvey: new TeamCoordinationSurvey(),
-    teamEffectiveness: {},
+    teamEffectivenessSurvey: new TeamEffectivenessSurvey(),
   },
 
   teamInfo: {
