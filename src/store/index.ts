@@ -330,6 +330,9 @@ const store = createStore({
     setStats(state: State, stats: Stats) {
       state.stats = stats;
     },
+    setFeedback(state: State, feedback: string) {
+      state.survey.feedback = feedback;
+    },
   },
 });
 
