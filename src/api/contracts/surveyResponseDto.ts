@@ -16,4 +16,5 @@ export default interface SurveyResponseDto
   overconfidence_survey_response: OverconfidenceSurveyResponseSchema;
   team_coordination_survey_response: TeamCoordinationSurveyResponseSchema;
   team_effectiveness_survey_response: TeamEffectivenessSurveyResponseSchema;
+  feedback_response: string;
 }

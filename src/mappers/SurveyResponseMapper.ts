@@ -34,6 +34,7 @@ export default class SurveyResponseMapper implements ITwoWayMapper {
       team_effectiveness_survey_response: _teamEffectivenessMapper.createDtoFromModel(
         model.teamEffectivenessSurvey
       ),
+      feedback_response: model.feedback,
     };
   }
 }

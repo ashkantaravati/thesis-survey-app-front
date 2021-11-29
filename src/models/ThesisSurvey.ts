@@ -11,4 +11,5 @@ export default class ThesisSurvey extends Model {
   overconfidenceSurvey!: OverconfidenceSurvey;
   teamCoordinationSurvey!: TeamCoordinationSurvey;
   teamEffectivenessSurvey!: TeamEffectivenessSurvey;
+  feedback!: string;
 }
