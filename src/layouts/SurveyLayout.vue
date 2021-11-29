@@ -29,11 +29,31 @@
       >
     </div>
     <router-view @proceed.once="goNext" @submit.once="submit"></router-view>
+    <el-dialog
+      v-model="feedbackDialogIsVisible"
+      title="تایید و ثبت"
+      width="50%"
+    >
+      <el-input
+        v-model="feedback"
+        autosize
+        type="textarea"
+        placeholder="نظر شما در مورد این پرسشنامه (اختیاری)"
+      />
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="feedbackDialogIsVisible = false">بازگشت</el-button>
+          <el-button type="primary" @click="confirmAndSend"
+            >تایید و ارسال</el-button
+          >
+        </span>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref } from "vue";
 import { mapActions, mapMutations, useStore } from "vuex";
 // import { getTeamInfo } from "../api/survey.service";
 type Step = {
@@ -49,11 +69,13 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    const feedbackDialogIsVisible = ref(false);
 
     return {
       loading: computed(() => store.state.loading),
       progress: computed(() => store.state.progress),
       teamInfo: computed(() => store.state.teamInfo),
+      feedbackDialogIsVisible,
     };
   },
   methods: {
@@ -82,14 +104,18 @@ export default defineComponent({
     goToErrorPage() {
       this.$router.push({ name: "error" });
     },
+    confirmAndSend() {
+      this.feedbackDialogIsVisible = false;
+
+      this.submitResponse({
+        onSuccess: this.goToSuccessPage,
+        onFailure: this.goToErrorPage,
+      });
+    },
     submit(): void {
-      alert("submit");
       this.markCurrentStepAsComplete();
       if (this.noRemainingStepsLeft) {
-        this.submitResponse({
-          onSuccess: this.goToSuccessPage,
-          onFailure: this.goToErrorPage,
-        });
+        this.feedbackDialogIsVisible = true;
       } else {
         this.$alert("هنوز همه‌ی مراحل را تکمیل نکرده اید.", "دست نگه‌دارید!", {
           confirmButtonText: "بازگشت به مراحل",
@@ -98,13 +124,20 @@ export default defineComponent({
           },
         });
       }
-
     },
     markCurrentStepAsComplete() {
       this.currentStep.completed = true;
     },
   },
   computed: {
+    feedback: {
+      get(): string {
+        return this.$store.state.survey.feedback;
+      },
+      set(value: string) {
+        this.$store.commit("setFeedback", value);
+      },
+    },
     currentStep(): Step {
       const currentRouteName = this.$router.currentRoute.value.name;
       return (
@@ -147,7 +180,7 @@ export default defineComponent({
     },
   },
   created() {
-    this.fetchTeamInfo(this.teamId);
+    if (this.teamInfo.members.length === 0) this.fetchTeamInfo(this.teamId);
   },
 
   data() {

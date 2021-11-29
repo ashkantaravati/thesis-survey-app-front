@@ -37,6 +37,7 @@ const state: State = {
     overconfidenceSurvey: new OverconfidenceSurvey(),
     teamCoordinationSurvey: new TeamCoordinationSurvey(),
     teamEffectivenessSurvey: new TeamEffectivenessSurvey(),
+    feedback: "",
   },
 
   teamInfo: {
