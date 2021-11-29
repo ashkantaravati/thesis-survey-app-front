@@ -131,7 +131,7 @@ import { mapMutations } from "vuex";
 import ProceedButton from "@/components/common/ProceedButton.vue";
 import { Team } from "@/models";
 const MIN_MEMBER_NAME_LENGTH = 3;
-const MIN_TEAM_NAME_LENGTH = 5;
+const MIN_TEAM_NAME_LENGTH = 3;
 export default defineComponent({
   name: "TeamSetup",
   props: {},
@@ -143,40 +143,7 @@ export default defineComponent({
       "addAMemberToTeam",
       "removeMemberFromTeam",
     ]),
-    goNext() {
-      if (this.isValid)
-        {
-          this.$emit("proceed");
-          return;
-        }
-      else {
-        let offset = 20;
-        const OFFSET_INCREMENT = 40;
-        if (!this.allMembersHaveNames)
-          {this.$notify.error({message:"نام عضو باید حداقل ۳ کاراکتر باشد.", offset:offset});
-          offset+=OFFSET_INCREMENT;}
-        if (!this.allTeamsHaveName)
-          {this.$notify.error({message:"نام تیم باید حداقل ۵ کاراکتر باشد.",offset:offset});offset+=OFFSET_INCREMENT;}
-        if(!this.atLeastOneTeamHasBeenAdded)
-          {this.$notify.error({message:"حداقل یک تیم باید وارد نمایید.",offset:offset});offset+=OFFSET_INCREMENT;}
-        if(!this.noTwoMembersWithinATeamHaveTheSameName)
-          {this.$notify.error({message:"نام اعضای یک تیم باید یکتا باشد", offset:offset});offset+=OFFSET_INCREMENT;}
-        if(!this.noTwoTeamsHaveTheSameName)
-          this.$notify.error({message:"نام تیم‌ها باید یکتا باشد", offset:offset});
-      }
-
-    },
-  },
-  computed: {
-    teams: {
-      get(): Team[] {
-        return this.$store.state.registrationInfo.teams;
-      },
-      set(value) {
-        this.$store.commit("updateTeams", value);
-      },
-    },
-    allMembersHaveNames(): boolean{
+        allMembersHaveNames(): boolean{
       let result = true;
       this.teams.forEach((team:Team) => {
         result &&= team.members.every(member => member.name.length >= MIN_MEMBER_NAME_LENGTH)});
@@ -190,7 +157,7 @@ export default defineComponent({
       return this.teams.length > 0;
     },
     isValid():boolean {
-      const result =  this.atLeastOneTeamHasBeenAdded && this.allMembersHaveNames && this.allTeamsHaveName && this.noTwoMembersWithinATeamHaveTheSameName && this.noTwoTeamsHaveTheSameName;
+      const result =  this.atLeastOneTeamHasBeenAdded() && this.allMembersHaveNames() && this.allTeamsHaveName() && this.noTwoMembersWithinATeamHaveTheSameName() && this.noTwoTeamsHaveTheSameName();
       return result;
     },
     noTwoMembersWithinATeamHaveTheSameName(): boolean{
@@ -209,13 +176,47 @@ export default defineComponent({
       });
       return result;
     },
+    goNext() {
+      if (this.isValid())
+        {
+          this.$emit("proceed");
+          return;
+        }
+      else {
+        let offset = 20;
+        const OFFSET_INCREMENT = 40;
+        if (!this.allMembersHaveNames())
+          {this.$notify.error({message:"نام عضو باید حداقل ۳ کاراکتر باشد.", offset:offset});
+          offset+=OFFSET_INCREMENT;}
+        if (!this.allTeamsHaveName())
+          {this.$notify.error({message:"نام تیم باید حداقل ۵ کاراکتر باشد.",offset:offset});offset+=OFFSET_INCREMENT;}
+        if(!this.atLeastOneTeamHasBeenAdded())
+          {this.$notify.error({message:"حداقل یک تیم باید وارد نمایید.",offset:offset});offset+=OFFSET_INCREMENT;}
+        if(!this.noTwoMembersWithinATeamHaveTheSameName())
+          {this.$notify.error({message:"نام اعضای یک تیم باید یکتا باشد", offset:offset});offset+=OFFSET_INCREMENT;}
+        if(!this.noTwoTeamsHaveTheSameName())
+          this.$notify.error({message:"نام تیم‌ها باید یکتا باشد", offset:offset});
+      }
+
+    },
+  },
+  computed: {
+    teams: {
+      get(): Team[] {
+        return this.$store.state.registrationInfo.teams;
+      },
+      set(value) {
+        this.$store.commit("updateTeams", value);
+      },
+    },
+
 
   },
 });
 </script>
 
 <style>
-.el-card__body{
+.el-card__body {
   flex-direction: column;
 }
 </style>
