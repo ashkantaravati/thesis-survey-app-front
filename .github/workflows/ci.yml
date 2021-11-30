@@ -15,11 +15,7 @@ jobs:
           node-version: '14'
       - run: yarn install
       - run: yarn build
-  deploy:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - name: copy file via ssh key
+      - name: copy files to server
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -30,3 +26,5 @@ jobs:
           target: "/var/www/thesis-survey-app-front/"
           rm: true
           overwrite: true
+          if: github.event_name == 'push'
+        
