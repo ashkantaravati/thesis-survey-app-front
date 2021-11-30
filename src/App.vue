@@ -1,5 +1,8 @@
 <template>
   <el-header class="header">
+    <router-link :to="{ name: 'home' }">
+      <el-button type="text"> صفحه‌ی اصلی</el-button>
+    </router-link>
     <el-button type="text" @click="aboutSurveyDrawer = true">
       درباره‌ پژوهش</el-button
     >
