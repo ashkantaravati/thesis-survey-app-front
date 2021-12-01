@@ -1,33 +1,33 @@
 <template>
-  <div class="text-center">
-    <h1>پژوهشی در اثربخشی تیم‌های توسعه‌ی نرم‌افزار</h1>
-  </div>
   <el-row class="jc-center" :gutter="10">
-    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
-      <p class="mb-hlafrem">
-        برای مشارکت در این پرسشنامه لازم است ابتدا مشخصات تیم‌های سازمان شما ثبت
-        شده و برای هر تیم یک لینک/کد دریافت کنید.
-      </p>
-      <el-alert
-        style="background: transparent"
-        :closable="false"
-        show-icon
-        title="
-        اطلاعات تیم‌ها و سازمان می‌تواند مستعار باشد. کافی است تعداد تیم‌ها و
-        اعضا مطابق با واقعیت درج شود"
-        type="warning"
-      />
-      <div class="d-flex jc-center">
-        <router-link :to="{ name: 'register-landing' }">
-          <el-button type="primary" class="my-1rem">
-            شروع و ثبت اطلاعات سازمان</el-button
-          >
-        </router-link>
-      </div>
+    <el-col :md="20" :lg="20" :xl="20">
+      <el-row>
+        <img src="../assets/images/exams-bro.svg" alt="" />
+      </el-row>
+      <el-row>
+        <h1>پژوهشی در اثربخشی تیم‌های توسعه‌ی نرم‌افزار</h1>
+
+        <p class="mb-halfrem">
+          برای مشارکت در این پرسشنامه لازم است ابتدا مشخصات تیم‌های سازمان شما
+          ثبت شده و برای هر تیم یک لینک/کد دریافت کنید.
+        </p>
+
+        <div>
+          <router-link :to="{ name: 'register-landing' }">
+            <el-button type="primary" class="my-1rem color-accent-cta">
+              می‌خواهم مشارکت کنم</el-button
+            >
+          </router-link>
+          <el-divider direction="vertical"></el-divider>
+          <el-button class="color-secondary-cta" type="text">
+            می‌خواهم بیشتر بدانم
+          </el-button>
+        </div>
+      </el-row>
     </el-col>
-    <el-col v-if="stats.overall" :xs="24" :sm="24" :md="20" :lg="6" :xl="6">
-      <div style="margin: 2rem 0 4rem 0">
-        <h2>آمارهای مشارکت تا این لحظه</h2>
+    <el-col v-if="stats.overall" :md="20" :lg="4" :xl="4">
+      <div>
+        <h2>مشارکت تاکنون</h2>
         <el-row class="jc-between overal-stats">
           <el-col class="mt-1rem">
             <el-card class="overal-stats-card">
@@ -72,9 +72,9 @@
   <el-divider></el-divider>
 
   <el-row class="mobile-row-reverse jc-center">
-    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
-      <div style="margin: 2rem 0 6rem 0">
-        <h2>برخی از سازمان‌های مشارکت‌کننده</h2>
+    <el-col :md="20" :lg="18" :xl="18">
+      <div>
+        <h2>برخی از مشارکت‌کنندگان</h2>
         <el-carousel
           indicator-position="none"
           :interval="4000"
@@ -247,5 +247,16 @@ mark {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #384a5d;
+}
+
+.color-accent-cta {
+  background-color: #ffcc29;
+  color: #142334;
+  border-radius: 6px;
+  border-width: 0;
+}
+
+.color-secondary-cta {
+  color: #ffcc29;
 }
 </style>
