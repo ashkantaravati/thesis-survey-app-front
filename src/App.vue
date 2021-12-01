@@ -8,7 +8,7 @@
     >
     <el-button type="text" @click="hintDrawer = true">راهنما</el-button>
     <el-button type="text" @click="aboutMeDrawer = true"
-      >ارتباط با پژوهشگر</el-button
+      >ارتباط با من</el-button
     >
 
     <el-drawer
