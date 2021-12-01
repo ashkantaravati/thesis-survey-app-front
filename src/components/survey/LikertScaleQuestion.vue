@@ -6,11 +6,22 @@
     <div dir="ltr" class="text-right">
       <el-form-item prop="value">
         <el-radio-group v-model="response.value" size="small">
-          <el-radio-button :label="1">شدیدا مخالفم</el-radio-button>
-          <el-radio-button :label="2">مخالفم</el-radio-button>
-          <el-radio-button :label="3">نه مخالف و نه موافقم</el-radio-button>
-          <el-radio-button :label="4">موافقم</el-radio-button>
-          <el-radio-button :label="5">شدیدا موافقم</el-radio-button>
+          <template v-if="scale === 7">
+            <el-radio-button :label="1">شدیدا مخالفم</el-radio-button>
+            <el-radio-button :label="2">مخالفم</el-radio-button>
+            <el-radio-button :label="3">نسبتا مخالفم</el-radio-button>
+            <el-radio-button :label="4">نه مخالف و نه موافقم</el-radio-button>
+            <el-radio-button :label="5">موافقم</el-radio-button>
+            <el-radio-button :label="6">نسبتا موافقم</el-radio-button>
+            <el-radio-button :label="7">شدیدا موافقم</el-radio-button>
+          </template>
+          <template v-else>
+            <el-radio-button :label="1">شدیدا مخالفم</el-radio-button>
+            <el-radio-button :label="2">مخالفم</el-radio-button>
+            <el-radio-button :label="3">نه مخالف و نه موافقم</el-radio-button>
+            <el-radio-button :label="4">موافقم</el-radio-button>
+            <el-radio-button :label="5">شدیدا موافقم</el-radio-button>
+          </template>
         </el-radio-group>
       </el-form-item>
     </div>
@@ -24,6 +35,7 @@ import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "LikertScaleQuestion",
+
   data() {
     return {
       rules: {
@@ -51,7 +63,13 @@ export default defineComponent({
     title: {
       type: String,
     },
+    scale: {
+      type: Number,
+      required: false,
+      default: 5,
+    },
   },
+
   computed: {
     response: {
       get(): LikertResponse {

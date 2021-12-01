@@ -204,6 +204,44 @@ const store = createStore({
           break;
       }
     },
+    setTeamEffectivenessSurveyResponse(
+      state: State,
+      payload: { index: number; response: LikertResponse }
+    ) {
+      const { index, response } = payload;
+      switch (index) {
+        case 1:
+          state.survey.teamEffectivenessSurvey.q1.response = response;
+          break;
+        case 2:
+          state.survey.teamEffectivenessSurvey.q2.response = response;
+          break;
+        case 3:
+          state.survey.teamEffectivenessSurvey.q3.response = response;
+          break;
+        case 4:
+          state.survey.teamEffectivenessSurvey.q4.response = response;
+          break;
+        case 5:
+          state.survey.teamEffectivenessSurvey.q5.response = response;
+          break;
+        case 6:
+          state.survey.teamEffectivenessSurvey.q6.response = response;
+          break;
+        case 7:
+          state.survey.teamEffectivenessSurvey.q7.response = response;
+          break;
+        case 8:
+          state.survey.teamEffectivenessSurvey.q8.response = response;
+          break;
+        case 9:
+          state.survey.teamEffectivenessSurvey.q9.response = response;
+          break;
+        case 10:
+          state.survey.teamEffectivenessSurvey.q10.response = response;
+          break;
+      }
+    },
     generateVoiceResponseItemForEachTeamMember(state: State) {
       const shuffledMembers = arrayShuffle(state.teamInfo.members);
       shuffledMembers.forEach((member) => {
@@ -291,6 +329,9 @@ const store = createStore({
     },
     setStats(state: State, stats: Stats) {
       state.stats = stats;
+    },
+    setFeedback(state: State, feedback: string) {
+      state.survey.feedback = feedback;
     },
   },
 });

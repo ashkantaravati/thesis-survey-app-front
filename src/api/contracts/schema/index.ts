@@ -6,6 +6,7 @@ import OrganizationSummarySchema from "./organizationSummarySchema";
 import OverconfidenceSurveyResponseSchema from "./overconfidenceSurveyResponseSchema";
 import StatsSummarySchema from "./statsSummarySchema";
 import TeamCoordinationSurveyResponseSchema from "./teamCoordinationSurveyResponseSchema";
+import TeamEffectivenessSurveyResponseSchema from "./teamEffectivenessSurveyResponseSchema";
 import TeamMemberSchema from "./teamMemberSchema";
 import TeamSchema from "./teamSchema";
 import VoiceSurveyResponseSchema from "./voiceSurveyResponseSchema";
@@ -22,4 +23,5 @@ export {
   TeamCoordinationSurveyResponseSchema,
   StatsSummarySchema,
   OrganizationSummarySchema,
+  TeamEffectivenessSurveyResponseSchema,
 };

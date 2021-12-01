@@ -4,6 +4,7 @@ import { ThesisSurvey } from "@/models";
 import GeneralSurveyMapper from "./GeneralSurveyMapper";
 import OverconfidenceMapper from "./OverconfidenceMapper";
 import TeamCoordinationMapper from "./TeamCoordinationMapper";
+import TeamEffectivenessMapper from "./TeamEffectivenessMapper";
 import VoiceSurveyMapper from "./VoiceSurveyMapper";
 
 export default class SurveyResponseMapper implements ITwoWayMapper {
@@ -16,6 +17,7 @@ export default class SurveyResponseMapper implements ITwoWayMapper {
     const _generalSurveyMapper = new GeneralSurveyMapper();
     const _teamCoordinationMapper = new TeamCoordinationMapper();
     const _voiceSurveyMapper = new VoiceSurveyMapper();
+    const _teamEffectivenessMapper = new TeamEffectivenessMapper();
     return {
       general_survey_response: _generalSurveyMapper.createDtoFromModel(
         model.generalSurvey
@@ -29,6 +31,10 @@ export default class SurveyResponseMapper implements ITwoWayMapper {
       voice_survey_responses: model.voiceSurveys.map((survey) =>
         _voiceSurveyMapper.createDtoFromModel(survey)
       ),
+      team_effectiveness_survey_response: _teamEffectivenessMapper.createDtoFromModel(
+        model.teamEffectivenessSurvey
+      ),
+      feedback_response: model.feedback,
     };
   }
 }
