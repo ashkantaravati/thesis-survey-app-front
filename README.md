@@ -1,5 +1,7 @@
 # thesis-survey-app-front
 
+[![CI](https://github.com/ashkantaravati/thesis-survey-app-front/actions/workflows/ci.yml/badge.svg)](https://github.com/ashkantaravati/thesis-survey-app-front/actions/workflows/ci.yml)
+
 ## Project setup
 ```
 yarn install
