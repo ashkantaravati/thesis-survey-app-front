@@ -99,7 +99,7 @@ export default defineComponent({
       return this.steps.find((step) => step.index === index);
     },
     goToSuccessPage() {
-      this.$router.push({ name: "survey-success" });
+      this.$router.push({ name: "success" });
     },
     goToErrorPage() {
       this.$router.push({ name: "error" });

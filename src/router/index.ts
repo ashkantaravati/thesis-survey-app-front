@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/views/Home.vue";
 import NotFound from "@/views/NotFound.vue";
 import Error from "@/views/Error.vue";
+import Success from "@/views/Success.vue";
 import Dashboard from "@/views/Dashboard.vue";
 import { RegistrationLayout, SurveyLayout } from "@/layouts";
 import {
@@ -12,7 +13,6 @@ import {
   SurveyStep3,
   SurveyStep4,
   SurveyStep5,
-  SurveySuccess,
 } from "@/views/survey";
 import {
   GeneralInfo,
@@ -106,15 +106,15 @@ const routes = [
         name: "survey-review",
         component: SurveyReview,
       },
-      {
-        path: "success",
-        name: "survey-success",
-        component: SurveySuccess,
-      },
     ],
   },
   { path: "/error", name: "error", component: Error },
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
+  {
+    path: "/success",
+    name: "success",
+    component: Success,
+  },
 ];
 
 const router = createRouter({
