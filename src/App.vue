@@ -44,7 +44,7 @@
       </el-header> -->
       <!-- <el-divider class="m-0"></el-divider> -->
       <el-main>
-        <router-view />
+        <router-view @aboutSurveyRequested="aboutSurveyDrawer = true" />
       </el-main>
     </el-container>
   </div>

@@ -19,7 +19,11 @@
             >
           </router-link>
           <el-divider direction="vertical"></el-divider>
-          <el-button class="color-secondary-cta" type="text">
+          <el-button
+            class="color-secondary-cta"
+            @click="showAboutSurveyDialog()"
+            type="text"
+          >
             می‌خواهم بیشتر بدانم
           </el-button>
         </div>
@@ -104,6 +108,9 @@ export default defineComponent({
   name: "Home",
   methods: {
     ...mapActions(["fetchStats"]),
+    showAboutSurveyDialog() {
+      this.$emit("aboutSurveyRequested");
+    },
   },
   created() {
     this.fetchStats();
