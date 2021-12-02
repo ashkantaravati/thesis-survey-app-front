@@ -12,7 +12,7 @@
       <div class="mt-1rem">
         <img
           class="responsive-img"
-          src="../assets/images/500InternalServerError-cuate.svg"
+          src="@/assets/images/500InternalServerError-cuate.svg"
           alt=""
         />
       </div>

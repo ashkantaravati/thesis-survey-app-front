@@ -2,7 +2,7 @@
   <el-row class="jc-center">
     <el-col :md="20" :lg="20">
       <el-row class="halfheight">
-        <img src="../assets/images/exams-bro.svg" alt="" />
+        <img src="@/assets/images/exams-bro.svg" alt="" />
       </el-row>
       <el-row>
         <h1>پژوهشی در اثربخشی تیم‌های توسعه‌ی نرم‌افزار</h1>
