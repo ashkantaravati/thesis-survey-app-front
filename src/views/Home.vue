@@ -1,40 +1,44 @@
 <template>
-  <div class="text-center">
-    <h1>پژوهشی در اثربخشی تیم‌های توسعه‌ی نرم‌افزار</h1>
-  </div>
-  <el-row class="mobile-row-reverse jc-center">
-    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
-      <p class="mb-hlafrem">
-        برای مشارکت در این پرسشنامه لازم است ابتدا مشخصات تیم‌های سازمان شما ثبت
-        شده و برای هر تیم یک لینک/کد دریافت کنید.
-      </p>
-      <el-alert
-        style="background: transparent"
-        :closable="false"
-        show-icon
-        title="
-        اطلاعات تیم‌ها و سازمان می‌تواند مستعار باشد. کافی است تعداد تیم‌ها و
-        اعضا مطابق با واقعیت درج شود"
-        type="warning"
-      />
-      <div class="d-flex jc-center">
-        <router-link :to="{ name: 'register-landing' }">
-          <el-button type="primary" class="my-1rem">
-            شروع و ثبت اطلاعات سازمان</el-button
-          >
-        </router-link>
-      </div>
-    </el-col>
-  </el-row>
+  <el-row class="jc-center">
+    <el-col :md="20" :lg="20">
+      <el-row class="halfheight">
+        <img src="../assets/images/exams-bro.svg" alt="" />
+      </el-row>
+      <el-row>
+        <h1>پژوهشی در اثربخشی تیم‌های توسعه‌ی نرم‌افزار</h1>
 
-  <el-divider></el-divider>
-  <el-row v-if="stats.overall" class="mobile-row-reverse jc-center">
-    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
-      <div style="margin: 2rem 0 4rem 0">
-        <p>آمارهای مشارکت تا این لحظه</p>
-        <el-row class="d-flex jc-between">
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card>
+        <p class="mb-halfrem home-intro">
+          من اشکان طراوتی هستم، یکی از فعالان فناوری اطلاعات در ایران و علاقمند
+          به مباحق مدیریت مهندسی و رفتار سازمانی. در حال حاضر مشغول به انجام
+          پایان‌نامه‌ام با موضوع «بررسی نقش تعدیل‌کننده‌ی رفتار صدای تیم در
+          رابطه‌ی میان بیش‌اطمینانی و اثربخشی تیم‌های نرم‌افزار» هستم. برای
+          جمع‌آوری داده‌های این تحقیق به مشارکت تیم‌ها و سازمان‌های
+          توسعه‌دهنده‌ی نرم‌افزار نیاز دارم.
+        </p>
+
+        <div>
+          <router-link :to="{ name: 'register-landing' }">
+            <el-button type="primary" class="my-1rem color-accent-cta">
+              می‌خواهم مشارکت کنم</el-button
+            >
+          </router-link>
+          <el-divider direction="vertical"></el-divider>
+          <el-button
+            class="color-secondary-cta"
+            @click="showAboutSurveyDialog()"
+            type="text"
+          >
+            می‌خواهم بیشتر بدانم
+          </el-button>
+        </div>
+      </el-row>
+    </el-col>
+    <el-col v-if="stats.overall" :md="20" :lg="4" :xl="4">
+      <div>
+        <h2>مشارکت تاکنون</h2>
+        <el-row class="jc-between overal-stats">
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
               <span>
                 <span>
                   {{ stats.overall.numberOfRegisteredTeams }}
@@ -48,8 +52,8 @@
               </div>
             </el-card>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card>
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
               <span>
                 <span>
                   {{ stats.overall.numberOfRegisteredParticipants }}
@@ -58,8 +62,8 @@
               </span>
             </el-card>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6" :lg="6" :xl="7" class="mt-1rem">
-            <el-card>
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
               <span>
                 <span>
                   {{ stats.overall.numberOfRegisteredOrganizations }}
@@ -76,13 +80,15 @@
   <el-divider></el-divider>
 
   <el-row class="mobile-row-reverse jc-center">
-    <el-col :xs="24" :sm="24" :md="20" :lg="18" :xl="18">
-      <div style="margin: 2rem 0 6rem 0">
-        <p>برخی از سازمان‌های مشارکت‌کننده</p>
-        <p style="color: #b3b3b3">
-          بدیهی ست نمایش نام آنها با رضایت سرپرست تیم‌ها بوده است
-        </p>
-        <el-carousel :interval="4000" type="card" height="100px">
+    <el-col :md="20" :lg="18" :xl="18">
+      <div>
+        <h2>برخی از مشارکت‌کنندگان</h2>
+        <el-carousel
+          indicator-position="none"
+          :interval="4000"
+          type="card"
+          height="100px"
+        >
           <el-carousel-item
             v-for="organization in stats.registeredOrganizations"
             :key="organization"
@@ -106,6 +112,9 @@ export default defineComponent({
   name: "Home",
   methods: {
     ...mapActions(["fetchStats"]),
+    showAboutSurveyDialog() {
+      this.$emit("aboutSurveyRequested");
+    },
   },
   created() {
     this.fetchStats();
@@ -122,9 +131,16 @@ export default defineComponent({
 </script>
 
 <style>
-h1 {
-  line-height: 36px;
+.overal-stats {
+  flex-direction: column;
 }
+.overal-stats-card .el-card__body {
+  align-items: self-start;
+  padding: 5px 16px;
+}
+/* h1 {
+  line-height: 36px;
+} */
 @media screen and (min-width: 768px) {
   .long-text {
     line-height: 30px;
@@ -242,5 +258,23 @@ mark {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #384a5d;
+}
+
+.color-accent-cta {
+  background-color: #ffcc29;
+  color: #142334;
+  border-radius: 6px;
+  border-width: 0;
+}
+
+.color-secondary-cta {
+  color: #ffcc29;
+}
+
+.home-intro {
+  text-align: justify;
+}
+.halfheight {
+  height: 50%;
 }
 </style>

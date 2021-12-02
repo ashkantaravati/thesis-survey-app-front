@@ -8,7 +8,7 @@
     >
     <el-button type="text" @click="hintDrawer = true">راهنما</el-button>
     <el-button type="text" @click="aboutMeDrawer = true"
-      >ارتباط با پژوهشگر</el-button
+      >ارتباط با من</el-button
     >
 
     <el-drawer
@@ -44,14 +44,8 @@
       </el-header> -->
       <!-- <el-divider class="m-0"></el-divider> -->
       <el-main>
-        <el-row class="jc-center">
-          <el-col :xs="24" :lg="18" :xl="18">
-            <router-view />
-          </el-col>
-        </el-row>
+        <router-view @aboutSurveyRequested="aboutSurveyDrawer = true" />
       </el-main>
-      <el-divider></el-divider>
-      <el-footer class="footer"> </el-footer>
     </el-container>
   </div>
 </template>
