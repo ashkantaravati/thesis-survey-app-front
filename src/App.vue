@@ -59,6 +59,19 @@ export default defineComponent({
   computed: {
     ...mapGetters(["surveyTitle"]),
   },
+  methods: {
+    setExtraAttributesOnElNumberInputs() {
+      document.querySelectorAll(".el-input-number input").forEach(function(el) {
+        el.setAttribute("inputmode", "numeric");
+        el.setAttribute("pattern", "[0-9]*");
+      });
+    },
+  },
+  mounted() {
+    this.$nextTick(function() {
+      this.setExtraAttributesOnElNumberInputs();
+    });
+  },
 
   setup() {
     const aboutSurveyDrawer = ref(false);
