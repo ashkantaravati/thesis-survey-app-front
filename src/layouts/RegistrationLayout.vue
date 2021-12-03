@@ -26,7 +26,11 @@
     >
   </div>
   <div class="registration-title">
-    <router-view @proceed.once="goNext" @submit.once="submit"></router-view>
+    <router-view
+      @proceed.once="goNext"
+      @submit.once="submit"
+      @showHelpRequested="showHelp"
+    ></router-view>
   </div>
 </template>
 
@@ -46,6 +50,9 @@ export default defineComponent({
   },
   methods: {
     ...mapActions(["registerOrganization"]),
+    showHelp() {
+      this.$emit("showHelpRequested");
+    },
     submit() {
       this.markCurrentStepAsComplete();
       if (this.noRemainingStepsLeft) {

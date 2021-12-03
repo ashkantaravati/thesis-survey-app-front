@@ -81,6 +81,7 @@ export default defineComponent({
   methods: {
     ...mapActions(["fetchTeamInfo", "submitResponse"]),
     ...mapMutations(["setProgress"]),
+
     goNext() {
       this.markCurrentStepAsComplete();
       const nextIndex = this.currentStepIndex + 1;

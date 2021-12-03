@@ -2,7 +2,7 @@
   <el-row class="jc-center">
     <el-col :md="20" :lg="20">
       <el-row class="halfheight">
-        <img src="@/assets/images/exams-bro.svg" alt="" />
+        <img src="@/assets/images/exams-bro.svg" />
       </el-row>
       <el-row>
         <h1>پژوهشی در اثربخشی تیم‌های توسعه‌ی نرم‌افزار</h1>
@@ -81,17 +81,17 @@
     </el-col>
   </el-row>
 
-  <el-divider></el-divider>
+  <el-divider v-if="showContributingOrgs"></el-divider>
 
-  <el-row class="mobile-row-reverse jc-center">
+  <el-row v-if="showContributingOrgs" class="mobile-row-reverse jc-center">
     <el-col :md="20" :lg="18" :xl="18">
       <div>
         <h2>برخی از مشارکت‌کنندگان</h2>
         <el-carousel
           indicator-position="none"
           :interval="4000"
-          type="card"
-          height="100px"
+          height="60%"
+          class="home-carousel"
         >
           <el-carousel-item
             v-for="organization in stats.registeredOrganizations"
@@ -129,6 +129,7 @@ export default defineComponent({
   data() {
     return {
       isHidden: false,
+      showContributingOrgs: false,
     };
   },
 });
@@ -286,5 +287,12 @@ mark {
   background-color: #ffffff38;
   border-radius: 5px;
   padding: 0px 5px;
+}
+.emphasized:hover {
+  background-color: #ffcc29;
+}
+
+.home-carousel {
+  height: 105px;
 }
 </style>

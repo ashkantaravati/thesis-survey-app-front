@@ -6,7 +6,6 @@
     ref="generalInfoForm"
     class="demo-ruleForm"
   >
-
     <el-form-item prop="repName">
       <el-input
         placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
@@ -14,7 +13,7 @@
         autocomplete="name"
       ></el-input>
     </el-form-item>
-        <el-form-item prop="name">
+    <el-form-item prop="name">
       <el-input
         placeholder="نام یا عنوان تجاری سازمان"
         v-model="generalInfo.name"
@@ -113,8 +112,14 @@ export default defineComponent({
       },
     };
   },
+  mounted() {
+    this.showHelp();
+  },
 
   methods: {
+    showHelp() {
+      this.$emit("showHelpRequested");
+    },
     goNext(): void {
       const generalInfoForm = this.$refs["generalInfoForm"] as any;
       generalInfoForm.validate((valid: boolean) => {
