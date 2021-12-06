@@ -92,8 +92,8 @@ export default defineComponent({
             trigger: "blur",
           },
           {
-            min: 5,
-            message: "سمت شما باید حداقل ۳ کاراکتر باشد",
+            min: 4,
+            message: "سمت شما باید حداقل ۴ کاراکتر باشد",
             trigger: "blur",
           },
         ],
