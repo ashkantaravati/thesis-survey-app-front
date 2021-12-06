@@ -47,7 +47,7 @@
         </el-form-item>
       </div>
       <div class="block mb-halfrem">
-        <p>میزان کل سابقه کار شما ( بر حسب سال)</p>
+        <p>چند سال سابقه‌ی کار دارید؟</p>
         <el-form-item prop="tenure">
           <el-input-number
             v-model="generalSurvey.tenure"
@@ -57,7 +57,7 @@
         </el-form-item>
       </div>
       <div class="block mb-halfrem">
-        <p>مدت حضور شما در این تیم ( بر حسب ماه)</p>
+        <p>چند ماه است که در این تیم حضور دارید؟</p>
         <el-form-item prop="teamHistory">
           <el-input-number
             v-model="generalSurvey.teamHistory"
