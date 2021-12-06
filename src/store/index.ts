@@ -294,7 +294,12 @@ const store = createStore({
       );
     },
     addAMemberToTeam(state: State, targetTeam: Team) {
-      if (targetTeam.members.length === MAXIMUM_TEAM_SIZE) return;
+      if (targetTeam.members.length === MAXIMUM_TEAM_SIZE) {
+        // this.$notify.error({message:"حداقل یک تیم باید وارد نمایید."})
+        //TODO: Notify when member sizes is at maximum
+
+        return;
+      }
       // at most MAXIMUM_TEAM_SIZE members can be added to a team
       const team = state.registrationInfo.teams.find(
         (team) => team === targetTeam
