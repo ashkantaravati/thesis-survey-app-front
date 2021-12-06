@@ -51,7 +51,7 @@
         <el-form-item prop="tenure">
           <el-input-number
             v-model="generalSurvey.tenure"
-            :min="0.5"
+            :min="0"
             :max="40"
           ></el-input-number>
         </el-form-item>
@@ -61,6 +61,7 @@
         <el-form-item prop="teamHistory">
           <el-input-number
             v-model="generalSurvey.teamHistory"
+            :min="0"
             :max="60"
           ></el-input-number>
         </el-form-item>

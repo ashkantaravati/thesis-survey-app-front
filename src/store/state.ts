@@ -32,7 +32,12 @@ const state: State = {
   },
   stats: new Stats(),
   survey: {
-    generalSurvey: { age: 25, sex: "female", teamHistory: 1, tenure: 1 },
+    generalSurvey: {
+      age: undefined,
+      sex: undefined,
+      teamHistory: undefined,
+      tenure: undefined,
+    },
     voiceSurveys: [],
     overconfidenceSurvey: new OverconfidenceSurvey(),
     teamCoordinationSurvey: new TeamCoordinationSurvey(),

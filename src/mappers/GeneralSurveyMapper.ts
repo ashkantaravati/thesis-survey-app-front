@@ -5,10 +5,10 @@ import { GeneralSurvey } from "@/models";
 export default class GeneralSurveyMapper implements ITwoWayMapper {
   createDtoFromModel(model: GeneralSurvey): GeneralSurveyResponseSchema {
     return {
-      age: model.age,
-      sex: model.sex,
-      team_history: model.teamHistory,
-      tenure: model.tenure,
+      age: model.age as number,
+      sex: model.sex as string,
+      team_history: model.teamHistory as number,
+      tenure: model.tenure as number,
     };
   }
   createModelFromDto(_dto: IDto): Model {

@@ -30,13 +30,15 @@ export default class SurveySummary {
     this.name = activeParticipant.name || StringRepresentation.emptyResponse();
     this.teamName = teamInfo.name;
     this.organizationName = teamInfo.organizationName;
-    this.age = StringRepresentation.forAnnualDuration(survey.generalSurvey.age);
-    this.sex = StringRepresentation.forSex(survey.generalSurvey.sex);
+    this.age = StringRepresentation.forAnnualDuration(
+      survey.generalSurvey.age as number
+    );
+    this.sex = StringRepresentation.forSex(survey.generalSurvey.sex as string);
     this.tenure = StringRepresentation.forAnnualDuration(
-      survey.generalSurvey.tenure
+      survey.generalSurvey.tenure as number
     );
     this.teamHistory = StringRepresentation.forMonthlyDuration(
-      survey.generalSurvey.teamHistory
+      survey.generalSurvey.teamHistory as number
     );
     this.teamCoordination = [
       StringRepresentation.forLikertScaleQuestion(
