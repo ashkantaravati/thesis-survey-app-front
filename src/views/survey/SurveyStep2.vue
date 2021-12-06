@@ -15,6 +15,17 @@
     </el-card>
   </div>
   <proceed-button type="proceed" text="گام بعد" @click="goNext" />
+  <hint-dialog v-model="isHintVisible">
+    <p>
+      در این مرحله از شما می‌خواهیم بدون جستجو در اینترنت یا هر منبع دیگر یا
+      پرسیدن از دیگران و صرفا با اتکا به حافطه‌ی خود یا آنچه به ذهنتان خطور
+      می‌کند به هر یک از سوالات پاسخ دهید.
+      <br />
+      نحوه‌ی پاسخ به سوالات به این صورت است که می‌بایست به هر یک از سوالات یک
+      عدد به عنوان کران پایین و یک عدد به عنوان کران بالای بازه‌ای ارائه کنید که
+      تصور می‌کنید پاسخ صحیح سوال در آن قرار می‌گیرد.
+    </p>
+  </hint-dialog>
 </template>
 
 <script lang="ts">
@@ -24,6 +35,15 @@ import { defineComponent } from "vue";
 export default defineComponent({
   components: { MinMaxQuestion },
   name: "SurveyStep2",
+    mounted() {
+    this.isHintVisible = true;
+  },
+  data(){
+    return {
+      isHintVisible: false,
+
+    }
+  },
   methods: {
     validateAll():boolean {
       let valid = true;
