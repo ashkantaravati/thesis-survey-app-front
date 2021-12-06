@@ -8,9 +8,14 @@
       کنید که با حداقل ۹۰٪ اطمینان فکر می‌کنید پاسخ درست در آن بازه قرار دارد.
     </p>
     <el-card class="mb-halfrem">
-      <template v-for="(question, name) in overconfidenceSurvey" :key="name">
+      <template
+        v-for="(question, name, index) in overconfidenceSurvey"
+        :key="name"
+      >
         <min-max-question :ref="name" :question="question" />
-        <el-divider></el-divider>
+        <el-divider
+          v-if="index != Object.keys(overconfidenceSurvey).length - 1"
+        ></el-divider>
       </template>
     </el-card>
   </div>
