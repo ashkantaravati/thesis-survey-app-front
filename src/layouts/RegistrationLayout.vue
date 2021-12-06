@@ -51,7 +51,7 @@ export default defineComponent({
   methods: {
     ...mapActions(["registerOrganization"]),
     showHelp() {
-      this.$emit("showHelpRequested");
+      if (this.numberOfCompletedSteps <= 0) this.$emit("showHelpRequested");
     },
     submit() {
       this.markCurrentStepAsComplete();
