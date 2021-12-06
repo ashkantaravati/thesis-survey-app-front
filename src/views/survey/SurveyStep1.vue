@@ -62,7 +62,7 @@
           <el-input-number
             v-model="generalSurvey.teamHistory"
             :min="0"
-            :max="60"
+            :max="150"
           ></el-input-number>
         </el-form-item>
       </div>
