@@ -4,7 +4,9 @@ import NotFound from "@/views/NotFound.vue";
 import Error from "@/views/Error.vue";
 import Success from "@/views/Success.vue";
 import Dashboard from "@/views/Dashboard.vue";
-import { RegistrationLayout, SurveyLayout } from "@/layouts";
+import RegistrationLayout from "@/views/RegistrationLayout.vue";
+import SurveyLayout from "@/views/SurveyLayout.vue";
+
 import {
   SurveyIntro,
   SurveyReview,
