@@ -14,7 +14,7 @@
         می‌توانید لینک‌های ساخته شده برای هر تیم را برای تکمیل پرسشنامه (مرحله‌ی
         دوم) در اختیار اعضای آن تیم قرار دهید.
       </p>
-      <ul v-for="team in teams" :key="team.index">
+      <ul v-for="team in teams" :key="team.id">
         <li>
           <strong>
             لینک دعوت برای اعضای
@@ -44,12 +44,12 @@ import { useStore } from "vuex";
 
 export default defineComponent({
   name: "RegistrationSuccess",
-  props: {},
+
   setup() {
     const store = useStore();
 
     return {
-      teams: computed(() => store.state.registrationInfo.teams),
+      teams: computed(() => store.state.temp.teams),
     };
   },
 });

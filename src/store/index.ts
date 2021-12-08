@@ -18,6 +18,7 @@ import {
   Team,
   TeamMember,
   TeamWithOrganizationInfo,
+  ThesisSurvey,
   VoiceSurvey,
 } from "@/models";
 
@@ -76,20 +77,29 @@ const store = createStore({
           commit("setLoading", false);
         });
     },
-    registerOrganization({ commit, state }, onSuccess: SimpleProcedure) {
+    registerOrganization({ commit, state }) {
       const mapper = new OrganizationRegistrationMapper();
       const organizationInfoDto = mapper.createDtoFromModel(
         state.registrationInfo
       );
       commit("setLoading", true);
-      submitOrganizationInfo(organizationInfoDto)
+      return submitOrganizationInfo(organizationInfoDto)
         .then((res) => {
           const createdOrganization = res.data;
           const updatedRegistrationInfo = mapper.createModelFromDto(
             createdOrganization
           );
-          commit("replaceWithCreatedOrganization", updatedRegistrationInfo);
-          onSuccess();
+          // commit("replaceWithCreatedOrganization", updatedRegistrationInfo);
+          const teamsWithLinks = updatedRegistrationInfo.teams.map((team) => {
+            return {
+              id: team.id,
+              link: team.link,
+              name: team.name,
+            };
+          });
+          commit("setTemp", { teams: teamsWithLinks });
+          commit("clearFormStates");
+          return teamsWithLinks;
         })
         .catch((err) => {
           console.error(err);
@@ -337,6 +347,13 @@ const store = createStore({
     },
     setFeedback(state: State, feedback: string) {
       state.survey.feedback = feedback;
+    },
+    setTemp(state: State, value: any) {
+      state.temp = value;
+    },
+    clearFormStates(state: State) {
+      state.registrationInfo = new OrganizationInfo();
+      state.survey = new ThesisSurvey();
     },
   },
 });

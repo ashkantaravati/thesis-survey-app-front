@@ -1,8 +1,5 @@
 import {
   OrganizationInfo,
-  OverconfidenceSurvey,
-  TeamCoordinationSurvey,
-  TeamEffectivenessSurvey,
   TeamMember,
   TeamWithOrganizationInfo,
   ThesisSurvey,
@@ -17,33 +14,14 @@ type State = {
   stats: Stats;
   loading: boolean;
   progress: number;
+  temp: any;
   // error: string;
 };
 
 const state: State = {
-  registrationInfo: {
-    generalInfo: {
-      name: "",
-      repEmail: "",
-      repJobTitle: "",
-      repName: "",
-    },
-    teams: [],
-  },
+  registrationInfo: new OrganizationInfo(),
   stats: new Stats(),
-  survey: {
-    generalSurvey: {
-      age: undefined,
-      sex: undefined,
-      teamHistory: undefined,
-      tenure: undefined,
-    },
-    voiceSurveys: [],
-    overconfidenceSurvey: new OverconfidenceSurvey(),
-    teamCoordinationSurvey: new TeamCoordinationSurvey(),
-    teamEffectivenessSurvey: new TeamEffectivenessSurvey(),
-    feedback: "",
-  },
+  survey: new ThesisSurvey(),
 
   teamInfo: {
     id: "",
@@ -54,6 +32,7 @@ const state: State = {
   activeParticipant: new TeamMember(),
   loading: false,
   progress: 0,
+  temp: {},
 };
 
 export { state, State };

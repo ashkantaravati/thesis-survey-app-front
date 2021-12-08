@@ -56,7 +56,7 @@ export default defineComponent({
     submit() {
       this.markCurrentStepAsComplete();
       if (this.noRemainingStepsLeft) {
-        this.registerOrganization(this.goToSuccessPage);
+        this.registerOrganization().then(this.goToSuccessPage);
       } else {
         this.$alert("هنوز همه‌ی مراحل را تکمیل نکرده اید.", "دست نگه‌دارید!", {
           confirmButtonText: "بازگشت به مراحل",
@@ -83,7 +83,9 @@ export default defineComponent({
     getStep(index) {
       return this.steps.find((step) => step.index === index);
     },
-    goToSuccessPage() {
+    goToSuccessPage(teams) {
+      console.log(teams);
+      this.teams = teams;
       this.$router.push({ name: "register-success" });
     },
     markCurrentStepAsComplete() {
@@ -124,6 +126,7 @@ export default defineComponent({
 
   data() {
     return {
+      teams: [],
       steps: [
         {
           index: 0,
