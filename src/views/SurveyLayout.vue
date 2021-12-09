@@ -29,10 +29,13 @@
       >
     </div>
     <router-view @proceed.once="goNext" @submit.once="submit"></router-view>
-    <el-dialog
+    <hint-dialog
       v-model="feedbackDialogIsVisible"
-      title="تایید و ثبت"
-      width="50%"
+      @act="confirmAndSend"
+      actionButtonText="تایید و ارسال"
+      normalButtonText="بازگشت"
+      showActionButton="true"
+      width="40%"
     >
       <el-input
         v-model="feedback"
@@ -40,15 +43,7 @@
         type="textarea"
         placeholder="نظر شما در مورد این پرسشنامه (اختیاری)"
       />
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="feedbackDialogIsVisible = false">بازگشت</el-button>
-          <el-button type="primary" @click="confirmAndSend"
-            >تایید و ارسال</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
+    </hint-dialog>
   </div>
 </template>
 

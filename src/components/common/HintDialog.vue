@@ -11,9 +11,15 @@
 
     <template #footer>
       <span class="dialog-footer">
-        <el-button type="primary" @click="isHintVisible = false"
-          >متوجه ام!</el-button
+        <el-button
+          v-if="showNormalButton"
+          :type="normalButtonType"
+          @click="hideDialog"
+          >{{ normalButtonText }}</el-button
         >
+        <el-button v-if="showActionButton" type="primary" @click="act">{{
+          actionButtonText
+        }}</el-button>
       </span>
     </template>
   </el-dialog>
@@ -24,8 +30,36 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Hintdialog",
+  methods: {
+    hideDialog() {
+      this.isHintVisible = false;
+    },
+    act() {
+      this.$emit("act");
+    },
+  },
   props: {
     modelValue: Boolean,
+    showNormalButton: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    normalButtonText: {
+      type: String,
+      required: false,
+      default: "متوجه ام!",
+    },
+    showActionButton: {
+      required: false,
+      type: Boolean,
+      default: false,
+    },
+    actionButtonText: {
+      required: false,
+      type: String,
+      default: "تایید",
+    },
     width: {
       type: String,
       required: false,
@@ -33,6 +67,9 @@ export default defineComponent({
     },
   },
   computed: {
+    normalButtonType() {
+      return !this.showActionButton ? "primary" : "";
+    },
     isHintVisible: {
       get() {
         return this.modelValue;
