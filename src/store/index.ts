@@ -123,8 +123,11 @@ const store = createStore({
       const mapper = new SurveyResponseMapper();
       const dto = mapper.createDtoFromModel(state.survey);
       commit("setLoading", true);
-      submitParticipantResponse(participantId, dto)
-        .then(() => onSuccess())
+      return submitParticipantResponse(participantId, dto)
+        .then((result) => {
+          commit("clearFormStates");
+          onSuccess();
+        })
         .catch((err) => onFailure())
         .finally(() => {
           commit("setLoading", false);
