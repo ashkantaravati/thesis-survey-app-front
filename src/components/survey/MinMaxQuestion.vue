@@ -1,37 +1,39 @@
 <template>
-  <div class="mb-halfrem">
+  <div class="mb-halfrem d-flex">
     {{ question.text }}
-  </div>
-  <div>
     <el-form :model="response" :rules="rules" ref="mainForm">
-      <div class="d-flex align-center">
-        <span>حداقل:</span>
-        <el-form-item prop="min">
-          <el-input-number
-            :required="true"
-            placeholder="کف"
-            v-model="response.min"
-            @change="onMinChange"
-            :min="lowerBound"
-            :max="response.max"
-            :name="question.index + '-min'"
-          >
-          </el-input-number>
-        </el-form-item>
-      </div>
-      <div class="mt-1rem d-flex align-center">
-        <span>حداکثر:</span>
-        <el-form-item prop="max">
-          <el-input-number
-            placeholder="سقف"
-            v-model="response.max"
-            @change="onMaxChange"
-            :min="response.min"
-            :max="upperBound"
-            :name="question.index + '-max'"
-          >
-          </el-input-number>
-        </el-form-item>
+      <div class="d-flex">
+        <div class="d-flex align-center">
+          <span>حداقل:</span>
+          <el-form-item prop="min">
+            <el-input-number
+              size="mini"
+              :required="true"
+              placeholder="کف"
+              v-model="response.min"
+              @change="onMinChange"
+              :min="lowerBound"
+              :max="response.max"
+              :name="question.index + '-min'"
+            >
+            </el-input-number>
+          </el-form-item>
+        </div>
+        <div class="d-flex align-center">
+          <span>حداکثر:</span>
+          <el-form-item prop="max">
+            <el-input-number
+              size="mini"
+              placeholder="سقف"
+              v-model="response.max"
+              @change="onMaxChange"
+              :min="response.min"
+              :max="upperBound"
+              :name="question.index + '-max'"
+            >
+            </el-input-number>
+          </el-form-item>
+        </div>
       </div>
     </el-form>
   </div>
@@ -46,6 +48,8 @@ export default defineComponent({
   name: "MinMaxQuestion",
   props: {
     question: { type: MinMaxQuestion, required: true },
+    lowerBound: { type: Number, required: false },
+    upperBound: { type: Number, required: false },
   },
 
   data() {
