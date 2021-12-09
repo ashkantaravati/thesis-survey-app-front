@@ -72,7 +72,18 @@
     show-close="false"
   >
     <div>
-      <p class="hint-text">
+
+    </div>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button type="primary" @click="isHintVisible = false"
+          >متوجه ام!</el-button
+        >
+      </span>
+    </template>
+  </el-dialog>
+  <hint-dialog v-model="isHintVisible">
+      <p>
         روال به این صورت است:
         <ol>
           <li>
@@ -103,15 +114,7 @@
         </ol>
 
       </p>
-    </div>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button type="primary" @click="isHintVisible = false"
-          >متوجه ام!</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
+  </hint-dialog>
 </template>
 
 <script>
