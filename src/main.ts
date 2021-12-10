@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { VueClipboard } from "@soerenmartius/vue3-clipboard";
 import App from "./App.vue";
+import 'element-plus/dist/index.css'
 import installElementPlus from "./plugins/element";
 import router from "./router";
 import store from "./store";
