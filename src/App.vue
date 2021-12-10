@@ -45,7 +45,7 @@
     >
       <p>
         اگر سوال، پیشنهاد یا نیاز به راهنمایی داشتید می‌توانید از طریق
-        <a href="mailto:ashkan.taravati+thesis@gmail.com">ایمیل</a> با من در
+        <a class="emphasized" href="mailto:ashkan.taravati+thesis@gmail.com">ایمیل</a> با من در
         ارتباط باشید.
       </p>
     </el-drawer>
