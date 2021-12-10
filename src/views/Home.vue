@@ -226,7 +226,7 @@ mark {
   padding: 16px;
   min-height: 3rem;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   position: relative;
 }
@@ -265,16 +265,7 @@ mark {
   background-color: #384a5d;
 }
 
-.color-accent-cta {
-  background-color: #ffcc29;
-  color: #142334;
-  border-radius: 6px;
-  border-width: 0;
-}
 
-.color-secondary-cta {
-  color: #ffcc29;
-}
 
 .home-intro {
   text-align: justify;
@@ -282,15 +273,7 @@ mark {
 .halfheight {
   height: 50%;
 }
-.emphasized {
-  color: #fff;
-  background-color: #ffffff38;
-  border-radius: 5px;
-  padding: 0px 5px;
-}
-.emphasized:hover {
-  background-color: #ffcc29;
-}
+
 
 .home-carousel {
   height: 105px;
