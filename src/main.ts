@@ -3,6 +3,7 @@ import { VueClipboard } from "@soerenmartius/vue3-clipboard";
 import App from "./App.vue";
 import 'element-plus/dist/index.css'
 import installElementPlus from "./plugins/element";
+import {Delete} from "@element-plus/icons"
 import router from "./router";
 import store from "./store";
 import ProceedButton from "@/components/common/ProceedButton.vue";
@@ -14,6 +15,7 @@ installElementPlus(app);
 app.use(VueClipboard);
 app.use(router);
 app.use(store);
+app.component("delete-icon",Delete)
 app.component("proceed-button", ProceedButton);
 app.component("hint-dialog", HintDialog);
 app.mount("#app");

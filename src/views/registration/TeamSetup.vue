@@ -34,11 +34,15 @@
                 @click="removeTeam(team)"
                 type="danger"
                 tabindex="6"
-                icon="el-icon-delete"
                 circle
                 plain
                 class="mr-halfrem"
-              ></el-button>
+              >
+                <el-icon>
+                  <delete-icon />
+                </el-icon>
+
+              </el-button>
             </el-tooltip>
           </el-col>
         </el-row>
@@ -94,12 +98,16 @@
             @click="removeMemberFromTeam({ team, member })"
             tabindex="7"
             type="danger"
-            icon="el-icon-delete"
             circle
             plain
             size="mini"
             class="mr-halfrem"
-          ></el-button> </el-tooltip
+          >
+            <el-icon>
+              <delete-icon />
+            </el-icon>
+
+          </el-button> </el-tooltip
       ></el-col>
     </el-row>
 

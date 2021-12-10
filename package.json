@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
+    "@element-plus/icons-vue": "^0.2.4",
     "@soerenmartius/vue3-clipboard": "^0.1.2",
     "array-shuffle": "^3.0.0",
     "axios": "^0.21.1",
