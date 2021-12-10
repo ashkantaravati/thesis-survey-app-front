@@ -6,6 +6,7 @@
     :width="width"
     :show-close="false"
     custom-class="hint-dialog"
+    :destroy-on-close="true"
   >
     <slot></slot>
 
