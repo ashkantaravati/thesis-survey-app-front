@@ -121,7 +121,7 @@
     type="proceed"
     text="گام بعد"
     innerButtonTabIndex="4"
-    @click.stop="goNext"
+    @click="goNext"
   />
 </template>
 
