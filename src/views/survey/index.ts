@@ -1,17 +1,17 @@
 import SurveyIntro from "./SurveyIntro.vue";
-import SurveyStep1 from "./SurveyStep1.vue";
-import SurveyStep2 from "./SurveyStep2.vue";
-import SurveyStep3 from "./SurveyStep3.vue";
-import SurveyStep4 from "./SurveyStep4.vue";
-import SurveyStep5 from "./SurveyStep5.vue";
+import GeneralSurvey from "./GeneralSurvey.vue";
+import OverconfidenceSurvey from "./OverconfidenceSurvey.vue";
+import TeamCoordinationSurvey from "./TeamCoordinationSurvey.vue";
+import TeamEffectivenessSurvey from "./TeamEffectivenessSurvey.vue";
+import VoiceSurvey from "./VoiceSurvey.vue";
 import SurveyReview from "./SurveyReview.vue";
 
 export {
   SurveyIntro,
-  SurveyStep1,
-  SurveyStep2,
-  SurveyStep3,
-  SurveyStep4,
-  SurveyStep5,
+  GeneralSurvey,
+  OverconfidenceSurvey,
+  TeamCoordinationSurvey,
+  TeamEffectivenessSurvey,
+  VoiceSurvey,
   SurveyReview,
 };

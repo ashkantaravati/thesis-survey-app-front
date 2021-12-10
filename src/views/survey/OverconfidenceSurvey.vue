@@ -14,7 +14,8 @@
       >
         <min-max-question :ref="name" :question="question" />
         <el-divider
-          v-if="index != Object.keys(overconfidenceSurvey).length - 1"
+          class="my-halfrem"
+          v-if="isLastQuestion(index)"
         ></el-divider>
       </template>
     </el-card>
@@ -39,7 +40,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   components: { MinMaxQuestion },
-  name: "SurveyStep2",
+  name: "OverconfidenceSurvey",
     mounted() {
     this.isHintVisible = true;
   },
@@ -50,6 +51,9 @@ export default defineComponent({
     }
   },
   methods: {
+    isLastQuestion(index: number){
+      return index !== Object.keys(this.overconfidenceSurvey).length - 1
+    },
     validateAll():boolean {
       let valid = true;
       const keys = Object.keys(this.overconfidenceSurvey);

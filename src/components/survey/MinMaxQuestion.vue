@@ -1,9 +1,12 @@
 <template>
-  <div class="mb-halfrem d-flex">
-    {{ question.text }}
+  <div class="mb-halfrem">
     <el-form :model="response" :rules="rules" ref="mainForm">
-      <div class="d-flex">
-        <div class="d-flex align-center">
+
+    <el-row :gutter="40">
+      <el-col :md="12">
+        {{ question.text }}
+      </el-col>
+        <el-col :md="6">
           <span>حداقل:</span>
           <el-form-item prop="min">
             <el-input-number
@@ -18,8 +21,8 @@
             >
             </el-input-number>
           </el-form-item>
-        </div>
-        <div class="d-flex align-center">
+        </el-col>
+        <el-col :md="6">
           <span>حداکثر:</span>
           <el-form-item prop="max">
             <el-input-number
@@ -33,9 +36,10 @@
             >
             </el-input-number>
           </el-form-item>
-        </div>
-      </div>
+        </el-col>
+    </el-row>
     </el-form>
+
   </div>
 </template>
 

@@ -4,7 +4,10 @@
       ارزیابی اثربخشی تیم از نظر شما
     </h3>
     <el-card class="mb-halfrem">
-      <template v-for="(question, name) in teamEffectivenessSurvey" :key="name">
+      <template
+        v-for="(question, name, index) in teamEffectivenessSurvey"
+        :key="index"
+      >
         <likert-scale-question
           :ref="name"
           v-model="question.response"
@@ -23,7 +26,7 @@ import { defineComponent } from "vue";
 import LikertScaleQuestion from "@/components/survey/LikertScaleQuestion.vue";
 
 export default defineComponent({
-  name: "SurveyStep4",
+  name: "TeamEffectivenessSurvey",
   components: { LikertScaleQuestion },
     methods: {
     validateAll():boolean {

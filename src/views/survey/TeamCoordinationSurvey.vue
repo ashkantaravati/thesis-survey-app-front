@@ -8,7 +8,10 @@
       گزاره‌های زیر را مشخص کنید.
     </p>
     <el-card class="mb-halfrem">
-      <template v-for="(question, name) in teamCoordinationSurvey" :key="name">
+      <template
+        v-for="(question, name, index) in teamCoordinationSurvey"
+        :key="index"
+      >
         <likert-scale-question
           :ref="name"
           v-model="question.response"
@@ -27,7 +30,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   components: { LikertScaleQuestion },
-  name: "SurveyStep3",
+  name: "TeamCoordinationSurvey",
     methods: {
     validateAll():boolean {
       let valid = true;

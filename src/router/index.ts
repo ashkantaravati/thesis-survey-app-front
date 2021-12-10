@@ -10,11 +10,11 @@ import SurveyLayout from "@/views/SurveyLayout.vue";
 import {
   SurveyIntro,
   SurveyReview,
-  SurveyStep1,
-  SurveyStep2,
-  SurveyStep3,
-  SurveyStep4,
-  SurveyStep5,
+  GeneralSurvey,
+  OverconfidenceSurvey,
+  TeamCoordinationSurvey,
+  TeamEffectivenessSurvey,
+  VoiceSurvey,
 } from "@/views/survey";
 import {
   GeneralInfo,
@@ -81,27 +81,27 @@ const routes = [
       {
         path: "1",
         name: "survey-step-1",
-        component: SurveyStep1,
+        component: GeneralSurvey,
       },
       {
         path: "2",
         name: "survey-step-2",
-        component: SurveyStep2,
+        component: OverconfidenceSurvey,
       },
       {
         path: "3",
         name: "survey-step-3",
-        component: SurveyStep3,
+        component: TeamCoordinationSurvey,
       },
       {
         path: "4",
         name: "survey-step-4",
-        component: SurveyStep4,
+        component: TeamEffectivenessSurvey,
       },
       {
         path: "5",
         name: "survey-step-5",
-        component: SurveyStep5,
+        component: VoiceSurvey,
       },
       {
         path: "6",

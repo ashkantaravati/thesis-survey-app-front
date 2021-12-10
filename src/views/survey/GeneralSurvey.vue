@@ -77,7 +77,7 @@ import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
 
 export default defineComponent({
-  name: "SurveyStep1",
+  name: "GeneralSurvey",
   methods: {
     goNext() {
       if (!this.activeParticipant.name) return;

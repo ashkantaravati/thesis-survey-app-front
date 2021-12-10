@@ -16,13 +16,13 @@
   <proceed-button type="finalize" text="ارسال" @click="$emit('submit')" />
 </template>
 
-<script>
+<script lang="ts">
 import VoiceSurveyItem from "@/components/survey/VoiceSurveyItem.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   components: { VoiceSurveyItem },
-  name: "SurveyStep5",
+  name: "VoiceSurvey",
   computed: {
     voiceSurvey() {
       return this.$store.state.survey.voiceSurveys;
