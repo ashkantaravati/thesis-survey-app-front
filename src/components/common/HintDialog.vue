@@ -1,10 +1,10 @@
 <template>
   <el-dialog
     v-model="isHintVisible"
-    center="true"
+    :center="true"
     open-delay="10"
     :width="width"
-    show-close="false"
+    :show-close="false"
     custom-class="hint-dialog"
   >
     <slot></slot>
@@ -29,7 +29,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "Hintdialog",
+  name: "HintDialog",
   methods: {
     hideDialog() {
       this.isHintVisible = false;
