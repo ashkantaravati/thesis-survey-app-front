@@ -1,4 +1,4 @@
-import { TeamMemberSchema } from "@/api/contracts/schema";
+import { TeamMemberSchema } from "@/contracts/schema";
 import { ITwoWayMapper } from "@/core";
 import { TeamMember } from "@/models";
 

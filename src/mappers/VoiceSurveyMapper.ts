@@ -1,4 +1,4 @@
-import { VoiceSurveyResponseSchema } from "@/api/contracts/schema";
+import { VoiceSurveyResponseSchema } from "@/contracts/schema";
 import { IDto, ITwoWayMapper, Model } from "@/core";
 import { VoiceSurvey } from "@/models";
 import TeamMemberMapper from "./TeamMemberMapper";

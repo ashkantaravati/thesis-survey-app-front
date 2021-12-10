@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import LikertScaleQuestion from "@/components/survey/LikertScaleQuestion.vue";
+import LikertScaleQuestion from "@/components/LikertScaleQuestion.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({

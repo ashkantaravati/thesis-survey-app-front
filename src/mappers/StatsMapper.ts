@@ -1,4 +1,4 @@
-import { StatsDto } from "@/api/contracts";
+import { StatsDto } from "@/contracts";
 import { IDto, ITwoWayMapper, Model } from "@/core";
 import Stats from "@/models/Stats";
 import OrganizationSummaryMapper from "./OrganizationSummaryMapper";

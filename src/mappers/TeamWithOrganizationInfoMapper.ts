@@ -1,5 +1,5 @@
-import { TeamInfoDto } from "@/api/contracts";
-import { IModelFromDtoMapper, ITwoWayMapper } from "@/core";
+import { TeamInfoDto } from "@/contracts";
+import { IModelFromDtoMapper} from "@/core";
 import TeamWithOrganizationInfo from "@/models/TeamWithOrganizationInfo";
 import TeamMapper from "./TeamMapper";
 

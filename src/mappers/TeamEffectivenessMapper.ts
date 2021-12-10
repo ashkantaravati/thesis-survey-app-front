@@ -1,4 +1,4 @@
-import { TeamEffectivenessSurveyResponseSchema } from "@/api/contracts/schema";
+import { TeamEffectivenessSurveyResponseSchema } from "@/contracts/schema";
 import { IDto, ITwoWayMapper, Model } from "@/core";
 import { TeamEffectivenessSurvey } from "@/models";
 

@@ -4,7 +4,7 @@ import {
   StatsDto,
   SurveyResponseDto,
   TeamInfoDto,
-} from "./contracts";
+} from "../contracts";
 
 function getTeamInfo(teamId: string) {
   return axios.get<TeamInfoDto>(`/teams/${teamId}`);

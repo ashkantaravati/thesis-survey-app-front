@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import VoiceSurveyItem from "@/components/survey/VoiceSurveyItem.vue";
+import VoiceSurveyItem from "@/components/VoiceSurveyItem.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({

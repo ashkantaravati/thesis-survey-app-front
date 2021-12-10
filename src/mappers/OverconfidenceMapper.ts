@@ -1,4 +1,4 @@
-import { OverconfidenceSurveyResponseSchema } from "@/api/contracts/schema";
+import { OverconfidenceSurveyResponseSchema } from "@/contracts/schema";
 import { ITwoWayMapper } from "@/core";
 import { OVERCONFIDENCE_QUESTIONS } from "../constants";
 import { OverconfidenceSurvey } from "@/models";

@@ -1,4 +1,4 @@
-import { StatsSummarySchema } from "@/api/contracts/schema";
+import { StatsSummarySchema } from "@/contracts/schema";
 import { IDto, ITwoWayMapper, Model } from "@/core";
 import StatsSummary from "@/models/StatsSummary";
 

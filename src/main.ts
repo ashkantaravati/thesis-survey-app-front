@@ -6,8 +6,8 @@ import installElementPlus from "./plugins/element";
 import {Delete} from "@element-plus/icons"
 import router from "./router";
 import store from "./store";
-import ProceedButton from "@/components/common/ProceedButton.vue";
-import HintDialog from "@/components/common/HintDialog.vue";
+import ProceedButton from "@/components/ProceedButton.vue";
+import HintDialog from "@/components/HintDialog.vue";
 import '@/css/main.css'
 
 const app = createApp(App);

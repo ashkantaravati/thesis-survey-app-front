@@ -1,4 +1,4 @@
-import { SurveyResponseDto } from "@/api/contracts";
+import { SurveyResponseDto } from "@/contracts";
 import { IDto, ITwoWayMapper, Model } from "@/core";
 import { ThesisSurvey } from "@/models";
 import GeneralSurveyMapper from "./GeneralSurveyMapper";

@@ -1,4 +1,4 @@
-import { OrganizationSummarySchema } from "@/api/contracts/schema";
+import { OrganizationSummarySchema } from "@/contracts/schema";
 import { IDto, ITwoWayMapper, Model } from "@/core";
 import OrganizationSummary from "@/models/OrganizationSummary";
 

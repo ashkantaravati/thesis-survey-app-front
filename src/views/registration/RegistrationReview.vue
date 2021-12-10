@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import ProceedButton from "@/components/common/ProceedButton.vue";
+import ProceedButton from "@/components/ProceedButton.vue";
 import { computed, defineComponent } from "vue";
 import { useStore } from "vuex";
 

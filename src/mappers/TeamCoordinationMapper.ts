@@ -1,4 +1,4 @@
-import { TeamCoordinationSurveyResponseSchema } from "@/api/contracts/schema";
+import { TeamCoordinationSurveyResponseSchema } from "@/contracts/schema";
 import { IDto, ITwoWayMapper, Model } from "@/core";
 import { TeamCoordinationSurvey } from "@/models";
 

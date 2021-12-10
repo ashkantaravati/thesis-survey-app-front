@@ -42,7 +42,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ProceedButton from "@/components/common/ProceedButton.vue";
+import ProceedButton from "@/components/ProceedButton.vue";
 
 export default defineComponent({
   name: "GeneralInfo",

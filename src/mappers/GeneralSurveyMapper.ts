@@ -1,4 +1,4 @@
-import { GeneralSurveyResponseSchema } from "@/api/contracts/schema";
+import { GeneralSurveyResponseSchema } from "@/contracts/schema";
 import { IDto, ITwoWayMapper, Model } from "@/core";
 import { GeneralSurvey } from "@/models";
 
