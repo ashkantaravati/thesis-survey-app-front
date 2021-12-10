@@ -6,6 +6,7 @@ import router from "./router";
 import store from "./store";
 import ProceedButton from "@/components/common/ProceedButton.vue";
 import HintDialog from "@/components/common/HintDialog.vue";
+import '@/css/main.css'
 
 const app = createApp(App);
 installElementPlus(app);
