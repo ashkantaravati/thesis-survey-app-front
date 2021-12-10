@@ -65,23 +65,6 @@
       </el-main>
     </el-container>
   </div>
-  <el-dialog
-    v-model="isHintVisible"
-    center="true"
-    width="80%"
-    show-close="false"
-  >
-    <div>
-
-    </div>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button type="primary" @click="isHintVisible = false"
-          >متوجه ام!</el-button
-        >
-      </span>
-    </template>
-  </el-dialog>
   <hint-dialog v-model="isHintVisible">
       <p>
         روال به این صورت است:
@@ -127,20 +110,9 @@ export default defineComponent({
     ...mapGetters(["surveyTitle"]),
   },
   methods: {
-    setExtraAttributesOnElNumberInputs() {
-      document.querySelectorAll(".el-input-number input").forEach(function(el) {
-        el.setAttribute("inputmode", "numeric");
-        el.setAttribute("pattern", "[0-9]*");
-      });
-    },
     showHelp() {
       this.isHintVisible = true;
     },
-  },
-  mounted() {
-    this.$nextTick(function() {
-      this.setExtraAttributesOnElNumberInputs();
-    });
   },
 
   setup() {
