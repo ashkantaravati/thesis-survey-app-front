@@ -126,10 +126,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapMutations } from "vuex";
+import {defineComponent} from "vue";
+import {mapMutations} from "vuex";
 import ProceedButton from "@/components/common/ProceedButton.vue";
-import { Team } from "@/models";
+import {Team} from "@/models";
+
 const MIN_MEMBER_NAME_LENGTH = 3;
 const MIN_TEAM_NAME_LENGTH = 3;
 export default defineComponent({
@@ -157,8 +158,7 @@ export default defineComponent({
       return this.teams.length > 0;
     },
     isValid():boolean {
-      const result =  this.atLeastOneTeamHasBeenAdded() && this.allMembersHaveNames() && this.allTeamsHaveName() && this.noTwoMembersWithinATeamHaveTheSameName() && this.noTwoTeamsHaveTheSameName();
-      return result;
+      return this.atLeastOneTeamHasBeenAdded() && this.allMembersHaveNames() && this.allTeamsHaveName() && this.noTwoMembersWithinATeamHaveTheSameName() && this.noTwoTeamsHaveTheSameName();
     },
     noTwoMembersWithinATeamHaveTheSameName(): boolean{
       let result = true;
