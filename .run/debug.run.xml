@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="debug" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" editBeforeRun="true" port="8080" restartOnDisconnect="true">
+    <method v="2">
+      <option name="NpmBeforeRunTask" enabled="true">
+        <package-json value="$PROJECT_DIR$/package.json" />
+        <command value="run" />
+        <scripts>
+          <script value="serve" />
+        </scripts>
+        <node-interpreter value="$USER_HOME$/.nvm/versions/node/v14.17.0/bin/node" />
+        <package-manager value="yarn" />
+        <envs />
+      </option>
+    </method>
+  </configuration>
+</component>
