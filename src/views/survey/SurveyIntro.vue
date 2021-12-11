@@ -1,5 +1,7 @@
 <template>
-  <div v-if="remainingParticipants" id="survey-intro">
+  <div id="survey-intro">
+
+  <template v-if="remainingParticipants">
     <p>
       از این که دقایقی از وقت ارزشمندتان را به تکمیل این پرسشنامه اختصاصی
       می‌دهید بسیار سپاسگزارم.
@@ -26,8 +28,8 @@
       @click="$router.push({ name: 'survey-step-1' })"
       >من آماده ام. شروع کن</el-button
     >
-  </div>
-  <div v-else id="survey-intro">
+  </template>
+  <template v-else>
     <el-alert
     title=""
     type="success"
@@ -38,12 +40,15 @@
     </strong>
   </el-alert>
 
+  </template>
   </div>
+
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import {defineComponent} from "vue";
+import {mapGetters} from "vuex";
+
 export default defineComponent({
   name: "SurveyIntro",
   computed: {
@@ -56,13 +61,11 @@ export default defineComponent({
       const NO_OF_VOICE_BEHAVIOR_QUESTIONS_PER_MEMBER = 6;
       const totalNumberOfVoiceBehaviorQuestions =
         this.teamSize * NO_OF_VOICE_BEHAVIOR_QUESTIONS_PER_MEMBER;
-      const totalNumberOfQuestions =
-        NO_OF_GENERAL_QUESTIONS +
-        NO_OF_TEAM_COORDINATION_QUESTIONS +
-        NO_OF_OVERCONFIDENCE_QUESTIONS +
-        NO_OF_TEAM_EFFECTIVENESS_QUESTIONS +
-        totalNumberOfVoiceBehaviorQuestions;
-      return totalNumberOfQuestions;
+      return NO_OF_GENERAL_QUESTIONS +
+          NO_OF_TEAM_COORDINATION_QUESTIONS +
+          NO_OF_OVERCONFIDENCE_QUESTIONS +
+          NO_OF_TEAM_EFFECTIVENESS_QUESTIONS +
+          totalNumberOfVoiceBehaviorQuestions;
     },
     totalEstimatedTime() {
       const totalNumberOfQuestions = this.totalNumberOfQuestions;
@@ -72,8 +75,7 @@ export default defineComponent({
       const SLACK_FACTOR = 0.2;
       const slackTime = SLACK_FACTOR * totalNumberOfMinutes;
       const totalNumberOfMinutesWithSlack = totalNumberOfMinutes + slackTime;
-      const roundedTotalNumberOfMinutesWithSlack = Math.round(totalNumberOfMinutesWithSlack);
-      return roundedTotalNumberOfMinutesWithSlack;
+      return Math.round(totalNumberOfMinutesWithSlack);
     },
     remainingParticipants() {
       return this.NotYetRespondedTeamMembers.length || 0;

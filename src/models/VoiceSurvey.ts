@@ -1,6 +1,6 @@
 import { VOICE_BEHAVIOR_QUESTIONS } from "@/constants";
 import { Model } from "@/core";
-import { LikertScaleQuestion } from "./common/LikertScaleQuestion";
+import { LikertScaleQuestion } from "@/models/common";
 import TeamMember from "./TeamMember";
 
 export default class VoiceSurvey extends Model {

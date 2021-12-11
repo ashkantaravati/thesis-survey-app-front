@@ -1,6 +1,6 @@
 import { TEAM_COORDINATION_QUESTIONS } from "@/constants";
 import { Model } from "@/core";
-import { LikertScaleQuestion } from "./common/LikertScaleQuestion";
+import { LikertScaleQuestion } from "@/models/common";
 
 export default class TeamCoordinationSurvey extends Model {
   q1!: LikertScaleQuestion;

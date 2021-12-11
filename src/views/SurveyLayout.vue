@@ -143,7 +143,7 @@ export default defineComponent({
     },
 
     currentStepIndex(): number {
-      return this.currentStep != undefined ? this.currentStep.index : 0;
+      return (this.currentStep != undefined) ? this.currentStep.index : 0;
     },
     isFirstStep(): boolean {
       return this.currentStepIndex === 0;

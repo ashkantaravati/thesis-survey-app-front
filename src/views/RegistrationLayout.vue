@@ -70,14 +70,14 @@ export default defineComponent({
       this.markCurrentStepAsComplete();
       const nextIndex = this.currentStepIndex + 1;
       const nextStep = this.getStep(nextIndex);
-      if (nextStep == undefined) return;
+      if (nextStep === undefined) return;
 
       this.$router.push({ name: nextStep.routeName });
     },
     goPrev() {
       const prevIndex = this.currentStepIndex - 1;
       const prevStep = this.getStep(prevIndex);
-      if (prevStep == undefined) return;
+      if (prevStep === undefined) return;
       this.$router.push({ name: prevStep.routeName });
     },
     getStep(index) {
@@ -99,7 +99,7 @@ export default defineComponent({
     },
 
     currentStepIndex() {
-      return this.currentStep != undefined ? this.currentStep.index : 0;
+      return this.currentStep !== undefined ? this.currentStep.index : 0;
     },
     isFirstStep() {
       return this.currentStepIndex === 0;
