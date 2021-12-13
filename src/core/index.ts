@@ -1,4 +1,4 @@
-import IDtoFromModelMapper from "./IModelFromDtoMapper";
+import IDtoFromModelMapper from "./IDtoFromModelMapper";
 import IDto from "./IDto";
 import IModelFromDtoMapper from "./IModelFromDtoMapper";
 import Model from "./Model";

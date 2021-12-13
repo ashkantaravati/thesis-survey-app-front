@@ -47,6 +47,7 @@
 import { MinMaxQuestion, MinMaxResponse } from "@/models/common";
 import { AnyFunction } from "element-plus/lib/utils/types";
 import { defineComponent } from "vue";
+import {ElForm} from "element-plus";
 
 export default defineComponent({
   name: "MinMaxQuestion",
@@ -85,16 +86,15 @@ export default defineComponent({
       },
       set(value: MinMaxResponse) {
         console.log("value", value);
-        this.$store.commit("setOverconfidenceSurveyQuestionResponse", {
-          index: this.question.index,
-          response: value,
-        });
+        let payload = this.question;
+        payload.response = value;
+        this.$store.commit("setOverconfidenceSurveyQuestionResponse", payload);
       },
     },
   },
   methods: {
     validate(callback: AnyFunction<any>): void {
-      const mainForm = this.$refs["mainForm"] as any;
+      const mainForm = this.$refs["mainForm"] as typeof ElForm;
       mainForm.validate(callback);
     },
     onMinChange(value: number): void {

@@ -61,18 +61,18 @@ export default class SurveySummary {
       return summarizeVoiceSurvey(survey);
     });
 
-    this.overconfidence = [
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q01),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q02),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q03),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q04),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q05),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q06),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q07),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q08),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q09),
-      StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q10),
-    ];
+    // this.overconfidence = [
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q01),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q02),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q03),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q04),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q05),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q06),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q07),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q08),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q09),
+    //   StringRepresentation.forMinMaxQuestion(survey.overconfidenceSurvey.q10),
+    // ];
   }
 }
 

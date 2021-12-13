@@ -8,7 +8,7 @@ import {
     ThesisSurvey,
     VoiceSurvey
 } from "@/models";
-import {LikertResponse, MinMaxResponse} from "@/models/common";
+import {LikertResponse, MinMaxQuestion, MinMaxResponse} from "@/models/common";
 import arrayShuffle from "array-shuffle";
 import {OrganizationGeneralInfo} from "@/models/OrganizationInfo";
 import {MAXIMUM_TEAM_SIZE, MINIMUM_TEAM_SIZE} from "@/constants";
@@ -32,40 +32,13 @@ const mutations:MutationTree<State> = {
     },
     setOverconfidenceSurveyQuestionResponse(
         state: State,
-        payload: { index: number; response: MinMaxResponse }
+        payload: MinMaxQuestion
 ) {
-        const { index, response } = payload;
-        switch (index) {
-            case 1:
-                state.survey.overconfidenceSurvey.q01.response = response;
-                break;
-            case 2:
-                state.survey.overconfidenceSurvey.q02.response = response;
-                break;
-            case 3:
-                state.survey.overconfidenceSurvey.q03.response = response;
-                break;
-            case 4:
-                state.survey.overconfidenceSurvey.q04.response = response;
-                break;
-            case 5:
-                state.survey.overconfidenceSurvey.q05.response = response;
-                break;
-            case 6:
-                state.survey.overconfidenceSurvey.q06.response = response;
-                break;
-            case 7:
-                state.survey.overconfidenceSurvey.q07.response = response;
-                break;
-            case 8:
-                state.survey.overconfidenceSurvey.q08.response = response;
-                break;
-            case 9:
-                state.survey.overconfidenceSurvey.q09.response = response;
-                break;
-            case 10:
-                state.survey.overconfidenceSurvey.q10.response = response;
-        }
+    const question = state.survey.overconfidenceSurvey.find(q=>q.index===payload.index) as MinMaxQuestion;
+        // state.survey.overconfidenceSurvey.splice(state.survey.overconfidenceSurvey.indexOf(question), 1);
+        // question.response = payload.response;
+        // state.survey.overconfidenceSurvey.push(question)
+        Object.assign(question, payload)
     },
     setTeamCoordinationSurveyResponse(
         state: State,

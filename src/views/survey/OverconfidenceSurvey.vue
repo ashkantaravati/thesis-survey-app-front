@@ -9,13 +9,13 @@
     </p>
     <el-card class="mb-halfrem">
       <template
-        v-for="(question, name, index) in overconfidenceSurvey"
-        :key="name"
+        v-for="(question,index) in overconfidenceSurvey"
+        :key="question.index"
       >
-        <min-max-question :ref="name" :question="question" />
+        <min-max-question :ref="`f-${question.index}`" :question="question" />
         <el-divider
           class="my-halfrem"
-          v-if="isLastQuestion(index)"
+          v-if="isNotLastQuestion(index)"
         ></el-divider>
       </template>
     </el-card>
@@ -51,17 +51,16 @@ export default defineComponent({
     }
   },
   methods: {
-    isLastQuestion(index: number){
+    isNotLastQuestion(index: number){
       return index !== Object.keys(this.overconfidenceSurvey).length - 1
     },
     validateAll():boolean {
-      let valid = true;
-      const keys = Object.keys(this.overconfidenceSurvey);
-      for (const key of keys) {
-      const form = this.$refs[key] as any;
+    let valid = true;
+    for (const refKey in this.$refs){
+      const form = this.$refs[refKey] as typeof MinMaxQuestion
       form.validate((isValid:boolean) => {valid &&=isValid;})
-      }
-      return valid;
+    }
+    return  valid;
     },
     goNext():void | boolean {
        if (this.validateAll()) {

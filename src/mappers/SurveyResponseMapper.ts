@@ -1,16 +1,13 @@
 import { SurveyResponseDto } from "@/contracts";
-import { IDto, ITwoWayMapper, Model } from "@/core";
 import { ThesisSurvey } from "@/models";
 import GeneralSurveyMapper from "./GeneralSurveyMapper";
 import OverconfidenceMapper from "./OverconfidenceMapper";
 import TeamCoordinationMapper from "./TeamCoordinationMapper";
 import TeamEffectivenessMapper from "./TeamEffectivenessMapper";
 import VoiceSurveyMapper from "./VoiceSurveyMapper";
+import {IDtoFromModelMapper} from "@/core";
 
-export default class SurveyResponseMapper implements ITwoWayMapper {
-  createModelFromDto(_dto: IDto): Model {
-    throw new Error("Method not implemented.");
-  }
+export default class SurveyResponseMapper implements IDtoFromModelMapper {
 
   createDtoFromModel(model: ThesisSurvey): SurveyResponseDto {
     const _overconfidenceMapper = new OverconfidenceMapper();
