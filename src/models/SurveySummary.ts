@@ -40,23 +40,23 @@ export default class SurveySummary {
     this.teamHistory = StringRepresentation.forMonthlyDuration(
       survey.generalSurvey.teamHistory as number
     );
-    this.teamCoordination = [
-      StringRepresentation.forLikertScaleQuestion(
-        survey.teamCoordinationSurvey.q1
-      ),
-      StringRepresentation.forLikertScaleQuestion(
-        survey.teamCoordinationSurvey.q2
-      ),
-      StringRepresentation.forLikertScaleQuestion(
-        survey.teamCoordinationSurvey.q3
-      ),
-      StringRepresentation.forLikertScaleQuestion(
-        survey.teamCoordinationSurvey.q4
-      ),
-      StringRepresentation.forLikertScaleQuestion(
-        survey.teamCoordinationSurvey.q5
-      ),
-    ];
+    // this.teamCoordination = [
+    //   StringRepresentation.forLikertScaleQuestion(
+    //     survey.teamCoordinationSurvey.q1
+    //   ),
+    //   StringRepresentation.forLikertScaleQuestion(
+    //     survey.teamCoordinationSurvey.q2
+    //   ),
+    //   StringRepresentation.forLikertScaleQuestion(
+    //     survey.teamCoordinationSurvey.q3
+    //   ),
+    //   StringRepresentation.forLikertScaleQuestion(
+    //     survey.teamCoordinationSurvey.q4
+    //   ),
+    //   StringRepresentation.forLikertScaleQuestion(
+    //     survey.teamCoordinationSurvey.q5
+    //   ),
+    // ];
     this.voice = survey.voiceSurveys.map((survey) => {
       return summarizeVoiceSurvey(survey);
     });
@@ -122,7 +122,6 @@ class StringRepresentation {
     };
   }
   static forLikertResponse(response: LikertResponse): string {
-    // console.log(typeof response.value);
     switch (response.value) {
       case 1:
         return FIVE_STEP_LIKERT_SCALE_VALUES[1];

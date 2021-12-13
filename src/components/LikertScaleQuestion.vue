@@ -1,12 +1,12 @@
 <template>
-  <div v-if="title" class="mb-halfrem">
-    {{ title }}
+  <div  class="mb-halfrem">
+    {{ question.text }}
   </div>
   <el-form :model="response" :rules="rules" ref="mainForm">
     <div dir="ltr" class="text-right">
       <el-form-item prop="value">
         <el-radio-group v-model="response.value" size="small">
-          <template v-if="scale === 7">
+          <template v-if="question.scale === 7">
             <el-radio-button :label="1">شدیدا مخالفم</el-radio-button>
             <el-radio-button :label="2">مخالفم</el-radio-button>
             <el-radio-button :label="3">نسبتا مخالفم</el-radio-button>
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { LikertResponse } from "@/models/common";
+import {LikertResponse, LikertScaleQuestion} from "@/models/common";
 import { AnyFunction } from "element-plus/lib/utils/types";
 import { defineComponent, PropType } from "vue";
 
@@ -56,30 +56,28 @@ export default defineComponent({
     },
   },
   props: {
-    modelValue: {
-      type: Object as PropType<LikertResponse>,
-      required: true,
+    question :{
+      type: Object as PropType<LikertScaleQuestion>,
+      required: true
     },
-    title: {
+    mutationType:{
       type: String,
-    },
-    scale: {
-      type: Number,
-      required: false,
-      default: 5,
-    },
+      required: true
+    }
   },
 
   computed: {
     response: {
       get(): LikertResponse {
-        return this.modelValue;
+        return this.question.response;
       },
       set(value: LikertResponse) {
-        this.$emit("@update:modelValue", value);
+        let payload = this.question;
+        payload.response = value;
+        this.$store.commit("setOverconfidenceSurveyQuestionResponse", payload);
       },
     },
-  },
+  }
 });
 </script>
 

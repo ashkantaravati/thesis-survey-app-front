@@ -13,7 +13,7 @@
     />
   </div>
   <!-- <proceed-button type="proceed" text="گام بعد" @click="$emit('proceed')" /> -->
-  <proceed-button type="finalize" text="ارسال" @click="$emit('submit')" />
+  <proceed-button type="finalize" text="ارسال" @click="submit" />
 </template>
 
 <script lang="ts">
@@ -23,6 +23,12 @@ import { defineComponent } from "vue";
 export default defineComponent({
   components: { VoiceSurveyItem },
   name: "VoiceSurvey",
+  methods:{
+    submit(){
+      // if valid
+      this.$emit('submit')
+    }
+  },
   computed: {
     voiceSurvey() {
       return this.$store.state.survey.voiceSurveys;

@@ -5,14 +5,13 @@
     </h3>
     <el-card class="mb-halfrem">
       <template
-        v-for="(question, name, index) in teamEffectivenessSurvey"
+        v-for="(question, index) in teamEffectivenessSurvey"
         :key="index"
       >
         <likert-scale-question
-          :ref="name"
-          v-model="question.response"
-          :title="question.text"
-          :scale="7"
+            :ref="`f-${question.index}`"
+            :question="question"
+            mutation-type="setTeamEffectivenessSurveyResponse"
         />
         <el-divider></el-divider>
       </template>
@@ -29,15 +28,14 @@ export default defineComponent({
   name: "TeamEffectivenessSurvey",
   components: { LikertScaleQuestion },
     methods: {
-    validateAll():boolean {
-      let valid = true;
-       const keys = Object.keys(this.teamEffectivenessSurvey);
-      for (const key of keys) {
-      const form = this.$refs[key] as any;
-      form.validate((isValid:boolean) => {valid &&=isValid;})
-      }
-      return valid;
-    },
+      validateAll():boolean {
+        let valid = true;
+        for (const refKey in this.$refs){
+          const form = this.$refs[refKey] as typeof LikertScaleQuestion
+          form.validate((isValid:boolean) => {valid &&=isValid;})
+        }
+        return  valid;
+      },
     goNext():void | boolean {
        if (this.validateAll()) {
           this.$emit("proceed");
@@ -47,13 +45,9 @@ export default defineComponent({
       }
     },
   computed: {
-    teamEffectivenessSurvey: {
-      get() {
+    teamEffectivenessSurvey() {
         return this.$store.state.survey.teamEffectivenessSurvey;
-      },
-      set(value) {
-        this.$store.commit("setTeamEffectivenessSurveyResponse", value);
-      },
+
     },
   },
 });

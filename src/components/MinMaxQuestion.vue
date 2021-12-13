@@ -85,7 +85,6 @@ export default defineComponent({
         return this.question.response;
       },
       set(value: MinMaxResponse) {
-        console.log("value", value);
         let payload = this.question;
         payload.response = value;
         this.$store.commit("setOverconfidenceSurveyQuestionResponse", payload);

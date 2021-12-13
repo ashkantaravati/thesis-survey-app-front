@@ -4,6 +4,7 @@ import StatsMapper from "@/mappers/StatsMapper";
 import {ActionTree} from "vuex";
 import {State} from "@/store/state";
 import {SimpleProcedure} from "@/store/types";
+import {unproxify} from "@/helpers";
 
 const actions:ActionTree<State, State> = {
     fetchTeamInfo({ commit, getters }, teamId: string) {
@@ -69,7 +70,8 @@ const actions:ActionTree<State, State> = {
         return Promise.reject("No active participant is set!");
     }
     const mapper = new SurveyResponseMapper();
-    const dto = mapper.createDtoFromModel(state.survey);
+    const unproxified = unproxify(state.survey)
+    const dto = mapper.createDtoFromModel(unproxified);
     commit("setLoading", true);
     return submitParticipantResponse(participantId, dto)
         .then((result) => {

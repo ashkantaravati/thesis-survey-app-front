@@ -84,7 +84,6 @@ export default defineComponent({
       return this.steps.find((step) => step.index === index);
     },
     goToSuccessPage(teams) {
-      console.log(teams);
       this.teams = teams;
       this.$router.push({ name: "register-success" });
     },
