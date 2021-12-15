@@ -11,8 +11,8 @@
             <el-radio-button :label="2">مخالفم</el-radio-button>
             <el-radio-button :label="3">نسبتا مخالفم</el-radio-button>
             <el-radio-button :label="4">نه مخالف و نه موافقم</el-radio-button>
-            <el-radio-button :label="5">موافقم</el-radio-button>
-            <el-radio-button :label="6">نسبتا موافقم</el-radio-button>
+            <el-radio-button :label="5">نسبتا موافقم</el-radio-button>
+            <el-radio-button :label="6">موافقم</el-radio-button>
             <el-radio-button :label="7">شدیدا موافقم</el-radio-button>
           </template>
           <template v-else>
