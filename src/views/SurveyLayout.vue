@@ -28,7 +28,7 @@
         گام قبل</el-link
       >
     </div>
-    <router-view @proceed.once="goNext" @submit.once="submit"></router-view>
+    <router-view @proceed.once="goNext" @submit="submit"></router-view>
     <hint-dialog
       v-model="feedbackDialogIsVisible"
       @act="confirmAndSend"
