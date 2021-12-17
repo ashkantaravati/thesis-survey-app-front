@@ -218,6 +218,7 @@ export default defineComponent({
 }
 .name-container-header{
   position: sticky;
+  z-index:1;
   top:0;
   display:flex; flex-direction:row ;  border-bottom: 1px solid #fff; padding-bottom:6px;
   background: #384a5d;
