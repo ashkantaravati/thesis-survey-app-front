@@ -1,32 +1,27 @@
 <template>
   <div class="step-container" id="survey-step-1">
     <h3>سوالات عمومی</h3>
-    <el-form
-      :model="activeParticipant"
-      :rules="rules"
-      ref="activeParticipantForm"
-    >
+
+    <el-form :model="generalSurvey" :rules="rules" ref="generalSurveyForm">
       <div class="block mb-halfrem">
         <p>نام</p>
         <el-form-item>
           <el-select
-            v-model="activeParticipant"
-            value-key="id"
-            filterable
-            placeholder="نام خود را از لیست انتخاب کنید"
+              v-model="activeParticipant"
+              value-key="id"
+              filterable
+              placeholder="نام خود را از لیست انتخاب کنید"
           >
             <el-option
-              v-for="member in teamMembers"
-              :key="member.id"
-              :label="member.name"
-              :value="member"
+                v-for="member in teamMembers"
+                :key="member.id"
+                :label="member.name"
+                :value="member"
             >
             </el-option>
           </el-select>
         </el-form-item>
       </div>
-    </el-form>
-    <el-form :model="generalSurvey" :rules="rules" ref="generalSurveyForm">
       <div class="block mb-halfrem">
         <p>سن</p>
         <el-form-item prop="age">
@@ -75,6 +70,7 @@
 import { TeamMember } from "@/models";
 import { defineComponent } from "vue";
 import { mapGetters } from "vuex";
+import {ElForm} from "element-plus";
 
 export default defineComponent({
   name: "GeneralSurvey",
@@ -82,7 +78,7 @@ export default defineComponent({
     goNext() {
       if (!this.activeParticipant.name) return;
       // const activeParticipantForm = this.$refs.activeParticipantForm as any;
-      const generalSurveyForm = this.$refs.generalSurveyForm as any;
+      const generalSurveyForm = this.$refs.generalSurveyForm as typeof ElForm;
       generalSurveyForm.validate((valid: boolean) => {
         if (valid) {
           this.$emit("proceed");

@@ -178,3 +178,11 @@ a:focus {
     word-break: break-word;
     text-align: justify !important;
 }
+
+.index-indicator{
+    background: #ffcc29;
+    padding: 0.15rem 0.3rem;
+    color: #142334;
+    border-radius: 0.25rem;
+    font-size: small;
+}

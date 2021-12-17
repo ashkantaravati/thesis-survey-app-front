@@ -61,13 +61,12 @@
               <div style="width:40%" class="flex:50%">
                 {{ member.name }}
               </div>
-              <div class="flex:50% icon-styles">
-                <i
-                  :class="{
-                    'el-icon-check success': member.has_participated,
-                    'el-icon-close danger': !member.has_participated,
-                  }"
-                ></i>
+              <div class="flex:50%">
+
+                <el-icon class="icon-styles">
+                  <finished-icon class="success" v-if="member.has_participated" />
+                  <minus-icon class="danger" v-else />
+                </el-icon>
               </div>
             </div>
           </div>
@@ -160,7 +159,7 @@ export default defineComponent({
   transition: 0.3s;
 }
 
-.icon-styles i {
+.icon-styles{
   border-radius: 50%;
   padding: 5px;
   border: 1px solid;
@@ -171,11 +170,11 @@ export default defineComponent({
   font-size: 19px;
   font-weight: 800;
 }
-.icon-styles i.success {
+.icon-styles>.success {
   color: green;
   border-color: green;
 }
-.icon-styles i.danger {
+.icon-styles>.danger {
   color: red;
   border-color: red;
 }
@@ -219,6 +218,7 @@ export default defineComponent({
 }
 .name-container-header{
   position: sticky;
+  z-index:1;
   top:0;
   display:flex; flex-direction:row ;  border-bottom: 1px solid #fff; padding-bottom:6px;
   background: #384a5d;

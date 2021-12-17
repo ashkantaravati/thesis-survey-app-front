@@ -25,9 +25,9 @@ export default class SurveyResponseMapper implements IDtoFromModelMapper {
       team_coordination_survey_response: _teamCoordinationMapper.createDtoFromModel(
         model.teamCoordinationSurvey
       ),
-      voice_survey_responses: model.voiceSurveys.map((survey) =>
-        _voiceSurveyMapper.createDtoFromModel(survey)
-      ),
+      voice_survey_responses:
+        _voiceSurveyMapper.createDtoFromModel(model.voiceSurvey)
+      ,
       team_effectiveness_survey_response: _teamEffectivenessMapper.createDtoFromModel(
         model.teamEffectivenessSurvey
       ),
