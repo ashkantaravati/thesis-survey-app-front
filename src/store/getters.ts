@@ -1,17 +1,9 @@
-import {SurveySummary} from "@/models";
 import {SITE_TITLE} from "@/constants";
 import {GetterTree} from "vuex";
 import {State} from "@/store/state";
 
 const getters:GetterTree<State, State> = {
-    surveySummary: (state) => {
-        return new SurveySummary(
-            state.activeParticipant,
-            state.teamInfo,
-            state.survey
-        );
-        // TODO: depend only on Survey
-    },
+
         stats: (state) => {
         return state.stats;
     },

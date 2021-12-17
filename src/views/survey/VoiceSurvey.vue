@@ -4,24 +4,25 @@
       ارزیابی رفتار صدای تیم
     </h3>
     <p>
-      در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود با این ۶ سوال پاسخ دهید:
+      در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود به این ۶ سوال پاسخ دهید:
     </p>
-    <voice-survey-item
-      v-for="survey in voiceSurvey"
-      :survey="survey"
-      :key="survey.id"
+    <multi-response-likert-scale-question
+      v-for="(question,index) in voiceSurvey"
+      :question="question"
+      :index="index+1"
+      mutationType="setVoiceSurveyResponse"
+      :key="question.index"
     />
   </div>
-  <!-- <proceed-button type="proceed" text="گام بعد" @click="$emit('proceed')" /> -->
   <proceed-button type="finalize" text="ارسال" @click="submit" />
 </template>
 
 <script lang="ts">
-import VoiceSurveyItem from "@/components/VoiceSurveyItem.vue";
 import { defineComponent } from "vue";
+import MultiResponseLikertScaleQuestion from "@/components/MultiResponseLikertScaleQuestion.vue";
 
 export default defineComponent({
-  components: { VoiceSurveyItem },
+  components: { MultiResponseLikertScaleQuestion },
   name: "VoiceSurvey",
   methods:{
     submit(){
@@ -31,7 +32,7 @@ export default defineComponent({
   },
   computed: {
     voiceSurvey() {
-      return this.$store.state.survey.voiceSurveys;
+      return this.$store.state.survey.voiceSurvey;
     },
   },
 });

@@ -6,14 +6,14 @@ import {
     TeamMember,
     TeamWithOrganizationInfo,
     ThesisSurvey,
-    VoiceSurvey
 } from "@/models";
-import { LikertScaleQuestion, MinMaxQuestion} from "@/models/common";
+import {LikertScaleQuestion, MinMaxQuestion, MultiResponseLikertScaleQuestion} from "@/models/common";
 import arrayShuffle from "array-shuffle";
 import {OrganizationGeneralInfo} from "@/models/OrganizationInfo";
 import {MAXIMUM_TEAM_SIZE, MINIMUM_TEAM_SIZE} from "@/constants";
 import Stats from "@/models/Stats";
 import {MutationTree} from "vuex";
+import VOICE_BEHAVIOR_QUESTIONS from "@/constants/voiceBehaviorQuestions";
 
 const mutations:MutationTree<State> = {
     // survey mutations:
@@ -43,8 +43,6 @@ const mutations:MutationTree<State> = {
 ) {
         const question = state.survey.teamCoordinationSurvey.find(q=>q.index === payload.index) as LikertScaleQuestion;
         Object.assign(question, payload)
-
-
     },
     setTeamEffectivenessSurveyResponse(
         state: State,
@@ -54,24 +52,14 @@ const mutations:MutationTree<State> = {
         Object.assign(question, payload)
     },
     generateVoiceResponseItemForEachTeamMember(state: State) {
-        const shuffledMembers = arrayShuffle(state.teamInfo.members);
-        shuffledMembers.forEach((member) => {
-            state.survey.voiceSurveys.push(new VoiceSurvey(member));
-        });
+        const ratees = state.teamInfo.members;
+        state.survey.voiceSurvey = arrayShuffle(Object.entries(VOICE_BEHAVIOR_QUESTIONS).map(([key, value])=> new MultiResponseLikertScaleQuestion(value.index,value.text,ratees)));
     },
-    setVoiceSurveyResponse(state: State, updatedSurvey: VoiceSurvey) {
-        let surveyState = state.survey.voiceSurveys.find(
-            (survey) => survey.id === updatedSurvey.id
-        );
-        if (surveyState) {
-            surveyState = updatedSurvey;
-        } else {
-            console.error(`Could not find survey with id ${updatedSurvey.id}`);
-        }
+    setVoiceSurveyResponse(state: State, payload: MultiResponseLikertScaleQuestion) {
+        const question = state.survey.voiceSurvey.find(q=>q.index===payload.index) as MultiResponseLikertScaleQuestion;
+        Object.assign(question, payload)
     },
-
     // end of survey mutations
-
     // organization info mutations:
     replaceWithCreatedOrganization(
         state: State,
