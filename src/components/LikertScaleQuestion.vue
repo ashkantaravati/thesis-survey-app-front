@@ -74,7 +74,7 @@ export default defineComponent({
       set(value: LikertResponse) {
         let payload = this.question;
         payload.response = value;
-        this.$store.commit("setOverconfidenceSurveyQuestionResponse", payload);
+        this.$store.commit(this.mutationType, payload);
       },
     },
   }
