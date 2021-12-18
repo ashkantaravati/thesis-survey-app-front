@@ -33,10 +33,10 @@
 </template>
 
 <script lang="ts">
-import {MultiResponseLikertScaleQuestion} from "@/models/common";
+import {MultiResponseLikertScaleQuestion} from "@/core/models";
 import { AnyFunction } from "element-plus/lib/utils/types";
 import { defineComponent, PropType } from "vue";
-import {LikertResponseWithRatee} from "@/models/common/LikertResponseWithRatee";
+import {LikertResponseWithRatee} from "@/core/models/LikertResponseWithRatee";
 
 export default defineComponent({
   name: "MultiResponseLikertScaleQuestion",

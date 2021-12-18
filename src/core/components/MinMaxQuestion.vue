@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { MinMaxQuestion, MinMaxResponse } from "@/models/common";
+import { MinMaxQuestion, MinMaxResponse } from "@/core/models";
 import { AnyFunction } from "element-plus/lib/utils/types";
 import { defineComponent } from "vue";
 import {ElForm} from "element-plus";
