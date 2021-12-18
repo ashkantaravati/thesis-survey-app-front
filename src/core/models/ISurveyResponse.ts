@@ -1,1 +1,1 @@
-export interface ISurveyResponse {}
+export default interface ISurveyResponse {}
