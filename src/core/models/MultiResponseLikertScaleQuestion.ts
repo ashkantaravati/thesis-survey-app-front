@@ -1,5 +1,5 @@
-import IQuestionable from "./IQuestionable";
-import { LikertResponseWithRatee } from "@/core/models";
+import { IQuestionable } from "@/core/models";
+import { LikertResponseWithRatee } from "@/core/models/LikertResponseWithRatee";
 import { TeamMember } from "@/models";
 import arrayShuffle from "array-shuffle";
 
