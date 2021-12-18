@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import MultiResponseLikertScaleQuestion from "@/components/MultiResponseLikertScaleQuestion.vue";
+import MultiResponseLikertScaleQuestion from "@/core/components/MultiResponseLikertScaleQuestion.vue";
 
 export default defineComponent({
   components: { MultiResponseLikertScaleQuestion },

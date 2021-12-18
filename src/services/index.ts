@@ -1,4 +1,4 @@
-import axios from "@/api/gateway";
+import axios from "@/core/axios";
 import {
   OrganizationRegistrationDto,
   StatsDto,

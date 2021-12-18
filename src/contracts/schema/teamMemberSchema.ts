@@ -1,4 +1,4 @@
-import HashIdentifiedEntitySchema from "./hashIdentifiedEntitySchema";
+import HashIdentifiedEntitySchema from "../../core/contracts/hashIdentifiedEntitySchema";
 
 export default interface TeamMemberSchema extends HashIdentifiedEntitySchema {
   name: string;

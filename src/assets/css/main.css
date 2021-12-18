@@ -47,7 +47,7 @@ body::before {
     position: absolute;
     top: 0;
     left: 50%;
-    background: url(../assets/images/colorfull-bg.svg) no-repeat 50%;
+    background: url(../images/colorfull-bg.svg) no-repeat 50%;
     transform: translateX(-50%);
     z-index: -1;
     opacity: 0.7;
@@ -55,7 +55,7 @@ body::before {
 @media screen and (max-width: 768px) {
     body::before {
         left: 60%;
-        background: url(../assets/images/colorfull-bg.svg) no-repeat 60%;
+        background: url(../images/colorfull-bg.svg) no-repeat 60%;
         transform: translateX(-60%);
     }
 }

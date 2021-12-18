@@ -6,9 +6,9 @@ import installElementPlus from "./plugins/element";
 import {Delete, Finished, Minus} from "@element-plus/icons"
 import router from "./router";
 import store from "./store";
-import ProceedButton from "@/components/ProceedButton.vue";
-import HintDialog from "@/components/HintDialog.vue";
-import '@/css/main.css'
+import ProceedButton from "@/core/components/ProceedButton.vue";
+import HintDialog from "@/core/components/HintDialog.vue";
+import '@/assets/css/main.css'
 
 const app = createApp(App);
 installElementPlus(app);

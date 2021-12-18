@@ -136,7 +136,7 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import {mapMutations} from "vuex";
-import ProceedButton from "@/components/ProceedButton.vue";
+import ProceedButton from "@/core/components/ProceedButton.vue";
 import {Team} from "@/models";
 
 const MIN_MEMBER_NAME_LENGTH = 3;

@@ -7,13 +7,13 @@ import {
     TeamWithOrganizationInfo,
     ThesisSurvey,
 } from "@/models";
-import {LikertScaleQuestion, MinMaxQuestion, MultiResponseLikertScaleQuestion} from "@/models/common";
-import arrayShuffle from "array-shuffle";
+import {LikertScaleQuestion, MinMaxQuestion, MultiResponseLikertScaleQuestion} from "@/core/models";
 import {OrganizationGeneralInfo} from "@/models/OrganizationInfo";
 import {MAXIMUM_TEAM_SIZE, MINIMUM_TEAM_SIZE} from "@/constants";
 import Stats from "@/models/Stats";
 import {MutationTree} from "vuex";
 import VOICE_BEHAVIOR_QUESTIONS from "@/constants/voiceBehaviorQuestions";
+import {shuffleArray} from "@/core/helpers";
 
 const mutations:MutationTree<State> = {
     // survey mutations:
@@ -53,7 +53,7 @@ const mutations:MutationTree<State> = {
     },
     generateVoiceResponseItemForEachTeamMember(state: State) {
         const ratees = state.teamInfo.members;
-        state.survey.voiceSurvey = arrayShuffle(Object.entries(VOICE_BEHAVIOR_QUESTIONS).map(([key, value])=> new MultiResponseLikertScaleQuestion(value.index,value.text,ratees)));
+        state.survey.voiceSurvey = shuffleArray<MultiResponseLikertScaleQuestion>(Object.entries(VOICE_BEHAVIOR_QUESTIONS).map(([key, value])=> new MultiResponseLikertScaleQuestion(value.index,value.text,ratees)));
     },
     setVoiceSurveyResponse(state: State, payload: MultiResponseLikertScaleQuestion) {
         const question = state.survey.voiceSurvey.find(q=>q.index===payload.index) as MultiResponseLikertScaleQuestion;

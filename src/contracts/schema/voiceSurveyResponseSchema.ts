@@ -1,4 +1,4 @@
-import NumberIdentifiedEntitySchema from "./numberIdentifiedEntitySchema";
+import NumberIdentifiedEntitySchema from "../../core/contracts/numberIdentifiedEntitySchema";
 import TeamMemberSchema from "./teamMemberSchema";
 
 export default interface VoiceSurveyResponseSchema

@@ -1,4 +1,4 @@
-import NumberIdentifiedEntitySchema from "./numberIdentifiedEntitySchema";
+import NumberIdentifiedEntitySchema from "../../core/contracts/numberIdentifiedEntitySchema";
 
 export default interface TeamEffectivenessSurveyResponseSchema
   extends NumberIdentifiedEntitySchema {

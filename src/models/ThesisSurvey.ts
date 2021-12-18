@@ -1,8 +1,8 @@
 import {Model} from "@/core";
 import GeneralSurvey from "./GeneralSurvey";
-import {LikertScaleQuestion, MinMaxQuestion, MultiResponseLikertScaleQuestion} from "@/models/common";
+import {LikertScaleQuestion, MinMaxQuestion, MultiResponseLikertScaleQuestion} from "@/core/models";
 import {OVERCONFIDENCE_QUESTIONS, TEAM_COORDINATION_QUESTIONS,TEAM_EFFECTIVENESS_QUESTIONS} from "@/constants";
-import arrayShuffle from "array-shuffle";
+import {shuffleArray} from "@/core/helpers";
 
 
 export default class ThesisSurvey extends Model {
@@ -19,9 +19,9 @@ export default class ThesisSurvey extends Model {
         };
 
         this.voiceSurvey = [];
-        this.overconfidenceSurvey = arrayShuffle(Object.entries(OVERCONFIDENCE_QUESTIONS).map(([key, value]) => new MinMaxQuestion(value.index, value.text)));
-        this.teamCoordinationSurvey = arrayShuffle(Object.entries(TEAM_COORDINATION_QUESTIONS).map(([key, value])=> new LikertScaleQuestion(value.index,value.text)));
-        this.teamEffectivenessSurvey = arrayShuffle(Object.entries(TEAM_EFFECTIVENESS_QUESTIONS).map(([key, value])=> new LikertScaleQuestion(value.index,value.text,7)));
+        this.overconfidenceSurvey = shuffleArray<MinMaxQuestion>(Object.entries(OVERCONFIDENCE_QUESTIONS).map(([key, value]) => new MinMaxQuestion(value.index, value.text)));
+        this.teamCoordinationSurvey = shuffleArray<LikertScaleQuestion>(Object.entries(TEAM_COORDINATION_QUESTIONS).map(([key, value])=> new LikertScaleQuestion(value.index,value.text)));
+        this.teamEffectivenessSurvey = shuffleArray<LikertScaleQuestion>(Object.entries(TEAM_EFFECTIVENESS_QUESTIONS).map(([key, value])=> new LikertScaleQuestion(value.index,value.text,7)));
         this.feedback = "";
     }
 

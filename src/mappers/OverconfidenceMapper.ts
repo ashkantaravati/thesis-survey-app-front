@@ -1,8 +1,7 @@
 import { OverconfidenceSurveyResponseSchema } from "@/contracts/schema";
 import { IDtoFromModelMapper } from "@/core";
-import { OVERCONFIDENCE_QUESTIONS } from "../constants";
 import { OverconfidenceSurvey } from "@/models";
-import {MinMaxQuestion} from "@/models/common";
+import {MinMaxQuestion} from "@/core/models";
 
 export default class OverconfidenceMapper implements IDtoFromModelMapper {
   createDtoFromModel(

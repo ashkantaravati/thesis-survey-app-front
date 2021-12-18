@@ -1,10 +1,10 @@
-import {getStats, getTeamInfo, submitOrganizationInfo, submitParticipantResponse} from "@/api/services";
+import {getStats, getTeamInfo, submitOrganizationInfo, submitParticipantResponse} from "@/services";
 import {OrganizationRegistrationMapper, SurveyResponseMapper, TeamWithOrganizationInfoMapper} from "@/mappers";
 import StatsMapper from "@/mappers/StatsMapper";
 import {ActionTree} from "vuex";
 import {State} from "@/store/state";
 import {SimpleProcedure} from "@/store/types";
-import {unproxify} from "@/helpers";
+import {unproxify} from "@/core/helpers";
 
 const actions:ActionTree<State, State> = {
     fetchTeamInfo({ commit, getters }, teamId: string) {

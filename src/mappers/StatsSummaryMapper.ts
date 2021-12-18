@@ -1,6 +1,6 @@
 import { StatsSummarySchema } from "@/contracts/schema";
 import { IDto, ITwoWayMapper, Model } from "@/core";
-import StatsSummary from "@/models/StatsSummary";
+import {StatsSummary} from "@/models";
 
 export default class StatsSummaryMapper implements ITwoWayMapper {
   createDtoFromModel(_model: Model): IDto {

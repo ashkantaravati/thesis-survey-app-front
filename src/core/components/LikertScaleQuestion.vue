@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import {LikertResponse, LikertScaleQuestion} from "@/models/common";
+import {LikertResponse, LikertScaleQuestion} from "@/core/models";
 import { AnyFunction } from "element-plus/lib/utils/types";
 import { defineComponent, PropType } from "vue";
 

@@ -50,7 +50,7 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from "vue";
 import { mapActions, mapMutations, useStore } from "vuex";
-// import { getTeamInfo } from "../api/survey.service";
+// import { getTeamInfo } from "../services/survey.service";
 type Step = {
   index: number;
   title: string;

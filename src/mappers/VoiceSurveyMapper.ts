@@ -1,8 +1,8 @@
 import { VoiceSurveyResponseSchema } from "@/contracts/schema";
 import {IDtoFromModelMapper} from "@/core";
 import TeamMemberMapper from "./TeamMemberMapper";
-import {MultiResponseLikertScaleQuestion} from "@/models/common";
-import {LikertResponseWithRatee} from "@/models/common/LikertResponseWithRatee";
+import {MultiResponseLikertScaleQuestion} from "@/core/models";
+import {LikertResponseWithRatee} from "@/core/models/LikertResponseWithRatee";
 
 export default class VoiceSurveyMapper implements IDtoFromModelMapper {
   createDtoFromModel(model: Array<MultiResponseLikertScaleQuestion>): Array<VoiceSurveyResponseSchema>{
