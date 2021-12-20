@@ -1,0 +1,101 @@
+.el-input__inner {
+    background-color: #384a5d !important;
+    color: #f5f5f5 !important;
+}
+
+.el-link.el-link--info {
+    color: #e2e2e2 !important;
+}
+
+.el-card {
+    background-color: #384a5d !important;
+    color: #f5f5f5 !important;
+}
+
+.card-header h4 {
+    color: #f5f5f5 !important;
+}
+
+.el-drawer {
+    background-color: #1f333a !important;
+}
+
+.el-drawer__header {
+    font-weight: bold !important;
+    font-size: larger !important;
+    color: #fff !important;
+}
+
+.el-drawer__body {
+    margin: 0 5%;
+}
+
+.el-input__inner,
+.el-button,
+.el-step__icon-inner {
+    font-family: "IRANSansX" !important;
+}
+
+.el-menu {
+    background-color: transparent !important;
+}
+
+.el-menu--horizontal>.el-menu-item {
+    float: right !important;
+}
+
+.el-main {
+    min-height: 70vh;
+}
+
+.el-divider--horizontal {
+    margin: 12px 0 !important;
+}
+
+.el-button.is-round {
+    border-radius: 46px;
+    padding: 19px 40px;
+}
+
+.emphasized {
+    color: #fff;
+    background-color: #ffffff38;
+    border-radius: 5px;
+    padding: 0px 3px;
+    margin: 0px 2px;
+    font-size: small;
+}
+
+.emphasized:hover {
+    background-color: #ffcc29;
+    color: #142334;
+}
+
+.color-accent-cta {
+    background-color: #ffcc29;
+    color: #142334;
+    border-radius: 6px;
+    border-width: 0;
+}
+
+.color-secondary-cta {
+    color: #ffcc29;
+}
+
+.responsive-img {
+    height: 500px;
+    width: 100%;
+}
+
+.hint-text {
+    word-break: break-word;
+    text-align: justify !important;
+}
+
+.index-indicator {
+    background: #ffcc29;
+    padding: 0.15rem 0.3rem;
+    color: #142334;
+    border-radius: 0.25rem;
+    font-size: small;
+}
