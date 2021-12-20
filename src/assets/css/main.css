@@ -2,11 +2,14 @@
     color: #fff;
     background-color: #ffffff38;
     border-radius: 5px;
-    padding: 0px 5px;
+    padding: 0px 3px;
+    margin: 0px 2px;
+    font-size: small;
 }
 
 .emphasized:hover {
     background-color: #ffcc29;
+    color: #142334;
 }
 
 .color-accent-cta {
