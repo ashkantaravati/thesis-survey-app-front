@@ -1,15 +1,14 @@
 <template>
   <div class="step-container" id="survey-step-5">
-    <h3>
-      ارزیابی رفتار صدای تیم
-    </h3>
+    <h3>ارزیابی رفتار صدای تیم</h3>
     <p>
       در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود به این ۶ سوال پاسخ دهید:
     </p>
     <multi-response-likert-scale-question
-      v-for="(question,index) in voiceSurvey"
+      v-for="(question, index) in voiceSurvey"
+      :ref="`f-${question.index}`"
       :question="question"
-      :index="index+1"
+      :index="index + 1"
       mutationType="setVoiceSurveyResponse"
       :key="question.index"
     />
@@ -24,11 +23,26 @@ import MultiResponseLikertScaleQuestion from "@/core/components/MultiResponseLik
 export default defineComponent({
   components: { MultiResponseLikertScaleQuestion },
   name: "VoiceSurvey",
-  methods:{
-    submit(){
-      // if valid
-      this.$emit('submit')
-    }
+  methods: {
+    validateAll(): boolean {
+      let valid = true;
+      for (const refKey in this.$refs) {
+        const form = this.$refs[
+          refKey
+        ] as typeof MultiResponseLikertScaleQuestion;
+        form.validate((isValid: boolean) => {
+          valid &&= isValid;
+        });
+      }
+      return valid;
+    },
+    submit(): void | boolean {
+      if (this.validateAll()) {
+        this.$emit("submit");
+      } else {
+        return false;
+      }
+    },
   },
   computed: {
     voiceSurvey() {

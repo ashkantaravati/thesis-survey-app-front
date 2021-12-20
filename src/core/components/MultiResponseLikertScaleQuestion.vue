@@ -6,16 +6,38 @@
         {{ question.text }}
       </div>
     </template>
-    <el-form :model="responses" :rules="rules" ref="mainForm">
+    <el-form :model="q" status-icon ref="mainForm">
       <div
-        v-for="response in responses"
+        v-for="(response, index) in q.responses"
         :key="response.evaluatedParticipant.id"
       >
         <div class="mb-halfrem">
           {{ response.evaluatedParticipant.name }}
         </div>
         <div dir="ltr" class="text-right">
-          <el-form-item prop="value">
+          <el-form-item
+            :prop="`responses.${index}.value`"
+            :rules="{
+              required: true,
+              min: 1,
+              type: 'number',
+              message: 'پاسخ خود را انتخاب کنید',
+              trigger: 'focus',
+            }"
+          >
+            <!-- <el-rate
+              dir="rtl"
+              v-model.number="response.value"
+              :texts="[
+                'شدیدا مخالفم',
+                'مخالفم',
+                'نه مخالف و نه موافقم',
+                'موافقم',
+                'شدیدا موافقم',
+              ]"
+              show-text
+            >
+            </el-rate> -->
             <el-radio-group v-model="response.value" size="small">
               <el-radio-button :label="1">شدیدا مخالفم</el-radio-button>
               <el-radio-button :label="2">مخالفم</el-radio-button>
@@ -37,27 +59,17 @@ import {
   LikertResponseWithRatee,
   MultiResponseLikertScaleQuestion,
 } from "@/core/models";
-
+type Q = { responses: LikertResponseWithRatee[] };
 export default defineComponent({
   name: "MultiResponseLikertScaleQuestion",
 
-  data() {
-    return {
-      rules: {
-        value: [
-          {
-            required: true,
-            message: "پاسخ خود را انتخاب کنید",
-            trigger: "blur",
-          },
-        ],
-      },
-    };
-  },
   methods: {
     validate(callback: AnyFunction<any>): void {
       const mainForm = this.$refs["mainForm"] as any;
-      mainForm.validate(callback);
+
+      mainForm.validate((val: Boolean) => {
+        callback(val);
+      });
     },
   },
   props: {
@@ -76,13 +88,13 @@ export default defineComponent({
   },
 
   computed: {
-    responses: {
-      get(): Array<LikertResponseWithRatee> {
-        return this.question.response;
+    q: {
+      get(): Q {
+        return { responses: this.question.response };
       },
-      set(value: Array<LikertResponseWithRatee>) {
+      set(value: Q) {
         let payload = this.question;
-        payload.response = value;
+        payload.response = value.responses;
         this.$store.commit(this.mutationType, payload);
       },
     },
