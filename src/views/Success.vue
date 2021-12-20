@@ -3,10 +3,13 @@
     <el-col :xs="24" :lg="18" :xl="18">
       <h4 class="text-center mb-halfrem">
         <i
-          class="el-icon-circle-check d-block "
-          style="     font-weight: 900;   font-size: 5rem;
-    color: #67c23a;
-    display: block;"
+          class="el-icon-circle-check d-block"
+          style="
+            font-weight: 900;
+            font-size: 5rem;
+            color: #67c23a;
+            display: block;
+          "
         ></i>
         با موفقیت ثبت شد. با تشکر
       </h4>
@@ -22,7 +25,7 @@
   </el-row>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
