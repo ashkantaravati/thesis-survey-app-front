@@ -1,37 +1,33 @@
-import { SurveyResponseDto } from "@/contracts";
-import { ThesisSurvey } from "@/models";
+import { ResponseDto } from "@/contracts";
+import { Team, ThesisSurvey } from "@/models";
 import GeneralSurveyMapper from "./GeneralSurveyMapper";
 import OverconfidenceMapper from "./OverconfidenceMapper";
 import TeamCoordinationMapper from "./TeamCoordinationMapper";
 import TeamEffectivenessMapper from "./TeamEffectivenessMapper";
 import VoiceSurveyMapper from "./VoiceSurveyMapper";
-import {IDtoFromModelMapper} from "@/core";
+import { IDtoFromModelMapper } from "@/core";
+import { TeamMapper } from ".";
 
 export default class SurveyResponseMapper implements IDtoFromModelMapper {
-
-  createDtoFromModel(model: ThesisSurvey): SurveyResponseDto {
+  createDtoFromModel(model: ThesisSurvey): ResponseDto {
     const _overconfidenceMapper = new OverconfidenceMapper();
     const _generalSurveyMapper = new GeneralSurveyMapper();
     const _teamCoordinationMapper = new TeamCoordinationMapper();
     const _voiceSurveyMapper = new VoiceSurveyMapper();
     const _teamEffectivenessMapper = new TeamEffectivenessMapper();
     return {
-      general_survey_response: _generalSurveyMapper.createDtoFromModel(
-        model.generalSurvey
-      ),
-      overconfidence_survey_response: _overconfidenceMapper.createDtoFromModel(
-        model.overconfidenceSurvey
-      ),
-      team_coordination_survey_response: _teamCoordinationMapper.createDtoFromModel(
+      ..._generalSurveyMapper.createDtoFromModel(model.generalSurvey),
+      ..._overconfidenceMapper.createDtoFromModel(model.overconfidenceSurvey),
+      ..._teamCoordinationMapper.createDtoFromModel(
         model.teamCoordinationSurvey
       ),
-      voice_survey_responses:
-        _voiceSurveyMapper.createDtoFromModel(model.voiceSurvey)
-      ,
-      team_effectiveness_survey_response: _teamEffectivenessMapper.createDtoFromModel(
+      ..._voiceSurveyMapper.createDtoFromModel(model.voiceSurvey),
+      ..._teamEffectivenessMapper.createDtoFromModel(
         model.teamEffectivenessSurvey
       ),
-      feedback_response: model.feedback,
+      feedback: model.feedback,
+      team_id: model.activeTeam.id as string,
+      // team: _teamMapper.createDtoFromModel(model.activeTeam as Team),
     };
   }
 }

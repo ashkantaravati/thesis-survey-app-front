@@ -1,42 +1,18 @@
 <template>
   <h2>ثبت نام سازمان</h2>
-  <el-steps
-    v-loading.fullscreen.lock="loading"
-    style="margin-bottom: 1.2rem"
-    v-if="currentStep"
-    :active="currentStepIndex"
-    align-center
-  >
-    <el-step
-      v-for="step in steps"
-      :key="step.index"
-      :title="step.title"
-    ></el-step>
-  </el-steps>
-  <div style="position: relative">
-    <el-link
-      class="prev-step"
-      v-if="!isFirstStep"
-      @click.prevent="goPrev"
-      type="info"
-      tabindex="50"
-    >
-      <i class="el-icon-right"></i>
-      گام قبل</el-link
-    >
-  </div>
+
   <div class="registration-title">
     <router-view
-      @proceed.once="goNext"
       @submit.once="submit"
       @showHelpRequested="showHelp"
     ></router-view>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, computed } from "vue";
 import { mapActions, useStore } from "vuex";
+import { Team } from "@/models";
 
 export default defineComponent({
   name: "RegistrationLayout",
@@ -51,106 +27,21 @@ export default defineComponent({
   methods: {
     ...mapActions(["registerOrganization"]),
     showHelp() {
-      if (this.numberOfCompletedSteps <= 0) this.$emit("showHelpRequested");
+      this.$emit("showHelpRequested");
     },
     submit() {
-      this.markCurrentStepAsComplete();
-      if (this.noRemainingStepsLeft) {
-        this.registerOrganization().then(this.goToSuccessPage);
-      } else {
-        this.$alert("هنوز همه‌ی مراحل را تکمیل نکرده اید.", "دست نگه‌دارید!", {
-          confirmButtonText: "بازگشت به مراحل",
-          callback: () => {
-            this.$router.push({ name: this.firstIncompleteStep.routeName });
-          },
-        });
-      }
+      this.registerOrganization().then(this.goToSuccessPage);
     },
-    goNext() {
-      this.markCurrentStepAsComplete();
-      const nextIndex = this.currentStepIndex + 1;
-      const nextStep = this.getStep(nextIndex);
-      if (nextStep === undefined) return;
 
-      this.$router.push({ name: nextStep.routeName });
-    },
-    goPrev() {
-      const prevIndex = this.currentStepIndex - 1;
-      const prevStep = this.getStep(prevIndex);
-      if (prevStep === undefined) return;
-      this.$router.push({ name: prevStep.routeName });
-    },
-    getStep(index) {
-      return this.steps.find((step) => step.index === index);
-    },
-    goToSuccessPage(teams) {
+    goToSuccessPage(teams: Team[]) {
       this.teams = teams;
       this.$router.push({ name: "register-success" });
-    },
-    markCurrentStepAsComplete() {
-      this.currentStep.completed = true;
-    },
-  },
-  computed: {
-    currentStep() {
-      const currentRouteName = this.$router.currentRoute.value.name;
-      return this.steps.find((step) => step.routeName === currentRouteName);
-    },
-
-    currentStepIndex() {
-      return this.currentStep !== undefined ? this.currentStep.index : 0;
-    },
-    isFirstStep() {
-      return this.currentStepIndex === 0;
-    },
-    isLastStep() {
-      return this.currentStepIndex === this.steps.length - 1;
-    },
-    numberOfSteps() {
-      return this.steps.length;
-    },
-    numberOfCompletedSteps() {
-      return this.steps.filter((step) => step.completed).length;
-    },
-    numberOfRemainingSteps() {
-      return this.steps.length - this.numberOfCompletedSteps;
-    },
-    noRemainingStepsLeft() {
-      return this.numberOfRemainingSteps === 0;
-    },
-    firstIncompleteStep() {
-      return this.steps.find((step) => !step.completed);
     },
   },
 
   data() {
     return {
       teams: [],
-      steps: [
-        {
-          index: 0,
-          title: "اطلاعات اصلی",
-          routeName: "register-step-1",
-          completed: false,
-        },
-        {
-          index: 1,
-          title: "تیم‌های شرکت‌کننده",
-          routeName: "register-step-2",
-          completed: false,
-        },
-        {
-          index: 2,
-          title: "بازبینی و ثبت",
-          routeName: "register-step-3",
-          completed: false,
-        },
-        // {
-        //   index: 3,
-        //   title: "پایان",
-        //   routeName: "register-step-4",
-        // },
-      ],
     };
   },
 });

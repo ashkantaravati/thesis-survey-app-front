@@ -16,12 +16,7 @@ import {
   TeamEffectivenessSurvey,
   VoiceSurvey,
 } from "@/views/survey";
-import {
-  GeneralInfo,
-  TeamSetup,
-  RegistrationReview,
-  RegistrationSuccess,
-} from "@/views/registration";
+import { GeneralInfo, RegistrationSuccess } from "@/views/registration";
 
 const routes = [
   {
@@ -50,16 +45,7 @@ const routes = [
         name: "register-step-1",
         component: GeneralInfo,
       },
-      {
-        path: "2",
-        name: "register-step-2",
-        component: TeamSetup,
-      },
-      {
-        path: "3",
-        name: "register-step-3",
-        component: RegistrationReview,
-      },
+
       {
         path: "success",
         name: "register-success",

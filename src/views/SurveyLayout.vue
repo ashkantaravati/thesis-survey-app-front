@@ -1,7 +1,7 @@
 <template>
   <h2>پرسشنامه</h2>
   <div id="info-bar" v-loading.fullscreen.lock="loading">
-    <p class=" ">
+    <p v-if="teamInfo">
       شرکت‌کننده‌ی گرامی از تیم
       <strong> «{{ teamInfo.name }}» </strong>
       سازمان
@@ -50,7 +50,6 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from "vue";
 import { mapActions, mapMutations, useStore } from "vuex";
-// import { getTeamInfo } from "../api/survey.service";
 type Step = {
   index: number;
   title: string;
@@ -68,8 +67,6 @@ export default defineComponent({
 
     return {
       loading: computed(() => store.state.loading),
-      progress: computed(() => store.state.progress),
-      teamInfo: computed(() => store.state.teamInfo),
       feedbackDialogIsVisible,
     };
   },
@@ -143,7 +140,7 @@ export default defineComponent({
     },
 
     currentStepIndex(): number {
-      return (this.currentStep != undefined) ? this.currentStep.index : 0;
+      return this.currentStep != undefined ? this.currentStep.index : 0;
     },
     isFirstStep(): boolean {
       return this.currentStepIndex === 0;
@@ -174,9 +171,12 @@ export default defineComponent({
     firstStep(): Step {
       return this.getStep(0) as Step;
     },
+    teamInfo() {
+      return this.$store.state.survey.activeTeam;
+    },
   },
   created() {
-    if (this.teamInfo.members.length === 0) this.fetchTeamInfo(this.teamId);
+    this.fetchTeamInfo(this.teamId);
   },
 
   data() {
@@ -212,12 +212,6 @@ export default defineComponent({
           routeName: "survey-step-5",
           completed: false,
         },
-        // {
-        //   index: 5,
-        //   title: "بازبینی",
-        //   routeName: "survey-review",
-        //   completed: false,
-        // },
       ] as Step[],
     };
   },

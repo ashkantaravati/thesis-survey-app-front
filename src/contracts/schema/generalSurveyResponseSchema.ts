@@ -1,7 +1,4 @@
-import NumberIdentifiedEntitySchema from "./numberIdentifiedEntitySchema";
-
-export default interface GeneralSurveyResponseSchema
-  extends NumberIdentifiedEntitySchema {
+export default interface GeneralSurveyResponseSchema {
   age: number;
   sex: string;
   tenure: number;
