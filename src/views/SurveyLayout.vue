@@ -9,26 +9,28 @@
       ؛ وقت بخیر!
     </p>
   </div>
-  <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
-    <el-step
-      v-for="step in steps"
-      :key="step.index"
-      :title="step.title"
-    ></el-step>
-  </el-steps>
+  <el-card v-if="currentStep">
+    <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
+      <el-step
+        v-for="step in steps"
+        :key="step.index"
+        :title="step.title"
+      ></el-step>
+    </el-steps>
+  </el-card>
+
   <div>
-    <div style="position: relative">
-      <el-link
-        class="prev-step"
-        v-if="!isFirstStep"
-        @click.prevent="goPrev"
-        type="info"
-      >
-        <i class="el-icon-right"></i>
+    <div style="position: relative" class="bring-to-top">
+      <el-link v-if="!isFirstStep" @click.prevent="goPrev" type="info">
+        <el-icon>
+          <right-icon />
+        </el-icon>
         گام قبل</el-link
       >
     </div>
-    <router-view @proceed.once="goNext" @submit="submit"></router-view>
+    <el-card class="mt-1rem">
+      <router-view @proceed.once="goNext" @submit="submit"></router-view>
+    </el-card>
     <hint-dialog
       v-model="feedbackDialogIsVisible"
       @act="confirmAndSend"
@@ -133,10 +135,9 @@ export default defineComponent({
     },
     currentStep(): Step {
       const currentRouteName = this.$router.currentRoute.value.name;
-      return (
-        this.steps.find((step) => step.routeName === currentRouteName) ||
-        this.firstStep
-      );
+      return this.steps.find(
+        (step) => step.routeName === currentRouteName
+      ) as Step;
     },
 
     currentStepIndex(): number {

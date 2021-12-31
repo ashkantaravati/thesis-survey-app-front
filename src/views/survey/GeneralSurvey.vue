@@ -4,6 +4,15 @@
 
     <el-form :model="generalSurvey" :rules="rules" ref="generalSurveyForm">
       <div class="block mb-halfrem">
+        <p>جنسیت</p>
+        <el-form-item prop="sex">
+          <el-radio-group v-model="generalSurvey.sex" dir="ltr" class="sex">
+            <el-radio-button label="female">خانم</el-radio-button>
+            <el-radio-button label="male">آقا</el-radio-button>
+          </el-radio-group>
+        </el-form-item>
+      </div>
+      <div class="block mb-halfrem">
         <p>سن</p>
         <el-form-item prop="age">
           <el-input-number
@@ -13,15 +22,7 @@
           ></el-input-number>
         </el-form-item>
       </div>
-      <div class="block mb-halfrem">
-        <p>جنسیت</p>
-        <el-form-item prop="sex">
-          <el-radio-group v-model="generalSurvey.sex" dir="ltr" class="sex">
-            <el-radio-button label="female">خانم</el-radio-button>
-            <el-radio-button label="male">آقا</el-radio-button>
-          </el-radio-group>
-        </el-form-item>
-      </div>
+
       <div class="block mb-halfrem">
         <p>چند سال سابقه‌ی کار دارید؟</p>
         <el-form-item prop="tenure">

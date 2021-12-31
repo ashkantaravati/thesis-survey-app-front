@@ -1,15 +1,13 @@
 <template>
   <div class="step-container" id="survey-step-2">
-    <h3>
-      ارزیابی بیش‌اطمینانی
-    </h3>
+    <h3>ارزیابی بیش‌اطمینانی</h3>
     <p>
       در پاسخ به هر یک از سوالاتی که در ادامه آمده است بازه‌ای از اعداد را وارد
       کنید که با حداقل ۹۰٪ اطمینان فکر می‌کنید پاسخ درست در آن بازه قرار دارد.
     </p>
-    <el-card class="mb-halfrem">
+    <div class="mb-halfrem inner-container">
       <template
-        v-for="(question,index) in overconfidenceSurvey"
+        v-for="(question, index) in overconfidenceSurvey"
         :key="question.index"
       >
         <min-max-question :ref="`f-${question.index}`" :question="question" />
@@ -18,7 +16,7 @@
           v-if="isNotLastQuestion(index)"
         ></el-divider>
       </template>
-    </el-card>
+    </div>
   </div>
   <proceed-button type="proceed" text="گام بعد" @click="goNext" />
   <hint-dialog v-model="isHintVisible">
@@ -41,35 +39,36 @@ import { defineComponent } from "vue";
 export default defineComponent({
   components: { MinMaxQuestion },
   name: "OverconfidenceSurvey",
-    mounted() {
+  mounted() {
     this.isHintVisible = true;
   },
-  data(){
+  data() {
     return {
       isHintVisible: false,
-
-    }
+    };
   },
   methods: {
-    isNotLastQuestion(index: number){
-      return index !== Object.keys(this.overconfidenceSurvey).length - 1
+    isNotLastQuestion(index: number) {
+      return index !== Object.keys(this.overconfidenceSurvey).length - 1;
     },
-    validateAll():boolean {
-    let valid = true;
-    for (const refKey in this.$refs){
-      const form = this.$refs[refKey] as typeof MinMaxQuestion
-      form.validate((isValid:boolean) => {valid &&=isValid;})
-    }
-    return  valid;
+    validateAll(): boolean {
+      let valid = true;
+      for (const refKey in this.$refs) {
+        const form = this.$refs[refKey] as typeof MinMaxQuestion;
+        form.validate((isValid: boolean) => {
+          valid &&= isValid;
+        });
+      }
+      return valid;
     },
-    goNext():void | boolean {
-       if (this.validateAll()) {
-          this.$emit("proceed");
-        } else {
-          return false;
-        }
+    goNext(): void | boolean {
+      if (this.validateAll()) {
+        this.$emit("proceed");
+      } else {
+        return false;
       }
     },
+  },
   computed: {
     overconfidenceSurvey() {
       return this.$store.state.survey.overconfidenceSurvey;

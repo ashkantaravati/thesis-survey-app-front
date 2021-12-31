@@ -5,7 +5,7 @@
       درباره‌ی تیمی که در آن حضور دارید میزان موافقیت یا مخالفت خود با هر یک از
       گزاره‌های زیر را مشخص کنید.
     </p>
-    <el-card class="mb-halfrem">
+    <div class="mb-halfrem inner-container">
       <template
         v-for="(question, index) in teamCoordinationSurvey"
         :key="index"
@@ -17,7 +17,7 @@
         />
         <el-divider></el-divider>
       </template>
-    </el-card>
+    </div>
   </div>
   <proceed-button type="proceed" text="گام بعد" @click="goNext" />
 </template>

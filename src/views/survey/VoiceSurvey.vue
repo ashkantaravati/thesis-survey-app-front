@@ -4,14 +4,16 @@
     <p>
       در این قسمت لطفا به ازای هر یک از هم‌تیمی‌های خود به این ۶ سوال پاسخ دهید:
     </p>
-    <template v-for="(question, index) in voiceSurvey" :key="index">
-      <likert-scale-question
-        :ref="`f-${question.index}`"
-        :question="question"
-        mutation-type="setVoiceSurveyResponse"
-      />
-      <el-divider></el-divider>
-    </template>
+    <div class="mb-halfrem inner-container">
+      <template v-for="(question, index) in voiceSurvey" :key="index">
+        <likert-scale-question
+          :ref="`f-${question.index}`"
+          :question="question"
+          mutation-type="setVoiceSurveyResponse"
+        />
+        <el-divider></el-divider>
+      </template>
+    </div>
   </div>
   <proceed-button type="finalize" text="ارسال" @click="submit" />
 </template>

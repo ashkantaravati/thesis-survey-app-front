@@ -4,6 +4,7 @@
     border-radius: 5px;
     padding: 0px 5px;
 }
+
 .emphasized:hover {
     background-color: #ffcc29;
 }
@@ -19,15 +20,15 @@
     color: #ffcc29;
 }
 
-.el-divider--horizontal{
+.el-divider--horizontal {
     margin: 12px 0 !important;
 }
 
 @font-face {
     font-family: "IRANSansX";
-    src: url(../fonts/woff/IRANSansXFaNum-Regular.woff),
-    url(../fonts/woff2/IRANSansXFaNum-Regular.woff2);
+    src: url(../fonts/woff/IRANSansXFaNum-Regular.woff), url(../fonts/woff2/IRANSansXFaNum-Regular.woff2);
 }
+
 body {
     font-family: "IRANSansX";
     box-sizing: border-box;
@@ -39,6 +40,7 @@ body {
     color: #f5f5f5;
     position: relative;
 }
+
 body::before {
     content: "";
     display: block;
@@ -52,6 +54,7 @@ body::before {
     z-index: -1;
     opacity: 0.7;
 }
+
 @media screen and (max-width: 768px) {
     body::before {
         left: 60%;
@@ -59,16 +62,19 @@ body::before {
         transform: translateX(-60%);
     }
 }
+
 a,
 a:hover,
 a:focus {
     text-decoration: none !important;
 }
+
 .el-input__inner,
 .el-button,
 .el-step__icon-inner {
     font-family: "IRANSansX" !important;
 }
+
 .el-menu {
     background-color: transparent !important;
 }
@@ -79,53 +85,69 @@ a:focus {
         margin: 0 auto;
     }
 }
-.el-menu--horizontal > .el-menu-item {
+
+.el-menu--horizontal>.el-menu-item {
     float: right !important;
 }
+
 .el-main {
     min-height: 70vh;
 }
+
 .header {
     font-size: 1rem;
     display: flex;
     align-items: center;
 }
+
 .header button {
     color: rgb(218, 218, 218);
     margin-left: 1.5rem !important;
 }
+
 @media screen and (max-width: 320px) {
     .header a {
         color: rgb(218, 218, 218);
         margin-left: 0.82rem;
     }
 }
+
+
 /*  */
+
 .jc-center {
     justify-content: center;
 }
+
 .jc-between {
     justify-content: space-between;
 }
+
 .d-flex {
     display: flex;
 }
+
 .m-0 {
     margin: 0 !important;
 }
+
 .pb-1rem {
     padding-bottom: 1rem;
 }
+
 .mb-halfrem {
     margin-bottom: 0.5rem !important;
 }
+
 .mx-halfrem {
     margin-right: 0.5rem !important;
     margin-left: 0.5rem !important;
 }
+
 .mr-halfrem {
     margin-right: 0.5rem !important;
 }
+
 .mt-1rem {
     margin-top: 1rem !important;
 }
@@ -134,20 +156,25 @@ a:focus {
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
 }
+
+
 /*  */
 
 .el-button.is-round {
     border-radius: 46px;
     padding: 19px 40px;
 }
+
 .responsive-img {
     height: 500px;
     width: 100%;
 }
+
 .el-input__inner {
     background-color: #384a5d !important;
     color: #f5f5f5 !important;
 }
+
 .el-link.el-link--info {
     color: #e2e2e2 !important;
 }
@@ -156,6 +183,7 @@ a:focus {
     background-color: #384a5d !important;
     color: #f5f5f5 !important;
 }
+
 .card-header h4 {
     color: #f5f5f5 !important;
 }
@@ -174,15 +202,209 @@ a:focus {
     margin: 0 5%;
 }
 
-.hint-text{
+.hint-text {
     word-break: break-word;
     text-align: justify !important;
 }
 
-.index-indicator{
+.index-indicator {
     background: #ffcc29;
     padding: 0.15rem 0.3rem;
     color: #142334;
     border-radius: 0.25rem;
     font-size: small;
+}
+
+.el-steps--horizontal {
+    position: relative;
+}
+
+.el-steps--horizontal:after {
+    content: "";
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+    left: 0;
+    width: 80%;
+    height: 2px;
+    background: #b0d7ff;
+    top: 10px;
+}
+
+
+/*#region step numbers style*/
+
+
+/* is wait */
+
+.el-step__head.is-wait {
+    border-color: #b0d7ff;
+}
+
+.el-step__head.is-wait .el-step__icon-inner {
+    transition: 0.3s;
+}
+
+
+/* is process */
+
+.el-step__title.is-process {
+    color: #ffa51f;
+}
+
+.el-step__head.is-process {
+    border-color: #ffa51f;
+    color: #ffa51f;
+}
+
+.el-step__head.is-process .el-step__icon-inner {
+    color: #fff;
+    position: relative;
+    transition: 0.3s;
+}
+
+.el-step__head.is-process .el-step__icon-inner:after {
+    content: "";
+    position: absolute;
+    height: 7px;
+    width: 7px;
+    border: 2px solid #ffa51f;
+    border-width: 0 0 2px 2px;
+    transform: rotate(-45deg);
+    top: 4px;
+    left: 0px;
+    border-radius: 0 0 0 2px;
+    transition: 0.3s;
+}
+
+.el-step__head.is-process .el-step__icon-inner:before {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 5px;
+    border-left: 2px solid #ffa51f;
+    top: 2px;
+    left: 3px;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 768px) {
+    .el-step__head.is-process .el-step__icon-inner:before {
+        left: 3.5px;
+    }
+}
+
+
+/* is finish */
+
+.el-step__title.is-finish {
+    color: #a7ff7b;
+}
+
+.el-step__head.is-finish {
+    color: #a7ff7b;
+    border-color: #a7ff7b;
+}
+
+.el-step__head.is-finish .el-step__icon-inner {
+    color: #fff;
+    position: relative;
+    transition: 0.3s;
+}
+
+.el-step__head.is-finish .el-step__icon-inner:after {
+    content: "";
+    position: absolute;
+    height: 5px;
+    width: 10px;
+    border: 2px solid #2a7e00;
+    border-width: 0 0 2px 2px;
+    transform: rotate(-45deg);
+    top: 2px;
+    left: -2px;
+    border-radius: 0 0 0 2px;
+    transition: 0.3s;
+}
+
+
+/*#endregion step numbers style*/
+
+.el-step__title {
+    line-height: 18px;
+    font-weight: 300 !important;
+}
+
+@media screen and(max-width: 520px) {
+    .el-step__title {
+        font-size: 13px;
+    }
+}
+
+.el-step.is-horizontal .el-step__line {
+    display: none;
+}
+
+.step-container {
+    min-height: 300px;
+}
+
+.inner-container {
+    background: #384a5d;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 50%);
+    border-radius: 0.5rem;
+    border: 0;
+    flex-direction: column;
+    padding: 10px;
+    display: flex;
+}
+
+.fix-btns-container {
+    background: #384a5d;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 50%);
+    border-radius: 0.5rem;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    z-index: 1;
+    bottom: 0;
+    /* margin: 0 auto; */
+}
+
+.fix-btns-container.align-left {
+    justify-content: flex-end !important;
+}
+
+.el-form-item__error {
+    left: unset !important;
+    right: 0;
+}
+
+.step-container h3,
+.registration-title h3 {
+    color: #f5f5f5;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.prev-step {
+    position: absolute;
+    bottom: -45px;
+    right: 0px;
+}
+
+@media screen and (max-width: 360px) {
+    .fix-btns-container button {
+        font-size: 10px !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .prev-step {
+        bottom: -10px;
+    }
+}
+
+.bring-to-top {
+    z-index: 2;
 }

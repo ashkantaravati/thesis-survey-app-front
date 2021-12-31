@@ -9,7 +9,6 @@ import SurveyLayout from "@/views/SurveyLayout.vue";
 
 import {
   SurveyIntro,
-  SurveyReview,
   GeneralSurvey,
   OverconfidenceSurvey,
   TeamCoordinationSurvey,
@@ -83,11 +82,6 @@ const routes = [
         path: "5",
         name: "survey-step-5",
         component: VoiceSurvey,
-      },
-      {
-        path: "6",
-        name: "survey-review",
-        component: SurveyReview,
       },
     ],
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="step-container" id="survey-step-4">
     <h3>ارزیابی اثربخشی تیم از نظر شما</h3>
-    <el-card class="mb-halfrem">
+    <div class="mb-halfrem inner-container">
       <template
         v-for="(question, index) in teamEffectivenessSurvey"
         :key="index"
@@ -13,7 +13,7 @@
         />
         <el-divider></el-divider>
       </template>
-    </el-card>
+    </div>
   </div>
   <proceed-button type="proceed" text="گام بعد" @click="goNext" />
 </template>
