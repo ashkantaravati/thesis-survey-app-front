@@ -10,13 +10,10 @@ import {
   LikertScaleQuestion,
   MinMaxQuestion,
   MultiResponseLikertScaleQuestion,
-} from "@/models/common";
-import arrayShuffle from "array-shuffle";
+} from "@/core/models";
 import { OrganizationGeneralInfo } from "@/models/OrganizationInfo";
-import { MAXIMUM_TEAM_SIZE, MINIMUM_TEAM_SIZE } from "@/constants";
 import Stats from "@/models/Stats";
 import { MutationTree } from "vuex";
-import VOICE_BEHAVIOR_QUESTIONS from "@/constants/voiceBehaviorQuestions";
 
 const mutations: MutationTree<State> = {
   // survey mutations:
@@ -55,13 +52,7 @@ const mutations: MutationTree<State> = {
     ) as LikertScaleQuestion;
     Object.assign(question, payload);
   },
-  generateVoiceResponseItemForEachTeamMember(state: State) {
-    state.survey.voiceSurvey = arrayShuffle(
-      Object.entries(VOICE_BEHAVIOR_QUESTIONS).map(
-        ([key, value]) => new LikertScaleQuestion(value.index, value.text)
-      )
-    );
-  },
+
   setVoiceSurveyResponse(
     state: State,
     payload: MultiResponseLikertScaleQuestion

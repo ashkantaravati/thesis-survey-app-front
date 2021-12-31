@@ -1,7 +1,7 @@
 import { TeamCoordinationSurveyResponseSchema } from "@/contracts/schema";
 import { IDtoFromModelMapper } from "@/core";
 import { TeamCoordinationSurvey } from "@/models";
-import { LikertScaleQuestion } from "@/models/common";
+import { LikertScaleQuestion } from "@/core/models";
 
 export default class TeamCoordinationMapper implements IDtoFromModelMapper {
   createDtoFromModel(

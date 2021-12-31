@@ -1,5 +1,5 @@
-import {LikertResponse} from "@/models/common/LikertResponse";
-import TeamMember from "../TeamMember";
+import {LikertResponse} from "@/core/models/LikertResponse";
+import TeamMember from "../../models/TeamMember";
 
 export class LikertResponseWithRatee extends LikertResponse{
     evaluatedParticipant!: TeamMember;

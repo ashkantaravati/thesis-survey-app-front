@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import LikertScaleQuestion from "@/components/LikertScaleQuestion.vue";
+import LikertScaleQuestion from "@/core/components/LikertScaleQuestion.vue";
 
 export default defineComponent({
   name: "TeamEffectivenessSurvey",

@@ -1,6 +1,6 @@
 import { VoiceSurveyResponseSchema } from "@/contracts/schema";
 import { IDtoFromModelMapper } from "@/core";
-import { LikertScaleQuestion } from "@/models/common";
+import { LikertScaleQuestion } from "@/core/models";
 
 export default class VoiceSurveyMapper implements IDtoFromModelMapper {
   createDtoFromModel(

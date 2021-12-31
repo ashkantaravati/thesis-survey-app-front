@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "IRANSansX";
+    src: url(../fonts/woff/IRANSansXFaNum-Regular.woff), url(../fonts/woff2/IRANSansXFaNum-Regular.woff2);
+}
+
+a,
+a:hover,
+a:focus {
+    text-decoration: none !important;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+.jc-between {
+    justify-content: space-between;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
+.pb-1rem {
+    padding-bottom: 1rem;
+}
+
+.mb-halfrem {
+    margin-bottom: 0.5rem !important;
+}
+
+.mx-halfrem {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+}
+
+.mr-halfrem {
+    margin-right: 0.5rem !important;
+}
+
+.mt-1rem {
+    margin-top: 1rem !important;
+}
+
+.my-1rem {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+}

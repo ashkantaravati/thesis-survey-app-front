@@ -99,14 +99,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ProceedButton from "@/components/ProceedButton.vue";
 const MIN_TEAM_NAME_LENGTH = 3;
 import { mapMutations } from "vuex";
 import { Team } from "@/models";
 
 export default defineComponent({
   name: "RegistrationForm",
-  components: { ProceedButton },
 
   computed: {
     generalInfo: {

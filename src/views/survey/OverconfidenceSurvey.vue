@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import MinMaxQuestion from "@/components/MinMaxQuestion.vue";
+import MinMaxQuestion from "@/core/components/MinMaxQuestion.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({

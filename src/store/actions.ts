@@ -3,7 +3,7 @@ import {
   getTeamInfo,
   submitOrganizationInfo,
   submitParticipantResponse,
-} from "@/api/services";
+} from "@/services";
 import {
   OrganizationRegistrationMapper,
   SurveyResponseMapper,
@@ -13,7 +13,7 @@ import StatsMapper from "@/mappers/StatsMapper";
 import { ActionTree } from "vuex";
 import { State } from "@/store/state";
 import { SimpleProcedure } from "@/store/types";
-import { unproxify } from "@/helpers";
+import { unproxify } from "@/core/helpers";
 import { Team } from "@/models";
 
 const actions: ActionTree<State, State> = {
@@ -25,8 +25,6 @@ const actions: ActionTree<State, State> = {
         const mapper = new TeamWithOrganizationInfoMapper();
         const teamInfo = mapper.createModelFromDto(dto);
         commit("setTeamInfo", teamInfo);
-
-        commit("generateVoiceResponseItemForEachTeamMember");
       })
       .catch((err) => console.log(err))
       .finally(() => {

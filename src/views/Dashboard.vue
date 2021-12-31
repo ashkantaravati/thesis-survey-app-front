@@ -92,7 +92,7 @@
 </template>
 
 <script lang="ts">
-import { getOrganizationStatsIfAuthorized } from "@/api/services";
+import { getOrganizationStatsIfAuthorized } from "@/services";
 import { defineComponent } from "vue";
 import { generateUrlToTeamSurvey } from "@/mappers/TeamMapper";
 import ElInput from "element-plus/es/components/input";

@@ -6,10 +6,12 @@ import installElementPlus from "./plugins/element";
 import { Delete, Finished, Minus, Right } from "@element-plus/icons";
 import router from "./router";
 import store from "./store";
-import ProceedButton from "@/components/ProceedButton.vue";
-import HintDialog from "@/components/HintDialog.vue";
-import "@/css/main.css";
-import LikertScaleQuestion from "@/components/LikertScaleQuestion.vue";
+import {
+  LikertScaleQuestion,
+  ProceedButton,
+  HintDialog,
+} from "@/core/components";
+import "@/assets/scss/_app.scss";
 
 const app = createApp(App);
 installElementPlus(app);
