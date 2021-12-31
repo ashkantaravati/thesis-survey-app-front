@@ -47,11 +47,11 @@
                 </span>
                 تیم
               </span>
-              <div class="more-info">
+              <!-- <div class="more-info">
                 <span type="text"
                   >از {{ stats.overall.targetTeamSize }} تیم
                 </span>
-              </div>
+              </div> -->
             </el-card>
           </el-col>
           <el-col class="mt-1rem">
