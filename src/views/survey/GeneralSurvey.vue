@@ -1,6 +1,6 @@
 <template>
   <div class="step-container" id="survey-step-1">
-    <h3>سوالات عمومی</h3>
+    <!-- <h3>سوالات عمومی</h3> -->
 
     <el-form :model="generalSurvey" :rules="rules" ref="generalSurveyForm">
       <div class="block mb-halfrem">

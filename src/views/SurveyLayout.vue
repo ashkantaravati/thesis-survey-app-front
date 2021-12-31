@@ -185,31 +185,31 @@ export default defineComponent({
       steps: [
         {
           index: 0,
-          title: "سوالات عمومی",
+          title: "گام اول",
           routeName: "survey-step-1",
           completed: false,
         },
         {
           index: 1,
-          title: "بیش‌اطمینانی",
+          title: "گام دوم",
           routeName: "survey-step-2",
           completed: false,
         },
         {
           index: 2,
-          title: "هماهنگی تیم",
+          title: "گام سوم",
           routeName: "survey-step-3",
           completed: false,
         },
         {
           index: 3,
-          title: "اثربخشی تیم",
+          title: "گام چهارم",
           routeName: "survey-step-4",
           completed: false,
         },
         {
           index: 4,
-          title: "رفتار صدای تیم",
+          title: "گام آخر",
           routeName: "survey-step-5",
           completed: false,
         },

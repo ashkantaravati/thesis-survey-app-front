@@ -1,6 +1,6 @@
 <template>
   <div class="step-container" id="survey-step-4">
-    <h3>ارزیابی اثربخشی تیم از نظر شما</h3>
+    <!-- <h3>ارزیابی اثربخشی تیم از نظر شما</h3> -->
     <div class="mb-halfrem inner-container">
       <template
         v-for="(question, index) in teamEffectivenessSurvey"
