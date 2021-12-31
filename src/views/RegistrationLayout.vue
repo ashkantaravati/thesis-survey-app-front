@@ -12,7 +12,6 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { mapActions, useStore } from "vuex";
-import { Team } from "@/models";
 
 export default defineComponent({
   name: "RegistrationLayout",
@@ -30,19 +29,10 @@ export default defineComponent({
       this.$emit("showHelpRequested");
     },
     submit() {
-      this.registerOrganization().then(this.goToSuccessPage);
+      this.registerOrganization().then(() =>
+        this.$router.push({ name: "register-success" })
+      );
     },
-
-    goToSuccessPage(teams: Team[]) {
-      this.teams = teams;
-      this.$router.push({ name: "register-success" });
-    },
-  },
-
-  data() {
-    return {
-      teams: [],
-    };
   },
 });
 </script>

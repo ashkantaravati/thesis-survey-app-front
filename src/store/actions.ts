@@ -14,6 +14,7 @@ import { ActionTree } from "vuex";
 import { State } from "@/store/state";
 import { SimpleProcedure } from "@/store/types";
 import { unproxify } from "@/helpers";
+import { Team } from "@/models";
 
 const actions: ActionTree<State, State> = {
   fetchTeamInfo({ commit, getters }, teamId: string) {
@@ -44,13 +45,16 @@ const actions: ActionTree<State, State> = {
         const updatedRegistrationInfo =
           mapper.createModelFromDto(createdOrganization);
         // commit("replaceWithCreatedOrganization", updatedRegistrationInfo);
-        const teamsWithLinks = updatedRegistrationInfo.teams.map((team) => {
-          return {
-            id: team.id,
-            link: team.link,
-            name: team.name,
-          };
-        });
+        const teamsWithLinks: Team[] = updatedRegistrationInfo.teams.map(
+          (team) => {
+            return {
+              id: team.id,
+              link: team.link,
+              size: team.size,
+              name: team.name,
+            };
+          }
+        );
         commit("setTemp", { teams: teamsWithLinks });
         commit("clearFormStates");
         return teamsWithLinks;

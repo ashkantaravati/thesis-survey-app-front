@@ -16,7 +16,7 @@ import {
   TeamEffectivenessSurvey,
   VoiceSurvey,
 } from "@/views/survey";
-import { GeneralInfo, RegistrationSuccess } from "@/views/registration";
+import { RegistrationForm, RegistrationSuccess } from "@/views/registration";
 
 const routes = [
   {
@@ -37,13 +37,8 @@ const routes = [
     children: [
       {
         path: "",
-        name: "register-landing",
-        redirect: "/register/1",
-      },
-      {
-        path: "1",
-        name: "register-step-1",
-        component: GeneralInfo,
+        name: "registration-form",
+        component: RegistrationForm,
       },
 
       {

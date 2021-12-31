@@ -1,4 +1,4 @@
-import GeneralInfo from "./GeneralInfo.vue";
+import RegistrationForm from "./RegistrationForm.vue";
 import RegistrationSuccess from "./RegistrationSuccess.vue";
 
-export { GeneralInfo, RegistrationSuccess };
+export { RegistrationForm, RegistrationSuccess };

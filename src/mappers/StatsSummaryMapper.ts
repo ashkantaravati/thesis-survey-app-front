@@ -11,11 +11,10 @@ export default class StatsSummaryMapper implements ITwoWayMapper {
       id: undefined,
       numberOfParticipatedOrganizations:
         _dto.number_of_participated_organizations,
-      numberOfParticipatedParticipants:
-        _dto.number_of_participated_participants,
+      numberOfParticipatedParticipants: 0,
       numberOfParticipatedTeams: _dto.number_of_participated_teams,
       numberOfRegisteredOrganizations: _dto.number_of_registered_organizations,
-      numberOfRegisteredParticipants: _dto.number_of_registered_participants,
+      numberOfRegisteredParticipants: _dto.number_of_submitted_responses,
       numberOfRegisteredTeams: _dto.number_of_registered_teams,
       targetTeamSize: _dto.target_team_size,
     };

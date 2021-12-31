@@ -21,7 +21,7 @@
         </p>
 
         <div>
-          <router-link :to="{ name: 'register-landing' }">
+          <router-link :to="{ name: 'registration-form' }">
             <el-button type="primary" class="my-1rem color-accent-cta">
               می‌خواهم مشارکت کنم</el-button
             >
@@ -265,15 +265,12 @@ mark {
   background-color: #384a5d;
 }
 
-
-
 .home-intro {
   text-align: justify;
 }
 .halfheight {
   height: 50%;
 }
-
 
 .home-carousel {
   height: 105px;

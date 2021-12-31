@@ -37,6 +37,8 @@
       ></el-input>
     </el-form-item>
   </el-form>
+  <h3>تیم‌های شرکت‌کننده در پژوهش</h3>
+
   <el-card
     class="box-card mb-halfrem"
     v-for="(team, index) in teams"
@@ -103,7 +105,7 @@ import { mapMutations } from "vuex";
 import { Team } from "@/models";
 
 export default defineComponent({
-  name: "GeneralInfo",
+  name: "RegistrationForm",
   components: { ProceedButton },
 
   computed: {

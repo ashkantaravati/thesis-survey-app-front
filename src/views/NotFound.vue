@@ -5,7 +5,7 @@
         باعث شرمندگیه... متاسفانه مشکلی پیش آمد.
       </h4>
       <div class="text-center">
-        <router-link :to="{ name: 'register-landing' }">
+        <router-link :to="{ name: 'registration-form' }">
           <el-button round type="primary" class="mt-1rem"> صفحه اصلی</el-button>
         </router-link>
       </div>
