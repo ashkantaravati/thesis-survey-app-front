@@ -2,7 +2,7 @@ import axios from "@/core/axios";
 import {
   OrganizationRegistrationDto,
   StatsDto,
-  SurveyResponseDto,
+  ResponseDto,
   TeamInfoDto,
 } from "../contracts";
 
@@ -18,11 +18,8 @@ function submitOrganizationInfo(payload: OrganizationRegistrationDto) {
   return axios.post<OrganizationRegistrationDto>("/organizations/", payload);
 }
 
-function submitParticipantResponse(
-  participantId: string,
-  payload: SurveyResponseDto
-) {
-  return axios.patch<SurveyResponseDto>(`/responses/${participantId}`, payload);
+function submitParticipantResponse(payload: ResponseDto) {
+  return axios.post<ResponseDto>(`/responses/`, payload);
 }
 
 function getOrganizationStatsIfAuthorized(authData: {

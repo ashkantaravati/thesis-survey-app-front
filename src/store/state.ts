@@ -1,16 +1,9 @@
-import {
-  OrganizationInfo,
-  TeamMember,
-  TeamWithOrganizationInfo,
-  ThesisSurvey,
-} from "@/models";
+import { OrganizationInfo, ThesisSurvey } from "@/models";
 import Stats from "@/models/Stats";
 
 type State = {
   registrationInfo: OrganizationInfo;
   survey: ThesisSurvey;
-  teamInfo: TeamWithOrganizationInfo;
-  activeParticipant: TeamMember;
   stats: Stats;
   loading: boolean;
   progress: number;
@@ -23,13 +16,6 @@ const state: State = {
   stats: new Stats(),
   survey: new ThesisSurvey(),
 
-  teamInfo: {
-    id: "",
-    members: [],
-    name: "",
-    organizationName: "",
-  },
-  activeParticipant: new TeamMember(),
   loading: false,
   progress: 0,
   temp: {},

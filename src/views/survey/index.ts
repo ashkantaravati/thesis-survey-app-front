@@ -4,7 +4,6 @@ import OverconfidenceSurvey from "./OverconfidenceSurvey.vue";
 import TeamCoordinationSurvey from "./TeamCoordinationSurvey.vue";
 import TeamEffectivenessSurvey from "./TeamEffectivenessSurvey.vue";
 import VoiceSurvey from "./VoiceSurvey.vue";
-import SurveyReview from "./SurveyReview.vue";
 
 export {
   SurveyIntro,
@@ -13,5 +12,4 @@ export {
   TeamCoordinationSurvey,
   TeamEffectivenessSurvey,
   VoiceSurvey,
-  SurveyReview,
 };

@@ -36,17 +36,76 @@
         type="email"
       ></el-input>
     </el-form-item>
-    <proceed-button type="proceed" text="گام بعد" @click="goNext" />
   </el-form>
+  <h3>تیم‌های شرکت‌کننده در پژوهش</h3>
+
+  <el-card
+    class="box-card mb-halfrem"
+    v-for="(team, index) in teams"
+    :key="index"
+  >
+    <div class="card-header">
+      <h4>تیم شماره {{ index + 1 }} :</h4>
+      <el-row>
+        <el-col :xs="4" :lg="2"><span>نام تیم:</span></el-col>
+        <el-col :xs="16" :lg="6">
+          <el-input
+            class="pb-1rem"
+            tabindex="5"
+            v-model="team.name"
+            :placeholder="`تیم شماره ${index + 1}`"
+          />
+        </el-col>
+        <el-col :xs="4" :lg="2"><span>سایز تیم:</span></el-col>
+        <el-col :xs="16" :lg="10">
+          <el-input-number
+            v-model="team.size"
+            :min="3"
+            :max="10"
+            size="small"
+          ></el-input-number>
+        </el-col>
+        <el-col :xs="4" :lg="2">
+          <el-tooltip
+            class="item"
+            effect="dark"
+            content="حذف تیم"
+            placement="top-start"
+          >
+            <el-button
+              @click="removeTeam(team)"
+              type="danger"
+              tabindex="6"
+              circle
+              plain
+              class="mr-halfrem"
+            >
+              <el-icon>
+                <delete-icon />
+              </el-icon>
+            </el-button>
+          </el-tooltip>
+        </el-col>
+      </el-row>
+    </div>
+  </el-card>
+  <div class="d-flex jc-center mb-halfrem">
+    <el-button @click="addTeam" type="primary" tabindex="3" round>
+      + افزودن تیم
+    </el-button>
+  </div>
+  <proceed-button type="finalize" text="ثبت" @click="goNext" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import ProceedButton from "@/core/components/ProceedButton.vue";
+const MIN_TEAM_NAME_LENGTH = 3;
+import { mapMutations } from "vuex";
+import { Team } from "@/models";
 
 export default defineComponent({
-  name: "GeneralInfo",
-  components: { ProceedButton },
+  name: "RegistrationForm",
+
   computed: {
     generalInfo: {
       get() {
@@ -54,6 +113,14 @@ export default defineComponent({
       },
       set(value) {
         this.$store.commit("updateGeneralInfo", value);
+      },
+    },
+    teams: {
+      get(): Team[] {
+        return this.$store.state.registrationInfo.teams;
+      },
+      set(value) {
+        this.$store.commit("updateTeams", value);
       },
     },
   },
@@ -112,11 +179,37 @@ export default defineComponent({
       },
     };
   },
-  mounted() {
+  created() {
     this.showHelp();
   },
 
   methods: {
+    ...mapMutations(["addTeam", "removeTeam"]),
+
+    isValid(): boolean {
+      return (
+        this.atLeastOneTeamHasBeenAdded() &&
+        this.allTeamsHaveName() &&
+        this.noTwoTeamsHaveTheSameName()
+      );
+    },
+    allTeamsHaveName(): boolean {
+      return this.teams.every(
+        (team: Team) => team.name.length >= MIN_TEAM_NAME_LENGTH
+      );
+    },
+    atLeastOneTeamHasBeenAdded(): boolean {
+      return this.teams.length > 0;
+    },
+    noTwoTeamsHaveTheSameName(): boolean {
+      let result = true;
+      this.teams.forEach((team: Team) => {
+        result &&= this.teams
+          .filter((team2) => team2 !== team)
+          .every((team2: Team) => team.name !== team2.name);
+      });
+      return result;
+    },
     showHelp() {
       this.$emit("showHelpRequested");
     },
@@ -124,7 +217,7 @@ export default defineComponent({
       const generalInfoForm = this.$refs["generalInfoForm"] as any;
       generalInfoForm.validate((valid: boolean) => {
         if (valid) {
-          this.$emit("proceed");
+          this.$emit("submit");
         } else {
           return false;
         }
@@ -134,4 +227,8 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.el-card__body {
+  flex-direction: column;
+}
+</style>

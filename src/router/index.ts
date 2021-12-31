@@ -9,19 +9,13 @@ import SurveyLayout from "@/views/SurveyLayout.vue";
 
 import {
   SurveyIntro,
-  SurveyReview,
   GeneralSurvey,
   OverconfidenceSurvey,
   TeamCoordinationSurvey,
   TeamEffectivenessSurvey,
   VoiceSurvey,
 } from "@/views/survey";
-import {
-  GeneralInfo,
-  TeamSetup,
-  RegistrationReview,
-  RegistrationSuccess,
-} from "@/views/registration";
+import { RegistrationForm, RegistrationSuccess } from "@/views/registration";
 
 const routes = [
   {
@@ -42,24 +36,10 @@ const routes = [
     children: [
       {
         path: "",
-        name: "register-landing",
-        redirect: "/register/1",
+        name: "registration-form",
+        component: RegistrationForm,
       },
-      {
-        path: "1",
-        name: "register-step-1",
-        component: GeneralInfo,
-      },
-      {
-        path: "2",
-        name: "register-step-2",
-        component: TeamSetup,
-      },
-      {
-        path: "3",
-        name: "register-step-3",
-        component: RegistrationReview,
-      },
+
       {
         path: "success",
         name: "register-success",
@@ -102,11 +82,6 @@ const routes = [
         path: "5",
         name: "survey-step-5",
         component: VoiceSurvey,
-      },
-      {
-        path: "6",
-        name: "survey-review",
-        component: SurveyReview,
       },
     ],
   },

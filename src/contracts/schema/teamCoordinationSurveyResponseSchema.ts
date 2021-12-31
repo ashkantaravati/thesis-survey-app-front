@@ -1,10 +1,7 @@
-import NumberIdentifiedEntitySchema from "../../core/contracts/numberIdentifiedEntitySchema";
-
-export default interface TeamCoordinationSurveyResponseSchema
-  extends NumberIdentifiedEntitySchema {
-  question_1: number;
-  question_2: number;
-  question_3: number;
-  question_4: number;
-  question_5: number;
+export default interface TeamCoordinationSurveyResponseSchema {
+  team_coordination_question_one: number;
+  team_coordination_question_two: number;
+  team_coordination_question_three: number;
+  team_coordination_question_four: number;
+  team_coordination_question_five: number;
 }
