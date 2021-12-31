@@ -27,6 +27,10 @@
                 <span>{{ team.size }} نفر</span>
               </h4>
               <div>
+                میانگین سن:
+                {{ team.stats.mean_age }}
+              </div>
+              <div>
                 لینک دعوت اعضا:
 
                 <el-link type="info" class="link">
@@ -39,35 +43,16 @@
               </div>
             </div>
           </template>
-          <div
-            class="name-container"
-  
-          >
-            <div class="name-container-header" 
-            >
-              <div style="width:40%" class="flex:50%">
-                نام
-              </div>
-              <div class="flex:50%">
-                وضعیت
-              </div>
-            </div>
+
+          <div class="name-container">
+            <div class="name-container-header">پاسخ‌های دریافت‌شده تاکنون</div>
 
             <div
               class="name-row"
-              v-for="(member, index) in team.members"
+              v-for="(respondant, index) in team.respondants"
               :key="index"
             >
-              <div style="width:40%" class="flex:50%">
-                {{ member.name }}
-              </div>
-              <div class="flex:50%">
-
-                <el-icon class="icon-styles">
-                  <finished-icon class="success" v-if="member.has_participated" />
-                  <minus-icon class="danger" v-else />
-                </el-icon>
-              </div>
+              <span>{{ respondant.age }} - {{ respondant.sex }}</span>
             </div>
           </div>
         </el-card>
@@ -75,7 +60,7 @@
     </el-row>
   </div>
   <div v-else>
-    <el-row style="justify-content:center">
+    <el-row style="justify-content: center">
       <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="mt-1rem">
         <div>
           <p>
@@ -91,10 +76,12 @@
           v-model="auth.token"
         />
         <el-input
+          ref="email"
           class="my-1rem"
           type="email"
           placeholder="ایمیل نماینده سازمان"
           v-model="auth.email"
+          @keyup.enter="authenticate"
         />
         <div class="text-center">
           <el-button type="primary" @click="authenticate">احراز هویت</el-button>
@@ -108,6 +95,7 @@
 import { getOrganizationStatsIfAuthorized } from "@/api/services";
 import { defineComponent } from "vue";
 import { generateUrlToTeamSurvey } from "@/mappers/TeamMapper";
+import ElInput from "element-plus/es/components/input";
 
 export default defineComponent({
   name: "Dashboard",
@@ -118,6 +106,8 @@ export default defineComponent({
     if (this.orgId) {
       this.isDirectVisit = true;
       this.auth.token = this.orgId as string;
+      const emailInput = this.$refs.email as typeof ElInput;
+      emailInput.focus();
     }
   },
   data() {
@@ -159,7 +149,7 @@ export default defineComponent({
   transition: 0.3s;
 }
 
-.icon-styles{
+.icon-styles {
   border-radius: 50%;
   padding: 5px;
   border: 1px solid;
@@ -170,11 +160,11 @@ export default defineComponent({
   font-size: 19px;
   font-weight: 800;
 }
-.icon-styles>.success {
+.icon-styles > .success {
   color: green;
   border-color: green;
 }
-.icon-styles>.danger {
+.icon-styles > .danger {
   color: red;
   border-color: red;
 }
@@ -200,9 +190,9 @@ export default defineComponent({
 .name-container {
   max-height: 230px;
   overflow-y: auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .name-container::-webkit-scrollbar {
   width: 8px;
@@ -216,11 +206,14 @@ export default defineComponent({
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
-.name-container-header{
+.name-container-header {
   position: sticky;
-  z-index:1;
-  top:0;
-  display:flex; flex-direction:row ;  border-bottom: 1px solid #fff; padding-bottom:6px;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 6px;
   background: #384a5d;
 }
 </style>
