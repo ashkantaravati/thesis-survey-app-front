@@ -39,6 +39,10 @@
       showActionButton="true"
       width="40%"
     >
+      <span
+        >اگر نظر و بازخوردی در رابطه با این پرسشنامه دارید می‌توانید در این قسمت
+        بنویسید.</span
+      >
       <el-input
         v-model="feedback"
         autosize
