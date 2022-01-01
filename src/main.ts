@@ -3,7 +3,13 @@ import { VueClipboard } from "@soerenmartius/vue3-clipboard";
 import App from "./App.vue";
 import "element-plus/dist/index.css";
 import installElementPlus from "./plugins/element";
-import { Delete, Finished, Minus } from "@element-plus/icons";
+import {
+  Delete,
+  Finished,
+  Minus,
+  Right,
+  DocumentCopy,
+} from "@element-plus/icons";
 import router from "./router";
 import store from "./store";
 import ProceedButton from "@/core/components/ProceedButton.vue";
@@ -18,6 +24,7 @@ app.use(store);
 app.component("delete-icon", Delete);
 app.component("finished-icon", Finished);
 app.component("minus-icon", Minus);
+app.component("copy-icon", DocumentCopy);
 app.component("proceed-button", ProceedButton);
 app.component("hint-dialog", HintDialog);
 app.mount("#app");
