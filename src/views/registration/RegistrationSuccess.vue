@@ -1,4 +1,4 @@
-<template>
+<template class="success-container">
   <h3>دریافت لینک برای مشارکت تیم‌ها</h3>
 
   <el-alert
@@ -8,37 +8,46 @@
     show-icon
     :closable="false"
   >
-    <div>
-      <p>
-        از زمانی که برای تکمیل مرحله‌ی اول گذاشتید بسیار سپاسگزارم. حالا
-        می‌توانید لینک‌های ساخته شده برای هر تیم را برای تکمیل پرسشنامه (مرحله‌ی
-        دوم) در اختیار اعضای آن تیم قرار دهید.
-      </p>
-      <ul v-for="team in teams" :key="team.id">
-        <li>
-          <strong>
-            لینک دعوت برای اعضای
-            {{ team.name }}:
-          </strong>
-          <el-link type="info">
-            <router-link
-              style="margin-left:10px"
-              :to="{ name: 'survey-intro', params: { teamId: team.id } }"
-            >
-              {{ team.link }}</router-link
-            >
-          </el-link>
-
-          <el-button v-clipboard="team.link" icon="el-icon-document-copy"
-            >کپی</el-button
-          >
-        </li>
-      </ul>
-    </div>
   </el-alert>
+  <div>
+    <p>
+      از زمانی که برای تکمیل مرحله‌ی اول گذاشتید بسیار سپاسگزارم.
+      <br />
+      حالا می‌توانید لینک‌های ساخته شده برای هر تیم را برای تکمیل پرسشنامه در
+      اختیار اعضای آن تیم قرار دهید.
+    </p>
+    <el-row
+      v-for="team in teams"
+      :key="team.id"
+      class="link-row"
+      justify="center"
+    >
+      <el-col>
+        <strong>
+          لینک دعوت برای اعضای
+          {{ team.name }}:
+        </strong>
+      </el-col>
+
+      <el-col>
+        <el-button type="info" class="invitation-link-btn">
+          <router-link
+            :to="{ name: 'survey-intro', params: { teamId: team.id } }"
+          >
+            {{ team.link }}</router-link
+          >
+        </el-button>
+        <el-button class="copy-button" v-clipboard="team.link">
+          <el-icon>
+            <copy-icon />
+          </el-icon>
+        </el-button>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, computed } from "vue";
 import { useStore } from "vuex";
 
@@ -55,4 +64,24 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.invitation-link-btn {
+  margin-left: 0.25rem;
+  background: white;
+  padding: 0.5rem;
+  min-width: 18rem;
+}
+
+.success-container {
+  width: 70%;
+  margin: auto;
+}
+
+.link-row {
+  margin: auto;
+  margin-bottom: 1rem;
+}
+.copy-button {
+  padding: 0.5rem;
+}
+</style>
