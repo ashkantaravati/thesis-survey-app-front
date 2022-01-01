@@ -7,14 +7,12 @@ import OverconfidenceSurveyResponseSchema from "./overconfidenceSurveyResponseSc
 import StatsSummarySchema from "./statsSummarySchema";
 import TeamCoordinationSurveyResponseSchema from "./teamCoordinationSurveyResponseSchema";
 import TeamEffectivenessSurveyResponseSchema from "./teamEffectivenessSurveyResponseSchema";
-import TeamMemberSchema from "./teamMemberSchema";
 import TeamSchema from "./teamSchema";
 import VoiceSurveyResponseSchema from "./voiceSurveyResponseSchema";
 
 export {
   HashIdentifiedEntitySchema,
   OrganizationSchema,
-  TeamMemberSchema,
   TeamSchema,
   VoiceSurveyResponseSchema,
   NumberIdentifiedEntitySchema,

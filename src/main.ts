@@ -12,8 +12,11 @@ import {
 } from "@element-plus/icons";
 import router from "./router";
 import store from "./store";
-import ProceedButton from "@/core/components/ProceedButton.vue";
-import HintDialog from "@/core/components/HintDialog.vue";
+import {
+  LikertScaleQuestion,
+  ProceedButton,
+  HintDialog,
+} from "@/core/components";
 import "@/assets/scss/_app.scss";
 
 const app = createApp(App);
@@ -23,8 +26,10 @@ app.use(router);
 app.use(store);
 app.component("delete-icon", Delete);
 app.component("finished-icon", Finished);
+app.component("right-icon", Right);
 app.component("minus-icon", Minus);
 app.component("copy-icon", DocumentCopy);
 app.component("proceed-button", ProceedButton);
 app.component("hint-dialog", HintDialog);
+app.component("likert-scale-question", LikertScaleQuestion);
 app.mount("#app");

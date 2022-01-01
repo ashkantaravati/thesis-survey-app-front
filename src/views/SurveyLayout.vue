@@ -1,7 +1,7 @@
 <template>
   <h2>پرسشنامه</h2>
   <div id="info-bar" v-loading.fullscreen.lock="loading">
-    <p class=" ">
+    <p v-if="teamInfo">
       شرکت‌کننده‌ی گرامی از تیم
       <strong> «{{ teamInfo.name }}» </strong>
       سازمان
@@ -9,26 +9,28 @@
       ؛ وقت بخیر!
     </p>
   </div>
-  <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
-    <el-step
-      v-for="step in steps"
-      :key="step.index"
-      :title="step.title"
-    ></el-step>
-  </el-steps>
+  <el-card v-if="currentStep">
+    <el-steps v-if="currentStep" :active="currentStepIndex" align-center>
+      <el-step
+        v-for="step in steps"
+        :key="step.index"
+        :title="step.title"
+      ></el-step>
+    </el-steps>
+  </el-card>
+
   <div>
-    <div style="position: relative">
-      <el-link
-        class="prev-step"
-        v-if="!isFirstStep"
-        @click.prevent="goPrev"
-        type="info"
-      >
-        <i class="el-icon-right"></i>
+    <div style="position: relative" class="bring-to-top">
+      <el-link v-if="!isFirstStep" @click.prevent="goPrev" type="info">
+        <el-icon>
+          <right-icon />
+        </el-icon>
         گام قبل</el-link
       >
     </div>
-    <router-view @proceed.once="goNext" @submit="submit"></router-view>
+    <el-card class="mt-1rem">
+      <router-view @proceed.once="goNext" @submit="submit"></router-view>
+    </el-card>
     <hint-dialog
       v-model="feedbackDialogIsVisible"
       @act="confirmAndSend"
@@ -50,7 +52,6 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from "vue";
 import { mapActions, mapMutations, useStore } from "vuex";
-// import { getTeamInfo } from "../services/survey.service";
 type Step = {
   index: number;
   title: string;
@@ -68,8 +69,6 @@ export default defineComponent({
 
     return {
       loading: computed(() => store.state.loading),
-      progress: computed(() => store.state.progress),
-      teamInfo: computed(() => store.state.teamInfo),
       feedbackDialogIsVisible,
     };
   },
@@ -136,14 +135,13 @@ export default defineComponent({
     },
     currentStep(): Step {
       const currentRouteName = this.$router.currentRoute.value.name;
-      return (
-        this.steps.find((step) => step.routeName === currentRouteName) ||
-        this.firstStep
-      );
+      return this.steps.find(
+        (step) => step.routeName === currentRouteName
+      ) as Step;
     },
 
     currentStepIndex(): number {
-      return (this.currentStep != undefined) ? this.currentStep.index : 0;
+      return this.currentStep != undefined ? this.currentStep.index : 0;
     },
     isFirstStep(): boolean {
       return this.currentStepIndex === 0;
@@ -174,9 +172,12 @@ export default defineComponent({
     firstStep(): Step {
       return this.getStep(0) as Step;
     },
+    teamInfo() {
+      return this.$store.state.survey.activeTeam;
+    },
   },
   created() {
-    if (this.teamInfo.members.length === 0) this.fetchTeamInfo(this.teamId);
+    this.fetchTeamInfo(this.teamId);
   },
 
   data() {
@@ -184,40 +185,34 @@ export default defineComponent({
       steps: [
         {
           index: 0,
-          title: "سوالات عمومی",
+          title: "گام اول",
           routeName: "survey-step-1",
           completed: false,
         },
         {
           index: 1,
-          title: "بیش‌اطمینانی",
+          title: "گام دوم",
           routeName: "survey-step-2",
           completed: false,
         },
         {
           index: 2,
-          title: "هماهنگی تیم",
+          title: "گام سوم",
           routeName: "survey-step-3",
           completed: false,
         },
         {
           index: 3,
-          title: "اثربخشی تیم",
+          title: "گام چهارم",
           routeName: "survey-step-4",
           completed: false,
         },
         {
           index: 4,
-          title: "رفتار صدای تیم",
+          title: "گام آخر",
           routeName: "survey-step-5",
           completed: false,
         },
-        // {
-        //   index: 5,
-        //   title: "بازبینی",
-        //   routeName: "survey-review",
-        //   completed: false,
-        // },
       ] as Step[],
     };
   },
