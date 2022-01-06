@@ -24,14 +24,6 @@
               می‌خواهم مشارکت کنم</el-button
             >
           </router-link>
-          <el-divider direction="vertical"></el-divider>
-          <el-button
-            class="color-secondary-cta"
-            @click="showAboutSurveyDialog()"
-            type="text"
-          >
-            می‌خواهم بیشتر بدانم
-          </el-button>
         </div>
       </el-row>
     </el-col>

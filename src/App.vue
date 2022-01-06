@@ -3,40 +3,12 @@
     <router-link :to="{ name: 'home' }">
       <el-button type="text"> صفحه‌ی اصلی</el-button>
     </router-link>
-    <el-button type="text" @click="aboutSurveyDrawer = true">
-      درباره‌ پژوهش</el-button
-    >
+
     <el-button type="text" @click="isHintVisible = true">راهنما</el-button>
     <el-button type="text" @click="aboutMeDrawer = true"
       >ارتباط با من</el-button
     >
 
-    <el-drawer
-      v-model="aboutSurveyDrawer"
-      size="80%"
-      title="درباره‌ی پژوهش"
-      :direction="direction"
-      :close-on-click-modal="true"
-    >
-      <p>
-        پژوهش حاضر مربوط به تز کارشناسی ارشد من در رشته‌ی مهندسی صنایع گرایش
-        مدیریت مهندسی است که در دانشگاه تربیت مدرس، دانشکده‌ی مهندسی صنایع و
-        سیستم‌ها زیر نظر سرکار خانم دکتر گلناز تاج‌الدین در حال انجام آن هستم.
-      </p>
-      <p>
-        در این تحقیق نمونه‌ی آماری تیم نرم‌افزار است و جمع‌آوری داده‌ها به ازای
-        تیم‌ها صورت می‌گیرد. به این منظور به اعضای هر تیم یک لینک به پرسشنامه‌ی
-        اختصاصی خودشان داده می‌شود و با توجه به پاسخی که هر یک از اعضای تیم به
-        پرسشنامه می‌دهند، داده‌ها در سطح تیم تجمیع می‌گردد.
-      </p>
-      <p>
-        در این راستا از یک نفر در سازمانی که علاقمند به مشارکت باشد می‌خواهم به
-        عنوان نماینده‌ی سازمان، اعضای تیم‌های مشارکت‌کننده را به تفکیک تیم تعریف
-        و ثبت کند و برای هر تیم لینک اختصاصی دریافت کرده و به اعضای آن تیم بدهد.
-        لازم به ذکر است که تمام اطلاعات محرمانه می‌ماند و البته نیازی به درج
-        مشخصات هویتی دقیق وجود ندارد.
-      </p>
-    </el-drawer>
     <el-drawer
       v-model="aboutMeDrawer"
       title="ارتباط با من"
@@ -59,7 +31,6 @@
       <!-- <el-divider class="m-0"></el-divider> -->
       <el-main>
         <router-view
-          @aboutSurveyRequested="aboutSurveyDrawer = true"
           @showHelpRequested="showHelp"
         />
       </el-main>
@@ -115,7 +86,6 @@ export default defineComponent({
   },
 
   setup() {
-    const aboutSurveyDrawer = ref(false);
     const isHintVisible = ref(false);
     const aboutMeDrawer = ref(false);
     const direction = ref("btt");
@@ -124,7 +94,6 @@ export default defineComponent({
     return {
       isHintVisible,
       aboutMeDrawer,
-      aboutSurveyDrawer,
       direction,
       handleClose,
     };
