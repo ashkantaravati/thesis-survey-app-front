@@ -1,99 +1,148 @@
 <template>
-  <h3>مشخصات سازمان و نماینده</h3>
   <el-form
     :model="generalInfo"
     :rules="rules"
     ref="generalInfoForm"
     class="demo-ruleForm"
   >
-    <el-form-item prop="repName">
-      <el-input
-        placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
-        v-model="generalInfo.repName"
-        autocomplete="name"
-      ></el-input>
-    </el-form-item>
-    <el-form-item prop="name">
-      <el-input
-        placeholder="نام یا عنوان تجاری سازمان"
-        v-model="generalInfo.name"
-        type="text"
-        autocomplete="organization"
-      ></el-input>
-    </el-form-item>
-    <el-form-item prop="repJobTitle">
-      <el-input
-        placeholder="سمت شما"
-        v-model="generalInfo.repJobTitle"
-        autocomplete="organization-title"
-      ></el-input>
-    </el-form-item>
-    <el-form-item prop="repEmail">
-      <el-input
-        placeholder="ایمیل (اختیاری)"
-        v-model="generalInfo.repEmail"
-        autocomplete="email"
-        type="email"
-      ></el-input>
-    </el-form-item>
-  </el-form>
-  <h3>تیم‌های شرکت‌کننده در پژوهش</h3>
+    <el-row :gutter="10">
+      <el-col :lg="16">
+        <h3>مشخصات سازمان و نماینده</h3>
 
-  <el-card
-    class="box-card mb-halfrem"
-    v-for="(team, index) in teams"
-    :key="index"
-  >
-    <div class="card-header">
-      <h4>تیم شماره {{ index + 1 }} :</h4>
-      <el-row>
-        <el-col :xs="4" :lg="2"><span>نام تیم:</span></el-col>
-        <el-col :xs="16" :lg="6">
-          <el-input
-            class="pb-1rem"
-            tabindex="5"
-            v-model="team.name"
-            :placeholder="`تیم شماره ${index + 1}`"
-          />
-        </el-col>
-        <el-col :xs="4" :lg="2"><span>سایز تیم:</span></el-col>
-        <el-col :xs="16" :lg="10">
-          <el-input-number
-            v-model="team.size"
-            :min="3"
-            :max="10"
-            size="small"
-          ></el-input-number>
-        </el-col>
-        <el-col :xs="4" :lg="2">
-          <el-tooltip
-            class="item"
-            effect="dark"
-            content="حذف تیم"
-            placement="top-start"
+        <el-row>
+          <el-col :lg="24">
+            <el-form-item prop="repName">
+              <el-input
+                placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
+                v-model="generalInfo.repName"
+                autocomplete="name"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row>
+          <el-col :lg="24">
+            <el-form-item prop="name">
+              <el-input
+                placeholder="نام یا عنوان تجاری سازمان"
+                v-model="generalInfo.name"
+                type="text"
+                autocomplete="organization"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :lg="24">
+            <el-form-item prop="repJobTitle">
+              <el-input
+                placeholder="سمت شما"
+                v-model="generalInfo.repJobTitle"
+                autocomplete="organization-title"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row>
+          <el-col :lg="24">
+            <el-form-item prop="repEmail">
+              <el-input
+                placeholder="ایمیل (اختیاری)"
+                v-model="generalInfo.repEmail"
+                autocomplete="email"
+                type="email"
+              ></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <div>
+          <h3>تیم‌های شرکت‌کننده در پژوهش</h3>
+
+          <el-card
+            class="box-card mb-halfrem"
+            v-for="(team, index) in teams"
+            :key="index"
           >
-            <el-button
-              @click="removeTeam(team)"
-              type="danger"
-              tabindex="6"
-              circle
-              plain
-              class="mr-halfrem"
-            >
+            <div class="card-header">
+              <el-row :gutter="4">
+                <el-col :xs="4" :lg="2"><span>نام تیم:</span></el-col>
+                <el-col :xs="16" :lg="6">
+                  <el-input
+                    class="pb-1rem"
+                    tabindex="5"
+                    v-model="team.name"
+                    :placeholder="`تیم شماره ${index + 1}`"
+                  />
+                </el-col>
+                <el-col :xs="4" :lg="4"><span>تعداد اعضا:</span></el-col>
+                <el-col :xs="16" :lg="8">
+                  <el-input-number
+                    v-model="team.size"
+                    :min="3"
+                    :max="10"
+                    size="small"
+                  ></el-input-number>
+                </el-col>
+                <el-col :xs="4" :lg="4">
+                  <el-tooltip
+                    class="item"
+                    effect="dark"
+                    content="حذف تیم"
+                    placement="top-start"
+                  >
+                    <el-button
+                      @click="removeTeam(team)"
+                      type="text"
+                      tabindex="6"
+                      class="mr-halfrem"
+                      style="color: #fd7373"
+                    >
+                      <el-icon>
+                        <delete-icon />
+                      </el-icon>
+                      حذف تیم
+                    </el-button>
+                  </el-tooltip>
+                </el-col>
+              </el-row>
+            </div>
+          </el-card>
+          <div class="d-flex jc-center mb-halfrem">
+            <el-button @click="addTeam" type="success" tabindex="11" plain>
               <el-icon>
-                <delete-icon />
+                <plus-icon />
               </el-icon>
+              افزودن تیم دیگر
             </el-button>
-          </el-tooltip>
-        </el-col>
-      </el-row>
-    </div>
-  </el-card>
-  <div class="d-flex jc-center mb-halfrem">
-    <el-button @click="addTeam" type="primary" tabindex="3" round>
-      + افزودن تیم
-    </el-button>
-  </div>
+          </div>
+        </div>
+      </el-col>
+      <el-col :lg="8">
+        <el-card>
+          <h3 class="mb-halfrem">توجه</h3>
+          <ol>
+            <li>
+              آدرس ایمیل اختیاری است اما اگر آن را در اختیارمان قرار دهید برای
+              شما لینک داشبورد ارسال می‌گردد.
+            </li>
+
+            <li>
+              ممکن است شما صرفا یک تیم باشید. در این صورت مفهوم سازمان را همان
+              تیم در نظر بگیرید
+            </li>
+
+            <li>
+              پس از ثبت این اطلاعات، به ازای هر یک از تیم‌هایی که تعریف کرده اید
+              یک لینک اختصاصی برای اعضای آن تیم به شما داده می‌شود
+            </li>
+          </ol>
+        </el-card>
+      </el-col>
+    </el-row>
+  </el-form>
+
   <proceed-button type="finalize" text="ثبت" @click="goNext" />
 </template>
 
@@ -179,9 +228,6 @@ export default defineComponent({
       },
     };
   },
-  created() {
-    this.showHelp();
-  },
 
   methods: {
     ...mapMutations(["addTeam", "removeTeam"]),
@@ -209,9 +255,6 @@ export default defineComponent({
           .every((team2: Team) => team.name !== team2.name);
       });
       return result;
-    },
-    showHelp() {
-      this.$emit("showHelpRequested");
     },
     goNext(): void {
       const generalInfoForm = this.$refs["generalInfoForm"] as any;

@@ -13,7 +13,13 @@ export default class OrganizationInfo extends Model {
       repJobTitle: "",
       repName: "",
     };
-    this.teams = [];
+    this.teams = [
+      {
+        name: `تیم 1`,
+        link: "",
+        size: 3,
+      },
+    ];
   }
   generalInfo!: OrganizationGeneralInfo;
   teams!: Team[];

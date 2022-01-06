@@ -9,6 +9,7 @@ import {
   Minus,
   Right,
   DocumentCopy,
+  Plus,
 } from "@element-plus/icons";
 import router from "./router";
 import store from "./store";
@@ -28,6 +29,8 @@ app.component("delete-icon", Delete);
 app.component("finished-icon", Finished);
 app.component("right-icon", Right);
 app.component("minus-icon", Minus);
+app.component("plus-icon", Plus);
+
 app.component("copy-icon", DocumentCopy);
 app.component("proceed-button", ProceedButton);
 app.component("hint-dialog", HintDialog);
