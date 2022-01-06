@@ -67,26 +67,29 @@
           >
             <div class="card-header">
               <el-row :gutter="4">
-                <el-col :xs="4" :lg="2"><span>نام تیم:</span></el-col>
-                <el-col :xs="16" :lg="6">
-                  <el-input
-                    class="pb-1rem"
-                    tabindex="5"
-                    v-model="team.name"
-                    :placeholder="`تیم شماره ${index + 1}`"
-                  />
+                <el-col :sm="24" :lg="8">
+                  <el-form-item label="نام تیم:">
+                    <el-input
+                      class="pb-1rem"
+                      tabindex="5"
+                      v-model="team.name"
+                      :placeholder="`تیم شماره ${index + 1}`"
+                    />
+                  </el-form-item>
                 </el-col>
-                <el-col :xs="4" :lg="4"><span>تعداد اعضا:</span></el-col>
-                <el-col :xs="16" :lg="8">
-                  <el-input-number
-                    v-model="team.size"
-                    :min="3"
-                    :max="10"
-                    size="small"
-                  ></el-input-number>
+                <el-col :xs="16" :lg="12">
+                  <el-form-item label="تعداد اعضا:">
+                    <el-input-number
+                      v-model="team.size"
+                      :min="3"
+                      :max="10"
+                      controls-position="right"
+                    ></el-input-number>
+                  </el-form-item>
                 </el-col>
-                <el-col :xs="4" :lg="4">
+                <el-col :xs="8" :lg="4">
                   <el-tooltip
+                    v-if="teams.length > 1"
                     class="item"
                     effect="dark"
                     content="حذف تیم"
@@ -120,8 +123,8 @@
         </div>
       </el-col>
       <el-col :lg="8">
-        <el-card>
-          <h3 class="mb-halfrem">توجه</h3>
+        <el-card class="hints">
+          <h3 class="mb-halfrem">توضیحات</h3>
           <ol>
             <li>
               آدرس ایمیل اختیاری است اما اگر آن را در اختیارمان قرار دهید برای
@@ -137,13 +140,22 @@
               پس از ثبت این اطلاعات، به ازای هر یک از تیم‌هایی که تعریف کرده اید
               یک لینک اختصاصی برای اعضای آن تیم به شما داده می‌شود
             </li>
+            <li>
+              می‌توانید نام تیم را تعیین نکنید و از همان نام پیش‌فرض استفاده
+              کنید.
+            </li>
           </ol>
         </el-card>
       </el-col>
     </el-row>
   </el-form>
 
-  <proceed-button type="finalize" text="ثبت" @click="goNext" />
+  <proceed-button
+    type="finalize"
+    align="center"
+    text="ثبت سازمان و دریافت لینک"
+    @click="goNext"
+  />
 </template>
 
 <script lang="ts">
@@ -273,5 +285,16 @@ export default defineComponent({
 <style>
 .el-card__body {
   flex-direction: column;
+}
+.el-form-item__label {
+  color: white;
+  padding-left: 2px;
+}
+
+.el-input-number {
+  width: 100px;
+}
+.hints {
+  margin-bottom: 1rem;
 }
 </style>

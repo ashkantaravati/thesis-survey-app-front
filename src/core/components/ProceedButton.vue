@@ -1,5 +1,5 @@
 <template>
-  <div class="fix-btns-container align-left">
+  <div class="fix-btns-container" :style="styleObject">
     <template v-if="type === 'proceed'">
       <el-button
         size="medium"
@@ -23,12 +23,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ProceedButton",
   props: {
+    align: {
+      type: String,
+      required: false,
+      default: "flex-end",
+    },
     type: {
       type: String,
       default: "proceed",
@@ -42,8 +47,15 @@ export default defineComponent({
       default: 0,
     },
   },
+  computed: {
+    styleObject() {
+      return {
+        "justify-content": `${this.align} !important`,
+      };
+    },
+  },
   methods: {
-    onClick: function() {
+    onClick: function () {
       this.$emit("click");
     },
   },
