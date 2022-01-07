@@ -2,7 +2,7 @@
   <el-dialog
     v-model="isHintVisible"
     :center="true"
-    open-delay="10"
+    :open-delay="10"
     :width="width"
     :show-close="false"
     custom-class="hint-dialog"
@@ -11,7 +11,7 @@
     <slot></slot>
 
     <template #footer>
-      <span class="dialog-footer">
+      <div class="dialog-footer">
         <el-button
           v-if="showNormalButton"
           :type="normalButtonType"
@@ -21,12 +21,12 @@
         <el-button v-if="showActionButton" type="primary" @click="act">{{
           actionButtonText
         }}</el-button>
-      </span>
+      </div>
     </template>
   </el-dialog>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -75,7 +75,7 @@ export default defineComponent({
       get() {
         return this.modelValue;
       },
-      set(value) {
+      set(value: boolean) {
         this.$emit("update:modelValue", value);
       },
     },
