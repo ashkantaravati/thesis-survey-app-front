@@ -25,5 +25,5 @@ export default class TeamMapper implements ITwoWayMapper {
   }
 }
 export function generateUrlToTeamSurvey(teamId: string) {
-  return `${window.location.origin}/participate/${teamId}`;
+  return `${window.location.origin}/p/${teamId}`;
 }

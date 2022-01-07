@@ -48,7 +48,7 @@ const routes = [
     ],
   },
   {
-    path: "/participate/:teamId",
+    path: "/p/:teamId",
     name: "Survey",
     component: SurveyLayout,
     props: true,
