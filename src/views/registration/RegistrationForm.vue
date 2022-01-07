@@ -5,7 +5,7 @@
     ref="generalInfoForm"
     class="demo-ruleForm"
   >
-    <el-row :gutter="10">
+    <el-row :gutter="4">
       <el-col :lg="16">
         <h3>مشخصات سازمان و نماینده</h3>
 
@@ -77,7 +77,7 @@
                     />
                   </el-form-item>
                 </el-col>
-                <el-col :xs="16" :lg="12">
+                <el-col :xs="14" :lg="12">
                   <el-form-item label="تعداد اعضا:">
                     <el-input-number
                       v-model="team.size"
@@ -87,7 +87,7 @@
                     ></el-input-number>
                   </el-form-item>
                 </el-col>
-                <el-col :xs="8" :lg="4">
+                <el-col :xs="10" :lg="4">
                   <el-tooltip
                     v-if="teams.length > 1"
                     class="item"
@@ -108,18 +108,30 @@
                       حذف تیم
                     </el-button>
                   </el-tooltip>
+                  <el-button
+                    @click="addTeam"
+                    type="text"
+                    style="color: #67c23a"
+                    class="mr-halfrem"
+                    v-if="index === teams.length - 1"
+                  >
+                    <el-icon>
+                      <plus-icon />
+                    </el-icon>
+                    افزودن تیم دیگر
+                  </el-button>
                 </el-col>
               </el-row>
             </div>
           </el-card>
-          <div class="d-flex jc-center mb-halfrem">
+          <!-- <div class="d-flex jc-center mb-halfrem">
             <el-button @click="addTeam" type="success" tabindex="11" plain>
               <el-icon>
                 <plus-icon />
               </el-icon>
               افزودن تیم دیگر
             </el-button>
-          </div>
+          </div> -->
         </div>
       </el-col>
       <el-col :lg="8">

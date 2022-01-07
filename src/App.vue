@@ -11,7 +11,7 @@
     <el-drawer
       v-model="aboutMeDrawer"
       title="ارتباط با من"
-      :direction="direction"
+      direction="btt"
       :close-on-click-modal="true"
     >
       <p>
@@ -23,13 +23,8 @@
       </p>
     </el-drawer>
   </el-header>
-  <el-divider style="margin-top: 0"></el-divider>
   <div class="common-layout add-bg">
     <el-container class="body-container">
-      <!-- <el-header class="header" style="margin:10px 0; height: unset">
-        <span>{{ surveyTitle }}</span>
-      </el-header> -->
-      <!-- <el-divider class="m-0"></el-divider> -->
       <el-main>
         <router-view />
       </el-main>
@@ -73,13 +68,9 @@ export default defineComponent({
 
   setup() {
     const aboutMeDrawer = ref(false);
-    const direction = ref("btt");
-    const handleClose = () => {};
 
     return {
       aboutMeDrawer,
-      direction,
-      handleClose,
     };
   },
 });

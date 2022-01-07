@@ -12,16 +12,18 @@
           <a class="emphasized" href="https://linkedin.com/in/ashkantaravati"
             >اشکان طراوتی</a
           >
-          هستم، یکی از فعالان فناوری اطلاعات در ایران و علاقمند به مباحث مدیریت
-          مهندسی و رفتار سازمانی. در حال حاضر مشغول به انجام پایان‌نامه‌ام در
-          مقطع کارشناسی ارشد هستم و برای جمع‌آوری داده‌های این تحقیق به مشارکت
-          تیم‌ها و سازمان‌های توسعه‌دهنده‌ی نرم‌افزار نیاز دارم.
+          هستم،
+          <br />
+          پرسشنامه‌ی حاضر مربوط به پایان‌نامه‌ی کارشناسی ارشد من در حوزه‌ی رفتار
+          سازمانی و پویایی تیم‌هاست. از شما دعوت می‌کنم تا با ثبت نام و دریافت
+          لینک برای هر یک از تیم‌های نرم‌افزار که در دسترس دارید به این پژوهش
+          کمک کنید.
         </p>
 
-        <div>
+        <div class="float-center">
           <router-link :to="{ name: 'registration-form' }">
             <el-button type="primary" class="my-1rem color-accent-cta">
-              می‌خواهم مشارکت کنم</el-button
+              شروع و دریافت لینک پرسشنامه</el-button
             >
           </router-link>
         </div>
@@ -35,24 +37,9 @@
             <el-card class="overal-stats-card">
               <span>
                 <span>
-                  {{ stats.overall.numberOfRegisteredTeams }}
-                </span>
-                تیم
-              </span>
-              <!-- <div class="more-info">
-                <span type="text"
-                  >از {{ stats.overall.targetTeamSize }} تیم
-                </span>
-              </div> -->
-            </el-card>
-          </el-col>
-          <el-col class="mt-1rem">
-            <el-card class="overal-stats-card">
-              <span>
-                <span>
                   {{ stats.overall.numberOfRegisteredParticipants }}
                 </span>
-                نفر
+                نفر پرسشنامه را پر کرده اند
               </span>
             </el-card>
           </el-col>
@@ -62,8 +49,23 @@
                 <span>
                   {{ stats.overall.numberOfRegisteredOrganizations }}
                 </span>
-                سازمان
+                سازمان ثبت نام کرده‌اند
               </span>
+            </el-card>
+          </el-col>
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
+              <span>
+                <span>
+                  {{ stats.overall.numberOfRegisteredTeams }}
+                </span>
+                تیم ثبت شده است
+              </span>
+              <!-- <div class="more-info">
+                <span type="text"
+                  >از {{ stats.overall.targetTeamSize }} تیم
+                </span>
+              </div> -->
             </el-card>
           </el-col>
         </el-row>
@@ -98,7 +100,7 @@
   </el-row>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 
@@ -128,6 +130,9 @@ export default defineComponent({
 <style>
 .overal-stats {
   flex-direction: column;
+}
+.float-center {
+  margin: auto;
 }
 .overal-stats-card .el-card__body {
   align-items: self-start;
