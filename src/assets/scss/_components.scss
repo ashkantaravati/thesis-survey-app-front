@@ -293,3 +293,11 @@
 .bring-to-top {
     z-index: 2;
 }
+
+.el-card__body {
+  flex-direction: column;
+}
+.el-form-item__label {
+  color: white;
+  padding-left: 2px;
+}
