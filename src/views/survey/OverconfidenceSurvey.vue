@@ -1,16 +1,51 @@
 <template>
   <div class="step-container" id="survey-step-2">
-    <!-- <h3>ارزیابی بیش‌اطمینانی</h3> -->
-    <p>
-      در پاسخ به هر یک از سوالاتی که در ادامه آمده است بازه‌ای از اعداد را وارد
-      کنید که با حداقل ۹۰٪ اطمینان فکر می‌کنید پاسخ درست در آن بازه قرار دارد.
-    </p>
+    <div class="mb-halfrem">
+      <strong
+        >مشابه مثال، محدوده‌ای که پاسخ سوال را در بر دارد حدس بزنید</strong
+      >
+    </div>
+
+    <div class="mb-halfrem inner-container example-card">
+      <min-max-question
+        :ref="`f-${example.question.index}`"
+        :readonly="true"
+        :question="example.question"
+      >
+        <template v-slot:pre>
+          <strong style="color: orange"> مثال: </strong>
+        </template>
+        <template v-slot:post>
+          <strong style="color: red"> توجه: </strong>
+          <ul>
+            <li>پاسخ‌ها را صرفا حدس بزنید</li>
+            <li>از جستجو در اینترنت یا استفاده از منابع دیگر پرهیز کنید</li>
+            <li>پاسخ درست را از دیگران سوال نکنید</li>
+            <li>برای پوشش دادن پاسخ صحیح، بازه را بیش از حد بزرگ نکنید</li>
+          </ul>
+        </template>
+      </min-max-question>
+    </div>
     <div class="mb-halfrem inner-container">
+      <!-- <min-max-question
+        :ref="`f-${example.question.index}`"
+        :readonly="true"
+        :question="example.question"
+      >
+        <template v-slot:pre>
+          <span style="color: orange"> مثال: </span>
+        </template>
+      </min-max-question>
+      <el-divider class="my-halfrem"></el-divider> -->
       <template
         v-for="(question, index) in overconfidenceSurvey"
         :key="question.index"
       >
-        <min-max-question :ref="`f-${question.index}`" :question="question" />
+        <min-max-question
+          :ref="`f-${question.index}`"
+          :question="question"
+          :index="index + 1"
+        />
         <el-divider
           class="my-halfrem"
           v-if="isNotLastQuestion(index)"
@@ -19,32 +54,31 @@
     </div>
   </div>
   <proceed-button type="proceed" text="گام بعد" @click="goNext" />
-  <hint-dialog v-model="isHintVisible">
-    <p>
-      در این مرحله از شما می‌خواهیم بدون جستجو در اینترنت یا هر منبع دیگر یا
-      پرسیدن از دیگران و صرفا با اتکا به حافطه‌ی خود یا آنچه به ذهنتان خطور
-      می‌کند به هر یک از سوالات پاسخ دهید.
-      <br />
-      نحوه‌ی پاسخ به سوالات به این صورت است که می‌بایست به هر یک از سوالات یک
-      عدد به عنوان کران پایین و یک عدد به عنوان کران بالای بازه‌ای ارائه کنید که
-      تصور می‌کنید پاسخ صحیح سوال در آن قرار می‌گیرد.
-    </p>
-  </hint-dialog>
 </template>
 
 <script lang="ts">
 import MinMaxQuestion from "@/core/components/MinMaxQuestion.vue";
 import { defineComponent } from "vue";
 
+const example = {
+  question: {
+    index: 0,
+    text: "مهاتما گاندی در چه سال میلادی متولد شد؟ (جواب ۱۸۶۹ است)",
+    response: {
+      min: 1865,
+      max: 1875,
+    },
+  },
+  correctAnswer: "مهاتما گاندی در سال ۱۸۶۹ متولد شد. ",
+};
 export default defineComponent({
   components: { MinMaxQuestion },
   name: "OverconfidenceSurvey",
-  mounted() {
-    this.isHintVisible = true;
-  },
+
   data() {
     return {
       isHintVisible: false,
+      example,
     };
   },
   methods: {
@@ -77,4 +111,8 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.example-card {
+  border: 1px orange dashed !important;
+}
+</style>
