@@ -2,7 +2,7 @@
   <el-row class="jc-center">
     <el-col :xs="24" :lg="18" :xl="18">
       <h4 class="text-center mb-halfrem">
-        باعث شرمندگیه... متاسفانه مشکلی پیش آمد.
+        ظاهرا صفحه‌ای که درخواست کردین وجود خارجی نداره...
       </h4>
       <div class="text-center">
         <router-link :to="{ name: 'registration-form' }">
