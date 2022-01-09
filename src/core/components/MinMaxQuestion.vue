@@ -1,15 +1,20 @@
 <template>
   <div class="mb-halfrem">
     <el-form :model="response" :rules="rules" ref="mainForm">
-
-    <el-row :gutter="40">
-      <el-col :md="12">
-        {{ question.text }}
-      </el-col>
+      <el-row v-if="$slots.pre">
+        <slot name="pre"></slot>
+      </el-row>
+      <el-row :gutter="40">
+        <el-col :md="12">
+          <template v-if="index"> {{ index }}- </template>
+          {{ question.text }}
+        </el-col>
         <el-col :md="6">
           <span>حداقل:</span>
           <el-form-item prop="min">
             <el-input-number
+              :disabled="readonly"
+              :controls="!readonly"
               size="mini"
               :required="true"
               placeholder="کف"
@@ -26,6 +31,8 @@
           <span>حداکثر:</span>
           <el-form-item prop="max">
             <el-input-number
+              :disabled="readonly"
+              :controls="!readonly"
               size="mini"
               placeholder="سقف"
               v-model="response.max"
@@ -37,9 +44,11 @@
             </el-input-number>
           </el-form-item>
         </el-col>
-    </el-row>
+      </el-row>
+      <el-row v-if="$slots.post">
+        <slot name="post"></slot>
+      </el-row>
     </el-form>
-
   </div>
 </template>
 
@@ -47,7 +56,7 @@
 import { MinMaxQuestion, MinMaxResponse } from "@/core/models";
 import { AnyFunction } from "element-plus/lib/utils/types";
 import { defineComponent } from "vue";
-import {ElForm} from "element-plus";
+import { ElForm } from "element-plus";
 
 export default defineComponent({
   name: "MinMaxQuestion",
@@ -55,6 +64,9 @@ export default defineComponent({
     question: { type: MinMaxQuestion, required: true },
     lowerBound: { type: Number, required: false },
     upperBound: { type: Number, required: false },
+    index: { type: Number, required: false },
+    readonly: { type: Boolean, required: false, default: false },
+    correctAnswer: { required: false },
   },
 
   data() {
