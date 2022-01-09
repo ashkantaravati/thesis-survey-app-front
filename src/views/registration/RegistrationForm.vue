@@ -5,60 +5,62 @@
     ref="generalInfoForm"
     class="demo-ruleForm"
   >
-    <el-row :gutter="4">
+    <el-row :gutter="16">
       <el-col :lg="16">
-        <h3>مشخصات سازمان و نماینده</h3>
+        <div class="number-container">
+          <h3><span class="number">1</span> مشخصات سازمان و نماینده</h3>
 
-        <el-row>
-          <el-col :lg="24">
-            <el-form-item prop="repName">
-              <el-input
-                placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
-                v-model="generalInfo.repName"
-                autocomplete="name"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
+          <el-row>
+            <el-col :lg="24">
+              <el-form-item prop="repName">
+                <el-input
+                  placeholder="نام و نام خانوادگی شما به عنوان نماینده‌ی سازمان"
+                  v-model="generalInfo.repName"
+                  autocomplete="name"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
 
-        <el-row>
-          <el-col :lg="24">
-            <el-form-item prop="name">
-              <el-input
-                placeholder="نام یا عنوان تجاری سازمان"
-                v-model="generalInfo.name"
-                type="text"
-                autocomplete="organization"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :lg="24">
-            <el-form-item prop="repJobTitle">
-              <el-input
-                placeholder="سمت شما"
-                v-model="generalInfo.repJobTitle"
-                autocomplete="organization-title"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
+          <el-row>
+            <el-col :lg="24">
+              <el-form-item prop="name">
+                <el-input
+                  placeholder="نام یا عنوان تجاری سازمان"
+                  v-model="generalInfo.name"
+                  type="text"
+                  autocomplete="organization"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :lg="24">
+              <el-form-item prop="repJobTitle">
+                <el-input
+                  placeholder="سمت شما"
+                  v-model="generalInfo.repJobTitle"
+                  autocomplete="organization-title"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
 
-        <el-row>
-          <el-col :lg="24">
-            <el-form-item prop="repEmail">
-              <el-input
-                placeholder="ایمیل (اختیاری)"
-                v-model="generalInfo.repEmail"
-                autocomplete="email"
-                type="email"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <div>
-          <h3>تیم‌های شرکت‌کننده در پژوهش</h3>
+          <el-row>
+            <el-col :lg="24">
+              <el-form-item prop="repEmail">
+                <el-input
+                  placeholder="ایمیل (اختیاری)"
+                  v-model="generalInfo.repEmail"
+                  autocomplete="email"
+                  type="email"
+                ></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </div>
+        <div class="number-container">
+          <h3><span class="number">2</span> تیم‌های شرکت‌کننده در پژوهش</h3>
 
           <el-card
             class="box-card mb-halfrem"
@@ -77,7 +79,7 @@
                     />
                   </el-form-item>
                 </el-col>
-                <el-col :xs="14" :lg="12">
+                <el-col :xs="14" :lg="10">
                   <el-form-item label="تعداد اعضا:">
                     <el-input-number
                       v-model="team.size"
@@ -87,7 +89,7 @@
                     ></el-input-number>
                   </el-form-item>
                 </el-col>
-                <el-col :xs="10" :lg="4">
+                <el-col :xs="10" :lg="6">
                   <el-tooltip
                     v-if="teams.length > 1"
                     class="item"
@@ -98,6 +100,7 @@
                     <el-button
                       @click="removeTeam(team)"
                       type="text"
+                     
                       tabindex="6"
                       class="mr-halfrem"
                       style="color: #fd7373"
@@ -111,8 +114,9 @@
                   <el-button
                     @click="addTeam"
                     type="text"
-                    style="color: #67c23a"
+                    style="color: #67c23a; border:1px solid #67c23a; padding: 0 4px;"
                     class="mr-halfrem"
+                    
                     v-if="index === teams.length - 1"
                   >
                     <el-icon>
@@ -135,8 +139,9 @@
         </div>
       </el-col>
       <el-col :lg="8">
-        <el-card class="hints">
-          <h3 class="mb-halfrem">توضیحات</h3>
+        <h3 class=" text-right mb-halfrem">توضیحات</h3> 
+         <el-card class="hints">
+        
           <ol>
             <li>
               آدرس ایمیل اختیاری است اما اگر آن را در اختیارمان قرار دهید برای
@@ -309,4 +314,32 @@ export default defineComponent({
 .hints {
   margin-bottom: 1rem;
 }
+.number-container{
+position: relative; 
+}
+.number-container h3{
+text-align:right !important
+}
+/* .number-container:after{
+  content:"";
+  background:#fff;
+  height: 100%;
+  width:1px;
+  position:absolute;
+  top:0;
+  right:-10px
+} */
+ .number-container .number{
+ height: 30px;
+  width:30px;
+  border:1px solid #fff;
+  border-radius:50%;
+  display:inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left:1rem
+ }
+ h3.text-right{
+text-align:right !important
+ }
 </style>
