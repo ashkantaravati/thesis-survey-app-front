@@ -9,6 +9,7 @@ import {
   SurveyResponseMapper,
   TeamWithOrganizationInfoMapper,
 } from "@/mappers";
+import router from "@/router";
 import StatsMapper from "@/mappers/StatsMapper";
 import { ActionTree } from "vuex";
 import { State } from "@/store/state";
@@ -55,11 +56,11 @@ const actions: ActionTree<State, State> = {
         );
         commit("setTemp", { teams: teamsWithLinks });
         commit("clearFormStates");
-        return teamsWithLinks;
+        router.push({ name: "register-success" });
       })
       .catch((err) => {
         console.error(err);
-        // onError();
+        router.push({ name: "error" });
       })
       .finally(() => {
         commit("setLoading", false);

@@ -29,9 +29,7 @@ export default defineComponent({
       this.$emit("showHelpRequested");
     },
     submit() {
-      this.registerOrganization().then(() =>
-        this.$router.push({ name: "register-success" })
-      );
+      this.registerOrganization();
     },
   },
 });
