@@ -27,7 +27,7 @@ const actions: ActionTree<State, State> = {
         const teamInfo = mapper.createModelFromDto(dto);
         commit("setTeamInfo", teamInfo);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => router.push({ name: "NotFound" }))
       .finally(() => {
         commit("setLoading", false);
       });
