@@ -32,23 +32,26 @@
       <router-view @proceed.once="goNext" @submit="submit"></router-view>
     </el-card>
     <hint-dialog
+      class="feedback-dialog"
       v-model="feedbackDialogIsVisible"
       @act="confirmAndSend"
       actionButtonText="تایید و ارسال"
-      normalButtonText="بازگشت"
+      :showNormalButton="false"
       showActionButton="true"
-      width="40%"
     >
       <span
         >اگر نظر و بازخوردی در رابطه با این پرسشنامه دارید می‌توانید در این قسمت
         بنویسید.</span
       >
-      <el-input
-        v-model="feedback"
-        autosize
-        type="textarea"
-        placeholder="نظر شما در مورد این پرسشنامه (اختیاری)"
-      />
+      <div class="mt-1rem">
+        <el-input
+          v-model="feedback"
+          autosize
+          :rows="2"
+          type="textarea"
+          placeholder="نظر شما در مورد این پرسشنامه (اختیاری)"
+        />
+      </div>
     </hint-dialog>
   </div>
 </template>
@@ -223,29 +226,4 @@ export default defineComponent({
 });
 </script>
 
-<style>
-@media screen and (max-width: 768px) {
-  .el-radio-group:not(.sex) {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .el-radio-button--small .el-radio-button__inner {
-    border-left: 1px solid #dcdfe6;
-    min-width: 9rem;
-    border-radius: 0 !important;
-  }
-}
-.step-container h4 {
-  background: #d9ebff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #384a5d;
-}
-.el-input-number__decrease,
-.el-input-number__increase {
-  background: #324f6d !important;
-  color: #ffffff !important;
-  font-size: 15px !important;
-}
-</style>
+<style scoped></style>

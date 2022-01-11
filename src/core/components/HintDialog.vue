@@ -2,8 +2,8 @@
   <el-dialog
     v-model="isHintVisible"
     :center="true"
+    :width="80"
     :open-delay="10"
-    :width="width"
     :show-close="false"
     custom-class="hint-dialog"
     :destroy-on-close="true"
@@ -18,7 +18,7 @@
           @click="hideDialog"
           >{{ normalButtonText }}</el-button
         >
-        <el-button v-if="showActionButton" type="primary" @click="act">{{
+        <el-button v-if="showActionButton" type="success" @click="act">{{
           actionButtonText
         }}</el-button>
       </div>
@@ -86,10 +86,17 @@ export default defineComponent({
 <style>
 .hint-dialog {
   background-color: #384a5d !important;
+  width: 80% !important;
 }
+@media screen and (min-width: 768px) {
+  .hint-dialog {
+    width: 50% !important;
+  }
+}
+
 .hint-dialog > .el-dialog__body {
   color: #fff;
   word-break: break-word;
-  text-align: justify !important;
+  /* text-align: justify !important; */
 }
 </style>
