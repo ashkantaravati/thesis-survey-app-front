@@ -13,7 +13,12 @@
       </template>
     </div>
   </div>
-  <proceed-button type="finalize" text="ارسال" @click="submit" />
+  <proceed-button
+    align="center"
+    type="finalize"
+    text="ثبت پاسخ"
+    @click="submit"
+  />
 </template>
 
 <script lang="ts">
