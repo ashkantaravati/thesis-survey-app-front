@@ -295,9 +295,14 @@
 }
 
 .el-card__body {
-  flex-direction: column;
+    flex-direction: column;
 }
+
 .el-form-item__label {
-  color: white;
-  padding-left: 2px;
+    color: white;
+    padding-left: 2px;
+}
+
+.notice-text {
+    color: orange;
 }

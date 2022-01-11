@@ -2,11 +2,11 @@
   <h2>پرسشنامه</h2>
   <div id="info-bar" v-loading.fullscreen.lock="loading">
     <p v-if="teamInfo">
-      شرکت‌کننده‌ی گرامی از تیم
-      <strong> «{{ teamInfo.name }}» </strong>
-      سازمان
-      <strong> «{{ teamInfo.organizationName }}» </strong>
-      ؛ وقت بخیر!
+      شرکت‌کننده‌ی گرامی از تیم «
+      <strong class="notice-text">{{ teamInfo.name }}</strong
+      >» سازمان «<strong class="notice-text">
+        {{ teamInfo.organizationName }} </strong
+      >» ؛ وقت بخیر!
     </p>
   </div>
   <el-card v-if="currentStep">
