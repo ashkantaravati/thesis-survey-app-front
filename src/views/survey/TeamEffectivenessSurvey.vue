@@ -15,12 +15,14 @@
       </template>
     </div>
   </div>
-  <proceed-button type="proceed" text="گام بعد" @click="goNext" />
+  <proceed-button type="proceed" text="گام بعد" @click.stop="goNext" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import LikertScaleQuestion from "@/core/components/LikertScaleQuestion.vue";
+import { ElMessage } from "element-plus";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "TeamEffectivenessSurvey",
@@ -36,6 +38,9 @@ export default defineComponent({
       return valid;
     },
     goNext(): void | boolean {
+      if (!this.surveyProgress.step4) {
+        ElMessage("هنوز همه‌ی فیلدها را پر نکرده‌اید");
+      }
       if (this.validateAll()) {
         this.$emit("proceed");
       } else {
@@ -44,6 +49,8 @@ export default defineComponent({
     },
   },
   computed: {
+    ...mapGetters(["surveyProgress"]),
+
     teamEffectivenessSurvey() {
       return this.$store.state.survey.teamEffectivenessSurvey;
     },

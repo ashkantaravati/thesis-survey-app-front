@@ -30,6 +30,7 @@
     </div>
     <el-card class="mt-1rem">
       <router-view @proceed.once="goNext" @submit="submit"></router-view>
+      <!-- TODO: possible problem with .once -->
     </el-card>
     <hint-dialog
       class="feedback-dialog"
@@ -59,6 +60,9 @@
 <script lang="ts">
 import { defineComponent, computed, ref } from "vue";
 import { mapActions, mapMutations, useStore } from "vuex";
+import { ElMessage } from "element-plus";
+import { mapGetters } from "vuex";
+
 type Step = {
   index: number;
   title: string;
@@ -116,22 +120,28 @@ export default defineComponent({
     },
     submit(): void {
       this.markCurrentStepAsComplete();
-      if (this.noRemainingStepsLeft) {
-        this.feedbackDialogIsVisible = true;
-      } else {
-        this.$alert("هنوز همه‌ی مراحل را تکمیل نکرده اید.", "دست نگه‌دارید!", {
-          confirmButtonText: "بازگشت به مراحل",
-          callback: () => {
-            this.$router.push({ name: this.firstIncompleteStep.routeName });
-          },
-        });
+
+      if (!this.surveyProgress.isFinished) {
+        ElMessage("بخشی از پرسشنامه ناقص مانده است");
+        return;
       }
+      this.feedbackDialogIsVisible = true;
+      // else {
+      //   this.$alert("هنوز همه‌ی مراحل را تکمیل نکرده اید.", "دست نگه‌دارید!", {
+      //     confirmButtonText: "بازگشت به مراحل",
+      //     callback: () => {
+      //       this.$router.push({ name: this.firstIncompleteStep.routeName });
+      //     },
+      //   });
+      // }
     },
     markCurrentStepAsComplete() {
       this.currentStep.completed = true;
     },
   },
   computed: {
+    ...mapGetters(["surveyProgress"]),
+
     feedback: {
       get(): string {
         return this.$store.state.survey.feedback;

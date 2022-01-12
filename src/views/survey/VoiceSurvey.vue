@@ -17,22 +17,29 @@
     align="center"
     type="finalize"
     text="ثبت پاسخ"
-    @click="submit"
+    @click.stop="submit"
   />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { ElMessage } from "element-plus";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "VoiceSurvey",
   methods: {
     submit() {
-      // if valid
+      if (!this.surveyProgress.step5) {
+        ElMessage("هنوز همه‌ی فیلدها را پر نکرده‌اید");
+        return;
+      }
       this.$emit("submit");
     },
   },
   computed: {
+    ...mapGetters(["surveyProgress"]),
+
     voiceSurvey() {
       return this.$store.state.survey.voiceSurvey;
     },

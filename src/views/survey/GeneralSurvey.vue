@@ -45,17 +45,22 @@
       </div>
     </el-form>
   </div>
-  <proceed-button type="proceed" text="گام بعد" @click="goNext" />
+  <proceed-button type="proceed" text="گام بعد" @click.stop="goNext" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { ElForm } from "element-plus";
-
+import { mapGetters } from "vuex";
+import { ElMessage } from "element-plus";
 export default defineComponent({
   name: "GeneralSurvey",
   methods: {
     goNext() {
+      if (!this.surveyProgress.step1) {
+        ElMessage("هنوز همه‌ی فیلدها را پر نکرده‌اید");
+        return;
+      }
       const generalSurveyForm = this.$refs.generalSurveyForm as typeof ElForm;
       generalSurveyForm.validate((valid: boolean) => {
         if (valid) {
@@ -65,6 +70,7 @@ export default defineComponent({
     },
   },
   computed: {
+    ...mapGetters(["surveyProgress"]),
     generalSurvey: {
       get() {
         return this.$store.state.survey.generalSurvey;

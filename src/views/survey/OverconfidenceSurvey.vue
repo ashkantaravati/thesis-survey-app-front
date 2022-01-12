@@ -58,12 +58,14 @@
       </template>
     </div>
   </div>
-  <proceed-button type="proceed" text="گام بعد" @click="goNext" />
+  <proceed-button type="proceed" text="گام بعد" @click.stop="goNext" />
 </template>
 
 <script lang="ts">
 import MinMaxQuestion from "@/core/components/MinMaxQuestion.vue";
 import { defineComponent } from "vue";
+import { ElMessage } from "element-plus";
+import { mapGetters } from "vuex";
 
 const example = {
   question: {
@@ -101,6 +103,9 @@ export default defineComponent({
       return valid;
     },
     goNext(): void | boolean {
+      if (!this.surveyProgress.step2) {
+        ElMessage("هنوز همه‌ی فیلدها را پر نکرده‌اید");
+      }
       if (this.validateAll()) {
         this.$emit("proceed");
       } else {
@@ -109,6 +114,8 @@ export default defineComponent({
     },
   },
   computed: {
+    ...mapGetters(["surveyProgress"]),
+
     overconfidenceSurvey() {
       return this.$store.state.survey.overconfidenceSurvey;
     },
