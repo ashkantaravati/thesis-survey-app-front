@@ -8,6 +8,8 @@
       >ارتباط با من</el-button
     >
 
+    <el-button type="text" @click="openDoc">فایل توضیحات</el-button>
+
     <el-drawer
       v-model="aboutMeDrawer"
       title="ارتباط با من"
@@ -65,7 +67,11 @@ export default defineComponent({
   computed: {
     ...mapGetters(["surveyTitle"]),
   },
-
+  methods: {
+    openDoc() {
+      window.open("/docs/README.pdf", "_blank");
+    },
+  },
   setup() {
     const aboutMeDrawer = ref(false);
 
