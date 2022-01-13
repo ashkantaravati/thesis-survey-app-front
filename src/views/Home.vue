@@ -27,7 +27,7 @@
           می‌شوند. این داده‌ها کاملا ناشناس باقی می‌مانند.
         </em>
 
-        <div class="float-center">
+        <div class="float-center mb-2rem">
           <router-link :to="{ name: 'registration-form' }">
             <el-button type="primary" class="my-1rem mb-4rem color-accent-cta">
               شروع و دریافت لینک پرسشنامه</el-button
