@@ -1,6 +1,6 @@
 <template>
   <el-row class="jc-center">
-    <el-col :md="20" :lg="20">
+    <el-col :md="20" :lg="19">
       <el-row class="halfheight">
         <img src="@/assets/images/exams-bro.svg" />
       </el-row>
@@ -36,30 +36,10 @@
         </div>
       </el-row>
     </el-col>
-    <el-col class="mt-2rem" v-if="stats.overall" :md="20" :lg="4" :xl="4">
+    <el-col class="mt-2rem" v-if="stats.overall" :md="20" :lg="5">
       <div>
         <h2>مشارکت تاکنون</h2>
         <el-row class="jc-between overal-stats">
-          <el-col class="mt-1rem">
-            <el-card class="overal-stats-card">
-              <span>
-                <span>
-                  {{ stats.overall.numberOfRegisteredParticipants }}
-                </span>
-                نفر پرسشنامه را پر کرده اند
-              </span>
-            </el-card>
-          </el-col>
-          <el-col class="mt-1rem">
-            <el-card class="overal-stats-card">
-              <span>
-                <span>
-                  {{ stats.overall.numberOfRegisteredOrganizations }}
-                </span>
-                سازمان ثبت نام کرده‌اند
-              </span>
-            </el-card>
-          </el-col>
           <el-col class="mt-1rem">
             <el-card class="overal-stats-card">
               <span>
@@ -75,33 +55,42 @@
               </div> -->
             </el-card>
           </el-col>
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
+              <span>
+                <span>
+                  {{ stats.overall.numberOfParticipatedTeams }}
+                </span>
+                تیم پرسشنامه را پر کرده اند
+              </span>
+              <!-- <div class="more-info">
+                <span type="text"
+                  >از {{ stats.overall.targetTeamSize }} تیم
+                </span>
+              </div> -->
+            </el-card>
+          </el-col>
+          <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
+              <span>
+                <span>
+                  {{ stats.overall.numberOfRegisteredParticipants }}
+                </span>
+                نفر پرسشنامه را پر کرده اند
+              </span>
+            </el-card>
+          </el-col>
+          <!-- <el-col class="mt-1rem">
+            <el-card class="overal-stats-card">
+              <span>
+                <span>
+                  {{ stats.overall.numberOfRegisteredOrganizations }}
+                </span>
+                سازمان ثبت نام کرده‌اند
+              </span>
+            </el-card>
+          </el-col> -->
         </el-row>
-      </div>
-    </el-col>
-  </el-row>
-
-  <el-divider v-if="showContributingOrgs"></el-divider>
-
-  <el-row v-if="showContributingOrgs" class="mobile-row-reverse jc-center">
-    <el-col :md="20" :lg="18" :xl="18">
-      <div>
-        <h2>برخی از مشارکت‌کنندگان</h2>
-        <el-carousel
-          indicator-position="none"
-          :interval="4000"
-          height="60%"
-          class="home-carousel"
-        >
-          <el-carousel-item
-            v-for="organization in stats.registeredOrganizations"
-            :key="organization"
-          >
-            <p class="name m-0">{{ organization.name }}</p>
-            <p class="count">
-              با <span>{{ organization.numberOfTeams }}</span> تیم
-            </p>
-          </el-carousel-item>
-        </el-carousel>
       </div>
     </el-col>
   </el-row>

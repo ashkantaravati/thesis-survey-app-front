@@ -82,4 +82,8 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.el-main {
+  overflow: hidden !important;
+}
+</style>
