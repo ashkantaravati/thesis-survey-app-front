@@ -9,7 +9,12 @@
       <el-col :lg="16">
         <div class="number-container">
           <h3><span class="number">1</span> مشخصات سازمان و نماینده</h3>
-
+          <div class="mb-halfrem mt-halfrem">
+            <em class="notice-text">
+              نیاز به ذکر اطلاعات دقیق و کامل نیست و در نهایت نیز داده‌های مربوط
+              به تیم‌های شما ناشناس می‌مانند
+            </em>
+          </div>
           <el-row>
             <el-col :lg="24">
               <el-form-item prop="repName">
@@ -61,7 +66,12 @@
         </div>
         <div class="number-container">
           <h3><span class="number">2</span> تیم‌های شرکت‌کننده در پژوهش</h3>
-
+          <div class="mb-halfrem mt-halfrem">
+            <em class="notice-text">
+              صرفا جهت اطلاع: طبق تعاریف آکادمیک، یک تیم باید شامل
+              <strong>حداقل ۳ </strong> و <strong>حداکثر ۱۰ </strong> نفر باشد.
+            </em>
+          </div>
           <el-card
             class="box-card mb-halfrem"
             v-for="(team, index) in teams"
@@ -84,7 +94,7 @@
                     <el-input-number
                       v-model="team.size"
                       :min="3"
-                      :max="10"
+                      :max="15"
                       controls-position="right"
                     ></el-input-number>
                   </el-form-item>
@@ -100,7 +110,6 @@
                     <el-button
                       @click="removeTeam(team)"
                       type="text"
-                     
                       tabindex="6"
                       class="mr-halfrem"
                       style="color: #fd7373"
@@ -114,9 +123,12 @@
                   <el-button
                     @click="addTeam"
                     type="text"
-                    style="color: #67c23a; border:1px solid #67c23a; padding: 0 4px;"
+                    style="
+                      color: #67c23a;
+                      border: 1px solid #67c23a;
+                      padding: 0 4px;
+                    "
                     class="mr-halfrem"
-                    
                     v-if="index === teams.length - 1"
                   >
                     <el-icon>
@@ -139,9 +151,8 @@
         </div>
       </el-col>
       <el-col :lg="8">
-        <h3 class=" text-right mb-halfrem">توضیحات</h3> 
-         <el-card class="hints">
-        
+        <h3 class="text-right mb-halfrem">توضیحات</h3>
+        <el-card class="hints">
           <ol>
             <li>
               آدرس ایمیل اختیاری است اما اگر آن را در اختیارمان قرار دهید برای
@@ -314,11 +325,11 @@ export default defineComponent({
 .hints {
   margin-bottom: 1rem;
 }
-.number-container{
-position: relative; 
+.number-container {
+  position: relative;
 }
-.number-container h3{
-text-align:right !important
+.number-container h3 {
+  text-align: right !important;
 }
 /* .number-container:after{
   content:"";
@@ -329,17 +340,17 @@ text-align:right !important
   top:0;
   right:-10px
 } */
- .number-container .number{
- height: 30px;
-  width:30px;
-  border:1px solid #fff;
-  border-radius:50%;
-  display:inline-flex;
+.number-container .number {
+  height: 30px;
+  width: 30px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin-left:1rem
- }
- h3.text-right{
-text-align:right !important
- }
+  margin-left: 1rem;
+}
+h3.text-right {
+  text-align: right !important;
+}
 </style>
